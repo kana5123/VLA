@@ -465,10 +465,7 @@ def train():
     # ── Adapter model ──
     hidden_dim = model.config.text_config.hidden_size  # 4096
     if args.adapter_version == 2:
-        adapter = AttentionAdapterV2(
-            hidden_dim=hidden_dim,
-            vision_tokens=vision_end,
-        )
+        adapter = AttentionAdapterV2(hidden_dim=hidden_dim)
     else:
         adapter = AttentionAdapter(hidden_dim=hidden_dim)
 

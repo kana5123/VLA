@@ -279,6 +279,7 @@ class BridgeStepDataset(Dataset):
             "action": np.array(item["action"], dtype=np.float64),
             "episode_id": item["episode_id"],
             "step_id": item["step_id"],
+            "global_step_id": idx,
         }
 
 
@@ -352,6 +353,7 @@ class BridgeTfrecordDataset(Dataset):
             "action": np.array(item["action"], dtype=np.float64),
             "episode_id": item["episode_id"],
             "step_id": item["step_id"],
+            "global_step_id": item["global_idx"],
         }
         if self.object_masks_mmap is not None:
             result["object_mask"] = np.array(self.object_masks_mmap[item["global_idx"]])
@@ -395,6 +397,7 @@ def adapter_collate_fn(batch: list[dict]) -> dict:
         "actions": np.stack([item["action"] for item in batch]),  # (B, 7)
         "episode_ids": [item["episode_id"] for item in batch],
         "step_ids": [item["step_id"] for item in batch],
+        "global_step_ids": [item["global_step_id"] for item in batch],
     }
     if "object_mask" in batch[0]:
         result["object_masks"] = np.stack([item["object_mask"] for item in batch])  # (B, V)

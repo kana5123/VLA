@@ -60,7 +60,6 @@ class AdapterEvaluator:
         self.baseline_only = baseline_only
         self.adapter = None
         self.adapter_version = 0
-        self.masks_mmap = None
 
         if not baseline_only and checkpoint_path is not None:
             ckpt = torch.load(checkpoint_path, map_location=device)
@@ -70,7 +69,6 @@ class AdapterEvaluator:
             if self.adapter_version == 2:
                 self.adapter = AttentionAdapterV2(
                     hidden_dim=hidden_dim,
-                    vision_tokens=self.vision_end,
                 ).to(device)
             else:
                 self.adapter = AttentionAdapter(hidden_dim=hidden_dim).to(device)
@@ -81,22 +79,6 @@ class AdapterEvaluator:
                 f"Adapter v{self.adapter_version} loaded from {checkpoint_path} "
                 f"(step {ckpt.get('global_step', '?')})"
             )
-
-            # Object masks memmap (v2 only)
-            if self.adapter_version == 2:
-                masks_path = config.DATA_CACHE_DIR / config.SAM_MASKS_FILENAME
-                if masks_path.exists():
-                    total_steps = np.memmap(
-                        str(config.DATA_CACHE_DIR / "images.dat"),
-                        dtype=np.uint8, mode="r",
-                    ).shape[0] // (256 * 256 * 3)
-                    self.masks_mmap = np.memmap(
-                        str(masks_path), dtype=np.uint8, mode="r",
-                        shape=(total_steps, config.VISION_GRID_SIZE ** 2),
-                    )
-                    print(f"  Object masks loaded: {masks_path} ({total_steps} steps)")
-                else:
-                    print(f"  WARNING: No object masks at {masks_path}, v2 eval without masks")
 
         # ── Action tokenizer ──
         self.tokenizer = ActionTokenizer(self.model)
@@ -171,6 +153,7 @@ class AdapterEvaluator:
             num_episodes=num_episodes,
             batch_size=1,
             source=data_source,
+            use_object_masks=(self.adapter_version == 2),
         )
 
         results = {cond: {"per_step": []} for cond in conditions}
@@ -184,11 +167,8 @@ class AdapterEvaluator:
 
             # Load object mask for this step if available
             obj_mask = None
-            if self.masks_mmap is not None and "global_step_ids" in batch:
-                gid = batch["global_step_ids"][0]
-                mask = self.masks_mmap[gid]
-                if mask.max() != config.SAM_FAILURE_MARKER:
-                    obj_mask = mask
+            if "object_masks" in batch:
+                obj_mask = batch["object_masks"][0]
 
             for condition in conditions:
                 adapter_on = condition == "adapter"

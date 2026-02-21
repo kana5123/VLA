@@ -226,11 +226,10 @@ class AttentionAdapterV2(nn.Module):
             nn.Linear(hidden_dim, intermediate_dim),
             nn.SiLU(),
         )
-        # object_mask (V,) -> mask_dim  (V is variable, projected to fixed dim)
-        # We cannot know V at init time, so we use a lazy approach:
-        # store mask_dim and create/cache the projection on first call.
-        self._mask_linear: nn.Linear | None = None
-        self._mask_dim = mask_dim
+        # object_mask (V,) -> mask_dim
+        # V = VISION_GRID_SIZE^2 = 256 for OpenVLA (fixed at init for checkpoint compat)
+        vision_tokens = config.VISION_GRID_SIZE ** 2
+        self.mask_linear = nn.Linear(vision_tokens, mask_dim)
 
         # Concat (intermediate_dim + mask_dim) -> output_dim
         concat_dim = intermediate_dim + mask_dim
@@ -263,21 +262,9 @@ class AttentionAdapterV2(nn.Module):
         nn.init.zeros_(last_linear.weight)
         nn.init.constant_(last_linear.bias, -4.0)  # sigmoid(-4) ~ 0.018
 
-    def _get_mask_linear(self, V: int) -> nn.Linear:
-        """Lazily create / cache the mask projection for a given V."""
-        if self._mask_linear is None or self._mask_linear.in_features != V:
-            device = self._blend_logit.device
-            dtype = self._blend_logit.dtype
-            self._mask_linear = nn.Linear(V, self._mask_dim).to(device=device, dtype=dtype)
-            # Register as a submodule so parameters are tracked
-            # We store it as a named attribute for proper parameter registration
-        # Ensure it's registered as a submodule (idempotent after first call)
-        if not hasattr(self, "_mask_linear_registered") or not self._mask_linear_registered:
-            # Can't use register_module after __init__ easily, but we stored it
-            # as self._mask_linear which is an nn.Linear — PyTorch will track it
-            # if it's set as an attribute.
-            self._mask_linear_registered = True
-        return self._mask_linear
+    def _get_mask_linear(self) -> nn.Linear:
+        """Return the mask projection layer."""
+        return self.mask_linear
 
     # -- Properties -------------------------------------------------------
 
@@ -324,12 +311,11 @@ class AttentionAdapterV2(nn.Module):
                 mask_input = object_mask.unsqueeze(0).expand(B, -1)  # (B, V)
             else:
                 mask_input = object_mask  # (B, V)
-            V_mask = mask_input.shape[1]
-            mask_linear = self._get_mask_linear(V_mask)
-            mask_emb = F.silu(mask_linear(mask_input.float()))  # (B, mask_dim)
+            mask_emb = F.silu(self.mask_linear(mask_input.float()))  # (B, mask_dim)
         else:
             # No mask provided: use zeros as mask embedding
-            mask_emb = torch.zeros(B, self._mask_dim, device=h_last.device, dtype=h_last.dtype)
+            mask_dim = self.mask_linear.out_features
+            mask_emb = torch.zeros(B, mask_dim, device=h_last.device, dtype=h_last.dtype)
 
         concat = torch.cat([h_emb, mask_emb], dim=-1)  # (B, intermediate_dim + mask_dim)
         p_logits = self.p_head(concat)  # (B, L*H)
