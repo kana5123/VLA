@@ -158,3 +158,13 @@ ADAPTER_V2_BLEND_INIT = -4.0      # sigmoid(-4) ≈ 0.018
 
 # Object mask embedding (Branch 1 augmentation)
 ADAPTER_V2_MASK_DIM = 64          # mask embedding dimension in p-head MLP
+
+# ── LoRA Fine-Tuning Infrastructure ──────────────────────────────────
+LORA_R = 16                          # LoRA rank
+LORA_ALPHA = 32                      # LoRA alpha (scaling = alpha / r)
+LORA_TARGET_MODULES = ["q_proj", "v_proj"]  # LLaMA attention projections
+LORA_DROPOUT = 0.05                  # Dropout on LoRA A/B matrices
+LORA_LR = 1e-4                      # LoRA learning rate
+LORA_MAX_STEPS = 20000               # Max LoRA fine-tuning steps
+LORA_WARMUP_STEPS = 200              # Warmup steps for LoRA
+LORA_RESULTS_DIR = OUTPUT_DIR / "lora_results"

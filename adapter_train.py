@@ -347,13 +347,16 @@ def save_checkpoint(
     patience_counter: int,
     accelerator: Accelerator,
     filename: str,
+    checkpoint_dir: Path = None,
 ):
     """Save adapter checkpoint (main process only)."""
     if not accelerator.is_main_process:
         return
 
-    path = config.ADAPTER_CHECKPOINT_DIR / filename
+    save_dir = checkpoint_dir or config.ADAPTER_CHECKPOINT_DIR
+    path = save_dir / filename
     raw_adapter = accelerator.unwrap_model(adapter)
+    is_v2 = isinstance(raw_adapter, AttentionAdapterV2)
     torch.save({
         "adapter_state_dict": raw_adapter.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
@@ -367,11 +370,12 @@ def save_checkpoint(
             "target_layers": config.ADAPTER_TARGET_LAYERS,
             "source_layer": config.ADAPTER_SOURCE_LAYER,
             "l1_lambda": config.ADAPTER_L1_LAMBDA,
-            "adapter_version": 2,
-            "query_dim": config.ADAPTER_V2_QUERY_DIM,
-            "temperature": config.ADAPTER_V2_TEMPERATURE,
-            "blend_init": config.ADAPTER_V2_BLEND_INIT,
-            "mask_dim": config.ADAPTER_V2_MASK_DIM,
+            "adapter_version": 2 if is_v2 else 1,
+            **({"query_dim": config.ADAPTER_V2_QUERY_DIM,
+                "temperature": config.ADAPTER_V2_TEMPERATURE,
+                "blend_init": config.ADAPTER_V2_BLEND_INIT,
+                "mask_dim": config.ADAPTER_V2_MASK_DIM,
+               } if is_v2 else {}),
         },
     }, path)
     print(f"  Checkpoint saved: {path}")
@@ -409,6 +413,12 @@ def train():
     parser.add_argument("--batch_size", type=int, default=config.ADAPTER_BATCH_SIZE)
     parser.add_argument("--lr", type=float, default=config.ADAPTER_LR)
     parser.add_argument("--resume", type=str, default=None, help="Path to checkpoint")
+    parser.add_argument("--adapter_version", type=int, default=2,
+                        choices=[1, 2], help="Adapter version (1=MLP only, 2=object-aware)")
+    parser.add_argument("--freeze_blend", action="store_true",
+                        help="Freeze blend_alpha at 0 (v2-prop: proportional redistribution only)")
+    parser.add_argument("--output_dir", type=str, default=None,
+                        help="Override output directory (checkpoints + logs saved here)")
     args = parser.parse_args()
 
     # ── Initialize accelerator ──
@@ -454,12 +464,26 @@ def train():
 
     # ── Adapter model ──
     hidden_dim = model.config.text_config.hidden_size  # 4096
-    adapter = AttentionAdapterV2(
-        hidden_dim=hidden_dim,
-        vision_tokens=vision_end,
-    )
+    if args.adapter_version == 2:
+        adapter = AttentionAdapterV2(
+            hidden_dim=hidden_dim,
+            vision_tokens=vision_end,
+        )
+    else:
+        adapter = AttentionAdapter(hidden_dim=hidden_dim)
+
+    # Freeze blend_alpha if requested (v2-prop config)
+    if args.freeze_blend and args.adapter_version == 2:
+        raw = adapter
+        raw._blend_logit.requires_grad_(False)
+        # Force blend_alpha to 0 by setting logit to -20 (sigmoid(-20) ~ 2e-9)
+        with torch.no_grad():
+            raw._blend_logit.fill_(-20.0)
+        if is_main:
+            print(f"  blend_alpha FROZEN at {raw.blend_alpha.item():.6f}")
+
     if is_main:
-        print(f"Adapter parameters: {adapter.param_count():,}")
+        print(f"Adapter v{args.adapter_version} parameters: {adapter.param_count():,}")
 
     # ── Optimizer + Scheduler ──
     optimizer = AdamW(
@@ -493,7 +517,7 @@ def train():
         batch_size=per_gpu_bs,
         source="tfrecord",
         accelerator=accelerator,
-        use_object_masks=True,
+        use_object_masks=(args.adapter_version == 2),
     )
 
     # ── Prepare with accelerate (wraps adapter in DDP, distributes data) ──
@@ -527,9 +551,15 @@ def train():
         )
 
     # ── Create output dirs ──
+    if args.output_dir:
+        ckpt_dir = Path(args.output_dir) / "checkpoints"
+        log_dir = Path(args.output_dir) / "logs"
+    else:
+        ckpt_dir = config.ADAPTER_CHECKPOINT_DIR
+        log_dir = config.ADAPTER_LOG_DIR
     if is_main:
-        config.ADAPTER_CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
-        config.ADAPTER_LOG_DIR.mkdir(parents=True, exist_ok=True)
+        ckpt_dir.mkdir(parents=True, exist_ok=True)
+        log_dir.mkdir(parents=True, exist_ok=True)
 
     accelerator.wait_for_everyone()
 
@@ -642,6 +672,7 @@ def train():
                         save_checkpoint(
                             adapter, optimizer, scheduler, global_step,
                             best_val_loss, patience_counter, accelerator, "best.pt",
+                            checkpoint_dir=ckpt_dir,
                         )
                     else:
                         patience_counter += 1
@@ -663,6 +694,7 @@ def train():
                     adapter, optimizer, scheduler, global_step,
                     best_val_loss, patience_counter, accelerator,
                     f"step_{global_step}.pt",
+                    checkpoint_dir=ckpt_dir,
                 )
 
         # Check outer loop termination
@@ -686,10 +718,11 @@ def train():
     save_checkpoint(
         adapter, optimizer, scheduler, global_step,
         best_val_loss, patience_counter, accelerator, "final.pt",
+        checkpoint_dir=ckpt_dir,
     )
 
     if is_main:
-        log_path = config.ADAPTER_LOG_DIR / "training_log.json"
+        log_path = log_dir / "training_log.json"
         with open(log_path, "w") as f:
             json.dump(log_entries, f, indent=2)
         print(f"\nTraining complete. Logs: {log_path}")
