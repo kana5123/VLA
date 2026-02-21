@@ -25,10 +25,11 @@ def download_bridge_data(num_episodes: int = config.NUM_EPISODES) -> None:
 
     config.DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    # ── Load dataset (streaming to avoid full download) ───────────────────
+    # ── Load dataset from local tfrecord files ────────────────────────────
     print(f"Loading BridgeData V2 ({num_episodes} episodes)...")
-    ds = tfds.load(
-        config.BRIDGE_DATASET_NAME,
+    builder_dir = config.TFDS_DATA_DIR / config.BRIDGE_DATASET_NAME / "1.0.0"
+    builder = tfds.builder_from_directory(str(builder_dir))
+    ds = builder.as_dataset(
         split=f"train[:{num_episodes}]",
         shuffle_files=False,
     )
@@ -47,7 +48,8 @@ def download_bridge_data(num_episodes: int = config.NUM_EPISODES) -> None:
         steps = episode["steps"]
         for step_idx, step in enumerate(steps):
             # ── Extract image ─────────────────────────────────────────────
-            image_array = step["observation"]["image"].numpy()  # (H, W, 3) uint8
+            # BridgeData V2 uses image_0 as primary camera
+            image_array = step["observation"]["image_0"].numpy()  # (H, W, 3) uint8
             image = Image.fromarray(image_array)
             image_path = ep_dir / f"step_{step_idx:03d}.png"
             image.save(image_path)
