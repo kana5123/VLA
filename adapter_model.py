@@ -57,9 +57,16 @@ class AttentionAdapter(nn.Module):
         self._init_output_near_zero()
 
     def _init_output_near_zero(self):
-        """Zero-init weights, negative bias → sigmoid ≈ 0 at start."""
+        """Small-random weights + negative bias → sigmoid ≈ 0 at start.
+
+        Uses small random weights (std=0.01) instead of zero to allow
+        gradient flow to earlier layers. Zero weights block backprop:
+        dL/dx = W^T @ dL/dy = 0 when W=0, starving all upstream layers.
+        With std=0.01: output ≈ N(0, 0.01)*x + (-4) ≈ -4 ± noise,
+        so sigmoid still ≈ 0.018 (near-identity start preserved).
+        """
         last_linear = self.net[-1]
-        nn.init.zeros_(last_linear.weight)
+        nn.init.normal_(last_linear.weight, std=0.01)
         nn.init.constant_(last_linear.bias, -4.0)  # sigmoid(-4) ≈ 0.018
 
     def forward(self, hidden_state: torch.Tensor) -> torch.Tensor:
@@ -211,6 +218,7 @@ class AttentionAdapterV2(nn.Module):
         temperature: float = config.ADAPTER_V2_TEMPERATURE,
         blend_init: float = config.ADAPTER_V2_BLEND_INIT,
         dropout: float = config.ADAPTER_DROPOUT,
+        vision_tokens: int = 256,
     ):
         super().__init__()
         self.hidden_dim = hidden_dim
@@ -218,6 +226,7 @@ class AttentionAdapterV2(nn.Module):
         self.num_heads = num_heads
         self.query_dim = query_dim
         self.temperature = temperature
+        self.vision_tokens = vision_tokens
         output_dim = num_target_layers * num_heads  # 4 x 32 = 128
 
         # ── Branch 1: per-head p ──────────────────────────────────────────
@@ -227,8 +236,6 @@ class AttentionAdapterV2(nn.Module):
             nn.SiLU(),
         )
         # object_mask (V,) -> mask_dim
-        # V = VISION_GRID_SIZE^2 = 256 for OpenVLA (fixed at init for checkpoint compat)
-        vision_tokens = config.VISION_GRID_SIZE ** 2
         self.mask_linear = nn.Linear(vision_tokens, mask_dim)
 
         # Concat (intermediate_dim + mask_dim) -> output_dim
@@ -257,9 +264,14 @@ class AttentionAdapterV2(nn.Module):
     # -- Initialization helpers -------------------------------------------
 
     def _init_p_head_near_zero(self):
-        """Zero-init weights, negative bias -> sigmoid ~ 0 at start."""
+        """Small-random weights + negative bias -> sigmoid ~ 0 at start.
+
+        Uses small random weights (std=0.01) instead of zero to allow
+        gradient flow to earlier layers (h_proj, mask_linear, p_head.0).
+        Zero weights block backprop: dL/dx = W^T @ dL/dy = 0 when W=0.
+        """
         last_linear = self.p_head[-1]
-        nn.init.zeros_(last_linear.weight)
+        nn.init.normal_(last_linear.weight, std=0.01)
         nn.init.constant_(last_linear.bias, -4.0)  # sigmoid(-4) ~ 0.018
 
     def _get_mask_linear(self) -> nn.Linear:

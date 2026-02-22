@@ -161,7 +161,10 @@ ADAPTER_V2_QUERY_DIM = 128        # projection dim for query/key
 ADAPTER_V2_TEMPERATURE = 2.0      # softmax temperature for smoother gradients
 
 # Blend alpha (proportional → learned transition)
-ADAPTER_V2_BLEND_INIT = -4.0      # sigmoid(-4) ≈ 0.018
+# -2.0 gives sigmoid(-2) ≈ 0.12: enough gradient for Branch 2 to learn,
+# while still starting mostly proportional. Previous -4.0 caused
+# chicken-and-egg: blend too low → no gradient to cross-attention → can't grow.
+ADAPTER_V2_BLEND_INIT = -2.0      # sigmoid(-2) ≈ 0.12
 
 # Object mask embedding (Branch 1 augmentation)
 ADAPTER_V2_MASK_DIM = 64          # mask embedding dimension in p-head MLP
