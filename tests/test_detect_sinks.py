@@ -76,8 +76,11 @@ def test_detect_sinks_detached():
     """Detection must not affect gradient flow."""
     from attention_v3 import detect_sinks
 
+    attn = torch.zeros(1, 2, 10, requires_grad=True)
     base = torch.ones(1, 2, 10) * 0.05
     base[0, 0, 0] = 0.60
+    attn_val = attn + base  # grad-tracked tensor
 
-    result = detect_sinks(base, alpha=5.0)
+    result = detect_sinks(attn_val, alpha=5.0)  # internal .detach() should handle this
     assert isinstance(result, list)
+    assert attn.grad is None, "detect_sinks should not accumulate gradients"
