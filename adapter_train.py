@@ -46,7 +46,8 @@ from attention_v3 import (
     set_var_differentiable,
     uninstall_v3_patch,
 )
-from extract_attention import detect_token_boundaries, load_model
+from extract_attention import load_model_from_registry, get_layers
+from model_registry import get_model
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -62,6 +63,8 @@ def forward_with_adapter(
     instruction: str,
     target_token_ids: list[int],
     device: torch.device,
+    model_cfg,
+    adapter_cfg: dict,
     object_mask: torch.Tensor | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     """Run a single sample through the model with adapter-controlled VAR.
@@ -72,7 +75,7 @@ def forward_with_adapter(
         total_loss: scalar CE loss (requires_grad via adapter)
         p_matrix: (1, num_target_layers, num_heads) adapter output
     """
-    prompt = config.PROMPT_TEMPLATE.format(instruction=instruction)
+    prompt = model_cfg.prompt_template.format(instruction=instruction)
     inputs = processor(prompt, image, return_tensors="pt").to(device)
     if "pixel_values" in inputs and inputs["pixel_values"].dtype != model.dtype:
         inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
@@ -81,7 +84,7 @@ def forward_with_adapter(
     attention_mask = inputs.get("attention_mask")
     pixel_values = inputs.get("pixel_values")
 
-    # ── Step 1: Forward through model to capture h_27 (no grad) ──
+    # ── Step 1: Forward through model to capture source layer hidden (no grad) ──
     captured_hidden = {}
 
     def capture_hook(module, args, output):
@@ -92,12 +95,9 @@ def forward_with_adapter(
         captured_hidden["h_last"] = h[:, -1, :].detach()           # (1, hidden_dim)
         captured_hidden["h_vision"] = h[:, :ctx.vision_end, :].detach()  # (1, V, hidden_dim)
 
-    if hasattr(model, "language_model"):
-        layers = model.language_model.model.layers
-    else:
-        layers = model.model.layers
+    layers = get_layers(model, model_cfg)
 
-    hook = layers[config.ADAPTER_SOURCE_LAYER].register_forward_hook(capture_hook)
+    hook = layers[adapter_cfg["source_layer"]].register_forward_hook(capture_hook)
 
     with torch.no_grad():
         _ = model(
@@ -144,17 +144,17 @@ def forward_with_adapter(
         p_matrix = adapter(h_last)
         ctx.redistribution_weights = None
 
-    # Map (4_target_layers, 32_heads) → full (32_layers, 32_heads)
+    # Map (num_target_layers, num_heads) → full (num_layers, num_heads)
     full_p = torch.zeros(
-        config.NUM_LAYERS, config.NUM_HEADS, device=device, dtype=p_matrix.dtype,
+        model_cfg.num_layers, model_cfg.num_heads, device=device, dtype=p_matrix.dtype,
     )
     _target_idx = torch.tensor(
-        config.ADAPTER_TARGET_LAYERS, device=device,
-    ).unsqueeze(1).expand(-1, config.NUM_HEADS)
+        adapter_cfg["target_layers"], device=device,
+    ).unsqueeze(1).expand(-1, model_cfg.num_heads)
     full_p = full_p.scatter(0, _target_idx, p_matrix[0])
     ctx.per_head_var_strength = full_p
 
-    # ── Step 3: Teacher-forced autoregressive (grad through layers 28-31) ──
+    # ── Step 3: Teacher-forced autoregressive (grad through target layers) ──
     total_loss = torch.tensor(0.0, device=device, requires_grad=True)
 
     model_inputs = {
@@ -163,7 +163,7 @@ def forward_with_adapter(
         "pixel_values": pixel_values,
     }
 
-    for token_idx in range(config.NUM_ACTION_TOKENS):
+    for token_idx in range(model_cfg.action_tokens):
         ctx.current_token_idx = token_idx
 
         outputs = model(**model_inputs, use_cache=False)
@@ -191,7 +191,7 @@ def forward_with_adapter(
             "pixel_values": pixel_values,
         }
 
-    total_loss = total_loss / config.NUM_ACTION_TOKENS
+    total_loss = total_loss / model_cfg.action_tokens
     return total_loss, p_matrix
 
 
@@ -209,6 +209,8 @@ def evaluate(
     val_loader,
     device: torch.device,
     accelerator: Accelerator,
+    model_cfg,
+    adapter_cfg: dict,
     max_steps: int = 100,
 ) -> float:
     """Evaluate adapter on validation set (distributed across GPUs)."""
@@ -230,8 +232,8 @@ def evaluate(
             if "object_masks" in batch:
                 obj_mask_np = batch["object_masks"][i]
 
-            # Get hidden state from layer 27
-            prompt = config.PROMPT_TEMPLATE.format(instruction=instruction)
+            # Get hidden state from source layer
+            prompt = model_cfg.prompt_template.format(instruction=instruction)
             inputs = processor(prompt, image, return_tensors="pt").to(device)
             if "pixel_values" in inputs and inputs["pixel_values"].dtype != model.dtype:
                 inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
@@ -243,10 +245,8 @@ def evaluate(
                 captured["h_last"] = h[:, -1, :]
                 captured["h_vision"] = h[:, :ctx.vision_end, :]
 
-            if hasattr(model, "language_model"):
-                hook_layer = model.language_model.model.layers[config.ADAPTER_SOURCE_LAYER]
-            else:
-                hook_layer = model.model.layers[config.ADAPTER_SOURCE_LAYER]
+            layers = get_layers(model, model_cfg)
+            hook_layer = layers[adapter_cfg["source_layer"]]
 
             hook = hook_layer.register_forward_hook(hook_fn)
             model(**{k: v for k, v in inputs.items()}, use_cache=False)
@@ -279,11 +279,11 @@ def evaluate(
                 ctx.redistribution_weights = None
 
             full_p = torch.zeros(
-                config.NUM_LAYERS, config.NUM_HEADS, device=device, dtype=p_matrix.dtype,
+                model_cfg.num_layers, model_cfg.num_heads, device=device, dtype=p_matrix.dtype,
             )
             _target_idx = torch.tensor(
-                config.ADAPTER_TARGET_LAYERS, device=device,
-            ).unsqueeze(1).expand(-1, config.NUM_HEADS)
+                adapter_cfg["target_layers"], device=device,
+            ).unsqueeze(1).expand(-1, model_cfg.num_heads)
             full_p = full_p.scatter(0, _target_idx, p_matrix[0])
             ctx.per_head_var_strength = full_p
 
@@ -293,7 +293,7 @@ def evaluate(
             pixel_values = inputs.get("pixel_values")
 
             step_loss = 0.0
-            for token_idx in range(config.NUM_ACTION_TOKENS):
+            for token_idx in range(model_cfg.action_tokens):
                 ctx.current_token_idx = token_idx
                 model_inputs = {
                     "input_ids": input_ids,
@@ -317,7 +317,7 @@ def evaluate(
                         torch.ones(1, 1, device=device, dtype=attention_mask.dtype),
                     ], dim=-1)
 
-            total_loss += step_loss / config.NUM_ACTION_TOKENS
+            total_loss += step_loss / model_cfg.action_tokens
             n_steps += 1
 
         if n_steps >= max_steps:
@@ -348,6 +348,8 @@ def save_checkpoint(
     accelerator: Accelerator,
     filename: str,
     checkpoint_dir: Path = None,
+    model_name: str = "openvla-7b",
+    adapter_cfg: dict = None,
 ):
     """Save adapter checkpoint (main process only)."""
     if not accelerator.is_main_process:
@@ -365,10 +367,16 @@ def save_checkpoint(
         "best_val_loss": best_val_loss,
         "patience_counter": patience_counter,
         "config": {
+            "model_name": model_name,
+            "architecture": adapter_cfg.get("architecture", "llama") if isinstance(adapter_cfg, dict) else "llama",
+            "hidden_dim": adapter_cfg["hidden_dim"],
+            "num_heads": adapter_cfg["num_heads"],
+            "num_target_layers": adapter_cfg["num_target_layers"],
+            "target_layers": adapter_cfg["target_layers"],
+            "source_layer": adapter_cfg["source_layer"],
+            "vision_tokens": adapter_cfg["vision_tokens"],
+            "action_type": adapter_cfg["action_type"],
             "lr": config.ADAPTER_LR,
-            "num_target_layers": config.ADAPTER_NUM_TARGET_LAYERS,
-            "target_layers": config.ADAPTER_TARGET_LAYERS,
-            "source_layer": config.ADAPTER_SOURCE_LAYER,
             "l1_lambda": config.ADAPTER_L1_LAMBDA,
             "adapter_version": 2 if is_v2 else 1,
             **({"query_dim": config.ADAPTER_V2_QUERY_DIM,
@@ -419,6 +427,9 @@ def train():
                         help="Freeze blend_alpha at 0 (v2-prop: proportional redistribution only)")
     parser.add_argument("--output_dir", type=str, default=None,
                         help="Override output directory (checkpoints + logs saved here)")
+    parser.add_argument("--model", type=str, default="openvla-7b",
+                        choices=["openvla-7b", "ecot-7b", "spatialvla-4b", "tracevla-phi3v"],
+                        help="VLA model from model_registry")
     args = parser.parse_args()
 
     # ── Initialize accelerator ──
@@ -429,47 +440,66 @@ def train():
     is_main = accelerator.is_main_process
 
     per_gpu_bs = args.batch_size // max(accelerator.num_processes, 1)
+
+    # ── Load model config from registry ──
+    model_cfg = get_model(args.model)
+    adapter_cfg = model_cfg.get_adapter_config()
+
     if is_main:
         print(f"\n{'=' * 60}")
         print(f"Differentiable Attention Adapter Training")
+        print(f"  Model: {args.model} ({model_cfg.architecture})")
         print(f"  Devices: {accelerator.num_processes} GPU(s)")
         print(f"  Episodes: {args.num_episodes}")
         print(f"  Batch size: {args.batch_size} (effective = {per_gpu_bs}/GPU × {accelerator.num_processes} GPUs)")
         print(f"  Per-GPU batch: {per_gpu_bs}")
         print(f"  LR: {args.lr} → {config.ADAPTER_MIN_LR}")
         print(f"  Max steps: {config.ADAPTER_MAX_STEPS}")
-        print(f"  Target layers: {config.ADAPTER_TARGET_LAYERS}")
+        print(f"  Target layers: {adapter_cfg['target_layers']}")
+        print(f"  Source layer: {adapter_cfg['source_layer']}")
+        print(f"  Action type: {adapter_cfg['action_type']}")
         print(f"{'=' * 60}\n")
 
     # ── Load frozen model (each GPU gets a copy) ──
     if is_main:
-        print("Loading frozen OpenVLA model...")
-    processor, model = load_model(device=str(device))
+        print(f"Loading frozen {args.model} model...")
+    processor, model, model_cfg = load_model_from_registry(args.model, device=str(device))
     model.eval()
     for param in model.parameters():
         param.requires_grad_(False)
 
-    # ── Detect token boundaries ──
+    # ── Vision/text boundaries from model config ──
+    vision_end = model_cfg.num_vision_tokens
+    # For text_end, probe with a dummy input
     from PIL import Image as PILImage
     dummy_image = PILImage.new("RGB", (256, 256), color=(128, 128, 128))
-    boundaries = detect_token_boundaries(
-        processor, model, dummy_image, "pick up the object", str(device)
-    )
-    vision_end = boundaries["vision_end"]
-    text_end = boundaries["text_end"]
+    prompt = model_cfg.prompt_template.format(instruction="pick up the object")
+    dummy_inputs = processor(prompt, dummy_image, return_tensors="pt").to(device)
+    text_end = dummy_inputs["input_ids"].shape[-1]
     if is_main:
         print(f"  Vision tokens: 0..{vision_end - 1}")
         print(f"  Text tokens end: {text_end}")
 
-    # ── Action tokenizer ──
-    tokenizer = ActionTokenizer(model)
+    # ── Action tokenizer (only for discrete models) ──
+    if model_cfg.action_type == "discrete":
+        tokenizer = ActionTokenizer(model)
+    else:
+        tokenizer = None  # TraceVLA uses continuous actions
 
     # ── Adapter model ──
-    hidden_dim = model.config.text_config.hidden_size  # 4096
     if args.adapter_version == 2:
-        adapter = AttentionAdapterV2(hidden_dim=hidden_dim)
+        adapter = AttentionAdapterV2(
+            hidden_dim=adapter_cfg["hidden_dim"],
+            num_target_layers=adapter_cfg["num_target_layers"],
+            num_heads=adapter_cfg["num_heads"],
+            vision_tokens=adapter_cfg["vision_tokens"],
+        )
     else:
-        adapter = AttentionAdapter(hidden_dim=hidden_dim)
+        adapter = AttentionAdapter(
+            hidden_dim=adapter_cfg["hidden_dim"],
+            num_target_layers=adapter_cfg["num_target_layers"],
+            num_heads=adapter_cfg["num_heads"],
+        )
 
     # Freeze blend_alpha if requested (v2-prop config)
     if args.freeze_blend and args.adapter_version == 2:
@@ -534,14 +564,14 @@ def train():
         dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
         sink_alpha=config.SINK_ALPHA,
         vision_end=vision_end,
-        enhancement_layers=set(config.ADAPTER_TARGET_LAYERS),
+        enhancement_layers=set(adapter_cfg["target_layers"]),
         text_end=text_end,
         text_sink_enabled=config.VAR_TEXT_SINK_ENABLED,
         text_sink_p=config.VAR_TEXT_SINK_P,
         text_sink_threshold=config.VAR_TEXT_SINK_THRESHOLD,
     )
     set_v3_context(ctx)
-    install_v3_patch(ctx)
+    install_v3_patch(ctx, architecture=model_cfg.architecture, model=model)
     set_var_differentiable(enabled=True, temperature=10.0)
     if is_main:
         if ctx.dynamic_sink_detection:
@@ -608,6 +638,7 @@ def train():
                 loss_i, p_matrix = forward_with_adapter(
                     model, adapter,
                     processor, ctx, image, instruction, target_tokens, device,
+                    model_cfg=model_cfg, adapter_cfg=adapter_cfg,
                     object_mask=obj_mask,
                 )
 
@@ -671,6 +702,7 @@ def train():
                 val_loss = evaluate(
                     model, adapter, processor, tokenizer, ctx,
                     val_loader, device, accelerator,
+                    model_cfg=model_cfg, adapter_cfg=adapter_cfg,
                 )
 
                 if is_main:
@@ -683,6 +715,7 @@ def train():
                             adapter, optimizer, scheduler, global_step,
                             best_val_loss, patience_counter, accelerator, "best.pt",
                             checkpoint_dir=ckpt_dir,
+                            model_name=args.model, adapter_cfg=adapter_cfg,
                         )
                     else:
                         patience_counter += 1
@@ -705,6 +738,7 @@ def train():
                     best_val_loss, patience_counter, accelerator,
                     f"step_{global_step}.pt",
                     checkpoint_dir=ckpt_dir,
+                    model_name=args.model, adapter_cfg=adapter_cfg,
                 )
 
         # Check outer loop termination
@@ -729,6 +763,7 @@ def train():
         adapter, optimizer, scheduler, global_step,
         best_val_loss, patience_counter, accelerator, "final.pt",
         checkpoint_dir=ckpt_dir,
+        model_name=args.model, adapter_cfg=adapter_cfg,
     )
 
     if is_main:
