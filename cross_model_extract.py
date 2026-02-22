@@ -37,18 +37,44 @@ CROSS_MODEL_DIR = config.OUTPUT_DIR / "cross_model_analysis"
 
 def load_vla_model(model_cfg: VLAModelConfig, device: str = "cuda"):
     """Load any VLA model from registry with eager attention."""
-    from transformers import AutoModelForVision2Seq, AutoProcessor
+    from transformers import AutoModelForVision2Seq, AutoModelForCausalLM, AutoProcessor
 
     print(f"Loading {model_cfg.name} ({model_cfg.hf_id})...")
-    processor = AutoProcessor.from_pretrained(
-        model_cfg.hf_id, trust_remote_code=model_cfg.trust_remote_code,
-    )
-    model = AutoModelForVision2Seq.from_pretrained(
-        model_cfg.hf_id,
-        torch_dtype=getattr(torch, model_cfg.torch_dtype),
-        trust_remote_code=model_cfg.trust_remote_code,
-        attn_implementation=model_cfg.attn_impl,
-    ).to(device).eval()
+
+    # Special cases for non-standard models
+    if model_cfg.name == "smolvla-base":
+        # SmolVLA is a LeRobot policy — load the underlying VLM directly
+        vlm_id = "HuggingFaceTB/SmolVLM2-500M-Video-Instruct"
+        print(f"  SmolVLA: loading underlying VLM {vlm_id}")
+        processor = AutoProcessor.from_pretrained(vlm_id, trust_remote_code=True)
+        model = AutoModelForVision2Seq.from_pretrained(
+            vlm_id,
+            torch_dtype=getattr(torch, model_cfg.torch_dtype),
+            trust_remote_code=True,
+            attn_implementation=model_cfg.attn_impl,
+        ).to(device).eval()
+    elif model_cfg.architecture == "phi3_v":
+        # Phi-3 Vision uses AutoModelForCausalLM
+        processor = AutoProcessor.from_pretrained(
+            model_cfg.hf_id, trust_remote_code=model_cfg.trust_remote_code,
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_cfg.hf_id,
+            torch_dtype=getattr(torch, model_cfg.torch_dtype),
+            trust_remote_code=model_cfg.trust_remote_code,
+            attn_implementation=model_cfg.attn_impl,
+        ).to(device).eval()
+    else:
+        processor = AutoProcessor.from_pretrained(
+            model_cfg.hf_id, trust_remote_code=model_cfg.trust_remote_code,
+        )
+        model = AutoModelForVision2Seq.from_pretrained(
+            model_cfg.hf_id,
+            torch_dtype=getattr(torch, model_cfg.torch_dtype),
+            trust_remote_code=model_cfg.trust_remote_code,
+            attn_implementation=model_cfg.attn_impl,
+        ).to(device).eval()
+
     print(f"  Loaded: {model_cfg.num_layers}L x {model_cfg.num_heads}H, "
           f"hidden={model_cfg.hidden_dim}")
     return processor, model
