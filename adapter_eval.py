@@ -45,17 +45,25 @@ class AdapterEvaluator:
     ):
         self.device = device
 
+        # ── Early guard: continuous models not yet supported ──
+        _cfg_check = get_model(model_name)
+        if _cfg_check.action_type != "discrete":
+            raise NotImplementedError(
+                f"Continuous action evaluation ({model_name}) is not yet implemented. "
+                f"Only discrete-action models are supported."
+            )
+
         # ── Load model ──
-        self.model_cfg = get_model(model_name)
-        self.adapter_cfg = self.model_cfg.get_adapter_config()
-        self.adapter_cfg["architecture"] = self.model_cfg.architecture
         print(f"Loading {model_name}...")
         self.processor, self.model, self.model_cfg = load_model_from_registry(model_name, device=device)
         self.model.eval()
 
+        # Build adapter config from the authoritative post-load model_cfg
+        self.adapter_cfg = self.model_cfg.get_adapter_config()
+        self.adapter_cfg["architecture"] = self.model_cfg.architecture
+
         # ── Detect boundaries ──
         self.vision_end = self.model_cfg.num_vision_tokens
-        # Probe text_end with dummy input
         from PIL import Image
         dummy = Image.new("RGB", (256, 256), (128, 128, 128))
         prompt = self.model_cfg.prompt_template.format(instruction="pick up the object")
@@ -69,21 +77,39 @@ class AdapterEvaluator:
 
         if not baseline_only and checkpoint_path is not None:
             ckpt = torch.load(checkpoint_path, map_location=device)
-            self.adapter_version = ckpt.get("config", {}).get("adapter_version", 1)
+            ckpt_cfg = ckpt.get("config", {})
+            self.adapter_version = ckpt_cfg.get("adapter_version", 1)
+
+            # Validate checkpoint/model match
+            ckpt_model = ckpt_cfg.get("model_name", "unknown")
+            if ckpt_model != model_name:
+                print(f"WARNING: checkpoint trained on '{ckpt_model}', evaluating with '{model_name}'")
+
+            # Use checkpoint dimensions for adapter construction (authoritative)
+            ckpt_hidden = ckpt_cfg.get("hidden_dim", self.adapter_cfg["hidden_dim"])
+            ckpt_ntl = ckpt_cfg.get("num_target_layers", self.adapter_cfg["num_target_layers"])
+            ckpt_nh = ckpt_cfg.get("num_heads", self.adapter_cfg["num_heads"])
+            ckpt_vt = ckpt_cfg.get("vision_tokens", self.adapter_cfg["vision_tokens"])
 
             if self.adapter_version == 2:
                 self.adapter = AttentionAdapterV2(
-                    hidden_dim=self.adapter_cfg["hidden_dim"],
-                    num_target_layers=self.adapter_cfg["num_target_layers"],
-                    num_heads=self.adapter_cfg["num_heads"],
-                    vision_tokens=self.adapter_cfg["vision_tokens"],
+                    hidden_dim=ckpt_hidden,
+                    num_target_layers=ckpt_ntl,
+                    num_heads=ckpt_nh,
+                    vision_tokens=ckpt_vt,
                 ).to(device)
             else:
                 self.adapter = AttentionAdapter(
-                    hidden_dim=self.adapter_cfg["hidden_dim"],
-                    num_target_layers=self.adapter_cfg["num_target_layers"],
-                    num_heads=self.adapter_cfg["num_heads"],
+                    hidden_dim=ckpt_hidden,
+                    num_target_layers=ckpt_ntl,
+                    num_heads=ckpt_nh,
                 ).to(device)
+
+            # Update adapter_cfg with checkpoint values for correct layer routing
+            if "target_layers" in ckpt_cfg:
+                self.adapter_cfg["target_layers"] = ckpt_cfg["target_layers"]
+            if "source_layer" in ckpt_cfg:
+                self.adapter_cfg["source_layer"] = ckpt_cfg["source_layer"]
 
             self.adapter.load_state_dict(ckpt["adapter_state_dict"])
             self.adapter.eval()
@@ -93,12 +119,7 @@ class AdapterEvaluator:
             )
 
         # ── Action tokenizer ──
-        if self.model_cfg.action_type == "discrete":
-            self.tokenizer = ActionTokenizer(self.model)
-        else:
-            raise NotImplementedError(
-                f"Continuous action evaluation ({model_name}) is not yet implemented."
-            )
+        self.tokenizer = ActionTokenizer(self.model)
 
     def _run_inference(
         self, image, instruction, adapter_enabled: bool, object_mask=None,
@@ -154,7 +175,7 @@ class AdapterEvaluator:
                         torch.ones(1, 1, device=self.device, dtype=attention_mask.dtype),
                     ], dim=-1)
 
-        if adapter_enabled:
+        if adapter_enabled and ctx is not None:
             uninstall_v3_patch()
 
         result = detokenize_actions(self.model, generated_tokens)
@@ -343,6 +364,8 @@ def get_v3_ctx_for_eval(
         var_p=config.VAR_P,
         var_rho=config.VAR_RHO,
         var_sink_indices=list(config.VAR_SINK_INDICES),
+        dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
+        sink_alpha=config.SINK_ALPHA,
         vision_end=vision_end,
         enhancement_layers=set(adapter_cfg["target_layers"]),
         per_head_var_strength=full_p,
