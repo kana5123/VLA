@@ -160,6 +160,10 @@ def load_bridge_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
         metadata = pickle.load(f)
 
     # 3. Find matching entry by episode_id + step_id
+    # If episode_id=0 (default), use the first available episode
+    if episode_id == 0:
+        episode_id = metadata[0]["episode_id"]
+
     match = None
     for entry in metadata:
         if entry["episode_id"] == episode_id and entry["step_id"] == step_id:

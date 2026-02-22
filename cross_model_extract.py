@@ -165,7 +165,7 @@ def extract_attention_generic(
         for act_idx in range(num_action_tokens):
             attn_store.clear()
 
-            outputs = model(**model_inputs, use_cache=False)
+            outputs = model(**model_inputs, use_cache=False, output_attentions=True)
             next_token = outputs.logits[:, -1, :].argmax(dim=-1, keepdim=True)
             generated_tokens.append(next_token.item() if next_token.dim() == 1
                                     else next_token[0].item())
