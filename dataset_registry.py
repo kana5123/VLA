@@ -327,6 +327,83 @@ def load_calvin_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
     )
 
 
+def load_lerobot_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
+    """Load a sample from the LeRobot PushT dataset via HuggingFace datasets.
+
+    PushT is a 2D pushing task with 2D actions (x, y).
+    Actions are padded to 7 dimensions for consistency with other datasets.
+    Images are rendered observations of the push environment.
+    """
+    from datasets import load_dataset
+
+    lerobot_cache = DATASET_CACHE / "lerobot"
+    lerobot_cache.mkdir(parents=True, exist_ok=True)
+
+    cfg = DATASETS["lerobot_pusht"]
+
+    # Load via HuggingFace datasets with caching
+    ds = load_dataset(
+        "lerobot/pusht",
+        split="train",
+        cache_dir=str(lerobot_cache),
+    )
+
+    # Filter to requested episode
+    ep_rows = [i for i, row in enumerate(ds) if row.get("episode_index", row.get("episode_id", -1)) == episode_id]
+    if not ep_rows:
+        # Fallback: treat episode_id as direct index offset
+        # PushT episodes are contiguous; try to find by sequential grouping
+        ep_rows = list(range(len(ds)))
+
+    if step_id >= len(ep_rows):
+        raise ValueError(
+            f"step_id={step_id} out of range for episode {episode_id} "
+            f"({len(ep_rows)} steps available)"
+        )
+
+    row_idx = ep_rows[step_id]
+    row = ds[row_idx]
+
+    # Extract image — PushT stores images under various keys
+    image = None
+    for key in ["observation.image", "image", "observation", "obs"]:
+        if key in row:
+            val = row[key]
+            if isinstance(val, Image.Image):
+                image = val.convert("RGB")
+            elif isinstance(val, np.ndarray):
+                image = Image.fromarray(val, mode="RGB")
+            elif isinstance(val, dict) and "bytes" in val:
+                import io
+                image = Image.open(io.BytesIO(val["bytes"])).convert("RGB")
+            break
+
+    if image is None:
+        raise KeyError(f"No image found in PushT row. Available keys: {list(row.keys())}")
+
+    # Extract action — PushT has 2D actions, pad to 7
+    action = None
+    for key in ["action", "actions"]:
+        if key in row:
+            raw_action = row[key]
+            if isinstance(raw_action, (list, np.ndarray)):
+                raw_action = list(map(float, raw_action))
+            else:
+                raw_action = [float(raw_action)]
+            # Pad to 7 dimensions
+            action = raw_action + [0.0] * (7 - len(raw_action))
+            break
+
+    return DatasetSample(
+        dataset_name="lerobot_pusht",
+        episode_id=episode_id,
+        step_id=step_id,
+        image=image,
+        instruction=cfg.default_instruction,
+        action=action,
+    )
+
+
 def download_dataset(name: str) -> Path:
     """Download a dataset to the cache directory."""
     cfg = get_dataset(name)
