@@ -404,6 +404,228 @@ def load_lerobot_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
     )
 
 
+def _load_hdf5_sample(
+    dataset_dir: Path,
+    dataset_name: str,
+    episode_id: int,
+    step_id: int,
+    image_key_candidates: list[str],
+    action_key_candidates: list[str],
+    instruction_key_candidates: list[str],
+) -> DatasetSample:
+    """Generic HDF5-based dataset loader.
+
+    Searches for episode files in dataset_dir, then searches for image/action
+    keys using the provided candidate lists. Falls back to the dataset's
+    default_instruction when no instruction key is found.
+    """
+    import h5py
+
+    cfg = DATASETS[dataset_name]
+
+    if not dataset_dir.exists():
+        raise FileNotFoundError(
+            f"{cfg.display_name} data not found at {dataset_dir}. "
+            f"Run download_dataset('{dataset_name}') first."
+        )
+
+    # Collect all HDF5 files recursively
+    episode_files = sorted(
+        list(dataset_dir.rglob("*.hdf5"))
+        + list(dataset_dir.rglob("*.h5"))
+    )
+
+    if not episode_files:
+        raise FileNotFoundError(
+            f"No HDF5 files found in {dataset_dir} or subdirectories"
+        )
+
+    if episode_id >= len(episode_files):
+        raise ValueError(
+            f"episode_id={episode_id} out of range, "
+            f"only {len(episode_files)} episodes available"
+        )
+
+    ep_path = episode_files[episode_id]
+
+    with h5py.File(ep_path, "r") as f:
+        # Flatten all keys (including nested groups)
+        all_keys = []
+
+        def _collect_keys(name, obj):
+            all_keys.append(name)
+
+        f.visititems(_collect_keys)
+
+        # Find image key
+        image_key = None
+        for k in image_key_candidates:
+            if k in f:
+                image_key = k
+                break
+            # Also check all_keys for nested paths
+            for ak in all_keys:
+                if ak.endswith(k) or k in ak:
+                    if isinstance(f[ak], h5py.Dataset) and len(f[ak].shape) >= 3:
+                        image_key = ak
+                        break
+            if image_key:
+                break
+
+        if image_key is None:
+            raise KeyError(
+                f"No image key found in {ep_path}. "
+                f"Available keys: {all_keys}"
+            )
+
+        images = f[image_key]
+        if step_id >= len(images):
+            raise ValueError(
+                f"step_id={step_id} out of range, "
+                f"episode has {len(images)} steps"
+            )
+
+        image_array = np.array(images[step_id])
+        # Handle grayscale or RGBA
+        if len(image_array.shape) == 2:
+            image = Image.fromarray(image_array, mode="L").convert("RGB")
+        elif image_array.shape[-1] == 4:
+            image = Image.fromarray(image_array, mode="RGBA").convert("RGB")
+        elif image_array.shape[-1] == 1:
+            image = Image.fromarray(image_array[:, :, 0], mode="L").convert("RGB")
+        else:
+            image = Image.fromarray(image_array, mode="RGB")
+
+        # Find action key
+        action = None
+        for k in action_key_candidates:
+            found_key = None
+            if k in f:
+                found_key = k
+            else:
+                for ak in all_keys:
+                    if ak.endswith(k) or k in ak:
+                        if isinstance(f[ak], h5py.Dataset):
+                            found_key = ak
+                            break
+            if found_key:
+                action = f[found_key][step_id].tolist()
+                break
+
+        # Find instruction
+        instruction = cfg.default_instruction
+        for k in instruction_key_candidates:
+            found_key = None
+            if k in f:
+                found_key = k
+            else:
+                for ak in all_keys:
+                    if ak.endswith(k) or k in ak:
+                        found_key = ak
+                        break
+            if found_key:
+                val = f[found_key]
+                if hasattr(val, "shape") and len(val.shape) == 0:
+                    raw = val[()]
+                    instruction = raw.decode("utf-8") if isinstance(raw, bytes) else str(raw)
+                elif hasattr(val, "__len__") and len(val) > 0:
+                    raw = val[0]
+                    instruction = raw.decode("utf-8") if isinstance(raw, bytes) else str(raw)
+                break
+
+    return DatasetSample(
+        dataset_name=dataset_name,
+        episode_id=episode_id,
+        step_id=step_id,
+        image=image,
+        instruction=instruction,
+        action=action,
+    )
+
+
+def load_droid_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
+    """Load a sample from the DROID-100 dataset.
+
+    DROID stores episodes as HDF5 files with exterior/wrist camera images
+    and 7-DOF actions. Common keys include:
+    - observation/exterior_image_1_left, observation/wrist_image_left
+    - action, action/cartesian_position, action/gripper_position
+    """
+    droid_dir = DATASET_CACHE / "droid_100"
+
+    return _load_hdf5_sample(
+        dataset_dir=droid_dir,
+        dataset_name="droid_100",
+        episode_id=episode_id,
+        step_id=step_id,
+        image_key_candidates=[
+            "exterior_image_1_left",
+            "observation/exterior_image_1_left",
+            "observation/image",
+            "image",
+            "rgb",
+            "obs/image",
+            "wrist_image_left",
+            "observation/wrist_image_left",
+        ],
+        action_key_candidates=[
+            "action",
+            "actions",
+            "action/cartesian_position",
+            "cartesian_action",
+            "joint_action",
+        ],
+        instruction_key_candidates=[
+            "language_instruction",
+            "instruction",
+            "lang",
+            "task_description",
+        ],
+    )
+
+
+def load_rh20t_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
+    """Load a sample from the RH20T mini dataset.
+
+    RH20T is a real-world bimanual manipulation dataset stored in HDF5 format.
+    Common keys include:
+    - rgb, color_image, cam_high, cam_left_wrist
+    - tcp_action, joint_action, action
+    """
+    rh20t_dir = DATASET_CACHE / "rh20t_mini"
+
+    return _load_hdf5_sample(
+        dataset_dir=rh20t_dir,
+        dataset_name="rh20t_mini",
+        episode_id=episode_id,
+        step_id=step_id,
+        image_key_candidates=[
+            "rgb",
+            "color_image",
+            "cam_high",
+            "cam_left_wrist",
+            "observation/image",
+            "image",
+            "obs/rgb",
+            "head_rgb",
+        ],
+        action_key_candidates=[
+            "tcp_action",
+            "action",
+            "actions",
+            "joint_action",
+            "cartesian_action",
+        ],
+        instruction_key_candidates=[
+            "instruction",
+            "language_instruction",
+            "task_description",
+            "lang",
+            "task",
+        ],
+    )
+
+
 def download_dataset(name: str) -> Path:
     """Download a dataset to the cache directory."""
     cfg = get_dataset(name)
