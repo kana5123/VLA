@@ -178,3 +178,12 @@ LORA_LR = 1e-4                      # LoRA learning rate
 LORA_MAX_STEPS = 20000               # Max LoRA fine-tuning steps
 LORA_WARMUP_STEPS = 200              # Warmup steps for LoRA
 LORA_RESULTS_DIR = OUTPUT_DIR / "lora_results"
+
+# ── LIBERO Simulation Benchmark ──────────────────────────────────────
+LIBERO_RESULTS_DIR = OUTPUT_DIR / "libero_results"
+LIBERO_SUITES = ["libero_spatial", "libero_object", "libero_goal", "libero_long"]
+LIBERO_TASKS_PER_SUITE = 10
+LIBERO_EPISODES_PER_TASK = 20      # Rollouts per task for success rate
+LIBERO_MAX_STEPS = 300             # Max env steps per episode
+LIBERO_IMAGE_SIZE = 256            # Observation image size
+LIBERO_ACTION_REPEAT = 1           # Action repeat (1 = no repeat)
