@@ -81,10 +81,11 @@ register(VLAModelConfig(
 ))
 
 # ── TraceVLA (Phi-3-V backbone) ──
+# Verified: model_type=phi3_v, hidden=3072, 32L/32H
 register(VLAModelConfig(
     name="tracevla-phi3v",
-    hf_id="zxliu/TraceVLA-Phi3V",
-    architecture="phi3",
+    hf_id="furonghuang-lab/tracevla_phi3v",
+    architecture="phi3_v",
     vision_encoder="clip-vit",
     num_layers=32,
     num_heads=32,
@@ -98,40 +99,43 @@ register(VLAModelConfig(
     layers_path="model.layers",
 ))
 
-# ── SpatialVLA (Qwen2-VL backbone) ──
+# ── SpatialVLA (Gemma-2 2B backbone, NOT Qwen2) ──
+# Verified: model_type=spatialvla, text=gemma2, 26L/8H/2304D
 register(VLAModelConfig(
     name="spatialvla-4b",
     hf_id="IPEC-COMMUNITY/spatialvla-4b-224-pt",
-    architecture="qwen2",
-    vision_encoder="qwen2-vl-vit",
-    num_layers=28,
-    num_heads=20,
-    hidden_dim=2560,
+    architecture="gemma2",
+    vision_encoder="siglip-so400m",
+    num_layers=26,
+    num_heads=8,
+    hidden_dim=2304,
     vision_grid_size=14,
     num_vision_tokens=196,
     action_tokens=7,
     prompt_template="What action should the robot take to {instruction}?",
-    native_datasets=["bridge_v2", "oxe"],
-    notes="Qwen2-VL 4B, adaptive resolution vision",
-    layers_path="model.layers",
+    native_datasets=["bridge_v2", "oxe", "rh20t"],
+    notes="SpatialVLA 4B, Gemma-2 text + SigLIP vision, spatial features",
+    layers_path="language_model.model.layers",
 ))
 
-# ── SmolVLA (SmolLM2 backbone) ──
+# ── SmolVLA (SmolVLM2-500M backbone, LeRobot policy) ──
+# Verified: type=smolvla, VLM=SmolVLM2-500M (llama, 32L/15H/960D)
+# NOTE: Requires LeRobot API or custom loading, not standard AutoModelForVision2Seq
 register(VLAModelConfig(
     name="smolvla-base",
-    hf_id="HuggingFaceTB/SmolVLA-base",
-    architecture="smollm2",
+    hf_id="lerobot/smolvla_base",
+    architecture="llama",
     vision_encoder="siglip",
-    num_layers=30,
-    num_heads=16,
-    hidden_dim=1536,
+    num_layers=32,
+    num_heads=15,
+    hidden_dim=960,
     vision_grid_size=14,
     num_vision_tokens=196,
     action_tokens=7,
     prompt_template="What action should the robot take to {instruction}?",
     native_datasets=["lerobot"],
-    notes="SmolLM2 360M backbone, lightweight",
-    layers_path="model.layers",
+    notes="SmolVLM2-500M backbone (llama 32L/15H/960D), LeRobot policy format, needs custom loader",
+    layers_path="model.text_model.model.layers",
 ))
 
 # ── ECoT (OpenVLA + Chain-of-Thought) ──
