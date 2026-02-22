@@ -1,0 +1,182 @@
+"""Registry of VLA models for cross-model attention analysis.
+
+Each entry defines how to load the model, what architecture it uses,
+and how to extract attention weights from it.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from typing import Optional
+
+
+@dataclass
+class VLAModelConfig:
+    """Configuration for a single VLA model."""
+    name: str                          # Display name
+    hf_id: str                         # HuggingFace model ID
+    architecture: str                  # "llama", "phi3", "qwen2", "mistral", etc.
+    vision_encoder: str                # "prismatic", "siglip", "dinov2", etc.
+    num_layers: int                    # LLM backbone layers
+    num_heads: int                     # Attention heads
+    hidden_dim: int                    # Hidden dimension
+    vision_grid_size: int              # e.g., 16 for 16x16 = 256 tokens
+    num_vision_tokens: int             # Total vision tokens
+    action_tokens: int = 7             # Number of action tokens generated
+    prompt_template: str = ""          # Model-specific prompt format
+    trust_remote_code: bool = True
+    attn_impl: str = "eager"           # Must be eager for weight extraction
+    torch_dtype: str = "bfloat16"
+    notes: str = ""
+    native_datasets: list[str] = field(default_factory=list)
+    # Architecture-specific: where to find attention layers
+    layers_path: str = "language_model.model.layers"  # dot-separated path
+    attn_module: str = "self_attn"     # attribute name for attention in each layer
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# Model Registry
+# ═══════════════════════════════════════════════════════════════════════
+
+MODELS: dict[str, VLAModelConfig] = {}
+
+
+def register(cfg: VLAModelConfig):
+    MODELS[cfg.name] = cfg
+
+
+# ── OpenVLA (LLaMA-2 7B + Prismatic) ──
+register(VLAModelConfig(
+    name="openvla-7b",
+    hf_id="openvla/openvla-7b",
+    architecture="llama",
+    vision_encoder="prismatic",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=4096,
+    vision_grid_size=16,
+    num_vision_tokens=256,
+    action_tokens=7,
+    prompt_template="In: What action should the robot take to {instruction}?\nOut:",
+    native_datasets=["bridge_v2", "oxe"],
+    notes="Dual encoder (DINOv2+SigLIP) fused to 256 tokens",
+))
+
+# ── CogACT (CogVLM2-Llama3-8B backbone) ──
+register(VLAModelConfig(
+    name="cogact-base",
+    hf_id="CogACT/CogACT-Base",
+    architecture="llama",
+    vision_encoder="eva2-clip-e",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=4096,
+    vision_grid_size=14,
+    num_vision_tokens=196,
+    action_tokens=7,
+    prompt_template="What action should the robot take to {instruction}?",
+    native_datasets=["oxe", "bridge_v2"],
+    notes="CogVLM2 backbone, EVA2-CLIP-E vision encoder",
+    layers_path="model.layers",
+))
+
+# ── TraceVLA (Phi-3-V backbone) ──
+register(VLAModelConfig(
+    name="tracevla-phi3v",
+    hf_id="zxliu/TraceVLA-Phi3V",
+    architecture="phi3",
+    vision_encoder="clip-vit",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=3072,
+    vision_grid_size=14,
+    num_vision_tokens=196,
+    action_tokens=7,
+    prompt_template="What action should the robot take to {instruction}?",
+    native_datasets=["bridge_v2", "oxe"],
+    notes="Phi-3 Vision backbone, visual trace overlays",
+    layers_path="model.layers",
+))
+
+# ── SpatialVLA (Qwen2-VL backbone) ──
+register(VLAModelConfig(
+    name="spatialvla-4b",
+    hf_id="IPEC-COMMUNITY/spatialvla-4b-224-pt",
+    architecture="qwen2",
+    vision_encoder="qwen2-vl-vit",
+    num_layers=28,
+    num_heads=20,
+    hidden_dim=2560,
+    vision_grid_size=14,
+    num_vision_tokens=196,
+    action_tokens=7,
+    prompt_template="What action should the robot take to {instruction}?",
+    native_datasets=["bridge_v2", "oxe"],
+    notes="Qwen2-VL 4B, adaptive resolution vision",
+    layers_path="model.layers",
+))
+
+# ── SmolVLA (SmolLM2 backbone) ──
+register(VLAModelConfig(
+    name="smolvla-base",
+    hf_id="HuggingFaceTB/SmolVLA-base",
+    architecture="smollm2",
+    vision_encoder="siglip",
+    num_layers=30,
+    num_heads=16,
+    hidden_dim=1536,
+    vision_grid_size=14,
+    num_vision_tokens=196,
+    action_tokens=7,
+    prompt_template="What action should the robot take to {instruction}?",
+    native_datasets=["lerobot"],
+    notes="SmolLM2 360M backbone, lightweight",
+    layers_path="model.layers",
+))
+
+# ── ECoT (OpenVLA + Chain-of-Thought) ──
+register(VLAModelConfig(
+    name="ecot-7b",
+    hf_id="Embodied-CoT/ecot-openvla-7b-bridge",
+    architecture="llama",
+    vision_encoder="prismatic",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=4096,
+    vision_grid_size=16,
+    num_vision_tokens=256,
+    action_tokens=7,
+    prompt_template="In: What action should the robot take to {instruction}?\nOut:",
+    native_datasets=["bridge_v2"],
+    notes="Same backbone as OpenVLA, fine-tuned with chain-of-thought",
+))
+
+# ── RoboFlamingo (MPT-1B or 3B backbone) ──
+register(VLAModelConfig(
+    name="roboflamingo",
+    hf_id="roboflamingo/RoboFlamingo",
+    architecture="mpt",
+    vision_encoder="clip-vit",
+    num_layers=24,
+    num_heads=16,
+    hidden_dim=2048,
+    vision_grid_size=14,
+    num_vision_tokens=196,
+    action_tokens=7,
+    prompt_template="{instruction}",
+    native_datasets=["calvin"],
+    notes="OpenFlamingo-based, cross-attention (different attn pattern)",
+    layers_path="transformer.blocks",
+    attn_module="attn",
+))
+
+
+def get_model(name: str) -> VLAModelConfig:
+    if name not in MODELS:
+        available = ", ".join(MODELS.keys())
+        raise ValueError(f"Unknown model: {name}. Available: {available}")
+    return MODELS[name]
+
+
+def list_models() -> list[str]:
+    return list(MODELS.keys())
