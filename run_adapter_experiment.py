@@ -1,16 +1,15 @@
-"""Run the full adapter experiment: train + eval for 4 configurations.
+"""Run the full adapter experiment: train + eval for base vs v2-full.
 
 Configurations:
-    base    — No adapter, raw OpenVLA baseline (eval only)
-    v1      — AttentionAdapter (MLP-only, no object masks)
-    v2-prop — AttentionAdapterV2, blend_alpha frozen at 0 (proportional redistribution)
-    v2-full — AttentionAdapterV2, blend_alpha learnable (SAM masks + learned redistribution)
+    base    — No adapter, raw VLA baseline (eval only)
+    v2-full — AttentionAdapterV2, object-centric dynamic adapter
+
+Supports multiple VLA models via --model flag (openvla-7b, ecot-7b, etc.).
 
 Usage:
-    python run_adapter_experiment.py
-    python run_adapter_experiment.py --configs v1 v2-full
+    python run_adapter_experiment.py --model openvla-7b
+    python run_adapter_experiment.py --model spatialvla-4b --gpus 5,6
     python run_adapter_experiment.py --skip_training   # eval only (checkpoints must exist)
-    python run_adapter_experiment.py --gpus 0,1,2,3
 """
 
 from __future__ import annotations
@@ -32,22 +31,12 @@ CONFIGS = {
     "base": {
         "skip_training": True,
         "adapter_version": None,
-        "description": "Raw OpenVLA baseline (no adapter)",
-    },
-    "v1": {
-        "adapter_version": 1,
-        "freeze_blend": False,
-        "description": "AttentionAdapter v1 (MLP only)",
-    },
-    "v2-prop": {
-        "adapter_version": 2,
-        "freeze_blend": True,
-        "description": "AttentionAdapterV2, proportional redistribution (blend frozen)",
+        "description": "Raw VLA baseline (no adapter)",
     },
     "v2-full": {
         "adapter_version": 2,
         "freeze_blend": False,
-        "description": "AttentionAdapterV2, learned redistribution (blend learnable)",
+        "description": "AttentionAdapterV2, object-centric dynamic adapter",
     },
 }
 
@@ -74,13 +63,13 @@ def run_command(cmd: list[str], description: str, log_path: Path | None = None) 
         return subprocess.call(cmd)
 
 
-def train_config(name: str, cfg: dict, gpus: str, num_episodes: int | None) -> bool:
+def train_config(name: str, cfg: dict, gpus: str, num_episodes: int | None, model_name: str = "openvla-7b") -> bool:
     """Train a single adapter configuration. Returns True on success."""
     if cfg.get("skip_training"):
         print(f"[{name}] Skipping training (eval-only config)")
         return True
 
-    output_dir = EXPERIMENT_DIR / name
+    output_dir = EXPERIMENT_DIR / model_name / name
     output_dir.mkdir(parents=True, exist_ok=True)
 
     cmd = []
@@ -89,14 +78,15 @@ def train_config(name: str, cfg: dict, gpus: str, num_episodes: int | None) -> b
 
     if n_gpus > 1:
         cmd = [
-            "accelerate", "launch",
+            sys.executable, "-m", "accelerate.commands.launch",
             "--num_processes", str(n_gpus),
             "adapter_train.py",
         ]
     else:
-        cmd = ["python", "adapter_train.py"]
+        cmd = [sys.executable, "adapter_train.py"]
 
     cmd.extend([
+        "--model", model_name,
         "--adapter_version", str(cfg["adapter_version"]),
         "--output_dir", str(output_dir),
     ])
@@ -125,9 +115,10 @@ def train_config(name: str, cfg: dict, gpus: str, num_episodes: int | None) -> b
 
 def eval_config(
     name: str, cfg: dict, device: str, num_eval_episodes: int,
+    eval_gpu: str = "1", model_name: str = "openvla-7b",
 ) -> bool:
     """Evaluate a single configuration. Returns True on success."""
-    output_dir = EXPERIMENT_DIR / name
+    output_dir = EXPERIMENT_DIR / model_name / name
     eval_dir = output_dir / "eval"
     eval_dir.mkdir(parents=True, exist_ok=True)
 
@@ -138,7 +129,8 @@ def eval_config(
         # baseline only (no adapter condition).
         print(f"[{name}] Running baseline-only evaluation...")
         cmd = [
-            "python", "adapter_eval.py",
+            sys.executable, "adapter_eval.py",
+            "--model", model_name,
             "--checkpoint", "NONE",  # special marker
             "--device", device,
             "--num_episodes", str(num_eval_episodes),
@@ -157,16 +149,20 @@ def eval_config(
             return False
 
         cmd = [
-            "python", "adapter_eval.py",
+            sys.executable, "adapter_eval.py",
+            "--model", model_name,
             "--checkpoint", str(best_ckpt),
             "--device", device,
             "--num_episodes", str(num_eval_episodes),
             "--output_dir", str(eval_dir),
         ]
 
+    # Set CUDA_VISIBLE_DEVICES for eval to use the correct GPU
+    full_cmd = ["env", f"CUDA_VISIBLE_DEVICES={eval_gpu}"] + cmd
+
     log_path = output_dir / "eval.log"
     t0 = time.time()
-    rc = run_command(cmd, f"Evaluating [{name}]: {cfg['description']}", log_path)
+    rc = run_command(full_cmd, f"Evaluating [{name}]: {cfg['description']}", log_path)
     elapsed = time.time() - t0
 
     if rc != 0:
@@ -182,10 +178,12 @@ def main():
     parser.add_argument("--configs", nargs="+", default=list(CONFIGS.keys()),
                         choices=list(CONFIGS.keys()),
                         help="Which configs to run (default: all)")
-    parser.add_argument("--gpus", type=str, default="0,1,2,3",
+    parser.add_argument("--gpus", type=str, default="1,2,3,4",
                         help="GPU IDs for training (comma-separated)")
+    parser.add_argument("--eval_gpu", type=str, default=None,
+                        help="GPU ID for evaluation (default: first GPU in --gpus)")
     parser.add_argument("--eval_device", type=str, default="cuda:0",
-                        help="Device for evaluation")
+                        help="Device for evaluation (within CUDA_VISIBLE_DEVICES scope)")
     parser.add_argument("--num_episodes", type=int, default=None,
                         help="Training episodes (None=all)")
     parser.add_argument("--num_eval_episodes", type=int, default=200,
@@ -194,10 +192,13 @@ def main():
                         help="Skip training, eval only (checkpoints must exist)")
     parser.add_argument("--skip_eval", action="store_true",
                         help="Skip evaluation, training only")
+    parser.add_argument("--model", type=str, default="openvla-7b",
+                        help="VLA model name from model_registry")
     args = parser.parse_args()
 
     print(f"\n{'#' * 60}")
     print(f"  ADAPTER EXPERIMENT PIPELINE")
+    print(f"  Model: {args.model}")
     print(f"  Configs: {args.configs}")
     print(f"  GPUs (train): {args.gpus}")
     print(f"  Eval device: {args.eval_device}")
@@ -216,16 +217,17 @@ def main():
 
         # Training phase
         if not args.skip_training:
-            ok = train_config(name, cfg, args.gpus, args.num_episodes)
+            ok = train_config(name, cfg, args.gpus, args.num_episodes, model_name=args.model)
             if not ok and not cfg.get("skip_training"):
                 results_summary[name] = {"status": "train_failed"}
                 continue
 
         # Evaluation phase
+        eval_gpu = args.eval_gpu or args.gpus.split(",")[0]
         if not args.skip_eval:
-            ok = eval_config(name, cfg, args.eval_device, args.num_eval_episodes)
+            ok = eval_config(name, cfg, args.eval_device, args.num_eval_episodes, eval_gpu=eval_gpu, model_name=args.model)
             if ok:
-                eval_path = EXPERIMENT_DIR / name / "eval" / "eval_results.json"
+                eval_path = EXPERIMENT_DIR / args.model / name / "eval" / "eval_results.json"
                 if eval_path.exists():
                     results_summary[name] = json.loads(eval_path.read_text())
                     results_summary[name]["status"] = "complete"
@@ -239,9 +241,12 @@ def main():
     total_time = time.time() - t_total
 
     # Save combined summary
-    summary_path = EXPERIMENT_DIR / "experiment_summary.json"
+    summary_dir = EXPERIMENT_DIR / args.model
+    summary_dir.mkdir(parents=True, exist_ok=True)
+    summary_path = summary_dir / "experiment_summary.json"
     with open(summary_path, "w") as f:
         json.dump({
+            "model": args.model,
             "configs_run": args.configs,
             "total_time_s": total_time,
             "results": results_summary,
