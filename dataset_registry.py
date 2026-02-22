@@ -195,6 +195,138 @@ def load_bridge_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
     )
 
 
+def load_calvin_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
+    """Load a sample from the CALVIN debug dataset.
+
+    CALVIN stores episodes as HDF5 files in DATASET_CACHE / "calvin".
+    Each episode file contains:
+    - rgb_static: (T, H, W, 3) uint8 images from the static camera
+    - actions: (T, 7) float64 robot actions
+    - Optionally: language annotations for the episode
+
+    Common HDF5 structures:
+    - episode_{id}.hdf5 with datasets 'rgb_static', 'actions', 'lang'
+    - Or npz-based: episode_{id}.npz
+    """
+    import h5py
+
+    calvin_dir = DATASET_CACHE / "calvin"
+    if not calvin_dir.exists():
+        raise FileNotFoundError(
+            f"CALVIN data not found at {calvin_dir}. "
+            f"Run download_dataset('calvin_debug') first."
+        )
+
+    cfg = DATASETS["calvin_debug"]
+
+    # Search for episode files (HDF5 or npz)
+    episode_files = sorted(calvin_dir.glob("*.hdf5")) + sorted(calvin_dir.glob("*.h5"))
+    if not episode_files:
+        # CALVIN debug often stores data as episode_XXXXXXX.npz
+        episode_files = sorted(calvin_dir.glob("*.npz"))
+
+    if not episode_files:
+        # Try subdirectory structure (task_D_D/training/)
+        for sub in calvin_dir.rglob("*.hdf5"):
+            episode_files.append(sub)
+        episode_files = sorted(episode_files)
+
+    if not episode_files:
+        raise FileNotFoundError(
+            f"No episode files found in {calvin_dir} or subdirectories"
+        )
+
+    if episode_id >= len(episode_files):
+        raise ValueError(
+            f"episode_id={episode_id} out of range, "
+            f"only {len(episode_files)} episodes available"
+        )
+
+    ep_path = episode_files[episode_id]
+
+    if ep_path.suffix in (".hdf5", ".h5"):
+        with h5py.File(ep_path, "r") as f:
+            # Search for image key
+            image_key = None
+            for k in ["rgb_static", "rgb_obs", "image", "obs/rgb_static",
+                       "observations/images/rgb_static"]:
+                if k in f:
+                    image_key = k
+                    break
+            if image_key is None:
+                raise KeyError(
+                    f"No known image key found in {ep_path}. "
+                    f"Available keys: {list(f.keys())}"
+                )
+
+            images = f[image_key]
+            if step_id >= len(images):
+                raise ValueError(
+                    f"step_id={step_id} out of range, "
+                    f"episode has {len(images)} steps"
+                )
+            image_array = np.array(images[step_id])
+            image = Image.fromarray(image_array, mode="RGB")
+
+            # Search for action key
+            action = None
+            for k in ["actions", "action", "rel_actions"]:
+                if k in f:
+                    action = f[k][step_id].tolist()
+                    break
+
+            # Search for language annotation
+            instruction = cfg.default_instruction
+            for k in ["lang", "language", "instruction", "lang_ann"]:
+                if k in f:
+                    lang_val = f[k]
+                    if hasattr(lang_val, "shape") and len(lang_val.shape) == 0:
+                        # scalar string dataset
+                        instruction = lang_val[()].decode("utf-8") if isinstance(
+                            lang_val[()], bytes) else str(lang_val[()])
+                    elif hasattr(lang_val, "__len__") and len(lang_val) > 0:
+                        val = lang_val[0]
+                        instruction = val.decode("utf-8") if isinstance(
+                            val, bytes) else str(val)
+                    break
+    else:
+        # NPZ format
+        data = np.load(ep_path, allow_pickle=True)
+        # Search for image key
+        image_key = None
+        for k in ["rgb_static", "rgb_obs", "image", "obs"]:
+            if k in data:
+                image_key = k
+                break
+        if image_key is None:
+            raise KeyError(
+                f"No known image key in {ep_path}. Keys: {list(data.keys())}"
+            )
+        images = data[image_key]
+        if step_id >= len(images):
+            raise ValueError(
+                f"step_id={step_id} out of range, episode has {len(images)} steps"
+            )
+        image = Image.fromarray(images[step_id], mode="RGB")
+
+        action = None
+        for k in ["actions", "action", "rel_actions"]:
+            if k in data:
+                action = data[k][step_id].tolist()
+                break
+
+        instruction = cfg.default_instruction
+
+    return DatasetSample(
+        dataset_name="calvin_debug",
+        episode_id=episode_id,
+        step_id=step_id,
+        image=image,
+        instruction=instruction,
+        action=action,
+    )
+
+
 def download_dataset(name: str) -> Path:
     """Download a dataset to the cache directory."""
     cfg = get_dataset(name)
