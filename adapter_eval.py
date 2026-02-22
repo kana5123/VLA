@@ -29,7 +29,8 @@ from attention_v3 import (
     set_var_differentiable,
     uninstall_v3_patch,
 )
-from extract_attention import detect_token_boundaries, detokenize_actions, load_model
+from extract_attention import load_model_from_registry, get_layers, detokenize_actions
+from model_registry import get_model
 
 
 class AdapterEvaluator:
@@ -38,23 +39,28 @@ class AdapterEvaluator:
     def __init__(
         self,
         checkpoint_path: str | None,
+        model_name: str = "openvla-7b",
         device: str = "cuda",
         baseline_only: bool = False,
     ):
         self.device = device
 
         # ── Load model ──
-        print("Loading OpenVLA model...")
-        self.processor, self.model = load_model(device=device)
+        self.model_cfg = get_model(model_name)
+        self.adapter_cfg = self.model_cfg.get_adapter_config()
+        self.adapter_cfg["architecture"] = self.model_cfg.architecture
+        print(f"Loading {model_name}...")
+        self.processor, self.model, self.model_cfg = load_model_from_registry(model_name, device=device)
         self.model.eval()
 
         # ── Detect boundaries ──
+        self.vision_end = self.model_cfg.num_vision_tokens
+        # Probe text_end with dummy input
         from PIL import Image
         dummy = Image.new("RGB", (256, 256), (128, 128, 128))
-        self.boundaries = detect_token_boundaries(
-            self.processor, self.model, dummy, "pick up the object", device
-        )
-        self.vision_end = self.boundaries["vision_end"]
+        prompt = self.model_cfg.prompt_template.format(instruction="pick up the object")
+        dummy_inputs = self.processor(prompt, dummy, return_tensors="pt").to(device)
+        self.text_end = dummy_inputs["input_ids"].shape[-1]
 
         # ── Load adapter (skip in baseline-only mode) ──
         self.baseline_only = baseline_only
@@ -63,15 +69,21 @@ class AdapterEvaluator:
 
         if not baseline_only and checkpoint_path is not None:
             ckpt = torch.load(checkpoint_path, map_location=device)
-            hidden_dim = self.model.config.text_config.hidden_size
             self.adapter_version = ckpt.get("config", {}).get("adapter_version", 1)
 
             if self.adapter_version == 2:
                 self.adapter = AttentionAdapterV2(
-                    hidden_dim=hidden_dim,
+                    hidden_dim=self.adapter_cfg["hidden_dim"],
+                    num_target_layers=self.adapter_cfg["num_target_layers"],
+                    num_heads=self.adapter_cfg["num_heads"],
+                    vision_tokens=self.adapter_cfg["vision_tokens"],
                 ).to(device)
             else:
-                self.adapter = AttentionAdapter(hidden_dim=hidden_dim).to(device)
+                self.adapter = AttentionAdapter(
+                    hidden_dim=self.adapter_cfg["hidden_dim"],
+                    num_target_layers=self.adapter_cfg["num_target_layers"],
+                    num_heads=self.adapter_cfg["num_heads"],
+                ).to(device)
 
             self.adapter.load_state_dict(ckpt["adapter_state_dict"])
             self.adapter.eval()
@@ -81,7 +93,12 @@ class AdapterEvaluator:
             )
 
         # ── Action tokenizer ──
-        self.tokenizer = ActionTokenizer(self.model)
+        if self.model_cfg.action_type == "discrete":
+            self.tokenizer = ActionTokenizer(self.model)
+        else:
+            raise NotImplementedError(
+                f"Continuous action evaluation ({model_name}) is not yet implemented."
+            )
 
     def _run_inference(
         self, image, instruction, adapter_enabled: bool, object_mask=None,
@@ -91,7 +108,7 @@ class AdapterEvaluator:
         Returns:
             dict with token_ids, normalized_action, unnormalized_action
         """
-        prompt = config.PROMPT_TEMPLATE.format(instruction=instruction)
+        prompt = self.model_cfg.prompt_template.format(instruction=instruction)
         inputs = self.processor(prompt, image, return_tensors="pt").to(self.device)
         if "pixel_values" in inputs and inputs["pixel_values"].dtype != self.model.dtype:
             inputs["pixel_values"] = inputs["pixel_values"].to(self.model.dtype)
@@ -102,12 +119,14 @@ class AdapterEvaluator:
             inputs=inputs,
             adapter_version=self.adapter_version,
             object_mask=object_mask,
-            text_end=self.boundaries["text_end"],
+            text_end=self.text_end,
+            model_cfg=self.model_cfg,
+            adapter_cfg=self.adapter_cfg,
         ) if adapter_enabled and self.adapter is not None else None
 
         if adapter_enabled and ctx is not None:
             set_v3_context(ctx)
-            install_v3_patch(ctx)
+            install_v3_patch(ctx, architecture=self.model_cfg.architecture, model=self.model)
 
         input_ids = inputs["input_ids"]
         attention_mask = inputs.get("attention_mask")
@@ -115,7 +134,7 @@ class AdapterEvaluator:
         generated_tokens = []
 
         with torch.no_grad():
-            for token_idx in range(config.NUM_ACTION_TOKENS):
+            for token_idx in range(self.model_cfg.action_tokens):
                 if ctx is not None:
                     ctx.current_token_idx = token_idx
 
@@ -236,7 +255,7 @@ class AdapterEvaluator:
                 print(f"  {name:8s}: {pct:+.2f}%")
 
         # Save results
-        eval_dir = config.ADAPTER_RESULTS_DIR / "eval"
+        eval_dir = config.ADAPTER_RESULTS_DIR / "eval" / self.model_cfg.name
         eval_dir.mkdir(parents=True, exist_ok=True)
         summary_results = {}
         for k, v in results.items():
@@ -255,6 +274,7 @@ class AdapterEvaluator:
 def get_v3_ctx_for_eval(
     model, adapter, device, vision_end, adapter_enabled, inputs,
     adapter_version=1, object_mask=None, text_end=0,
+    model_cfg=None, adapter_cfg=None,
 ):
     """Create V3Context with adapter-predicted p values for evaluation.
 
@@ -272,10 +292,8 @@ def get_v3_ctx_for_eval(
         captured["h_last"] = h[:, -1, :]
         captured["h_vision"] = h[:, :vision_end, :]
 
-    if hasattr(model, "language_model"):
-        hook_layer = model.language_model.model.layers[config.ADAPTER_SOURCE_LAYER]
-    else:
-        hook_layer = model.model.layers[config.ADAPTER_SOURCE_LAYER]
+    layers = get_layers(model, model_cfg)
+    hook_layer = layers[adapter_cfg["source_layer"]]
 
     hook = hook_layer.register_forward_hook(hook_fn)
     with torch.no_grad():
@@ -312,11 +330,11 @@ def get_v3_ctx_for_eval(
 
     # Build full p tensor
     full_p = torch.zeros(
-        config.NUM_LAYERS, config.NUM_HEADS, device=device, dtype=p_matrix.dtype,
+        model_cfg.num_layers, model_cfg.num_heads, device=device, dtype=p_matrix.dtype,
     )
     _target_idx = torch.tensor(
-        config.ADAPTER_TARGET_LAYERS, device=device,
-    ).unsqueeze(1).expand(-1, config.NUM_HEADS)
+        adapter_cfg["target_layers"], device=device,
+    ).unsqueeze(1).expand(-1, model_cfg.num_heads)
     full_p = full_p.scatter(0, _target_idx, p_matrix[0])
 
     ctx = V3Context(
@@ -326,7 +344,7 @@ def get_v3_ctx_for_eval(
         var_rho=config.VAR_RHO,
         var_sink_indices=list(config.VAR_SINK_INDICES),
         vision_end=vision_end,
-        enhancement_layers=set(config.ADAPTER_TARGET_LAYERS),
+        enhancement_layers=set(adapter_cfg["target_layers"]),
         per_head_var_strength=full_p,
         redistribution_weights=redistribution_weights,
         text_end=text_end,
@@ -349,6 +367,9 @@ def tqdm_wrapper(iterable, **kwargs):
 def main():
     parser = argparse.ArgumentParser(description="Evaluate Attention Adapter")
     parser.add_argument("--checkpoint", type=str, default=None)
+    parser.add_argument("--model", type=str, default="openvla-7b",
+                        choices=["openvla-7b", "ecot-7b", "spatialvla-4b", "tracevla-phi3v"],
+                        help="VLA model from model_registry")
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--num_episodes", type=int, default=100)
     parser.add_argument("--output_dir", type=str, default=None,
@@ -359,12 +380,12 @@ def main():
 
     if args.baseline_only:
         evaluator = AdapterEvaluator(
-            checkpoint_path=None, device=args.device, baseline_only=True,
+            checkpoint_path=None, model_name=args.model, device=args.device, baseline_only=True,
         )
     else:
         if not args.checkpoint:
             parser.error("--checkpoint required unless --baseline_only")
-        evaluator = AdapterEvaluator(args.checkpoint, device=args.device)
+        evaluator = AdapterEvaluator(args.checkpoint, model_name=args.model, device=args.device)
 
     results = evaluator.evaluate(num_episodes=args.num_episodes)
 
