@@ -36,12 +36,18 @@ from model_registry import get_model
 class AdapterEvaluator:
     """Compare adapter-modified vs baseline action predictions."""
 
+    # Methods that use static VAR (no adapter checkpoint needed)
+    STATIC_METHODS = {"fixed-var", "act"}
+    # LoRA: loads PEFT checkpoint, no VAR
+    LORA_METHOD = "lora"
+
     def __init__(
         self,
         checkpoint_path: str | None,
         model_name: str = "openvla-7b",
         device: str = "cuda",
         baseline_only: bool = False,
+        method: str = "adapter",
     ):
         self.device = device
 
@@ -70,12 +76,23 @@ class AdapterEvaluator:
         dummy_inputs = self.processor(prompt, dummy, return_tensors="pt").to(device)
         self.text_end = dummy_inputs["input_ids"].shape[-1]
 
-        # ── Load adapter (skip in baseline-only mode) ──
+        # ── Load adapter (skip in baseline-only and static method modes) ──
         self.baseline_only = baseline_only
+        self.method = method
         self.adapter = None
         self.adapter_version = 0
 
-        if not baseline_only and checkpoint_path is not None:
+        if method in self.STATIC_METHODS:
+            # Static methods (fixed-var, act) use V3Context without adapter
+            print(f"Using static method: {method}")
+        elif method == self.LORA_METHOD and checkpoint_path is not None:
+            # LoRA: load PEFT checkpoint
+            from peft import PeftModel
+            print(f"Loading LoRA checkpoint: {checkpoint_path}")
+            self.model = PeftModel.from_pretrained(self.model, checkpoint_path)
+            self.model.eval()
+            print("LoRA model loaded and merged for evaluation")
+        elif not baseline_only and checkpoint_path is not None:
             ckpt = torch.load(checkpoint_path, map_location=device)
             ckpt_cfg = ckpt.get("config", {})
             self.adapter_version = ckpt_cfg.get("adapter_version", 1)
@@ -121,6 +138,49 @@ class AdapterEvaluator:
         # ── Action tokenizer ──
         self.tokenizer = ActionTokenizer(self.model)
 
+    def _get_static_ctx(self) -> V3Context:
+        """Create V3Context for static methods (fixed-var, act)."""
+        target_layers = self.adapter_cfg["target_layers"]
+
+        if self.method == "fixed-var":
+            # Static VAR: uniform p across all target layers/heads
+            full_p = torch.zeros(
+                self.model_cfg.num_layers, self.model_cfg.num_heads,
+                device=self.device, dtype=torch.float32,
+            )
+            for layer_idx in target_layers:
+                full_p[layer_idx, :] = config.VAR_P
+            return V3Context(
+                active=True,
+                use_var=True,
+                var_p=config.VAR_P,
+                var_rho=config.VAR_RHO,
+                var_sink_indices=list(config.VAR_SINK_INDICES),
+                dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
+                sink_alpha=config.SINK_ALPHA,
+                vision_end=self.vision_end,
+                enhancement_layers=set(target_layers),
+                per_head_var_strength=full_p,
+                text_end=self.text_end,
+                text_sink_enabled=config.VAR_TEXT_SINK_ENABLED,
+                text_sink_p=config.VAR_TEXT_SINK_P,
+                text_sink_threshold=config.VAR_TEXT_SINK_THRESHOLD,
+            )
+        elif self.method == "act":
+            # ACT: sink scaling (reduce sink token attention by beta)
+            return V3Context(
+                active=True,
+                use_var=False,
+                use_act=True,
+                act_alpha=config.ACT_SINK_ALPHA,
+                act_beta=config.ACT_SCALE_BETA,
+                vision_end=self.vision_end,
+                enhancement_layers=set(target_layers),
+                text_end=self.text_end,
+            )
+        else:
+            raise ValueError(f"Unknown static method: {self.method}")
+
     def _run_inference(
         self, image, instruction, adapter_enabled: bool, object_mask=None,
     ) -> dict:
@@ -134,16 +194,25 @@ class AdapterEvaluator:
         if "pixel_values" in inputs and inputs["pixel_values"].dtype != self.model.dtype:
             inputs["pixel_values"] = inputs["pixel_values"].to(self.model.dtype)
 
-        ctx = get_v3_ctx_for_eval(
-            self.model, self.adapter, self.device, self.vision_end,
-            adapter_enabled=adapter_enabled,
-            inputs=inputs,
-            adapter_version=self.adapter_version,
-            object_mask=object_mask,
-            text_end=self.text_end,
-            model_cfg=self.model_cfg,
-            adapter_cfg=self.adapter_cfg,
-        ) if adapter_enabled and self.adapter is not None else None
+        # Static method (fixed-var, act): always use static context
+        if self.method == self.LORA_METHOD and adapter_enabled:
+            # LoRA: model weights already modified, no VAR context needed
+            ctx = None
+        elif self.method in self.STATIC_METHODS and adapter_enabled:
+            ctx = self._get_static_ctx()
+        elif adapter_enabled and self.adapter is not None:
+            ctx = get_v3_ctx_for_eval(
+                self.model, self.adapter, self.device, self.vision_end,
+                adapter_enabled=adapter_enabled,
+                inputs=inputs,
+                adapter_version=self.adapter_version,
+                object_mask=object_mask,
+                text_end=self.text_end,
+                model_cfg=self.model_cfg,
+                adapter_cfg=self.adapter_cfg,
+            )
+        else:
+            ctx = None
 
         if adapter_enabled and ctx is not None:
             set_v3_context(ctx)
@@ -187,7 +256,14 @@ class AdapterEvaluator:
         data_source: str = "tfrecord",
     ) -> dict:
         """Run full evaluation: baseline vs adapter on test split."""
-        conditions = ["baseline"] if self.baseline_only else ["baseline", "adapter"]
+        if self.baseline_only:
+            conditions = ["baseline"]
+        elif self.method in self.STATIC_METHODS:
+            conditions = ["baseline", self.method]
+        elif self.method == self.LORA_METHOD:
+            conditions = ["baseline", "lora"]
+        else:
+            conditions = ["baseline", "adapter"]
         print(f"\nEvaluating on test set ({num_episodes} episodes, conditions: {conditions})...")
 
         _, _, test_loader = create_dataloaders(
@@ -212,7 +288,7 @@ class AdapterEvaluator:
                 obj_mask = batch["object_masks"][0]
 
             for condition in conditions:
-                adapter_on = condition == "adapter"
+                adapter_on = condition != "baseline"
                 pred = self._run_inference(
                     image, instruction, adapter_enabled=adapter_on,
                     object_mask=obj_mask if adapter_on else None,
@@ -250,10 +326,11 @@ class AdapterEvaluator:
                 },
             }
 
-        # Compare (only if both conditions present)
-        if "adapter" in results and "summary" in results.get("baseline", {}) and "summary" in results.get("adapter", {}):
+        # Compare (baseline vs method)
+        method_key = self.method if self.method in (self.STATIC_METHODS | {self.LORA_METHOD}) else "adapter"
+        if method_key in results and "summary" in results.get("baseline", {}) and "summary" in results.get(method_key, {}):
             bl = results["baseline"]["summary"]
-            ad = results["adapter"]["summary"]
+            ad = results[method_key]["summary"]
             comparison = {
                 "overall_change_pct": (ad["overall_mse"] - bl["overall_mse"]) / bl["overall_mse"] * 100,
                 "spatial_change_pct": (ad["spatial_mse"] - bl["spatial_mse"]) / bl["spatial_mse"] * 100,
@@ -399,15 +476,28 @@ def main():
                         help="Override output directory for eval results")
     parser.add_argument("--baseline_only", action="store_true",
                         help="Evaluate baseline only (no adapter)")
+    parser.add_argument("--method", type=str, default="adapter",
+                        choices=["adapter", "fixed-var", "act", "lora"],
+                        help="Attention method to evaluate (default: adapter)")
     args = parser.parse_args()
 
     if args.baseline_only:
         evaluator = AdapterEvaluator(
             checkpoint_path=None, model_name=args.model, device=args.device, baseline_only=True,
         )
+    elif args.method in AdapterEvaluator.STATIC_METHODS:
+        evaluator = AdapterEvaluator(
+            checkpoint_path=None, model_name=args.model, device=args.device, method=args.method,
+        )
+    elif args.method == "lora":
+        if not args.checkpoint:
+            parser.error("--checkpoint required for LoRA evaluation")
+        evaluator = AdapterEvaluator(
+            checkpoint_path=args.checkpoint, model_name=args.model, device=args.device, method="lora",
+        )
     else:
         if not args.checkpoint:
-            parser.error("--checkpoint required unless --baseline_only")
+            parser.error("--checkpoint required unless --baseline_only or --method is static")
         evaluator = AdapterEvaluator(args.checkpoint, model_name=args.model, device=args.device)
 
     results = evaluator.evaluate(num_episodes=args.num_episodes)

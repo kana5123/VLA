@@ -28,11 +28,37 @@ import config
 EXPERIMENT_DIR = config.OUTPUT_DIR / "experiment_results"
 
 CONFIGS = {
+    # ── Baselines (eval-only, no training) ──
     "base": {
         "skip_training": True,
         "adapter_version": None,
         "description": "Raw VLA baseline (no adapter)",
     },
+    "fixed-var": {
+        "skip_training": True,
+        "adapter_version": None,
+        "eval_method": "fixed-var",
+        "description": "Static VAR with hand-tuned parameters (ICLR 2025 method)",
+    },
+    "act": {
+        "skip_training": True,
+        "adapter_version": None,
+        "eval_method": "act",
+        "description": "ACT sink scaling baseline (arXiv 2406.15765)",
+    },
+    "random": {
+        "adapter_version": 2,
+        "freeze_blend": False,
+        "skip_training": True,
+        "random_init": True,
+        "description": "Randomly initialized adapter (no training, proves learning matters)",
+    },
+    "lora": {
+        "adapter_version": None,
+        "use_lora": True,
+        "description": "LoRA fine-tuning baseline (q_proj + v_proj, rank 16)",
+    },
+    # ── Ablations (require training) ──
     "v1": {
         "adapter_version": 1,
         "description": "AttentionAdapter V1, MLP-only per-head p-matrix (no object mask)",
@@ -42,12 +68,52 @@ CONFIGS = {
         "freeze_blend": True,
         "description": "V2 with blend frozen (proportional redistribution only, no cross-attention)",
     },
+    # ── Main method ──
     "v2-full": {
         "adapter_version": 2,
         "freeze_blend": False,
         "description": "AttentionAdapterV2, object-centric dynamic adapter",
     },
 }
+
+
+def _create_random_checkpoint(ckpt_path: Path, model_name: str):
+    """Create a random-initialized adapter checkpoint for the 'random' baseline."""
+    import torch
+    from model_registry import get_model
+    from adapter_model import AttentionAdapterV2
+
+    model_cfg = get_model(model_name)
+    adapter_cfg = model_cfg.get_adapter_config()
+
+    adapter = AttentionAdapterV2(
+        hidden_dim=adapter_cfg["hidden_dim"],
+        num_target_layers=adapter_cfg["num_target_layers"],
+        num_heads=adapter_cfg["num_heads"],
+        vision_tokens=adapter_cfg["vision_tokens"],
+    )
+
+    ckpt_path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save({
+        "adapter_state_dict": adapter.state_dict(),
+        "global_step": 0,
+        "best_val_loss": float("inf"),
+        "patience_counter": 0,
+        "config": {
+            "model_name": model_name,
+            "architecture": model_cfg.architecture,
+            "hidden_dim": adapter_cfg["hidden_dim"],
+            "num_heads": adapter_cfg["num_heads"],
+            "num_target_layers": adapter_cfg["num_target_layers"],
+            "target_layers": adapter_cfg["target_layers"],
+            "source_layer": adapter_cfg["source_layer"],
+            "vision_tokens": adapter_cfg["vision_tokens"],
+            "action_type": adapter_cfg["action_type"],
+            "adapter_version": 2,
+            "random_init": True,
+        },
+    }, ckpt_path)
+    print(f"  Random checkpoint saved: {ckpt_path}")
 
 
 def run_command(cmd: list[str], description: str, log_path: Path | None = None) -> int:
@@ -84,27 +150,27 @@ def train_config(
     output_dir = EXPERIMENT_DIR / model_name / name
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    cmd = []
     gpu_list = gpus.split(",")
     n_gpus = len(gpu_list)
+
+    # Choose training script
+    train_script = "lora_train.py" if cfg.get("use_lora") else "adapter_train.py"
 
     if n_gpus > 1:
         cmd = [
             sys.executable, "-m", "accelerate.commands.launch",
             "--num_processes", str(n_gpus),
-            "adapter_train.py",
+            train_script,
         ]
     else:
-        cmd = [sys.executable, "adapter_train.py"]
+        cmd = [sys.executable, train_script]
 
-    cmd.extend([
-        "--model", model_name,
-        "--adapter_version", str(cfg["adapter_version"]),
-        "--output_dir", str(output_dir),
-    ])
+    cmd.extend(["--model", model_name, "--output_dir", str(output_dir)])
 
-    if cfg.get("freeze_blend"):
-        cmd.append("--freeze_blend")
+    if not cfg.get("use_lora"):
+        cmd.extend(["--adapter_version", str(cfg["adapter_version"])])
+        if cfg.get("freeze_blend"):
+            cmd.append("--freeze_blend")
 
     cmd.extend(["--seed", str(seed)])
 
@@ -136,11 +202,34 @@ def eval_config(
     eval_dir = output_dir / "eval"
     eval_dir.mkdir(parents=True, exist_ok=True)
 
-    if cfg.get("skip_training"):
-        # Base config: run eval without adapter
-        # We use adapter_eval.py in a special mode — the base eval doesn't need
-        # an adapter checkpoint. We'll handle this by running inference for
-        # baseline only (no adapter condition).
+    eval_method = cfg.get("eval_method")
+
+    if eval_method in ("fixed-var", "act"):
+        # Static attention method (no checkpoint needed)
+        print(f"[{name}] Running {eval_method} evaluation...")
+        cmd = [
+            sys.executable, "adapter_eval.py",
+            "--model", model_name,
+            "--device", device,
+            "--num_episodes", str(num_eval_episodes),
+            "--output_dir", str(eval_dir),
+            "--method", eval_method,
+        ]
+    elif cfg.get("random_init"):
+        # Random adapter: create random checkpoint on-the-fly, then eval
+        print(f"[{name}] Creating random adapter checkpoint and evaluating...")
+        random_ckpt = output_dir / "checkpoints" / "random.pt"
+        _create_random_checkpoint(random_ckpt, model_name)
+        cmd = [
+            sys.executable, "adapter_eval.py",
+            "--model", model_name,
+            "--checkpoint", str(random_ckpt),
+            "--device", device,
+            "--num_episodes", str(num_eval_episodes),
+            "--output_dir", str(eval_dir),
+        ]
+    elif cfg.get("skip_training") and not eval_method:
+        # Base config: raw baseline (no adapter, no attention method)
         print(f"[{name}] Running baseline-only evaluation...")
         cmd = [
             sys.executable, "adapter_eval.py",
@@ -151,12 +240,30 @@ def eval_config(
             "--output_dir", str(eval_dir),
             "--baseline_only",
         ]
+    elif cfg.get("use_lora"):
+        # LoRA: PEFT saves as directories, use lora_eval for these
+        ckpt_dir = output_dir / "checkpoints"
+        best_ckpt = ckpt_dir / "best"
+        if not best_ckpt.exists():
+            best_ckpt = ckpt_dir / "final"
+        if not best_ckpt.exists():
+            print(f"[{name}] ERROR: No LoRA checkpoint found in {ckpt_dir}")
+            return False
+
+        cmd = [
+            sys.executable, "adapter_eval.py",
+            "--model", model_name,
+            "--checkpoint", str(best_ckpt),
+            "--device", device,
+            "--num_episodes", str(num_eval_episodes),
+            "--output_dir", str(eval_dir),
+            "--method", "lora",
+        ]
     else:
-        # Find best checkpoint
+        # Find best checkpoint (adapter .pt format)
         ckpt_dir = output_dir / "checkpoints"
         best_ckpt = ckpt_dir / "best.pt"
         if not best_ckpt.exists():
-            # Fallback to final
             best_ckpt = ckpt_dir / "final.pt"
         if not best_ckpt.exists():
             print(f"[{name}] ERROR: No checkpoint found in {ckpt_dir}")
