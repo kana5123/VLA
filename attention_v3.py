@@ -35,6 +35,42 @@ import config
 
 
 # ======================================================================
+# Dynamic sink detection
+# ======================================================================
+
+def detect_sinks(
+    attn_weights: torch.Tensor,
+    alpha: float = 5.0,
+) -> list[int]:
+    """Detect attention sink tokens using ACT-style α/N threshold.
+
+    A token is a sink if its attention weight exceeds α/N where N is the
+    sequence length. Detection is per-head; the union across all heads
+    is returned.
+
+    Args:
+        attn_weights: (B, H, K) or (B, H, Q, K) attention weights (post-softmax).
+        alpha: threshold multiplier (default 5.0 = 5x uniform average).
+    Returns:
+        Sorted list of sink token indices (union across batch and heads).
+    """
+    attn = attn_weights.detach().float()
+
+    if attn.dim() == 4:
+        attn = attn[:, :, -1, :]  # (B, H, K)
+
+    N = attn.shape[-1]
+    if N == 0:
+        return []
+
+    threshold = alpha / N
+    sink_mask = attn > threshold
+    any_sink = sink_mask.any(dim=0).any(dim=0)  # (K,)
+    sink_indices = any_sink.nonzero(as_tuple=True)[0].tolist()
+    return sorted(sink_indices)
+
+
+# ======================================================================
 # V3 enhancement context
 # ======================================================================
 
