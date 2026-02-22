@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import pickle
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
@@ -18,6 +19,7 @@ from PIL import Image
 import config
 
 DATASET_CACHE = Path("/ceph_data/kana5123/cross_model_datasets")
+DATA_CACHE_DIR = Path("/ceph_data/kana5123/bridge_data_cache")
 
 
 @dataclass
@@ -136,23 +138,60 @@ def list_datasets() -> list[str]:
 
 
 def load_bridge_sample(episode_id: int = 0, step_id: int = 0) -> DatasetSample:
-    """Load a sample from the already-cached Bridge V2 dataset."""
-    meta_path = config.METADATA_PATH
-    with open(meta_path) as f:
-        metadata = json.load(f)
+    """Load a sample from the already-cached Bridge V2 dataset.
 
-    ep = metadata["episodes"][episode_id]
-    step = ep["steps"][step_id]
-    image_path = config.PROJECT_ROOT / step["image_path"]
-    image = Image.open(image_path).convert("RGB")
+    Uses the preprocessed cache at DATA_CACHE_DIR which contains:
+    - cache_info.json: shape metadata for the memmap
+    - metadata.pkl: list of dicts with episode_id, step_id, global_idx, instruction, action
+    - images.dat: numpy memmap of shape (total_steps, H, W, 3) uint8
+    """
+    # 1. Load cache info for memmap shape
+    cache_info_path = DATA_CACHE_DIR / "cache_info.json"
+    with open(cache_info_path) as f:
+        cache_info = json.load(f)
 
+    total_steps = cache_info["total_steps"]
+    img_h = cache_info["image_height"]
+    img_w = cache_info["image_width"]
+
+    # 2. Load metadata (list of dicts)
+    metadata_path = DATA_CACHE_DIR / "metadata.pkl"
+    with open(metadata_path, "rb") as f:
+        metadata = pickle.load(f)
+
+    # 3. Find matching entry by episode_id + step_id
+    match = None
+    for entry in metadata:
+        if entry["episode_id"] == episode_id and entry["step_id"] == step_id:
+            match = entry
+            break
+
+    if match is None:
+        raise ValueError(
+            f"No sample found for episode_id={episode_id}, step_id={step_id} "
+            f"in Bridge V2 cache"
+        )
+
+    global_idx = match["global_idx"]
+
+    # 4. Load image from memmap by global_idx
+    images_mmap = np.memmap(
+        DATA_CACHE_DIR / "images.dat",
+        dtype=np.uint8,
+        mode="r",
+        shape=(total_steps, img_h, img_w, 3),
+    )
+    image_array = np.array(images_mmap[global_idx])  # copy out of memmap
+    image = Image.fromarray(image_array, mode="RGB")
+
+    # 5. Return DatasetSample
     return DatasetSample(
         dataset_name="bridge_v2",
-        episode_id=ep["episode_id"],
-        step_id=step["step_id"],
+        episode_id=episode_id,
+        step_id=step_id,
         image=image,
-        instruction=step["instruction"],
-        action=step.get("action"),
+        instruction=match["instruction"],
+        action=match.get("action"),
     )
 
 
