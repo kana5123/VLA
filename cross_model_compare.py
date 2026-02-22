@@ -94,31 +94,40 @@ def compute_sink_summary(model_name: str, perhead: dict) -> dict:
     all_text = []
     all_v_other = []
     all_action = []
+    all_early_sink = []
 
     # Collect per-layer aggregates (averaged over actions and heads)
     layer_v0_accum = {}  # layer_key -> list of vision_token0 values
+    layer_early_accum = {}  # layer_key -> list of early_sink values
 
     for action_key, layers_data in perhead.items():
         for layer_key, heads_data in layers_data.items():
             if layer_key not in layer_v0_accum:
                 layer_v0_accum[layer_key] = []
+                layer_early_accum[layer_key] = []
 
             for head_key, stats in heads_data.items():
                 v0 = stats.get("vision_token0", 0.0)
                 text = stats.get("text_total", 0.0)
                 v_other = stats.get("vision_other", 0.0)
                 action = stats.get("action_tokens", 0.0)
+                early = stats.get("early_sink", v0)  # fallback to v0 for older data
 
                 all_v0.append(v0)
                 all_text.append(text)
                 all_v_other.append(v_other)
                 all_action.append(action)
+                all_early_sink.append(early)
                 layer_v0_accum[layer_key].append(v0)
+                layer_early_accum[layer_key].append(early)
 
     # Per-layer mean vision[0], sorted by layer index
     sorted_layers = sorted(layer_v0_accum.keys())
     per_layer_vision0 = [
         float(np.mean(layer_v0_accum[lk])) for lk in sorted_layers
+    ]
+    per_layer_early_sink = [
+        float(np.mean(layer_early_accum[lk])) for lk in sorted_layers
     ]
 
     # Detect num_heads from first action/layer
@@ -135,7 +144,9 @@ def compute_sink_summary(model_name: str, perhead: dict) -> dict:
         "mean_text_total": float(np.mean(all_text)) if all_text else 0.0,
         "mean_vision_other": float(np.mean(all_v_other)) if all_v_other else 0.0,
         "mean_action_tokens": float(np.mean(all_action)) if all_action else 0.0,
+        "mean_early_sink": float(np.mean(all_early_sink)) if all_early_sink else 0.0,
         "per_layer_vision0": per_layer_vision0,
+        "per_layer_early_sink": per_layer_early_sink,
         "num_layers": len(sorted_layers),
         "num_heads": num_heads,
         "layer_keys": sorted_layers,
@@ -348,7 +359,8 @@ def main():
         print(f"  {model_name}: vision[0]={summary['mean_vision0']:.3f}, "
               f"text={summary['mean_text_total']:.3f}, "
               f"useful={summary['mean_vision_other']:.3f}, "
-              f"action={summary['mean_action_tokens']:.3f}")
+              f"action={summary['mean_action_tokens']:.3f}, "
+              f"early_sink={summary['mean_early_sink']:.3f}")
 
     # Save summary JSON
     output_dir.mkdir(parents=True, exist_ok=True)

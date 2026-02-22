@@ -22,6 +22,14 @@ import numpy as np
 from PIL import Image
 from tqdm import tqdm
 
+# Monkey-patch missing transformers utilities for models requiring newer versions
+import transformers.utils
+if not hasattr(transformers.utils, 'is_torch_greater_or_equal'):
+    from packaging import version as _pkg_version
+    def _is_torch_gte(ver):
+        return _pkg_version.parse(torch.__version__.split('+')[0]) >= _pkg_version.parse(ver)
+    transformers.utils.is_torch_greater_or_equal = _is_torch_gte
+
 import config
 from model_registry import get_model, list_models, VLAModelConfig
 from dataset_registry import load_sample, DatasetSample
@@ -97,9 +105,30 @@ def detect_boundaries(processor, model, model_cfg, sample: DatasetSample, device
         inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
 
     input_ids = inputs["input_ids"][0]
+
+    # Phi-3V: image tokens are marked as negative in input_ids
+    if model_cfg.architecture == "phi3_v":
+        neg_mask = input_ids < 0
+        num_vision = neg_mask.sum().item()
+        num_text = len(input_ids) - num_vision
+        # Vision tokens are interleaved; find contiguous range
+        neg_indices = neg_mask.nonzero(as_tuple=True)[0]
+        vision_start = neg_indices[0].item() if len(neg_indices) > 0 else 0
+        vision_end = neg_indices[-1].item() + 1 if len(neg_indices) > 0 else 0
+        full_seq = len(input_ids)
+        return {
+            "vision_start": vision_start,
+            "vision_end": vision_end,
+            "text_start": 0,  # text tokens wrap around vision
+            "text_end": full_seq,
+            "total_seq_len": full_seq,
+            "num_vision_tokens": num_vision,
+            "num_text_tokens": num_text,
+        }
+
     num_text = len(input_ids)
 
-    # Capture sequence length via hook on first layer
+    # Standard VLMs: capture sequence length via hook on first layer
     captured = {}
     layers = get_layers(model, model_cfg)
 
@@ -107,9 +136,12 @@ def detect_boundaries(processor, model, model_cfg, sample: DatasetSample, device
         h = output[0] if isinstance(output, tuple) else output
         captured["seq_len"] = h.shape[1]
 
+    # Clone input_ids to avoid in-place modification issues
+    forward_inputs = {k: v.clone() if isinstance(v, torch.Tensor) else v
+                      for k, v in inputs.items()}
     hook = layers[0].register_forward_hook(hook_fn)
     with torch.no_grad():
-        model(**inputs, use_cache=False)
+        model(**forward_inputs, use_cache=False)
     hook.remove()
 
     full_seq = captured["seq_len"]
@@ -141,12 +173,18 @@ def extract_attention_generic(
         inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
 
     tokenizer = processor.tokenizer if hasattr(processor, "tokenizer") else processor
+    is_phi3v = model_cfg.architecture == "phi3_v"
 
     # Build expanded input_ids for text decoding
     original_ids = inputs["input_ids"][0]
     num_vision = boundaries["num_vision_tokens"]
-    dummy_vision = torch.zeros(num_vision, dtype=torch.long)
-    expanded_ids = torch.cat([dummy_vision, original_ids.cpu()])
+    if is_phi3v:
+        # Phi3V: vision tokens are interleaved in input_ids (negative values)
+        expanded_ids = original_ids.cpu().clone()
+        expanded_ids[expanded_ids < 0] = 0  # Replace negative with pad for decoding
+    else:
+        dummy_vision = torch.zeros(num_vision, dtype=torch.long)
+        expanded_ids = torch.cat([dummy_vision, original_ids.cpu()])
 
     # Enable output_attentions
     layers = get_layers(model, model_cfg)
@@ -169,10 +207,13 @@ def extract_attention_generic(
         attn_mod = getattr(layer, model_cfg.attn_module)
         hooks.append(attn_mod.register_forward_hook(make_hook(i)))
 
-    # Generate action tokens autoregressively
-    input_ids = inputs["input_ids"]
+    # Collect all processor outputs for model forward (e.g. image_sizes for Phi3V)
+    input_ids_orig = inputs["input_ids"]
     attention_mask = inputs.get("attention_mask")
     pixel_values = inputs.get("pixel_values")
+    extra_kwargs = {}
+    if "image_sizes" in inputs:
+        extra_kwargs["image_sizes"] = inputs["image_sizes"]
 
     num_action_tokens = model_cfg.action_tokens
     attention_analysis = {}
@@ -182,14 +223,21 @@ def extract_attention_generic(
     dim_names = config.ACTION_DIM_NAMES[:num_action_tokens]
 
     with torch.no_grad():
-        model_inputs = {
-            "input_ids": input_ids,
-            "attention_mask": attention_mask,
-            "pixel_values": pixel_values,
-        }
+        # For Phi3V: only single forward pass (model modifies input_ids in-place)
+        # For standard models: autoregressive generation of action tokens
+        n_steps = 1 if is_phi3v else num_action_tokens
+        input_ids = input_ids_orig
 
-        for act_idx in range(num_action_tokens):
+        for act_idx in range(n_steps):
             attn_store.clear()
+
+            # Clone input_ids to avoid in-place modification issues
+            model_inputs = {
+                "input_ids": input_ids.clone(),
+                "attention_mask": attention_mask.clone() if attention_mask is not None else None,
+                "pixel_values": pixel_values,
+                **extra_kwargs,
+            }
 
             outputs = model(**model_inputs, use_cache=False, output_attentions=True)
             next_token = outputs.logits[:, -1, :].argmax(dim=-1, keepdim=True)
@@ -215,19 +263,15 @@ def extract_attention_generic(
                     attn_last, boundaries
                 )
 
-            # Extend sequence for next token
-            input_ids = torch.cat([input_ids, next_token.unsqueeze(0)
-                                   if next_token.dim() == 1 else next_token], dim=-1)
-            if attention_mask is not None:
-                attention_mask = torch.cat([
-                    attention_mask,
-                    torch.ones(1, 1, device=device, dtype=attention_mask.dtype)
-                ], dim=-1)
-            model_inputs = {
-                "input_ids": input_ids,
-                "attention_mask": attention_mask,
-                "pixel_values": pixel_values,
-            }
+            if not is_phi3v:
+                # Extend sequence for next token (standard autoregressive)
+                input_ids = torch.cat([input_ids, next_token.unsqueeze(0)
+                                       if next_token.dim() == 1 else next_token], dim=-1)
+                if attention_mask is not None:
+                    attention_mask = torch.cat([
+                        attention_mask,
+                        torch.ones(1, 1, device=device, dtype=attention_mask.dtype)
+                    ], dim=-1)
 
     # Cleanup hooks
     for h in hooks:

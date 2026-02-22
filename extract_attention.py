@@ -301,9 +301,11 @@ def compute_perhead_stats(attn_weights, boundaries):
         attn_weights: (num_heads, 1, seq_len) or (num_heads, seq_len)
             Attention from the last token (action token) to all other tokens.
         boundaries: dict from detect_token_boundaries
+            Must contain: vision_start, vision_end, text_end, total_seq_len
 
     Returns:
-        dict mapping "head_XX" → {vision_token0, vision_other, text_total, ...}
+        dict mapping "head_XX" → {vision_token0, vision_other, text_total,
+        early_sink, ...}
     """
     if attn_weights.dim() == 3:
         attn = attn_weights[:, 0, :]  # (H, seq_len)
@@ -313,6 +315,7 @@ def compute_perhead_stats(attn_weights, boundaries):
     attn = attn.float()
     num_heads = attn.shape[0]
     seq_len = attn.shape[1]
+    vs = boundaries.get("vision_start", 0)
     ve = boundaries["vision_end"]
     te = boundaries.get("text_end", seq_len)
 
@@ -320,26 +323,53 @@ def compute_perhead_stats(attn_weights, boundaries):
     for h in range(num_heads):
         ha = attn[h]  # (seq_len,)
 
-        # Vision token 0 (the confirmed sink)
-        v0 = ha[0].item()
+        # Vision token 0 (first vision token — may not be position 0)
+        v0 = ha[vs].item() if vs < seq_len else 0.0
 
-        # Other vision tokens (1 to vision_end-1)
-        v_other = ha[1:ve].sum().item() if ve > 1 else 0.0
-        v_other_max = ha[1:ve].max().item() if ve > 1 else 0.0
-        v_other_argmax = int(ha[1:ve].argmax().item()) + 1 if ve > 1 else -1
+        # Other vision tokens (vision_start+1 to vision_end-1)
+        v_other = ha[vs+1:ve].sum().item() if ve > vs + 1 else 0.0
+        v_other_max = ha[vs+1:ve].max().item() if ve > vs + 1 else 0.0
+        v_other_argmax = int(ha[vs+1:ve].argmax().item()) + vs + 1 if ve > vs + 1 else -1
 
-        # Text tokens
-        t_total = ha[ve:te].sum().item() if te > ve else 0.0
-        if te > ve:
-            t_max = ha[ve:te].max().item()
-            t_argmax = int(ha[ve:te].argmax().item()) + ve
-        else:
+        # Text tokens — everything that's NOT vision and NOT action
+        # For standard VLMs (vs=0): text is at [ve:te]
+        # For Phi3V-style (vs>0): text is at [0:vs] + [ve:te]
+        if vs > 0:
+            # Text prefix before vision + text suffix after vision
+            t_prefix = ha[0:vs].sum().item()
+            t_suffix = ha[ve:te].sum().item() if te > ve else 0.0
+            t_total = t_prefix + t_suffix
+            # Find max text token across both ranges
+            all_text_scores = []
+            if vs > 0:
+                all_text_scores.append((ha[0:vs], 0))  # (tensor, offset)
+            if te > ve:
+                all_text_scores.append((ha[ve:te], ve))
             t_max = 0.0
             t_argmax = -1
+            for chunk, offset in all_text_scores:
+                if len(chunk) > 0:
+                    chunk_max = chunk.max().item()
+                    if chunk_max > t_max:
+                        t_max = chunk_max
+                        t_argmax = int(chunk.argmax().item()) + offset
+        else:
+            t_total = ha[ve:te].sum().item() if te > ve else 0.0
+            if te > ve:
+                t_max = ha[ve:te].max().item()
+                t_argmax = int(ha[ve:te].argmax().item()) + ve
+            else:
+                t_max = 0.0
+                t_argmax = -1
 
         # Beyond text (previously generated action tokens)
         beyond = ha[te:].sum().item() if te < seq_len else 0.0
         beyond_max = ha[te:].max().item() if te < seq_len else 0.0
+
+        # Generalized early sink: sum of first N positions (architecture-agnostic)
+        # Captures BOS sinks, vision[0] sinks, special token sinks
+        n_early = min(max(vs + 1, 1), seq_len)  # at least 1, up to vision_start+1
+        early_sink = ha[:n_early].sum().item()
 
         results[f"head_{h:02d}"] = {
             "vision_token0": round(v0, 6),
@@ -352,6 +382,7 @@ def compute_perhead_stats(attn_weights, boundaries):
             "action_tokens": round(beyond, 6),
             "action_tokens_max": round(beyond_max, 6),
             "sink_total": round(v0 + t_max + beyond_max, 6),
+            "early_sink": round(early_sink, 6),
         }
 
     return results

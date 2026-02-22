@@ -93,7 +93,7 @@ register(VLAModelConfig(
     vision_grid_size=14,
     num_vision_tokens=196,
     action_tokens=7,
-    prompt_template="What action should the robot take to {instruction}?",
+    prompt_template="<|user|>\n<|image_1|>\nWhat action should the robot take to {instruction}?\n<|end|>\n<|assistant|>\n",
     native_datasets=["bridge_v2", "oxe"],
     notes="Phi-3 Vision backbone, visual trace overlays",
     layers_path="model.layers",
