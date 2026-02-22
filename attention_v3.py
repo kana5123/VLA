@@ -134,6 +134,10 @@ class V3Context:
     text_sink_threshold: float = 0.15
     text_end: int = 0
 
+    # --- Dynamic sink detection ---
+    dynamic_sink_detection: bool = config.DYNAMIC_SINK_DETECTION
+    sink_alpha: float = config.SINK_ALPHA
+
     # --- Common ---
     gripper_exempt: bool = False
     current_token_idx: int = 0
@@ -672,6 +676,15 @@ def _make_v3_patched_forward(ctx: V3Context) -> Callable:
                 )
 
             if ctx.use_var:
+                # Determine sink indices: dynamic detection or hardcoded
+                if ctx.dynamic_sink_detection:
+                    last_attn = attn_weights[:, :, -1, :]  # (B, H, K)
+                    sink_indices = detect_sinks(last_attn, alpha=ctx.sink_alpha)
+                    if not sink_indices:
+                        sink_indices = ctx.var_sink_indices  # fallback
+                else:
+                    sink_indices = ctx.var_sink_indices
+
                 obj_idx = ctx.object_patch_indices if ctx.use_object_redirect else None
                 obj_w = ctx.object_redirect_weight if ctx.use_object_redirect else 1.0
                 extra_map = None
@@ -679,7 +692,7 @@ def _make_v3_patched_forward(ctx: V3Context) -> Callable:
                     extra_map = {idx: ctx.temporal_boost_weight for idx in ctx.temporal_patch_indices}
 
                 attn_weights = apply_var(
-                    attn_weights, ctx.var_sink_indices, ctx.vision_end,
+                    attn_weights, sink_indices, ctx.vision_end,
                     ctx.effective_var_p(), ctx.var_rho,
                     object_indices=obj_idx, object_weight=obj_w,
                     extra_boost_map=extra_map,

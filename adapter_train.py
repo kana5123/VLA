@@ -531,6 +531,8 @@ def train():
         var_p=config.VAR_P,
         var_rho=config.VAR_RHO,
         var_sink_indices=list(config.VAR_SINK_INDICES),
+        dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
+        sink_alpha=config.SINK_ALPHA,
         vision_end=vision_end,
         enhancement_layers=set(config.ADAPTER_TARGET_LAYERS),
         text_end=text_end,
@@ -541,6 +543,11 @@ def train():
     set_v3_context(ctx)
     install_v3_patch(ctx)
     set_var_differentiable(enabled=True, temperature=10.0)
+    if is_main:
+        if ctx.dynamic_sink_detection:
+            print(f"  Dynamic sink detection: ON (α={ctx.sink_alpha})")
+        else:
+            print(f"  Dynamic sink detection: OFF (hardcoded sinks={ctx.var_sink_indices})")
 
     # ── Training state ──
     global_step = 0

@@ -90,6 +90,10 @@ VAR_TEXT_SINK_ENABLED = True        # Also redistribute from text sink ("\n")
 VAR_TEXT_SINK_P = 0.3               # Fraction of text sink attention to redistribute
 VAR_TEXT_SINK_THRESHOLD = 0.15      # Only redistribute if text max > 15% of total
 
+# Dynamic sink detection (ACT-style α/N threshold)
+DYNAMIC_SINK_DETECTION = True      # True = detect per-forward-pass, False = use VAR_SINK_INDICES
+SINK_ALPHA = 5.0                   # Threshold multiplier: sink if attn > α/N
+
 # VTR (Vision-Text Rebalance)
 VT_SHIFT_FRACTION = 0.3            # Fraction of text attention to shift to vision
 
