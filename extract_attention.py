@@ -33,81 +33,60 @@ import config
 # ═══════════════════════════════════════════════════════════════════════════
 
 def detect_token_boundaries(processor, model, sample_image, sample_instruction, device):
-    """Detect vision/text token boundaries by running a forward pass.
+    """Detect vision/text token boundaries using a forward hook.
 
-    The <image> placeholder in input_ids gets expanded to N vision embeddings
-    inside the model. We need to figure out the actual positions after expansion.
+    OpenVLA/Prismatic doesn't use <image> placeholders in text.
+    Instead, vision features are prepended to text embeddings inside the model.
+    We capture attention shape via hooks to determine the actual sequence layout.
 
     Returns:
         dict with keys: vision_start, vision_end, text_start, text_end, total_seq_len
     """
     prompt = config.PROMPT_TEMPLATE.format(instruction=sample_instruction)
     inputs = processor(prompt, sample_image, return_tensors="pt").to(device)
-    input_ids = inputs["input_ids"][0]  # before expansion
+    # Cast pixel_values to model dtype (processor returns float32, model is bfloat16)
+    if "pixel_values" in inputs and inputs["pixel_values"].dtype != model.dtype:
+        inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
+    input_ids = inputs["input_ids"][0]
+    num_text_tokens = len(input_ids)
 
-    # Find <image> placeholder tokens in input_ids
-    # OpenVLA/Prismatic uses a special token for image placeholder
-    tokenizer = processor.tokenizer
+    print(f"  Text input_ids length: {num_text_tokens}")
 
-    # Get the image token id (commonly 32000 for Prismatic/OpenVLA)
-    image_token_str = "<image>"
-    if image_token_str in tokenizer.get_vocab():
-        image_token_id = tokenizer.convert_tokens_to_ids(image_token_str)
+    # Use a hook on the first decoder layer to capture sequence length from hidden states
+    captured = {}
+
+    def hook_fn(module, args, output):
+        # Layer output: (hidden_states, ...) — hidden_states shape is (batch, seq_len, hidden_dim)
+        h = output[0] if isinstance(output, tuple) else output
+        captured["seq_len"] = h.shape[1]
+
+    if hasattr(model, "language_model"):
+        target_layer = model.language_model.model.layers[0]
     else:
-        # Fallback: search for common image token ids
-        image_token_id = None
-        for tok_str in ["<image>", "<img>", "<visual>"]:
-            if tok_str in tokenizer.get_vocab():
-                image_token_id = tokenizer.convert_tokens_to_ids(tok_str)
-                break
+        target_layer = model.model.layers[0]
 
-    if image_token_id is not None:
-        image_mask = (input_ids == image_token_id)
-        num_image_placeholders = image_mask.sum().item()
-        first_image_pos = image_mask.nonzero(as_tuple=True)[0][0].item() if num_image_placeholders > 0 else None
-    else:
-        num_image_placeholders = 0
-        first_image_pos = None
+    hook = target_layer.register_forward_hook(hook_fn)
 
-    print(f"  Input IDs length (before expansion): {len(input_ids)}")
-    print(f"  Image placeholders found: {num_image_placeholders}")
-
-    # Run a forward pass to get the actual sequence length after vision embedding expansion
     with torch.no_grad():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=1,
-            output_attentions=True,
-            return_dict_in_generate=True,
-            do_sample=False,
-        )
+        model(**inputs, use_cache=False)
 
-    # The first generated token's attention tells us the full input seq_len
-    # attentions[0][layer] → (batch, heads, 1, seq_len) for the first new token
-    first_attn = outputs.attentions[0][0]  # first gen step, first layer
-    full_seq_len = first_attn.shape[-1]  # includes all input tokens (expanded)
+    hook.remove()
 
-    print(f"  Full sequence length (after expansion): {full_seq_len}")
+    if "seq_len" not in captured:
+        raise RuntimeError("Failed to capture sequence length. Check model architecture.")
 
-    # Calculate boundaries
-    # Typical structure: [BOS] [vision_tokens...] [text_tokens...]
-    # The number of non-image, non-special tokens before image
-    pre_image_tokens = first_image_pos if first_image_pos is not None else 1  # BOS
+    # hidden states shape: (batch, seq_len, hidden_dim)
+    full_seq_len = captured["seq_len"]
+    num_vision_tokens = full_seq_len - num_text_tokens
 
-    # Vision tokens = full_seq_len - (tokens before image) - (text tokens after image)
-    # Text tokens after image = input_ids length - first_image_pos - num_image_placeholders
-    if first_image_pos is not None:
-        text_tokens_after_image = len(input_ids) - first_image_pos - num_image_placeholders
-        num_vision_tokens = full_seq_len - pre_image_tokens - text_tokens_after_image
-    else:
-        # No image placeholder found; try to infer from seq_len difference
-        num_vision_tokens = full_seq_len - len(input_ids)
-        pre_image_tokens = 1  # BOS
-        text_tokens_after_image = len(input_ids) - 1
+    print(f"  Full sequence length (after vision expansion): {full_seq_len}")
+    print(f"  Vision tokens: {num_vision_tokens}, Text tokens: {num_text_tokens}")
 
-    vision_start = pre_image_tokens
-    vision_end = vision_start + num_vision_tokens
-    text_start = vision_end
+    # OpenVLA/Prismatic layout: [vision_tokens] [text_tokens]
+    # (vision features are prepended to text embeddings)
+    vision_start = 0
+    vision_end = num_vision_tokens
+    text_start = num_vision_tokens
     text_end = full_seq_len
 
     boundaries = {
@@ -117,8 +96,8 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
         "text_end": text_end,
         "total_seq_len": full_seq_len,
         "num_vision_tokens": num_vision_tokens,
-        "num_text_tokens": text_end - text_start,
-        "pre_image_tokens": pre_image_tokens,
+        "num_text_tokens": num_text_tokens,
+        "pre_image_tokens": 0,
     }
 
     print(f"  Token boundaries: {boundaries}")
@@ -151,13 +130,13 @@ class AttentionHookManager:
 
         for i, layer in enumerate(layers):
             hook = layer.self_attn.register_forward_hook(
-                self._make_hook(i), with_kwargs=True
+                self._make_hook(i)
             )
             self.hooks.append(hook)
         print("  Attention hooks registered on all layers.")
 
     def _make_hook(self, layer_idx):
-        def hook_fn(module, args, output, **kwargs):
+        def hook_fn(module, args, output):
             # LlamaAttention returns (attn_output, attn_weights, past_key_value)
             if isinstance(output, tuple) and len(output) >= 2 and output[1] is not None:
                 step_key = self._generation_step
@@ -315,6 +294,123 @@ def analyze_top_k(attn_weights, boundaries, tokenizer, input_ids_expanded, k=con
     return results
 
 
+def compute_perhead_stats(attn_weights, boundaries):
+    """Compute per-head attention breakdown by token category.
+
+    Args:
+        attn_weights: (num_heads, 1, seq_len) or (num_heads, seq_len)
+            Attention from the last token (action token) to all other tokens.
+        boundaries: dict from detect_token_boundaries
+
+    Returns:
+        dict mapping "head_XX" → {vision_token0, vision_other, text_total, ...}
+    """
+    if attn_weights.dim() == 3:
+        attn = attn_weights[:, 0, :]  # (H, seq_len)
+    else:
+        attn = attn_weights  # (H, seq_len)
+
+    attn = attn.float()
+    num_heads = attn.shape[0]
+    seq_len = attn.shape[1]
+    ve = boundaries["vision_end"]
+    te = boundaries.get("text_end", seq_len)
+
+    results = {}
+    for h in range(num_heads):
+        ha = attn[h]  # (seq_len,)
+
+        # Vision token 0 (the confirmed sink)
+        v0 = ha[0].item()
+
+        # Other vision tokens (1 to vision_end-1)
+        v_other = ha[1:ve].sum().item() if ve > 1 else 0.0
+        v_other_max = ha[1:ve].max().item() if ve > 1 else 0.0
+        v_other_argmax = int(ha[1:ve].argmax().item()) + 1 if ve > 1 else -1
+
+        # Text tokens
+        t_total = ha[ve:te].sum().item() if te > ve else 0.0
+        if te > ve:
+            t_max = ha[ve:te].max().item()
+            t_argmax = int(ha[ve:te].argmax().item()) + ve
+        else:
+            t_max = 0.0
+            t_argmax = -1
+
+        # Beyond text (previously generated action tokens)
+        beyond = ha[te:].sum().item() if te < seq_len else 0.0
+        beyond_max = ha[te:].max().item() if te < seq_len else 0.0
+
+        results[f"head_{h:02d}"] = {
+            "vision_token0": round(v0, 6),
+            "vision_other": round(v_other, 6),
+            "vision_other_max": round(v_other_max, 6),
+            "vision_other_argmax": v_other_argmax,
+            "text_total": round(t_total, 6),
+            "text_max": round(t_max, 6),
+            "text_argmax": t_argmax,
+            "action_tokens": round(beyond, 6),
+            "action_tokens_max": round(beyond_max, 6),
+            "sink_total": round(v0 + t_max + beyond_max, 6),
+        }
+
+    return results
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Action de-tokenization
+# ═══════════════════════════════════════════════════════════════════════════
+
+def detokenize_actions(model, token_ids, unnorm_key=config.BRIDGE_UNNORM_KEY):
+    """Convert predicted action token IDs to continuous action values.
+
+    Replicates OpenVLAForActionPrediction.predict_action() de-tokenization logic:
+        1. token_id → bin index  (vocab_size - token_id - 1)
+        2. bin index → normalized value  (bin_centers lookup, range [-1, 1])
+        3. normalized → unnormalized  (using dataset action statistics)
+
+    Args:
+        model: the loaded OpenVLA model (has .config for vocab info, .norm_stats if available)
+        token_ids: list of 7 integer token IDs
+        unnorm_key: dataset key for unnormalization stats (default: "bridge_orig")
+
+    Returns:
+        dict with normalized_action, unnormalized_action, bin_indices
+    """
+    n_action_bins = getattr(model.config, "n_action_bins", 256)
+    pad_to_multiple = getattr(model.config, "pad_to_multiple_of", 0)
+    vocab_size = model.config.text_config.vocab_size - pad_to_multiple
+
+    bins = np.linspace(-1, 1, n_action_bins + 1)  # 257 edges → 256 centers
+    bin_centers = (bins[:-1] + bins[1:]) / 2.0     # length = n_action_bins = 256
+
+    token_ids_np = np.array(token_ids)
+    bin_indices = vocab_size - 1 - token_ids_np     # direct formula
+    bin_indices = np.clip(bin_indices, 0, n_action_bins - 1)
+    normalized_action = bin_centers[bin_indices].tolist()
+
+    # Unnormalize if norm_stats available
+    unnormalized_action = None
+    norm_stats = getattr(model, "norm_stats", None) or getattr(model.config, "norm_stats", None)
+    if norm_stats and unnorm_key in norm_stats:
+        action_stats = norm_stats[unnorm_key]["action"]
+        mask = np.array(action_stats.get("mask", [True] * len(normalized_action)))
+        q99 = np.array(action_stats["q99"])
+        q01 = np.array(action_stats["q01"])
+        norm_arr = np.array(normalized_action)
+        unnormalized_action = np.where(
+            mask,
+            0.5 * (norm_arr + 1) * (q99 - q01) + q01,
+            norm_arr,
+        ).tolist()
+
+    return {
+        "bin_indices": bin_indices.tolist(),
+        "normalized_action": normalized_action,
+        "unnormalized_action": unnormalized_action,
+    }
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Main extraction logic
 # ═══════════════════════════════════════════════════════════════════════════
@@ -338,103 +434,12 @@ def load_model(device="cuda"):
 def extract_for_step(processor, model, image, instruction, boundaries, device):
     """Run inference for a single step and extract attention analysis.
 
+    Uses hook-based approach since OpenVLA's generate() doesn't return attentions.
+
     Returns:
         dict with predicted_action and attention_analysis
     """
-    tokenizer = processor.tokenizer
-    prompt = config.PROMPT_TEMPLATE.format(instruction=instruction)
-    inputs = processor(prompt, image, return_tensors="pt").to(device)
-
-    # ── Generate with attention ───────────────────────────────────────────
-    with torch.no_grad():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=config.NUM_ACTION_TOKENS,
-            output_attentions=True,
-            return_dict_in_generate=True,
-            do_sample=False,
-        )
-
-    # ── Check if attentions are available ─────────────────────────────────
-    use_hook_fallback = False
-    if outputs.attentions is None or len(outputs.attentions) == 0:
-        print("  WARNING: output_attentions not returned. Using hook fallback.")
-        use_hook_fallback = True
-
-    if not use_hook_fallback:
-        # Verify shape
-        try:
-            test_attn = outputs.attentions[0][0]  # first step, first layer
-            if test_attn is None:
-                use_hook_fallback = True
-        except (IndexError, TypeError):
-            use_hook_fallback = True
-
-    if use_hook_fallback:
-        return _extract_with_hooks(processor, model, image, instruction, boundaries, device)
-
-    # ── Decode predicted action tokens ────────────────────────────────────
-    generated_ids = outputs.sequences[0, inputs["input_ids"].shape[1]:]
-    predicted_tokens = [tokenizer.decode([tid]) for tid in generated_ids]
-
-    # ── Build input_ids in expanded form for text decoding ────────────────
-    # During generation, the model internally expands <image> tokens to vision embeddings.
-    # We need the expanded input_ids for text token decoding.
-    # The attention seq_len tells us the expanded length.
-    # For text token decoding, we reconstruct from the known boundaries.
-    first_step_attn = outputs.attentions[0][0]  # (1, heads, 1, seq_len)
-    expanded_seq_len = first_step_attn.shape[-1]
-
-    # Build pseudo input_ids for text decoding:
-    # We only need the text portion for decoding
-    original_input_ids = inputs["input_ids"][0]
-    # Find where text starts in original (after image placeholders)
-    image_token_id = None
-    for tok_str in ["<image>", "<img>", "<visual>"]:
-        if tok_str in tokenizer.get_vocab():
-            image_token_id = tokenizer.convert_tokens_to_ids(tok_str)
-            break
-
-    if image_token_id is not None:
-        image_mask = (original_input_ids == image_token_id)
-        num_placeholders = image_mask.sum().item()
-        first_img_pos = image_mask.nonzero(as_tuple=True)[0][0].item() if num_placeholders > 0 else 0
-        # Text tokens in original: everything after image placeholders
-        text_ids_original = original_input_ids[first_img_pos + num_placeholders:]
-        pre_image_ids = original_input_ids[:first_img_pos]
-    else:
-        pre_image_ids = original_input_ids[:1]  # BOS
-        text_ids_original = original_input_ids[1:]
-
-    # Build expanded input_ids: [pre_image] [dummy_vision * N] [text_ids]
-    num_vision = boundaries["num_vision_tokens"]
-    dummy_vision = torch.zeros(num_vision, dtype=torch.long)
-    expanded_input_ids = torch.cat([pre_image_ids.cpu(), dummy_vision, text_ids_original.cpu()])
-
-    # ── Extract top-K for each action token × each layer ──────────────────
-    attention_analysis = {}
-    num_action_steps = min(len(outputs.attentions), config.NUM_ACTION_TOKENS)
-
-    for action_idx in range(num_action_steps):
-        dim_name = config.ACTION_DIM_NAMES[action_idx]
-        action_key = f"action_{action_idx}_{dim_name}"
-        attention_analysis[action_key] = {}
-
-        num_layers = len(outputs.attentions[action_idx])
-        for layer_idx in range(num_layers):
-            attn = outputs.attentions[action_idx][layer_idx]  # (1, heads, 1, seq_len)
-            attn_weights = attn[0]  # (heads, 1, seq_len)
-
-            layer_key = f"layer_{layer_idx:02d}"
-            top_k_results = analyze_top_k(
-                attn_weights, boundaries, tokenizer, expanded_input_ids
-            )
-            attention_analysis[action_key][layer_key] = {"top5": top_k_results}
-
-    return {
-        "predicted_tokens": predicted_tokens,
-        "attention_analysis": attention_analysis,
-    }
+    return _extract_with_hooks(processor, model, image, instruction, boundaries, device)
 
 
 def _extract_with_hooks(processor, model, image, instruction, boundaries, device):
@@ -442,6 +447,15 @@ def _extract_with_hooks(processor, model, image, instruction, boundaries, device
     tokenizer = processor.tokenizer
     prompt = config.PROMPT_TEMPLATE.format(instruction=instruction)
     inputs = processor(prompt, image, return_tensors="pt").to(device)
+    # Cast pixel_values to model dtype (processor returns float32, model is bfloat16)
+    if "pixel_values" in inputs and inputs["pixel_values"].dtype != model.dtype:
+        inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
+
+    # Build expanded input_ids for text token decoding
+    original_input_ids = inputs["input_ids"][0]
+    num_vision = boundaries["num_vision_tokens"]
+    dummy_vision = torch.zeros(num_vision, dtype=torch.long)
+    expanded_input_ids = torch.cat([dummy_vision, original_input_ids.cpu()])
 
     hook_manager = AttentionHookManager(model)
     hook_manager.register_hooks()
@@ -454,6 +468,7 @@ def _extract_with_hooks(processor, model, image, instruction, boundaries, device
 
     generated_tokens = []
     attention_analysis = {}
+    perhead_analysis = {}
 
     with torch.no_grad():
         # First forward pass: process the full input (image + text)
@@ -475,6 +490,7 @@ def _extract_with_hooks(processor, model, image, instruction, boundaries, device
             dim_name = config.ACTION_DIM_NAMES[action_idx]
             action_key = f"action_{action_idx}_{dim_name}"
             attention_analysis[action_key] = {}
+            perhead_analysis[action_key] = {}
 
             step_attns = hook_manager.get_attentions_for_step(0)
             if step_attns:
@@ -484,10 +500,16 @@ def _extract_with_hooks(processor, model, image, instruction, boundaries, device
                     attn_last = attn[0, :, -1:, :]  # (heads, 1, seq_len)
 
                     layer_key = f"layer_{layer_idx:02d}"
+                    # Existing: head-averaged top5
                     top_k_results = analyze_top_k(
-                        attn_last, boundaries, tokenizer, None
+                        attn_last, boundaries, tokenizer, expanded_input_ids
                     )
                     attention_analysis[action_key][layer_key] = {"top5": top_k_results}
+
+                    # NEW: per-head breakdown
+                    perhead_analysis[action_key][layer_key] = compute_perhead_stats(
+                        attn_last, boundaries
+                    )
 
             # Append generated token for next step
             input_ids = torch.cat([input_ids, next_token.unsqueeze(0) if next_token.dim() == 1 else next_token], dim=-1)
@@ -496,10 +518,12 @@ def _extract_with_hooks(processor, model, image, instruction, boundaries, device
                     attention_mask,
                     torch.ones(1, 1, device=device, dtype=attention_mask.dtype)
                 ], dim=-1)
-            # After first pass, don't send pixel_values again
+            # Must pass pixel_values every time since use_cache=False
+            # (the model re-encodes the image each forward pass)
             model_inputs = {
                 "input_ids": input_ids,
                 "attention_mask": attention_mask,
+                "pixel_values": pixel_values,
             }
 
     hook_manager.remove_hooks()
@@ -508,7 +532,9 @@ def _extract_with_hooks(processor, model, image, instruction, boundaries, device
 
     return {
         "predicted_tokens": predicted_tokens,
+        "action_token_ids": generated_tokens,
         "attention_analysis": attention_analysis,
+        "perhead_analysis": perhead_analysis,
     }
 
 
@@ -572,21 +598,53 @@ def run_extraction(episode_ids=None, device="cuda"):
                 processor, model, image, instruction, boundaries, device
             )
 
+            # De-tokenize action token IDs to continuous values
+            action_info = detokenize_actions(model, result["action_token_ids"])
+
+            # Compute L1 error between predicted and ground truth
+            pred_action = action_info["unnormalized_action"] or action_info["normalized_action"]
+            l1_error = [abs(p - g) for p, g in zip(pred_action, gt_action)]
+            l1_mean = sum(l1_error) / len(l1_error)
+
             # Build output JSON
             output = {
                 "episode_id": ep_id,
                 "step_id": step_id,
                 "instruction": instruction,
                 "ground_truth_action": gt_action,
+                "predicted_action": pred_action,
+                "action_token_ids": result["action_token_ids"],
+                "action_details": action_info,
+                "l1_error_per_dim": l1_error,
+                "l1_error_mean": l1_mean,
                 "predicted_tokens": result["predicted_tokens"],
                 "token_boundaries": boundaries,
                 "attention_analysis": result["attention_analysis"],
             }
 
-            # Save per-step JSON
+            # Save per-step JSON (head-averaged, existing format)
             output_path = config.ATTENTION_RESULTS_DIR / f"ep{ep_id:03d}_step{step_id:03d}.json"
             with open(output_path, "w") as f:
                 json.dump(output, f, indent=2, ensure_ascii=False)
+
+            # Save per-head JSON (NEW: per-head breakdown)
+            if "perhead_analysis" in result:
+                perhead_output = {
+                    "episode_id": ep_id,
+                    "step_id": step_id,
+                    "instruction": instruction,
+                    "token_boundaries": boundaries,
+                    "perhead_analysis": result["perhead_analysis"],
+                }
+                perhead_path = config.ATTENTION_RESULTS_DIR / f"ep{ep_id:03d}_step{step_id:03d}_perhead.json"
+                with open(perhead_path, "w") as f:
+                    json.dump(perhead_output, f, indent=2, ensure_ascii=False)
+
+                # Generate per-head heatmap visualizations
+                try:
+                    visualize_perhead_sink(perhead_path)
+                except Exception as e:
+                    print(f"  WARNING: Per-head visualization failed: {e}")
 
             all_results.append({
                 "episode_id": ep_id,
@@ -611,6 +669,131 @@ def run_extraction(episode_ids=None, device="cuda"):
     print(f"Index: {index_path}")
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# Per-head visualization
+# ═══════════════════════════════════════════════════════════════════════════
+
+def visualize_perhead_sink(perhead_json_path, output_dir=None):
+    """Generate per-head sink heatmaps from a _perhead.json file.
+
+    Produces one heatmap per action token showing (layers × heads) with
+    color = vision_token0 ratio. Also shows text_total and action_tokens
+    as separate heatmaps side by side.
+
+    Args:
+        perhead_json_path: Path to an ep*_perhead.json file.
+        output_dir: Where to save PNGs. Defaults to visualizations dir.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    perhead_json_path = Path(perhead_json_path)
+    with open(perhead_json_path) as f:
+        data = json.load(f)
+
+    ep_id = data["episode_id"]
+    step_id = data["step_id"]
+    perhead = data["perhead_analysis"]
+
+    if output_dir is None:
+        output_dir = config.VISUALIZATIONS_DIR / f"ep{ep_id:03d}_step{step_id:03d}"
+    else:
+        output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    for action_key, layers_data in perhead.items():
+        layer_keys = sorted(layers_data.keys())
+        num_layers = len(layer_keys)
+
+        # Detect number of heads from first layer
+        first_layer_data = layers_data[layer_keys[0]]
+        head_keys = sorted(first_layer_data.keys())
+        num_heads = len(head_keys)
+
+        # Build matrices: (num_layers, num_heads)
+        mat_v0 = np.zeros((num_layers, num_heads))
+        mat_v_other = np.zeros((num_layers, num_heads))
+        mat_text = np.zeros((num_layers, num_heads))
+        mat_action = np.zeros((num_layers, num_heads))
+
+        for li, lk in enumerate(layer_keys):
+            for hi, hk in enumerate(head_keys):
+                hd = layers_data[lk][hk]
+                mat_v0[li, hi] = hd["vision_token0"]
+                mat_v_other[li, hi] = hd["vision_other"]
+                mat_text[li, hi] = hd["text_total"]
+                mat_action[li, hi] = hd["action_tokens"]
+
+        # ── Figure: 4 heatmaps side by side ──
+        fig, axes = plt.subplots(1, 4, figsize=(24, max(8, num_layers * 0.35)))
+        fig.suptitle(
+            f"{action_key} | ep{ep_id:03d} step{step_id:03d} — Per-Head Attention Breakdown\n"
+            f"instruction: \"{data['instruction'][:60]}\"",
+            fontsize=12, y=1.02,
+        )
+
+        titles = [
+            "vision[0] (sink)",
+            "vision[1:] (useful)",
+            "text tokens",
+            "action tokens",
+        ]
+        mats = [mat_v0, mat_v_other, mat_text, mat_action]
+        cmaps = ["Reds", "Greens", "Blues", "Purples"]
+
+        for ax, title, mat, cmap in zip(axes, titles, mats, cmaps):
+            im = ax.imshow(mat, aspect="auto", cmap=cmap, vmin=0, vmax=max(0.01, mat.max()))
+            ax.set_title(title, fontsize=10)
+            ax.set_xlabel("Head", fontsize=8)
+            ax.set_ylabel("Layer", fontsize=8)
+
+            # Layer labels
+            ax.set_yticks(range(0, num_layers, max(1, num_layers // 16)))
+            layer_nums = [int(lk.split("_")[1]) for lk in layer_keys]
+            ax.set_yticklabels(
+                [str(layer_nums[i]) for i in range(0, num_layers, max(1, num_layers // 16))],
+                fontsize=6,
+            )
+            ax.set_xticks(range(0, num_heads, max(1, num_heads // 8)))
+            ax.set_xticklabels(
+                [str(i) for i in range(0, num_heads, max(1, num_heads // 8))],
+                fontsize=6,
+            )
+            plt.colorbar(im, ax=ax, shrink=0.8)
+
+        plt.tight_layout()
+        out_path = output_dir / f"{action_key}_perhead_sink.png"
+        fig.savefig(out_path, dpi=150, bbox_inches="tight")
+        plt.close(fig)
+
+        # ── Figure 2: Combined sink summary ──
+        fig2, ax2 = plt.subplots(1, 1, figsize=(max(8, num_heads * 0.3), max(8, num_layers * 0.35)))
+        # Combined: vision[0] + max_text + max_action = total "wasted" attention
+        mat_combined = mat_v0 + mat_text * 0  # Only show vision[0] for clarity
+        # Annotate cells with actual values
+        im2 = ax2.imshow(mat_v0, aspect="auto", cmap="YlOrRd", vmin=0, vmax=1.0)
+        ax2.set_title(
+            f"{action_key} — Vision Token 0 Attention per Head\n"
+            f"(red = strong sink, white = no sink)",
+            fontsize=10,
+        )
+        ax2.set_xlabel("Head", fontsize=9)
+        ax2.set_ylabel("Layer", fontsize=9)
+        ax2.set_yticks(range(num_layers))
+        ax2.set_yticklabels([str(int(lk.split("_")[1])) for lk in layer_keys], fontsize=5)
+        ax2.set_xticks(range(num_heads))
+        ax2.set_xticklabels([str(i) for i in range(num_heads)], fontsize=5)
+        plt.colorbar(im2, ax=ax2, label="Attention ratio to vision[0]")
+
+        plt.tight_layout()
+        out_path2 = output_dir / f"{action_key}_perhead_v0_heatmap.png"
+        fig2.savefig(out_path2, dpi=150, bbox_inches="tight")
+        plt.close(fig2)
+
+    print(f"Per-head visualizations saved to {output_dir}/")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Extract OpenVLA attention weights")
     parser.add_argument(
@@ -625,7 +808,31 @@ def main():
         default="cuda",
         help="Device to use (default: cuda)",
     )
+    parser.add_argument(
+        "--visualize-perhead",
+        type=str,
+        default=None,
+        metavar="PATH",
+        help="Standalone: generate per-head heatmaps from an existing _perhead.json file",
+    )
     args = parser.parse_args()
+
+    # Standalone per-head visualization mode
+    if args.visualize_perhead:
+        path = Path(args.visualize_perhead)
+        if path.is_file():
+            visualize_perhead_sink(path)
+        elif path.is_dir():
+            json_files = sorted(path.glob("*_perhead.json"))
+            if not json_files:
+                print(f"No *_perhead.json files found in {path}")
+                return
+            for jf in json_files:
+                print(f"Processing {jf.name}...")
+                visualize_perhead_sink(jf)
+        else:
+            print(f"Path not found: {path}")
+        return
 
     episode_ids = None
     if args.episodes:
