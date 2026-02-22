@@ -381,6 +381,7 @@ def save_checkpoint(
             "source_layer": adapter_cfg["source_layer"],
             "vision_tokens": adapter_cfg["vision_tokens"],
             "action_type": adapter_cfg["action_type"],
+            "seed": adapter_cfg.get("seed", 42),
             "lr": config.ADAPTER_LR,
             "l1_lambda": config.ADAPTER_L1_LAMBDA,
             "adapter_version": 2 if is_v2 else 1,
@@ -435,12 +436,16 @@ def train():
     parser.add_argument("--model", type=str, default="openvla-7b",
                         choices=["openvla-7b", "ecot-7b", "spatialvla-4b", "tracevla-phi3v"],
                         help="VLA model from model_registry")
+    parser.add_argument("--seed", type=int, default=42,
+                        help="Random seed for reproducibility (default: 42)")
     args = parser.parse_args()
 
     # ── Initialize accelerator ──
     accelerator = Accelerator(mixed_precision="bf16")
     device = accelerator.device
-    set_seed(42)
+    set_seed(args.seed)
+    if accelerator.is_main_process:
+        print(f"  Seed: {args.seed}")
 
     is_main = accelerator.is_main_process
 
@@ -454,6 +459,7 @@ def train():
     # Build adapter config from the authoritative model_cfg returned by loader
     adapter_cfg = model_cfg.get_adapter_config()
     adapter_cfg["architecture"] = model_cfg.architecture  # for checkpoint saving
+    adapter_cfg["seed"] = args.seed
     assert len(adapter_cfg["target_layers"]) == adapter_cfg["num_target_layers"], (
         f"target_layers length {len(adapter_cfg['target_layers'])} "
         f"!= num_target_layers {adapter_cfg['num_target_layers']}"

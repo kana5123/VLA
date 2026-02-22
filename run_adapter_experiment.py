@@ -63,7 +63,10 @@ def run_command(cmd: list[str], description: str, log_path: Path | None = None) 
         return subprocess.call(cmd)
 
 
-def train_config(name: str, cfg: dict, gpus: str, num_episodes: int | None, model_name: str = "openvla-7b") -> bool:
+def train_config(
+    name: str, cfg: dict, gpus: str, num_episodes: int | None,
+    model_name: str = "openvla-7b", seed: int = 42,
+) -> bool:
     """Train a single adapter configuration. Returns True on success."""
     if cfg.get("skip_training"):
         print(f"[{name}] Skipping training (eval-only config)")
@@ -93,6 +96,8 @@ def train_config(name: str, cfg: dict, gpus: str, num_episodes: int | None, mode
 
     if cfg.get("freeze_blend"):
         cmd.append("--freeze_blend")
+
+    cmd.extend(["--seed", str(seed)])
 
     if num_episodes is not None:
         cmd.extend(["--num_episodes", str(num_episodes)])
@@ -194,49 +199,72 @@ def main():
                         help="Skip evaluation, training only")
     parser.add_argument("--model", type=str, default="openvla-7b",
                         help="VLA model name from model_registry")
+    parser.add_argument("--seed", type=int, default=42,
+                        help="Random seed (default: 42)")
+    parser.add_argument("--seeds", type=int, nargs="+", default=None,
+                        help="Multiple seeds for multi-seed runs (e.g. --seeds 42 123 456)")
     args = parser.parse_args()
+
+    # Resolve seed list: --seeds takes precedence over --seed
+    seed_list = args.seeds if args.seeds else [args.seed]
 
     print(f"\n{'#' * 60}")
     print(f"  ADAPTER EXPERIMENT PIPELINE")
     print(f"  Model: {args.model}")
     print(f"  Configs: {args.configs}")
+    print(f"  Seeds: {seed_list}")
     print(f"  GPUs (train): {args.gpus}")
     print(f"  Eval device: {args.eval_device}")
     print(f"{'#' * 60}\n")
 
     EXPERIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
+    multi_seed = len(seed_list) > 1
     results_summary = {}
     t_total = time.time()
 
     for name in args.configs:
         cfg = CONFIGS[name]
-        print(f"\n{'*' * 60}")
-        print(f"  CONFIG: {name} — {cfg['description']}")
-        print(f"{'*' * 60}")
 
-        # Training phase
-        if not args.skip_training:
-            ok = train_config(name, cfg, args.gpus, args.num_episodes, model_name=args.model)
-            if not ok and not cfg.get("skip_training"):
-                results_summary[name] = {"status": "train_failed"}
-                continue
+        for seed in seed_list:
+            # Key includes seed suffix for multi-seed runs
+            run_key = f"{name}/seed_{seed}" if multi_seed else name
+            # Output subdirectory includes seed for multi-seed
+            run_subdir = f"{name}/seed_{seed}" if multi_seed else name
 
-        # Evaluation phase
-        eval_gpu = args.eval_gpu or args.gpus.split(",")[0]
-        if not args.skip_eval:
-            ok = eval_config(name, cfg, args.eval_device, args.num_eval_episodes, eval_gpu=eval_gpu, model_name=args.model)
-            if ok:
-                eval_path = EXPERIMENT_DIR / args.model / name / "eval" / "eval_results.json"
-                if eval_path.exists():
-                    results_summary[name] = json.loads(eval_path.read_text())
-                    results_summary[name]["status"] = "complete"
+            print(f"\n{'*' * 60}")
+            print(f"  CONFIG: {run_key} — {cfg['description']} (seed={seed})")
+            print(f"{'*' * 60}")
+
+            # Training phase
+            if not args.skip_training:
+                ok = train_config(
+                    run_subdir, cfg, args.gpus, args.num_episodes,
+                    model_name=args.model, seed=seed,
+                )
+                if not ok and not cfg.get("skip_training"):
+                    results_summary[run_key] = {"status": "train_failed", "seed": seed}
+                    continue
+
+            # Evaluation phase
+            eval_gpu = args.eval_gpu or args.gpus.split(",")[0]
+            if not args.skip_eval:
+                ok = eval_config(
+                    run_subdir, cfg, args.eval_device, args.num_eval_episodes,
+                    eval_gpu=eval_gpu, model_name=args.model,
+                )
+                if ok:
+                    eval_path = EXPERIMENT_DIR / args.model / run_subdir / "eval" / "eval_results.json"
+                    if eval_path.exists():
+                        results_summary[run_key] = json.loads(eval_path.read_text())
+                        results_summary[run_key]["status"] = "complete"
+                        results_summary[run_key]["seed"] = seed
+                    else:
+                        results_summary[run_key] = {"status": "eval_no_output", "seed": seed}
                 else:
-                    results_summary[name] = {"status": "eval_no_output"}
+                    results_summary[run_key] = {"status": "eval_failed", "seed": seed}
             else:
-                results_summary[name] = {"status": "eval_failed"}
-        else:
-            results_summary[name] = {"status": "train_only"}
+                results_summary[run_key] = {"status": "train_only", "seed": seed}
 
     total_time = time.time() - t_total
 
@@ -248,6 +276,7 @@ def main():
         json.dump({
             "model": args.model,
             "configs_run": args.configs,
+            "seeds": seed_list,
             "total_time_s": total_time,
             "results": results_summary,
         }, f, indent=2)
@@ -256,13 +285,13 @@ def main():
     print(f"  EXPERIMENT COMPLETE")
     print(f"  Total time: {total_time / 60:.1f} min")
     print(f"  Summary: {summary_path}")
-    for name, res in results_summary.items():
+    for run_key, res in results_summary.items():
         status = res.get("status", "unknown")
         mse = ""
         if "comparison" in res:
             pct = res["comparison"].get("overall_change_pct", 0)
             mse = f" | MSE change: {pct:+.2f}%"
-        print(f"    {name:10s}: {status}{mse}")
+        print(f"    {run_key:25s}: {status}{mse}")
     print(f"{'#' * 60}\n")
 
 
