@@ -33,6 +33,15 @@ CONFIGS = {
         "adapter_version": None,
         "description": "Raw VLA baseline (no adapter)",
     },
+    "v1": {
+        "adapter_version": 1,
+        "description": "AttentionAdapter V1, MLP-only per-head p-matrix (no object mask)",
+    },
+    "v2-prop": {
+        "adapter_version": 2,
+        "freeze_blend": True,
+        "description": "V2 with blend frozen (proportional redistribution only, no cross-attention)",
+    },
     "v2-full": {
         "adapter_version": 2,
         "freeze_blend": False,
