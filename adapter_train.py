@@ -351,9 +351,14 @@ def save_checkpoint(
     model_name: str = "openvla-7b",
     adapter_cfg: dict = None,
 ):
-    """Save adapter checkpoint (main process only)."""
+    """Save adapter checkpoint (main process only).
+
+    adapter_cfg must be provided — it contains model-specific parameters.
+    """
     if not accelerator.is_main_process:
         return
+    if adapter_cfg is None:
+        raise ValueError("adapter_cfg is required for save_checkpoint")
 
     save_dir = checkpoint_dir or config.ADAPTER_CHECKPOINT_DIR
     path = save_dir / filename
@@ -368,7 +373,7 @@ def save_checkpoint(
         "patience_counter": patience_counter,
         "config": {
             "model_name": model_name,
-            "architecture": adapter_cfg.get("architecture", "llama") if isinstance(adapter_cfg, dict) else "llama",
+            "architecture": adapter_cfg["architecture"],
             "hidden_dim": adapter_cfg["hidden_dim"],
             "num_heads": adapter_cfg["num_heads"],
             "num_target_layers": adapter_cfg["num_target_layers"],
@@ -441,9 +446,18 @@ def train():
 
     per_gpu_bs = args.batch_size // max(accelerator.num_processes, 1)
 
-    # ── Load model config from registry ──
-    model_cfg = get_model(args.model)
+    # ── Load frozen model (each GPU gets a copy) ──
+    if is_main:
+        print(f"Loading frozen {args.model} model...")
+    processor, model, model_cfg = load_model_from_registry(args.model, device=str(device))
+
+    # Build adapter config from the authoritative model_cfg returned by loader
     adapter_cfg = model_cfg.get_adapter_config()
+    adapter_cfg["architecture"] = model_cfg.architecture  # for checkpoint saving
+    assert len(adapter_cfg["target_layers"]) == adapter_cfg["num_target_layers"], (
+        f"target_layers length {len(adapter_cfg['target_layers'])} "
+        f"!= num_target_layers {adapter_cfg['num_target_layers']}"
+    )
 
     if is_main:
         print(f"\n{'=' * 60}")
@@ -459,11 +473,6 @@ def train():
         print(f"  Source layer: {adapter_cfg['source_layer']}")
         print(f"  Action type: {adapter_cfg['action_type']}")
         print(f"{'=' * 60}\n")
-
-    # ── Load frozen model (each GPU gets a copy) ──
-    if is_main:
-        print(f"Loading frozen {args.model} model...")
-    processor, model, model_cfg = load_model_from_registry(args.model, device=str(device))
     model.eval()
     for param in model.parameters():
         param.requires_grad_(False)
@@ -484,7 +493,10 @@ def train():
     if model_cfg.action_type == "discrete":
         tokenizer = ActionTokenizer(model)
     else:
-        tokenizer = None  # TraceVLA uses continuous actions
+        raise NotImplementedError(
+            f"Continuous action training ({args.model}) is not yet implemented. "
+            "See Task 5b. Only discrete (OpenVLA/ECoT/SpatialVLA) models are supported."
+        )
 
     # ── Adapter model ──
     if args.adapter_version == 2:
