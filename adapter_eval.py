@@ -102,6 +102,7 @@ class AdapterEvaluator:
             inputs=inputs,
             adapter_version=self.adapter_version,
             object_mask=object_mask,
+            text_end=self.boundaries["text_end"],
         ) if adapter_enabled and self.adapter is not None else None
 
         if adapter_enabled and ctx is not None:
@@ -253,7 +254,7 @@ class AdapterEvaluator:
 
 def get_v3_ctx_for_eval(
     model, adapter, device, vision_end, adapter_enabled, inputs,
-    adapter_version=1, object_mask=None,
+    adapter_version=1, object_mask=None, text_end=0,
 ):
     """Create V3Context with adapter-predicted p values for evaluation.
 
@@ -328,6 +329,10 @@ def get_v3_ctx_for_eval(
         enhancement_layers=set(config.ADAPTER_TARGET_LAYERS),
         per_head_var_strength=full_p,
         redistribution_weights=redistribution_weights,
+        text_end=text_end,
+        text_sink_enabled=config.VAR_TEXT_SINK_ENABLED,
+        text_sink_p=config.VAR_TEXT_SINK_P,
+        text_sink_threshold=config.VAR_TEXT_SINK_THRESHOLD,
     )
     return ctx
 

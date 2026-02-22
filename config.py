@@ -86,6 +86,9 @@ VAR_SINK_INDICES = [0]          # Vision token 0 is the confirmed attention sink
 VAR_P = 0.6                    # Fraction of sink attention to redistribute
 VAR_RHO = 0.5                  # Image-centric head selection threshold
 VAR_OBJECT_REDIRECT_WEIGHT = 3.0  # Extra weight for object patches in redistribution
+VAR_TEXT_SINK_ENABLED = True        # Also redistribute from text sink ("\n")
+VAR_TEXT_SINK_P = 0.3               # Fraction of text sink attention to redistribute
+VAR_TEXT_SINK_THRESHOLD = 0.15      # Only redistribute if text max > 15% of total
 
 # VTR (Vision-Text Rebalance)
 VT_SHIFT_FRACTION = 0.3            # Fraction of text attention to shift to vision

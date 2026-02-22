@@ -92,6 +92,12 @@ class V3Context:
     # Per-patch redistribution weights from adapter v2 cross-attention
     redistribution_weights: Optional[object] = None  # torch.Tensor (V,) or None
 
+    # --- Text sink redistribution ---
+    text_sink_enabled: bool = False
+    text_sink_p: float = 0.3
+    text_sink_threshold: float = 0.15
+    text_end: int = 0
+
     # --- Common ---
     gripper_exempt: bool = False
     current_token_idx: int = 0
@@ -186,6 +192,10 @@ def apply_var(
     extra_boost_map: Optional[dict[int, float]] = None,
     per_head_p: Optional[torch.Tensor] = None,
     redistribution_weights: Optional[torch.Tensor] = None,
+    text_sink_enabled: bool = False,
+    text_sink_p: float = 0.3,
+    text_sink_threshold: float = 0.15,
+    text_end: int = 0,
 ) -> torch.Tensor:
     """Redistribute attention from sink tokens to non-sink visual tokens.
 
@@ -220,19 +230,23 @@ def apply_var(
     sink_t = torch.tensor(sorted(sink_set), device=last.device, dtype=torch.long)
     nonsink_t = torch.tensor(non_sink_visual, device=last.device, dtype=torch.long)
 
-    # Step 1: Image-centric head selection (rho filter)
-    all_vis_attn = last[:, :, :vision_end].sum(dim=-1)  # (B, H)
-    nonsink_vis_attn = last[:, :, nonsink_t].sum(dim=-1)  # (B, H)
-    ratio = nonsink_vis_attn / all_vis_attn.clamp(min=1e-9)
+    # Step 1: Image-centric head selection (sink-aware)
+    # Compute vision ratio EXCLUDING sink tokens
+    non_sink_vision_mask = torch.ones(vision_end, device=last.device)
+    for si in sink_indices:
+        if si < vision_end:
+            non_sink_vision_mask[si] = 0.0
+    # Useful vision ratio = attention to non-sink vision tokens
+    useful_vision = (last[:, :, :vision_end] * non_sink_vision_mask).sum(dim=-1)  # (B, H)
 
     # Soft sigmoid mask for differentiability (gradient flows through)
     # When differentiable=False (default), uses original hard threshold
     differentiable = getattr(apply_var, "_differentiable", False)
     if differentiable:
         _soft_temp = getattr(apply_var, "_soft_temperature", 10.0)
-        head_mask = torch.sigmoid((ratio.mean(dim=0) - rho) * _soft_temp)  # (H,)
+        head_mask = torch.sigmoid((useful_vision.mean(dim=0) - rho) * _soft_temp)  # (H,)
     else:
-        head_mask = (ratio.mean(dim=0) >= rho).float()  # (H,)
+        head_mask = (useful_vision.mean(dim=0) >= rho).float()  # (H,)
 
     if head_mask.sum() == 0:
         return attn_weights
@@ -297,6 +311,58 @@ def apply_var(
 
     attn_weights = attn_weights.clone()
     attn_weights[:, :, -1, :] = modified.to(orig_dtype)
+
+    # Step 4: Text sink redistribution (optional)
+    # Redistribute from the highest-attention text token (typically "\n")
+    # to non-sink vision tokens
+    if text_sink_enabled and text_end > vision_end:
+        last = attn_weights[:, :, -1, :].clone().float()  # refresh after write-back
+        text_region = last[:, :, vision_end:text_end]  # (B, H, T_text)
+        text_max_val, text_max_local = text_region.max(dim=-1)  # (B, H)
+        text_max_global = text_max_local + vision_end  # global index
+
+        # Only redistribute from text tokens that hog > threshold of total attention
+        text_hog_mask = (text_max_val > text_sink_threshold) & (head_mask.unsqueeze(0) > 0.5)  # (B, H)
+
+        # Amount to move from each text sink
+        text_to_move = text_max_val * text_sink_p * text_hog_mask.float()  # (B, H)
+
+        # Reduce the text sink token
+        # Use scatter_add approach: subtract from text sink, add to non-sink vision
+        for b in range(attn_weights.size(0)):
+            for h in range(attn_weights.size(1)):
+                if text_hog_mask[b, h]:
+                    move_amt = text_to_move[b, h]
+                    text_idx = text_max_global[b, h].item()
+
+                    # Subtract from text sink
+                    attn_weights[b, h, 0, text_idx] = attn_weights[b, h, 0, text_idx] - move_amt.to(orig_dtype)
+
+                    # Add to non-sink vision tokens using same redistribution as vision sink
+                    # Use redistribution_weights if available, else proportional
+                    if redistribution_weights is not None:
+                        redist = redistribution_weights
+                        if redist.dim() == 1:
+                            redist = redist.unsqueeze(0)  # (1, V)
+                        # Zero out sink positions and renormalize
+                        redist_clean = redist.clone()
+                        for si in sink_indices:
+                            if si < vision_end:
+                                redist_clean[:, si] = 0.0
+                        redist_sum = redist_clean.sum(dim=-1, keepdim=True).clamp(min=1e-9)
+                        redist_norm = redist_clean / redist_sum
+                        attn_weights[b, h, 0, :vision_end] = (
+                            attn_weights[b, h, 0, :vision_end] + move_amt.to(orig_dtype) * redist_norm[0].to(orig_dtype)
+                        )
+                    else:
+                        # Proportional: distribute equally to non-sink vision
+                        n_targets = vision_end - len(sink_indices)
+                        if n_targets > 0:
+                            per_token = move_amt / n_targets
+                            for vi in range(vision_end):
+                                if vi not in sink_set:
+                                    attn_weights[b, h, 0, vi] = attn_weights[b, h, 0, vi] + per_token.to(orig_dtype)
+
     return attn_weights
 
 
@@ -583,6 +649,10 @@ def _make_v3_patched_forward(ctx: V3Context) -> Callable:
                     extra_boost_map=extra_map,
                     per_head_p=ctx.get_per_head_p(layer_idx),
                     redistribution_weights=ctx.redistribution_weights,
+                    text_sink_enabled=ctx.text_sink_enabled,
+                    text_sink_p=ctx.text_sink_p,
+                    text_sink_threshold=ctx.text_sink_threshold,
+                    text_end=ctx.text_end,
                 )
 
             if ctx.use_act:

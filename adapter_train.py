@@ -456,8 +456,10 @@ def train():
         processor, model, dummy_image, "pick up the object", str(device)
     )
     vision_end = boundaries["vision_end"]
+    text_end = boundaries["text_end"]
     if is_main:
         print(f"  Vision tokens: 0..{vision_end - 1}")
+        print(f"  Text tokens end: {text_end}")
 
     # ── Action tokenizer ──
     tokenizer = ActionTokenizer(model)
@@ -531,6 +533,10 @@ def train():
         var_sink_indices=list(config.VAR_SINK_INDICES),
         vision_end=vision_end,
         enhancement_layers=set(config.ADAPTER_TARGET_LAYERS),
+        text_end=text_end,
+        text_sink_enabled=config.VAR_TEXT_SINK_ENABLED,
+        text_sink_p=config.VAR_TEXT_SINK_P,
+        text_sink_threshold=config.VAR_TEXT_SINK_THRESHOLD,
     )
     set_v3_context(ctx)
     install_v3_patch(ctx)
