@@ -30,7 +30,7 @@ from attention_v3 import (
     uninstall_v3_patch,
 )
 from extract_attention import load_model_from_registry, get_layers, detokenize_actions
-from model_registry import get_model
+from model_registry import get_model, list_experiment_models
 
 
 class AdapterEvaluator:
@@ -468,8 +468,8 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate Attention Adapter")
     parser.add_argument("--checkpoint", type=str, default=None)
     parser.add_argument("--model", type=str, default="openvla-7b",
-                        choices=["openvla-7b", "ecot-7b", "spatialvla-4b", "tracevla-phi3v"],
-                        help="VLA model from model_registry")
+                        choices=list_experiment_models(),
+                        help="VLA model from model_registry (experiment-ready only)")
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--num_episodes", type=int, default=100)
     parser.add_argument("--output_dir", type=str, default=None,

@@ -34,7 +34,7 @@ from peft import LoraConfig, get_peft_model
 import config
 from adapter_data import ActionTokenizer, create_dataloaders
 from extract_attention import load_model_from_registry, get_layers
-from model_registry import get_model
+from model_registry import get_model, list_experiment_models
 
 
 def forward_lora(
@@ -166,7 +166,7 @@ def evaluate_lora(
 def train():
     parser = argparse.ArgumentParser(description="Train LoRA baseline")
     parser.add_argument("--model", type=str, default="openvla-7b",
-                        choices=["openvla-7b", "ecot-7b", "spatialvla-4b", "tracevla-phi3v"])
+                        choices=list_experiment_models())
     parser.add_argument("--num_episodes", type=int, default=config.ADAPTER_NUM_TRAIN_EPISODES)
     parser.add_argument("--batch_size", type=int, default=config.ADAPTER_BATCH_SIZE)
     parser.add_argument("--lr", type=float, default=config.LORA_LR)

@@ -32,6 +32,27 @@ class VLAModelConfig:
     # Architecture-specific: where to find attention layers
     layers_path: str = "language_model.model.layers"  # dot-separated path
     attn_module: str = "self_attn"     # attribute name for attention in each layer
+    # Adapter experiment fields
+    action_type: str = "discrete"      # "discrete" (CE loss) or "continuous" (MSE loss)
+    source_layer: int = -5             # Hidden state capture layer (negative = relative to num_layers)
+    target_layers: list[int] = field(default_factory=list)  # VAR-applied layers (empty = last 4)
+    auto_model_class: str = "AutoModelForVision2Seq"  # HF auto class for loading
+    # Experiment support status
+    experiment_ready: bool = False     # True = validated for adapter training/eval
+
+    def get_adapter_config(self) -> dict:
+        """Return adapter-relevant parameters derived from model config."""
+        tl = self.target_layers if self.target_layers else list(range(self.num_layers - 4, self.num_layers))
+        sl = self.source_layer if self.source_layer >= 0 else self.num_layers + self.source_layer
+        return {
+            "hidden_dim": self.hidden_dim,
+            "num_heads": self.num_heads,
+            "num_target_layers": len(tl),
+            "target_layers": tl,
+            "source_layer": sl,
+            "vision_tokens": self.num_vision_tokens,
+            "action_type": self.action_type,
+        }
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -60,6 +81,9 @@ register(VLAModelConfig(
     prompt_template="In: What action should the robot take to {instruction}?\nOut:",
     native_datasets=["bridge_v2", "oxe"],
     notes="Dual encoder (DINOv2+SigLIP) fused to 256 tokens",
+    source_layer=27,
+    target_layers=[28, 29, 30, 31],
+    experiment_ready=True,
 ))
 
 # ── CogACT (CogVLM2-Llama3-8B backbone) ──
@@ -81,7 +105,10 @@ register(VLAModelConfig(
 ))
 
 # ── TraceVLA (Phi-3-V backbone) ──
+# BLOCKED: Phi3VConfig not recognized by AutoModelForVision2Seq (transformers 4.57.6)
+# Also uses continuous actions which need separate loss implementation
 # Verified: model_type=phi3_v, hidden=3072, 32L/32H
+# Vision: 313 tokens (detected via negative input_ids from processor)
 register(VLAModelConfig(
     name="tracevla-phi3v",
     hf_id="furonghuang-lab/tracevla_phi3v",
@@ -90,17 +117,24 @@ register(VLAModelConfig(
     num_layers=32,
     num_heads=32,
     hidden_dim=3072,
-    vision_grid_size=14,
-    num_vision_tokens=196,
+    vision_grid_size=18,
+    num_vision_tokens=313,
     action_tokens=7,
+    action_type="continuous",
     prompt_template="<|user|>\n<|image_1|>\nWhat action should the robot take to {instruction}?\n<|end|>\n<|assistant|>\n",
     native_datasets=["bridge_v2", "oxe"],
-    notes="Phi-3 Vision backbone, visual trace overlays",
+    notes="Phi-3 Vision backbone, visual trace overlays, continuous action output",
     layers_path="model.layers",
+    source_layer=27,
+    target_layers=[28, 29, 30, 31],
+    auto_model_class="AutoModelForCausalLM",
 ))
 
 # ── SpatialVLA (Gemma-2 2B backbone, NOT Qwen2) ──
+# BLOCKED: processing_spatialvla.py imports _validate_images_text_input_order
+# which was removed in transformers 4.57.6
 # Verified: model_type=spatialvla, text=gemma2, 26L/8H/2304D
+# Vision: SigLIP image_size=224, patch_size=14 → 16×16 = 256 tokens
 register(VLAModelConfig(
     name="spatialvla-4b",
     hf_id="IPEC-COMMUNITY/spatialvla-4b-224-pt",
@@ -109,13 +143,16 @@ register(VLAModelConfig(
     num_layers=26,
     num_heads=8,
     hidden_dim=2304,
-    vision_grid_size=14,
-    num_vision_tokens=196,
+    vision_grid_size=16,
+    num_vision_tokens=256,
     action_tokens=7,
     prompt_template="What action should the robot take to {instruction}?",
     native_datasets=["bridge_v2", "oxe", "rh20t"],
     notes="SpatialVLA 4B, Gemma-2 text + SigLIP vision, spatial features",
     layers_path="language_model.model.layers",
+    source_layer=21,
+    target_layers=[22, 23, 24, 25],
+    auto_model_class="AutoModel",
 ))
 
 # ── SmolVLA (SmolVLM2-500M backbone, LeRobot policy) ──
@@ -153,6 +190,9 @@ register(VLAModelConfig(
     prompt_template="In: What action should the robot take to {instruction}?\nOut:",
     native_datasets=["bridge_v2"],
     notes="Same backbone as OpenVLA, fine-tuned with chain-of-thought",
+    source_layer=27,
+    target_layers=[28, 29, 30, 31],
+    experiment_ready=True,
 ))
 
 # ── RoboFlamingo (MPT-1B or 3B backbone) ──
@@ -184,3 +224,8 @@ def get_model(name: str) -> VLAModelConfig:
 
 def list_models() -> list[str]:
     return list(MODELS.keys())
+
+
+def list_experiment_models() -> list[str]:
+    """Return names of models validated for adapter experiments."""
+    return [name for name, cfg in MODELS.items() if cfg.experiment_ready]
