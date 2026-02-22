@@ -24,7 +24,7 @@ from tqdm import tqdm
 
 import config
 from model_registry import get_model, list_models, VLAModelConfig
-from dataset_registry import load_bridge_sample, DatasetSample
+from dataset_registry import load_sample, DatasetSample
 from extract_attention import (
     compute_perhead_stats,
     analyze_top_k,
@@ -221,11 +221,8 @@ def run_single_model(
     """Run extraction for a single model + dataset combo."""
     model_cfg = get_model(model_name)
 
-    # Load sample
-    if dataset_name == "bridge_v2":
-        sample = load_bridge_sample(episode_id, step_id)
-    else:
-        raise NotImplementedError(f"Dataset loader for {dataset_name} not yet implemented")
+    # Load sample via universal dispatcher
+    sample = load_sample(dataset_name, episode_id, step_id)
 
     # Load model
     processor, model = load_vla_model(model_cfg, device)

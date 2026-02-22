@@ -208,3 +208,29 @@ def download_dataset(name: str) -> Path:
 
     os.system(cmd)
     return cache_dir
+
+
+def load_sample(dataset_name: str, episode_id: int = 0, step_id: int = 0) -> DatasetSample:
+    """Universal dispatcher: load a sample from any registered dataset.
+
+    Routes to the correct loader based on dataset_name.
+    """
+    if dataset_name not in DATASETS:
+        available = ", ".join(DATASETS.keys())
+        raise ValueError(f"Unknown dataset: {dataset_name}. Available: {available}")
+
+    loaders = {
+        "bridge_v2": load_bridge_sample,
+        "calvin_debug": load_calvin_sample,
+        "lerobot_pusht": load_lerobot_sample,
+        "droid_100": load_droid_sample,
+        "rh20t_mini": load_rh20t_sample,
+    }
+
+    loader = loaders.get(dataset_name)
+    if loader is None:
+        raise NotImplementedError(
+            f"No loader implemented for dataset '{dataset_name}'"
+        )
+
+    return loader(episode_id, step_id)
