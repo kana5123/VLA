@@ -2,11 +2,8 @@
 """
 Causal verification via length-preserving masking (Design Section 4.3).
 
-Two methods:
-1. Attention knockout: mask attention scores to -∞ so query cannot see target
-2. Value-zero: keep attention but zero out value vectors for target tokens
-
-Both preserve sequence length and positional indices.
+Method: Value-zero (V=0) — zero out value projections for target tokens.
+Attention knockout is DEPRECATED (was a no-op bug — see AttentionKnockoutHook docstring).
 """
 import torch
 import torch.nn as nn
@@ -14,13 +11,17 @@ from typing import Optional
 
 
 class AttentionKnockoutHook:
-    """Mask attention scores: α_{i,j} = -∞ for (i ∈ queries, j ∈ targets).
+    """DEPRECATED (Phase 2.5): This hook is a complete no-op.
 
-    Usage:
-        hook = AttentionKnockoutHook([0, 1], query_range=(256, 263))
-        handle = model.layer.self_attn.register_forward_pre_hook(hook.hook_fn)
-        # ... forward pass ...
-        handle.remove()
+    Bug: register_forward_hook fires AFTER self_attn.forward() completes.
+    By that point, attn_output = attn_weights @ value has already been computed.
+    Modifying output[1] (weights) does NOT change output[0] (attn_output).
+    Result: KL=0.0 on all models (confirmed ECoT, OpenVLA, SpatialVLA).
+
+    Use ValueZeroHook instead — it hooks v_proj directly (in computation path).
+
+    For attention-level intervention, modify attention_mask BEFORE forward pass:
+        attention_mask[:, :, query_range, target_positions] = -inf
     """
 
     def __init__(self, target_positions: list[int], query_range: tuple[int, int] | None = None):
