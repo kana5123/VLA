@@ -20,15 +20,15 @@ from sklearn.model_selection import cross_val_score
 
 SKILL_VERBS = {
     "pick": ["pick", "grab", "grasp", "take", "lift"],
-    "place": ["place", "put", "set", "drop"],
-    "move": ["move", "push", "slide", "drag", "sweep"],
-    "open": ["open", "pull open"],
-    "close": ["close", "shut"],
+    "place": ["place", "put", "set", "drop", "cover"],
+    "move": ["move", "push", "slide", "drag", "sweep", "lever", "topple"],
+    "open": ["open", "pull open", "unzip"],
+    "close": ["close", "shut", "zip"],
     "pour": ["pour", "dump"],
     "stack": ["stack"],
     "fold": ["fold", "unfold"],
     "wipe": ["wipe", "clean"],
-    "turn": ["turn", "rotate", "twist"],
+    "turn": ["turn", "rotate", "twist", "flip", "upright", "right"],
 }
 
 _VERB_TO_SKILL = {}
