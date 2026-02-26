@@ -80,40 +80,57 @@ class AttentionKnockoutHook:
 class ValueZeroHook:
     """Zero out value vectors for specific tokens (length-preserving).
 
-    Attention is computed normally but target tokens contribute nothing.
+    Hooks v_proj (LLaMA/Gemma) or qkv_proj (Phi3V) to zero out value
+    projections at target positions before attention is computed.
     """
 
     def __init__(self, target_positions: list[int]):
         self.target_positions = target_positions
         self._handles = []
-
-    def apply(self, values: torch.Tensor) -> torch.Tensor:
-        """Zero out value vectors at target positions.
-
-        Args:
-            values: (batch, H, seq, head_dim)
-        Returns:
-            values with targets zeroed
-        """
-        out = values.clone()
-        for t in self.target_positions:
-            if t < out.shape[2]:
-                out[:, :, t, :] = 0.0
-        return out
+        self._sanity_changed = False
 
     def register(self, model, model_cfg, get_layers_fn):
         """Register hooks to zero out V projections for target tokens."""
         layers = get_layers_fn(model, model_cfg)
+        num_heads = model_cfg.num_heads
+        num_kv_heads = getattr(model_cfg, 'num_kv_heads', None) or num_heads
+        head_dim = model_cfg.hidden_dim // num_heads
+
         for layer in layers:
-            handle = layer.self_attn.register_forward_hook(self._make_v_hook())
-            self._handles.append(handle)
+            attn = layer.self_attn
+            if hasattr(attn, "v_proj"):
+                handle = attn.v_proj.register_forward_hook(self._make_v_proj_hook())
+                self._handles.append(handle)
+            elif hasattr(attn, "qkv_proj"):
+                q_dim = num_heads * head_dim
+                kv_dim = num_kv_heads * head_dim
+                v_start = q_dim + kv_dim
+                v_end = q_dim + 2 * kv_dim
+                handle = attn.qkv_proj.register_forward_hook(
+                    self._make_fused_qkv_hook(v_start, v_end)
+                )
+                self._handles.append(handle)
 
-    def _make_v_hook(self):
+    def _make_v_proj_hook(self):
         vzero = self
-
         def hook_fn(module, args, output):
-            return output
+            modified = output.clone()
+            for t in vzero.target_positions:
+                if t < modified.shape[1]:
+                    modified[:, t, :] = 0.0
+                    vzero._sanity_changed = True
+            return modified
+        return hook_fn
 
+    def _make_fused_qkv_hook(self, v_start: int, v_end: int):
+        vzero = self
+        def hook_fn(module, args, output):
+            modified = output.clone()
+            for t in vzero.target_positions:
+                if t < modified.shape[1]:
+                    modified[:, t, v_start:v_end] = 0.0
+                    vzero._sanity_changed = True
+            return modified
         return hook_fn
 
     def remove(self):
@@ -138,3 +155,31 @@ def compute_output_kl(
     q = torch.softmax(logits_masked.float(), dim=-1).clamp(min=1e-10)
     kl = (p * (p.log() - q.log())).sum(dim=-1).mean()
     return float(kl.item())
+
+
+def compute_top1_change_rate(logits_orig: torch.Tensor, logits_masked: torch.Tensor) -> float:
+    """Fraction where top-1 predicted token changes after masking."""
+    return float((logits_orig.argmax(-1) != logits_masked.argmax(-1)).float().mean().item())
+
+
+def run_vzero_sanity_check(model, model_cfg, get_layers_fn, inputs, target_positions: list[int]) -> dict:
+    """Verify that V=0 hook actually changes model output.
+    Returns: {"hook_fired": bool, "logits_changed": bool, "kl_divergence": float}
+    """
+    with torch.no_grad():
+        out_orig = model(**inputs)
+    logits_orig = out_orig.logits[0, -1, :]
+
+    vzero = ValueZeroHook(target_positions)
+    vzero.register(model, model_cfg, get_layers_fn)
+    with torch.no_grad():
+        out_masked = model(**inputs)
+    logits_masked = out_masked.logits[0, -1, :]
+    vzero.remove()
+
+    kl = compute_output_kl(logits_orig, logits_masked)
+    return {
+        "hook_fired": vzero._sanity_changed if hasattr(vzero, '_sanity_changed') else True,
+        "logits_changed": not torch.allclose(logits_orig, logits_masked, atol=1e-5),
+        "kl_divergence": kl,
+    }
