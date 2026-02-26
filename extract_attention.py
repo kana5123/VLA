@@ -666,6 +666,19 @@ def _apply_tracevla_torch_patch():
     except Exception:
         pass
 
+    # Patch DynamicCache for transformers >= 4.57 compatibility
+    # Phi3V custom code uses removed get_usable_length() method
+    try:
+        from transformers.cache_utils import DynamicCache
+        if not hasattr(DynamicCache, 'get_usable_length'):
+            def _compat_get_usable_length(self, new_seq_len, layer_idx=0):
+                """Compatibility shim: get_usable_length → get_seq_length."""
+                return self.get_seq_length(layer_idx)
+            DynamicCache.get_usable_length = _compat_get_usable_length
+            print("  Applied DynamicCache.get_usable_length compatibility patch")
+    except Exception:
+        pass
+
 
 def _make_spatialvla_simple_processor(model_cfg):
     """Create a simple processor for SpatialVLA that avoids the broken

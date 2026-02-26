@@ -47,11 +47,24 @@ def compute_perhead_contribution(
     seq = attn.shape[1]
     D = hidden.shape[1]
 
-    # Compute W_OV = W_O @ W_V, shape (D, D)
-    w_ov = (w_o @ w_v).float()  # (D, D)
+    # Compute W_OV = W_O @ W_V
+    # Handle GQA: o_proj expects (H_q * head_dim) but v_proj outputs (H_kv * head_dim)
+    o_input_dim = w_o.shape[1]   # num_heads_q * head_dim
+    v_output_dim = w_v.shape[0]  # num_heads_kv * head_dim
 
-    # Value vectors for all tokens: x_j @ W_OV^T → (seq, D)
-    value_vectors = hidden.float() @ w_ov.T  # (seq, D)
+    if o_input_dim == v_output_dim:
+        # Standard MHA: W_OV composition works directly
+        w_ov = (w_o @ w_v).float()  # (D, D)
+        value_vectors = hidden.float() @ w_ov.T  # (seq, D)
+    else:
+        # GQA: expand V output to match O input by repeating KV groups
+        num_groups = o_input_dim // v_output_dim
+        head_dim = v_output_dim // (H // num_groups) if H > 0 else v_output_dim
+        # Compute V vectors first, then repeat for Q heads, then project through O
+        v_out = hidden.float() @ w_v.T.float()  # (seq, v_output_dim)
+        # Repeat KV heads to match Q heads: (seq, v_dim) → (seq, o_input_dim)
+        v_out = v_out.reshape(seq, -1, head_dim).repeat(1, num_groups, 1).reshape(seq, -1)
+        value_vectors = v_out @ w_o.T.float()  # (seq, D)
 
     n_query = len(query_positions)
     result = torch.zeros(H, n_query, seq)
