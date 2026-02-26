@@ -48,7 +48,9 @@ from contribution.visualize import (
 )
 
 
-def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, output_dir: Path):
+def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, output_dir: Path,
+                 balanced=False, n_per_skill=25, seed=42, sample_list_path=None,
+                 target_skills=None):
     print(f"\n{'='*70}")
     print(f"Contribution Analysis — {model_name} (Phase 2.5: Dual-Track)")
     print(f"{'='*70}")
@@ -59,8 +61,23 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
     tokenizer = getattr(processor, 'tokenizer', None)
     if tokenizer is None and hasattr(processor, 'decode'):
         tokenizer = processor  # processor itself has decode
-    samples = load_samples_from_cache(config.DATA_CACHE_DIR, n_samples=n_samples)
-    print(f"  Loaded {len(samples)} samples")
+    # ── Load samples ─────────────────────────────────────────────
+    if sample_list_path and Path(sample_list_path).exists():
+        from data_sampler import reload_samples_from_list
+        samples = reload_samples_from_list(sample_list_path, config.DATA_CACHE_DIR)
+        print(f"  Loaded {len(samples)} samples from {sample_list_path}")
+    elif balanced:
+        from data_sampler import load_balanced_samples, save_sample_list
+        samples = load_balanced_samples(
+            config.DATA_CACHE_DIR, n_per_skill=n_per_skill,
+            target_skills=target_skills, seed=seed,
+        )
+        print(f"  Loaded {len(samples)} balanced samples ({n_per_skill}/skill)")
+        if sample_list_path:
+            save_sample_list(samples, sample_list_path, seed, n_per_skill, target_skills)
+    else:
+        samples = load_samples_from_cache(config.DATA_CACHE_DIR, n_samples=n_samples)
+        print(f"  Loaded {len(samples)} samples (legacy)")
 
     # ── Detect boundaries from first sample ─────────────────────
     boundaries = detect_token_boundaries(
@@ -254,6 +271,63 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
             "mean_mismatch": float(np.mean([d["mismatch"] for d in duals])),
         }
 
+    # ── Mode token extraction (B4) ─────────────────────────────
+    # Find the most frequent peak position across deep layers
+    from collections import Counter as _Counter
+
+    def _extract_mode_token(all_dual_track, peak_key, deep_layers):
+        """Extract the mode (most frequent) peak position across deep layers."""
+        positions = []
+        for l in deep_layers:
+            for dual in all_dual_track.get(l, []):
+                positions.append(dual[peak_key]["abs_t"])
+        if not positions:
+            return {"abs_t": -1, "freq": 0.0}
+        counter = _Counter(positions)
+        mode_pos, mode_count = counter.most_common(1)[0]
+        # Find a representative entry to get token_str
+        token_str = None
+        for l in deep_layers:
+            for dual in all_dual_track.get(l, []):
+                if dual[peak_key]["abs_t"] == mode_pos:
+                    token_str = dual[peak_key].get("token_str")
+                    break
+            if token_str is not None:
+                break
+        # freq = fraction of deep layers where this position is the peak
+        # Average across all samples: for each sample, count how many layers have this peak
+        per_sample_freqs = []
+        n_deep = len(deep_layers)
+        n_samples_seen = len(all_dual_track.get(deep_layers[0], [])) if deep_layers else 0
+        for si in range(n_samples_seen):
+            count = 0
+            for l in deep_layers:
+                duals = all_dual_track.get(l, [])
+                if si < len(duals) and duals[si][peak_key]["abs_t"] == mode_pos:
+                    count += 1
+            per_sample_freqs.append(count / n_deep if n_deep > 0 else 0)
+        freq = float(np.mean(per_sample_freqs)) if per_sample_freqs else 0.0
+        return {"abs_t": mode_pos, "token_str": token_str, "freq": freq}
+
+    mode_tokens = {
+        "A_mode": _extract_mode_token(all_layer_dual_track, "a_peak", deep_layers),
+        "C_mode": _extract_mode_token(all_layer_dual_track, "c_peak", deep_layers),
+        "R_mode": _extract_mode_token(all_layer_dual_track, "r_peak", deep_layers),
+    }
+
+    # CRITICAL FIX (핵심1): Add token_type (vision/text/pre_vision) to each mode token.
+    # Gate① pass check needs this to verify "OpenVLA: A_mode ∈ vision, C_mode ∈ text".
+    for peak_key in ["A_mode", "C_mode", "R_mode"]:
+        mode_pos = mode_tokens[peak_key]["abs_t"]
+        vs = boundaries.get("vision_start", 0)
+        ve = boundaries.get("vision_end", 0)
+        if mode_pos < vs:
+            mode_tokens[peak_key]["token_type"] = "pre_vision"
+        elif mode_pos < ve:
+            mode_tokens[peak_key]["token_type"] = "vision"
+        else:
+            mode_tokens[peak_key]["token_type"] = "text"
+
     # 4. Skill signature analysis
     sig_analysis = {}
     valid_sigs = [(sig, lab) for sig, lab in zip(all_signatures, all_skill_labels) if lab != "unknown"]
@@ -288,12 +362,18 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
         "skill_signature": sig_analysis,
         "mean_mismatch": float(np.mean(all_mismatches)) if all_mismatches else 0.0,
         "skill_distribution": dict(Counter(all_skill_labels)),
+        "mode_tokens": mode_tokens,
     }
 
     report_path = output_dir / "contribution_report.json"
     with open(report_path, "w") as f:
         json.dump(report, f, indent=2, default=str)
     print(f"\n  Report saved: {report_path}")
+
+    mode_path = output_dir / "mode_tokens.json"
+    with open(mode_path, "w") as f:
+        json.dump(mode_tokens, f, indent=2)
+    print(f"  Mode tokens saved: {mode_path}")
 
     # ── Visualizations ──────────────────────────────────────────
     plot_top1_share_curve(
@@ -340,10 +420,24 @@ def main():
     parser.add_argument("--n_samples", type=int, default=20)
     parser.add_argument("--top_k", type=int, default=5)
     parser.add_argument("--output_dir", type=str, default=None)
+    parser.add_argument("--balanced", action="store_true",
+                        help="Use skill-balanced sampling from BridgeData V2 cache")
+    parser.add_argument("--n_per_skill", type=int, default=25,
+                        help="Samples per skill when --balanced (default: 25)")
+    parser.add_argument("--seed", type=int, default=42,
+                        help="Random seed for balanced sampling")
+    parser.add_argument("--sample_list", type=str, default=None,
+                        help="Path to save/load sample_list.json (reuse across gates)")
+    parser.add_argument("--target_skills", nargs="+",
+                        default=["place", "move", "pick", "fold", "open", "close"],
+                        help="Target skills for balanced sampling")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir) if args.output_dir else config.OUTPUT_DIR / "contribution_analysis" / args.model
-    run_analysis(args.model, args.device, args.n_samples, args.top_k, output_dir)
+    run_analysis(args.model, args.device, args.n_samples, args.top_k, output_dir,
+                 balanced=args.balanced, n_per_skill=args.n_per_skill,
+                 seed=args.seed, sample_list_path=args.sample_list,
+                 target_skills=args.target_skills)
 
 
 if __name__ == "__main__":
