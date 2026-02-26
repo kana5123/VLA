@@ -141,3 +141,125 @@ def compute_phi_all_tokens(hidden: torch.Tensor, tau: float = 20.0) -> np.ndarra
     rms = torch.sqrt((h ** 2).mean(dim=1)).clamp(min=1e-8)  # (seq,)
     phi = (h.abs() / rms.unsqueeze(1)).max(dim=1).values     # (seq,)
     return phi.numpy()
+
+
+def compute_phi_universal(hidden_state_j: torch.Tensor) -> float:
+    """Architecture-independent outlier score for a SINGLE token.
+    φ(x) = max|x[d]| / RMS(x) — larger = more spike in hidden dimensions.
+
+    Args:
+        hidden_state_j: (D,) tensor — hidden state of one token
+    Returns:
+        float — phi value
+    """
+    h = hidden_state_j.float()
+    rms = torch.sqrt(torch.mean(h ** 2)).clamp(min=1e-10)
+    return (h.abs().max() / rms).item()
+
+
+def classify_layer_dual_track(
+    a_tilde: np.ndarray,
+    c_tilde: np.ndarray,
+    boundaries: dict,
+    hidden_states_layer: torch.Tensor | None = None,
+    input_ids: list[int] | None = None,
+    tokenizer=None,
+) -> dict:
+    """Dual-track classification: A-peak, C-peak, R-peak per layer.
+
+    Design doc logic:
+      A-peak == C-peak → "bottleneck"
+      A-peak ≠ C-peak → "coexist" (sink + bottleneck at different tokens)
+      Neither concentrated → "normal"
+
+    Args:
+        a_tilde: (seq,) normalized attention distribution
+        c_tilde: (seq,) normalized contribution distribution
+        boundaries: vision_start, vision_end, text_start, text_end
+        hidden_states_layer: (seq, D) tensor for phi computation (optional)
+        input_ids: token IDs for decode (optional)
+        tokenizer: for token_str decode (optional)
+
+    Returns:
+        dict with a_peak, c_peak, r_peak, dominant_type, a_c_match, etc.
+    """
+    vs = boundaries.get("vision_start", 0)
+    ve = boundaries.get("vision_end", 0)
+
+    # ── Find peaks ──
+    j_a = int(np.argmax(a_tilde))      # A-peak: attention max
+    j_c = int(np.argmax(c_tilde))      # C-peak: contribution max
+
+    # R-peak: log(Ã/C̃) max = sink candidate
+    eps = 1e-10
+    a_safe = np.clip(a_tilde, eps, None)
+    c_safe = np.clip(c_tilde, eps, None)
+    sink_scores = np.log(a_safe / c_safe)
+    j_r = int(np.argmax(sink_scores))   # R-peak: strongest sink
+
+    # ── Token identity helper ──
+    def make_peak_info(pos: int) -> dict:
+        info = {
+            "abs_t": pos,
+            "token_type": _classify_token_type(pos, vs, ve),
+            "a_share": float(a_tilde[pos]),
+            "c_share": float(c_tilde[pos]),
+            "sink_score": float(sink_scores[pos]),
+        }
+        if vs <= pos < ve:
+            info["vision_j"] = pos - vs
+        # Token string decode
+        if input_ids is not None and tokenizer is not None:
+            if pos < len(input_ids):
+                try:
+                    info["token_str"] = tokenizer.decode([input_ids[pos]], skip_special_tokens=False).strip()
+                except Exception:
+                    info["token_str"] = None
+        # Phi (if hidden states available)
+        if hidden_states_layer is not None and pos < hidden_states_layer.shape[0]:
+            info["phi"] = compute_phi_universal(hidden_states_layer[pos])
+        return info
+
+    a_peak = make_peak_info(j_a)
+    c_peak = make_peak_info(j_c)
+    r_peak = make_peak_info(j_r)
+
+    # ── Classification ──
+    a_c_match = (j_a == j_c)
+
+    # Entropy + top1 share
+    entropy = compute_entropy(c_tilde)
+    top1_c_share = float(c_tilde.max())
+    top1_a_share = float(a_tilde.max())
+    mismatch = compute_mismatch(a_tilde, c_tilde)
+
+    if a_c_match and top1_c_share >= 0.5:
+        dominant_type = "bottleneck"
+    elif a_c_match and top1_c_share < 0.5:
+        dominant_type = "normal"
+    elif not a_c_match and top1_a_share >= 0.15:
+        dominant_type = "coexist"
+    else:
+        dominant_type = "normal"
+
+    return {
+        "dominant_type": dominant_type,
+        "a_peak": a_peak,
+        "c_peak": c_peak,
+        "r_peak": r_peak,
+        "a_c_match": a_c_match,
+        "mean_entropy": entropy,
+        "mean_top1_share": top1_c_share,
+        "mean_top1_a_share": top1_a_share,
+        "mismatch": mismatch,
+    }
+
+
+def _classify_token_type(pos: int, vs: int, ve: int) -> str:
+    """Classify absolute position into token type."""
+    if pos < vs:
+        return "pre_vision"
+    elif pos < ve:
+        return "vision"
+    else:
+        return "text"
