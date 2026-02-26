@@ -707,6 +707,20 @@ mode_tokens = {
     "C_mode": _extract_mode_token(all_layer_dual_track, "c_peak", deep_layers),
     "R_mode": _extract_mode_token(all_layer_dual_track, "r_peak", deep_layers),
 }
+
+# CRITICAL FIX (핵심1): Add token_type (vision/text/pre_vision) to each mode token.
+# classify_layer_dual_track() already computes this via _classify_token_type().
+# Gate① pass check needs this to verify "OpenVLA: A_mode ∈ vision, C_mode ∈ text".
+for peak_key in ["A_mode", "C_mode", "R_mode"]:
+    mode_pos = mode_tokens[peak_key]["abs_t"]
+    vs = boundaries.get("vision_start", 0)
+    ve = boundaries.get("vision_end", 0)
+    if mode_pos < vs:
+        mode_tokens[peak_key]["token_type"] = "pre_vision"
+    elif mode_pos < ve:
+        mode_tokens[peak_key]["token_type"] = "vision"
+    else:
+        mode_tokens[peak_key]["token_type"] = "text"
 ```
 
 **Step 2: Add mode_tokens to report and save separately**
@@ -1356,6 +1370,15 @@ def check_gate1_pass(gate1_base):
             if median_mismatch <= 0.15:
                 passed = False
                 reasons.append(f"mismatch median {median_mismatch:.3f} <= 0.15")
+            # 핵심1 FIX: Verify coexist identity — A_mode must be vision, C_mode must be text
+            a_type = mode_tokens.get("A_mode", {}).get("token_type", "unknown")
+            c_type = mode_tokens.get("C_mode", {}).get("token_type", "unknown")
+            if a_type != "vision":
+                passed = False
+                reasons.append(f"A_mode.token_type={a_type}, expected 'vision'")
+            if c_type != "text":
+                passed = False
+                reasons.append(f"C_mode.token_type={c_type}, expected 'text'")
         elif model == "spatialvla-4b":
             if median_mismatch >= 0.05:
                 passed = False
@@ -1619,14 +1642,14 @@ def run_gate3(model_name, device, gate1_dir, output_dir, n_samples=20):
     samples = samples[:n_samples]
     print(f"  Using {len(samples)} samples from Gate ①")
 
-    # Detect boundaries from first sample
-    boundaries = detect_token_boundaries(
+    # NOTE (핵심2): Boundaries are computed PER-SAMPLE inside the masking loops below.
+    # This initial detection is ONLY for logging/printing approximate ranges.
+    # text_end varies with instruction length, so we MUST NOT reuse these for masking.
+    _sample0_bounds = detect_token_boundaries(
         processor, model, samples[0]["image"], samples[0]["instruction"], device, model_cfg
     )
-    text_range = (boundaries.get("text_start", boundaries["vision_end"]), boundaries["text_end"])
-    vision_range = (boundaries["vision_start"], boundaries["vision_end"])
-    n_text = text_range[1] - text_range[0]
-    print(f"  Text range: {text_range}, Vision range: {vision_range}, n_text={n_text}")
+    print(f"  Approx ranges (sample 0): text={(_sample0_bounds.get('text_start', _sample0_bounds['vision_end']), _sample0_bounds['text_end'])}, "
+          f"vision={(_sample0_bounds['vision_start'], _sample0_bounds['vision_end'])}")
 
     # Deep layers
     deep_layers = list(range(max(0, model_cfg.num_layers - 10), model_cfg.num_layers))
