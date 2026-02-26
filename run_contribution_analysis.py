@@ -31,6 +31,8 @@ from contribution.classify import (
     classify_layer,
     compute_phi_all_tokens,
     compute_mismatch,
+    classify_layer_dual_track,   # Phase 2.5
+    compute_phi_universal,       # Phase 2.5
 )
 from contribution.signature import (
     label_skill_from_instruction,
@@ -48,11 +50,15 @@ from contribution.visualize import (
 
 def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, output_dir: Path):
     print(f"\n{'='*70}")
-    print(f"Contribution Analysis — {model_name}")
+    print(f"Contribution Analysis — {model_name} (Phase 2.5: Dual-Track)")
     print(f"{'='*70}")
 
     # ── Load model ──────────────────────────────────────────────
     processor, model, model_cfg = load_model_from_registry(model_name, device)
+    # Tokenizer for token identity decode (Phase 2.5)
+    tokenizer = getattr(processor, 'tokenizer', None)
+    if tokenizer is None and hasattr(processor, 'decode'):
+        tokenizer = processor  # processor itself has decode
     samples = load_samples_from_cache(config.DATA_CACHE_DIR, n_samples=n_samples)
     print(f"  Loaded {len(samples)} samples")
 
@@ -79,6 +85,8 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
     all_signatures = []
     all_skill_labels = []
     all_mismatches = []
+    # Phase 2.5: Dual-track per-layer per-sample
+    all_layer_dual_track = {l: [] for l in deep_layers}
 
     hook_mgr = SinkVerificationHookManager(model, model_cfg)
 
@@ -138,6 +146,20 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
                 cls_result = classify_layer(r.a_tilde, r.c_tilde, sample_boundaries, phi)
                 all_layer_classifications[l].append(cls_result)
 
+                # Phase 2.5: Dual-track classification
+                sample_input_ids = inputs.get("input_ids", None)
+                if sample_input_ids is not None:
+                    sample_input_ids = sample_input_ids[0].tolist()
+
+                dual = classify_layer_dual_track(
+                    r.a_tilde, r.c_tilde,
+                    sample_boundaries,
+                    hidden_states_layer=hidden_states.get(l),
+                    input_ids=sample_input_ids,
+                    tokenizer=tokenizer,
+                )
+                all_layer_dual_track[l].append(dual)
+
                 mismatch = compute_mismatch(r.a_tilde, r.c_tilde)
                 all_mismatches.append(mismatch)
 
@@ -181,6 +203,56 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
                 "mean_top1_share": float(np.mean([c["top1_share"] for c in all_layer_classifications[l]])),
             }
 
+    # Phase 2.5: Aggregate dual-track per layer
+    layer_dual_track_agg = {}
+    for l in deep_layers:
+        duals = all_layer_dual_track.get(l, [])
+        if not duals:
+            continue
+
+        # Dominant type by vote
+        types = [d["dominant_type"] for d in duals]
+        dominant_vote = Counter(types).most_common(1)[0]
+
+        # A-peak: most common position
+        a_positions = [d["a_peak"]["abs_t"] for d in duals]
+        a_dom_pos = Counter(a_positions).most_common(1)[0][0]
+
+        # C-peak: most common position
+        c_positions = [d["c_peak"]["abs_t"] for d in duals]
+        c_dom_pos = Counter(c_positions).most_common(1)[0][0]
+
+        # R-peak: most common position
+        r_positions = [d["r_peak"]["abs_t"] for d in duals]
+        r_dom_pos = Counter(r_positions).most_common(1)[0][0]
+
+        # Find representative sample for each peak
+        def find_representative(duals, peak_key, dom_pos):
+            for d in duals:
+                if d[peak_key]["abs_t"] == dom_pos:
+                    return d[peak_key]
+            return duals[0][peak_key]
+
+        a_peak_rep = find_representative(duals, "a_peak", a_dom_pos)
+        c_peak_rep = find_representative(duals, "c_peak", c_dom_pos)
+        r_peak_rep = find_representative(duals, "r_peak", r_dom_pos)
+
+        # Average metrics
+        a_c_match_rate = sum(1 for d in duals if d["a_c_match"]) / len(duals)
+
+        layer_dual_track_agg[l] = {
+            "dominant_type": dominant_vote[0],
+            "frequency": dominant_vote[1] / len(duals),
+            "a_peak": a_peak_rep,
+            "c_peak": c_peak_rep,
+            "r_peak": r_peak_rep,
+            "a_c_match": a_c_match_rate > 0.5,
+            "a_c_match_rate": a_c_match_rate,
+            "mean_entropy": float(np.mean([d["mean_entropy"] for d in duals])),
+            "mean_top1_share": float(np.mean([d["mean_top1_share"] for d in duals])),
+            "mean_mismatch": float(np.mean([d["mismatch"] for d in duals])),
+        }
+
     # 4. Skill signature analysis
     sig_analysis = {}
     valid_sigs = [(sig, lab) for sig, lab in zip(all_signatures, all_skill_labels) if lab != "unknown"]
@@ -205,12 +277,13 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
     # ── Save report ─────────────────────────────────────────────
     report = {
         "model": model_name,
+        "phase": 2.5,
         "n_samples": len(samples),
         "n_layers": n_layers,
         "deep_layers": deep_layers,
         "boundaries": {k: int(v) if isinstance(v, (int, np.integer)) else v
                       for k, v in boundaries.items()},
-        "layer_analysis": {str(l): layer_dominant.get(l, {}) for l in deep_layers},
+        "layer_analysis": {str(l): layer_dual_track_agg.get(l, {}) for l in deep_layers},
         "skill_signature": sig_analysis,
         "mean_mismatch": float(np.mean(all_mismatches)) if all_mismatches else 0.0,
         "skill_distribution": dict(Counter(all_skill_labels)),
