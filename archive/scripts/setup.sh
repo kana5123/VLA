@@ -21,7 +21,7 @@ pip install --upgrade pip
 # ── 패키지 설치 ─────────────────────────────────────────────
 echo "[3/3] 패키지 설치 중..."
 pip install torch torchvision --index-url "$TORCH_INDEX"
-pip install "transformers>=4.40.0" Pillow numpy matplotlib tensorflow-datasets tensorflow tqdm
+pip install -r requirements.txt
 
 # ── 완료 ────────────────────────────────────────────────────
 echo ""

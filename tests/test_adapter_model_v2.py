@@ -95,18 +95,18 @@ class TestBranch1OutputShape:
 
 
 # ---------------------------------------------------------------------------
-# Test 2: Branch 1 init near zero
+# Test 2: Branch 1 init near VAR-optimal p
 # ---------------------------------------------------------------------------
 
-class TestBranch1InitNearZero:
-    """test_branch1_init_near_zero — mean p < 0.05 at initialization."""
+class TestBranch1InitNearVarOptimal:
+    """test_branch1_init — mean p ≈ 0.4 at initialization (conservative VAR start)."""
 
-    def test_mean_p_below_threshold(self, adapter, h_last, object_mask):
+    def test_mean_p_near_target(self, adapter, h_last, object_mask):
         with torch.no_grad():
             p, _ = adapter(h_last, h_vision=None, object_mask=object_mask)
         mean_p = p.mean().item()
-        assert mean_p < 0.05, (
-            f"At initialization, mean p should be < 0.05 (near sigmoid(-4)=0.018), "
+        assert 0.3 < mean_p < 0.5, (
+            f"At initialization, mean p should be ≈ 0.4 (sigmoid(-0.405)≈0.40), "
             f"got {mean_p:.4f}"
         )
 
@@ -180,7 +180,7 @@ class TestBranch2NoneWithoutHVision:
 # ---------------------------------------------------------------------------
 
 class TestBlendAlphaInit:
-    """test_blend_alpha_init — starts at ~0.018 (sigmoid(-4))."""
+    """test_blend_alpha_init — starts at sigmoid(ADAPTER_V2_BLEND_INIT)."""
 
     def test_blend_alpha_value(self, adapter):
         expected = torch.sigmoid(torch.tensor(config.ADAPTER_V2_BLEND_INIT)).item()
@@ -190,9 +190,10 @@ class TestBlendAlphaInit:
             f"got {actual:.4f}"
         )
 
-    def test_blend_alpha_near_0018(self, adapter):
-        assert abs(adapter.blend_alpha.item() - 0.018) < 0.005, (
-            f"blend_alpha should be ~0.018, got {adapter.blend_alpha.item():.4f}"
+    def test_blend_alpha_near_expected(self, adapter):
+        expected = torch.sigmoid(torch.tensor(config.ADAPTER_V2_BLEND_INIT)).item()
+        assert abs(adapter.blend_alpha.item() - expected) < 0.005, (
+            f"blend_alpha should be ~{expected:.3f}, got {adapter.blend_alpha.item():.4f}"
         )
 
 
@@ -203,26 +204,28 @@ class TestBlendAlphaInit:
 class TestDualEncoder512:
     """test_dual_encoder_512 — V=512 works (Prismatic dual-encoder produces 512 vision tokens)."""
 
-    def test_v512_shapes(self, adapter, h_last):
+    def test_v512_shapes(self, h_last):
         V = 512
+        adapter_512 = AttentionAdapterV2(vision_tokens=V)
         h_vision = torch.randn(V, 4096)
         object_mask = torch.zeros(V)
         object_mask[:200] = 1.0
 
-        p, redist = adapter(h_last, h_vision=h_vision, object_mask=object_mask)
+        p, redist = adapter_512(h_last, h_vision=h_vision, object_mask=object_mask)
 
         assert p.shape == (config.ADAPTER_NUM_TARGET_LAYERS, config.NUM_HEADS)
         assert redist is not None
         assert redist.shape == (V,)
 
-    def test_v512_batched(self, adapter, h_last_batched):
+    def test_v512_batched(self, h_last_batched):
         B, V = 2, 512
+        adapter_512 = AttentionAdapterV2(vision_tokens=V)
         h_vision = torch.randn(B, V, 4096)
         object_mask = torch.zeros(B, V)
         object_mask[0, :200] = 1.0
         object_mask[1, :100] = 1.0
 
-        p, redist = adapter(h_last_batched, h_vision=h_vision, object_mask=object_mask)
+        p, redist = adapter_512(h_last_batched, h_vision=h_vision, object_mask=object_mask)
 
         assert p.shape == (B, config.ADAPTER_NUM_TARGET_LAYERS, config.NUM_HEADS)
         assert redist is not None

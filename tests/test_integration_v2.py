@@ -20,6 +20,7 @@ def test_full_adapter_v2_pipeline():
         query_dim=32,
         mask_dim=16,
         intermediate_dim=64,
+        vision_tokens=V,
     )
 
     h_last = torch.randn(hidden_dim)
@@ -70,6 +71,7 @@ def test_blending_pipeline():
     V = 16
     adapter = AttentionAdapterV2(
         hidden_dim=128, query_dim=32, mask_dim=16, intermediate_dim=64,
+        vision_tokens=V,
     )
 
     h_last = torch.randn(128)
@@ -80,16 +82,18 @@ def test_blending_pipeline():
     _, redist_raw = adapter(h_last, h_vision, object_mask)
 
     # Simulate blending (same as adapter_train.py forward_with_adapter)
-    blend = adapter.blend_alpha  # ~0.018 at init
+    blend = adapter.blend_alpha  # sigmoid(-1.0) ≈ 0.27 at init
     prop_weights = torch.ones(V) / (V - 1)  # uniform (simplified, skip sink)
     prop_weights[0] = 0.0
     prop_weights = prop_weights / prop_weights.sum().clamp(min=1e-9)
 
     final = blend * redist_raw + (1 - blend) * prop_weights
 
-    # At init, blend_alpha ~0.018, so final should be close to proportional
+    # At init, blend_alpha ≈ 0.27, so final deviates by up to ~27% from proportional
     diff = (final - prop_weights).abs().max().item()
-    assert diff < 0.1, f"At init, blended weights should be close to proportional, max diff={diff}"
+    assert diff < blend.item() + 0.15, (
+        f"At init, max diff={diff:.4f} should be bounded by blend={blend.item():.3f}+0.15"
+    )
 
 
 def test_v2_param_count():

@@ -105,8 +105,8 @@ register(VLAModelConfig(
 ))
 
 # ── TraceVLA (Phi-3-V backbone) ──
-# BLOCKED: Phi3VConfig not recognized by AutoModelForVision2Seq (transformers 4.57.6)
-# Also uses continuous actions which need separate loss implementation
+# FIXED: Uses AutoModelForCausalLM + torch.load CVE bypass for .bin weights
+# Uses continuous actions → needs separate loss implementation for adapter training
 # Verified: model_type=phi3_v, hidden=3072, 32L/32H
 # Vision: 313 tokens (detected via negative input_ids from processor)
 register(VLAModelConfig(
@@ -128,11 +128,12 @@ register(VLAModelConfig(
     source_layer=27,
     target_layers=[28, 29, 30, 31],
     auto_model_class="AutoModelForCausalLM",
+    experiment_ready=True,
 ))
 
 # ── SpatialVLA (Gemma-2 2B backbone, NOT Qwen2) ──
-# BLOCKED: processing_spatialvla.py imports _validate_images_text_input_order
-# which was removed in transformers 4.57.6
+# FIXED: Uses _SimpleProcessor bypass for missing _validate_images_text_input_order
+# Also skips attn_implementation="eager" (custom attention dims)
 # Verified: model_type=spatialvla, text=gemma2, 26L/8H/2304D
 # Vision: SigLIP image_size=224, patch_size=14 → 16×16 = 256 tokens
 register(VLAModelConfig(
@@ -153,6 +154,7 @@ register(VLAModelConfig(
     source_layer=21,
     target_layers=[22, 23, 24, 25],
     auto_model_class="AutoModel",
+    experiment_ready=True,
 ))
 
 # ── SmolVLA (SmolVLM2-500M backbone, LeRobot policy) ──
@@ -212,6 +214,75 @@ register(VLAModelConfig(
     notes="OpenFlamingo-based, cross-attention (different attn pattern)",
     layers_path="transformer.blocks",
     attn_module="attn",
+))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# VLM Models (VQA only — no action prediction)
+# ═══════════════════════════════════════════════════════════════════════
+
+# ── LLaVA-1.5-7B (LLaMA-2 + CLIP-ViT-L/14 @ 336px) ──
+# Same LLaMA-2-7B backbone as OpenVLA → key comparison for VLA fine-tuning effect
+register(VLAModelConfig(
+    name="llava-1.5-7b",
+    hf_id="llava-hf/llava-1.5-7b-hf",
+    architecture="llava",
+    vision_encoder="clip-vit-l-14",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=4096,
+    vision_grid_size=24,        # 336/14 = 24×24 = 576 patches
+    num_vision_tokens=576,
+    action_tokens=0,
+    action_type="none",
+    prompt_template="USER: <image>\n{instruction}\nASSISTANT:",
+    native_datasets=[],
+    notes="VLM (VQA only), same LLaMA-2-7B backbone as OpenVLA, CLIP ViT-L/14 @ 336px",
+    layers_path="model.language_model.layers",
+    auto_model_class="AutoModelForVision2Seq",
+))
+
+# ── InternVL2-8B (InternLM2 + InternViT-6B) ──
+# Different backbone from LLaMA → tests backbone-specificity of bottleneck
+register(VLAModelConfig(
+    name="internvl2-8b",
+    hf_id="OpenGVLab/InternVL2-8B",
+    architecture="internlm2",
+    vision_encoder="intern-vit-6b",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=4096,
+    vision_grid_size=32,        # 448/14=32, but dynamic → varies per image
+    num_vision_tokens=256,      # Fixed 256 for 224px single-tile mode
+    action_tokens=0,
+    action_type="none",
+    prompt_template="<|im_start|>user\n<image>\n{instruction}<|im_end|>\n<|im_start|>assistant\n",
+    native_datasets=[],
+    notes="VLM (VQA only), InternLM2 backbone, InternViT-6B, dynamic image tiling",
+    layers_path="language_model.model.layers",
+    auto_model_class="AutoModel",
+    trust_remote_code=True,
+))
+
+# ── PaliGemma-3B (Gemma + SigLIP, π0's VLM component) ──
+# Gemma backbone + SigLIP → tests if Gemma family shows bottleneck
+register(VLAModelConfig(
+    name="paligemma-3b",
+    hf_id="google/paligemma-3b-pt-224",
+    architecture="paligemma",
+    vision_encoder="siglip-so400m",
+    num_layers=18,
+    num_heads=8,
+    hidden_dim=2048,
+    vision_grid_size=16,        # 224/14 = 16×16 = 256 patches
+    num_vision_tokens=256,
+    action_tokens=0,
+    action_type="none",
+    prompt_template="{instruction}",
+    native_datasets=[],
+    notes="VLM (π0's VLM component), Gemma backbone, SigLIP-SO400M, GQA (1 KV head)",
+    layers_path="model.language_model.layers",
+    auto_model_class="AutoModelForVision2Seq",
 ))
 
 

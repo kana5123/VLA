@@ -51,13 +51,9 @@ class AdapterEvaluator:
     ):
         self.device = device
 
-        # ── Early guard: continuous models not yet supported ──
+        # ── Detect action type ──
         _cfg_check = get_model(model_name)
-        if _cfg_check.action_type != "discrete":
-            raise NotImplementedError(
-                f"Continuous action evaluation ({model_name}) is not yet implemented. "
-                f"Only discrete-action models are supported."
-            )
+        self.is_continuous = _cfg_check.action_type == "continuous"
 
         # ── Load model ──
         print(f"Loading {model_name}...")
@@ -74,7 +70,8 @@ class AdapterEvaluator:
         dummy = Image.new("RGB", (256, 256), (128, 128, 128))
         prompt = self.model_cfg.prompt_template.format(instruction="pick up the object")
         dummy_inputs = self.processor(prompt, dummy, return_tensors="pt").to(device)
-        self.text_end = dummy_inputs["input_ids"].shape[-1]
+        num_text_tokens = dummy_inputs["input_ids"].shape[-1]
+        self.text_end = self.vision_end + num_text_tokens  # absolute index in [vision | text | action]
 
         # ── Load adapter (skip in baseline-only and static method modes) ──
         self.baseline_only = baseline_only
@@ -135,8 +132,11 @@ class AdapterEvaluator:
                 f"(step {ckpt.get('global_step', '?')})"
             )
 
-        # ── Action tokenizer ──
-        self.tokenizer = ActionTokenizer(self.model)
+        # ── Action tokenizer (discrete models only) ──
+        if not self.is_continuous:
+            self.tokenizer = ActionTokenizer(self.model, model_cfg=self.model_cfg)
+        else:
+            self.tokenizer = None
 
     def _get_static_ctx(self) -> V3Context:
         """Create V3Context for static methods (fixed-var, act)."""
@@ -144,6 +144,8 @@ class AdapterEvaluator:
 
         if self.method == "fixed-var":
             # Static VAR: uniform p across all target layers/heads
+            # Use hardcoded sink indices (not dynamic detection) to match
+            # the original VAR paper (ICLR 2025, Kang et al.)
             full_p = torch.zeros(
                 self.model_cfg.num_layers, self.model_cfg.num_heads,
                 device=self.device, dtype=torch.float32,
@@ -154,9 +156,9 @@ class AdapterEvaluator:
                 active=True,
                 use_var=True,
                 var_p=config.VAR_P,
-                var_rho=config.VAR_RHO,
+                var_rho=config.VAR_BASELINE_RHO,  # VAR paper uses rho=0.5~0.9
                 var_sink_indices=list(config.VAR_SINK_INDICES),
-                dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
+                dynamic_sink_detection=False,  # VAR paper uses hardcoded sinks
                 sink_alpha=config.SINK_ALPHA,
                 vision_end=self.vision_end,
                 enhancement_layers=set(target_layers),
@@ -194,6 +196,14 @@ class AdapterEvaluator:
         if "pixel_values" in inputs and inputs["pixel_values"].dtype != self.model.dtype:
             inputs["pixel_values"] = inputs["pixel_values"].to(self.model.dtype)
 
+        # SpatialVLA requires camera intrinsic matrix for backproject_patch
+        if "intrinsic" not in inputs and self.model_cfg.architecture == "gemma2":
+            inputs["intrinsic"] = torch.tensor(
+                [[[224.0, 0.0, 112.0],
+                  [0.0, 224.0, 112.0],
+                  [0.0, 0.0, 1.0]]], device=self.device, dtype=torch.float32,
+            )
+
         # Static method (fixed-var, act): always use static context
         if self.method == self.LORA_METHOD and adapter_enabled:
             # LoRA: model weights already modified, no VAR context needed
@@ -222,33 +232,55 @@ class AdapterEvaluator:
         attention_mask = inputs.get("attention_mask")
         pixel_values = inputs.get("pixel_values")
         generated_tokens = []
+        continuous_action_values = []
 
-        with torch.no_grad():
-            for token_idx in range(self.model_cfg.action_tokens):
-                if ctx is not None:
-                    ctx.current_token_idx = token_idx
+        try:
+            with torch.no_grad():
+                for token_idx in range(self.model_cfg.action_tokens):
+                    if ctx is not None:
+                        ctx.current_token_idx = token_idx
 
-                model_inputs = {
-                    "input_ids": input_ids,
-                    "attention_mask": attention_mask,
-                    "pixel_values": pixel_values,
-                }
-                outputs = self.model(**model_inputs, use_cache=False)
-                next_token = outputs.logits[:, -1, :].argmax(dim=-1, keepdim=True)
-                generated_tokens.append(next_token.item())
+                    model_inputs = {
+                        "input_ids": input_ids,
+                        "attention_mask": attention_mask,
+                        "pixel_values": pixel_values,
+                    }
+                    # Pass architecture-specific extra inputs (e.g., SpatialVLA intrinsic)
+                    for extra_key in ("intrinsic", "image_sizes"):
+                        if extra_key in inputs:
+                            model_inputs[extra_key] = inputs[extra_key]
+                    outputs = self.model(**model_inputs, use_cache=False)
+                    logits = outputs.logits[:, -1, :]  # (1, vocab_size)
 
-                input_ids = torch.cat([input_ids, next_token], dim=-1)
-                if attention_mask is not None:
-                    attention_mask = torch.cat([
-                        attention_mask,
-                        torch.ones(1, 1, device=self.device, dtype=attention_mask.dtype),
-                    ], dim=-1)
+                    if self.is_continuous:
+                        # Continuous: extract action value from logits (matches training)
+                        action_val = logits[:, token_idx].float().item()
+                        continuous_action_values.append(action_val)
 
-        if adapter_enabled and ctx is not None:
-            uninstall_v3_patch()
+                    next_token = logits.argmax(dim=-1, keepdim=True)
+                    generated_tokens.append(next_token.item())
 
-        result = detokenize_actions(self.model, generated_tokens)
-        return result
+                    # Only grow sequence for discrete models; continuous keeps input_ids fixed
+                    if not self.is_continuous:
+                        input_ids = torch.cat([input_ids, next_token], dim=-1)
+                        if attention_mask is not None:
+                            attention_mask = torch.cat([
+                                attention_mask,
+                                torch.ones(1, 1, device=self.device, dtype=attention_mask.dtype),
+                            ], dim=-1)
+        finally:
+            if adapter_enabled and ctx is not None:
+                uninstall_v3_patch()
+
+        if self.is_continuous:
+            return {
+                "normalized_action": continuous_action_values,
+                "unnormalized_action": continuous_action_values,
+                "token_ids": generated_tokens,
+            }
+        else:
+            result = detokenize_actions(self.model, generated_tokens)
+            return result
 
     def evaluate(
         self,
@@ -408,7 +440,7 @@ def get_v3_ctx_for_eval(
 
             mask_tensor = None
             if object_mask is not None:
-                mask_tensor = torch.from_numpy(object_mask).float().unsqueeze(0).to(device)
+                mask_tensor = torch.tensor(object_mask, dtype=torch.float32).unsqueeze(0).to(device)
 
             p_matrix, redist_raw = adapter(h_last, h_vision, mask_tensor)
 
@@ -479,6 +511,8 @@ def main():
     parser.add_argument("--method", type=str, default="adapter",
                         choices=["adapter", "fixed-var", "act", "lora"],
                         help="Attention method to evaluate (default: adapter)")
+    parser.add_argument("--lora_checkpoint", type=str, default=None,
+                        help="LoRA checkpoint dir for joint LoRA+adapter evaluation")
     args = parser.parse_args()
 
     if args.baseline_only:
@@ -499,6 +533,14 @@ def main():
         if not args.checkpoint:
             parser.error("--checkpoint required unless --baseline_only or --method is static")
         evaluator = AdapterEvaluator(args.checkpoint, model_name=args.model, device=args.device)
+
+    # Load LoRA weights for joint LoRA+adapter evaluation
+    if args.lora_checkpoint is not None:
+        from peft import PeftModel
+        print(f"Loading LoRA weights from {args.lora_checkpoint}...")
+        evaluator.model = PeftModel.from_pretrained(evaluator.model, args.lora_checkpoint)
+        evaluator.model.eval()
+        print("LoRA weights loaded for joint evaluation")
 
     results = evaluator.evaluate(num_episodes=args.num_episodes)
 

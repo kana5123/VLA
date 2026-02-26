@@ -22,11 +22,11 @@ def test_extract_noun_phrases_fallback():
     phrases = extract_noun_phrases("go")
     assert len(phrases) >= 1
 
-def test_instruction_to_grounding_queries():
-    from sam_preprocess import instruction_to_grounding_queries
-    queries = instruction_to_grounding_queries("pick up the red block near the bowl")
-    assert isinstance(queries, list)
-    assert len(queries) > 0
+def test_instruction_to_grounding_query():
+    from sam_preprocess import instruction_to_grounding_query
+    query = instruction_to_grounding_query("pick up the red block near the bowl")
+    assert isinstance(query, str)
+    assert len(query) > 0
 
 
 # ── Task 6: Pixel mask to patch mask ──

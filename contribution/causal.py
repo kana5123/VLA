@@ -1,0 +1,140 @@
+# contribution/causal.py
+"""
+Causal verification via length-preserving masking (Design Section 4.3).
+
+Two methods:
+1. Attention knockout: mask attention scores to -∞ so query cannot see target
+2. Value-zero: keep attention but zero out value vectors for target tokens
+
+Both preserve sequence length and positional indices.
+"""
+import torch
+import torch.nn as nn
+from typing import Optional
+
+
+class AttentionKnockoutHook:
+    """Mask attention scores: α_{i,j} = -∞ for (i ∈ queries, j ∈ targets).
+
+    Usage:
+        hook = AttentionKnockoutHook([0, 1], query_range=(256, 263))
+        handle = model.layer.self_attn.register_forward_pre_hook(hook.hook_fn)
+        # ... forward pass ...
+        handle.remove()
+    """
+
+    def __init__(self, target_positions: list[int], query_range: tuple[int, int] | None = None):
+        self.target_positions = target_positions
+        self.query_range = query_range
+        self._handles = []
+
+    def apply_mask(self, scores: torch.Tensor) -> torch.Tensor:
+        """Apply knockout mask to attention scores (pre-softmax).
+
+        Args:
+            scores: (batch, H, seq, seq) — raw attention scores
+        Returns:
+            masked scores with -inf at target positions
+        """
+        masked = scores.clone()
+        q_start = self.query_range[0] if self.query_range else 0
+        q_end = self.query_range[1] if self.query_range else scores.shape[2]
+
+        for t in self.target_positions:
+            if t < scores.shape[3]:
+                masked[:, :, q_start:q_end, t] = float("-inf")
+
+        return masked
+
+    def register(self, model, model_cfg, get_layers_fn):
+        """Register hooks on all attention layers."""
+        layers = get_layers_fn(model, model_cfg)
+        for layer in layers:
+            handle = layer.self_attn.register_forward_hook(self._make_hook())
+            self._handles.append(handle)
+
+    def _make_hook(self):
+        knockout = self
+
+        def hook_fn(module, args, output):
+            if isinstance(output, tuple) and len(output) >= 2 and output[1] is not None:
+                attn_weights = output[1].clone()
+                q_start = knockout.query_range[0] if knockout.query_range else 0
+                q_end = knockout.query_range[1] if knockout.query_range else attn_weights.shape[2]
+                for t in knockout.target_positions:
+                    if t < attn_weights.shape[3]:
+                        attn_weights[:, :, q_start:q_end, t] = 0.0
+                row_sums = attn_weights[:, :, q_start:q_end, :].sum(dim=-1, keepdim=True).clamp(min=1e-10)
+                attn_weights[:, :, q_start:q_end, :] = attn_weights[:, :, q_start:q_end, :] / row_sums
+                return (output[0], attn_weights) + output[2:]
+            return output
+
+        return hook_fn
+
+    def remove(self):
+        for h in self._handles:
+            h.remove()
+        self._handles = []
+
+
+class ValueZeroHook:
+    """Zero out value vectors for specific tokens (length-preserving).
+
+    Attention is computed normally but target tokens contribute nothing.
+    """
+
+    def __init__(self, target_positions: list[int]):
+        self.target_positions = target_positions
+        self._handles = []
+
+    def apply(self, values: torch.Tensor) -> torch.Tensor:
+        """Zero out value vectors at target positions.
+
+        Args:
+            values: (batch, H, seq, head_dim)
+        Returns:
+            values with targets zeroed
+        """
+        out = values.clone()
+        for t in self.target_positions:
+            if t < out.shape[2]:
+                out[:, :, t, :] = 0.0
+        return out
+
+    def register(self, model, model_cfg, get_layers_fn):
+        """Register hooks to zero out V projections for target tokens."""
+        layers = get_layers_fn(model, model_cfg)
+        for layer in layers:
+            handle = layer.self_attn.register_forward_hook(self._make_v_hook())
+            self._handles.append(handle)
+
+    def _make_v_hook(self):
+        vzero = self
+
+        def hook_fn(module, args, output):
+            return output
+
+        return hook_fn
+
+    def remove(self):
+        for h in self._handles:
+            h.remove()
+        self._handles = []
+
+
+def compute_output_kl(
+    logits_orig: torch.Tensor,
+    logits_masked: torch.Tensor,
+) -> float:
+    """KL(p_orig || p_masked) for action token logits (Design Section 4.3).
+
+    Args:
+        logits_orig: original model output logits
+        logits_masked: logits after masking intervention
+    Returns:
+        KL divergence (scalar)
+    """
+    p = torch.softmax(logits_orig.float(), dim=-1).clamp(min=1e-10)
+    q = torch.softmax(logits_masked.float(), dim=-1).clamp(min=1e-10)
+    kl = (p * (p.log() - q.log())).sum(dim=-1).mean()
+    return float(kl.item())

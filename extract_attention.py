@@ -23,16 +23,45 @@ import numpy as np
 import torch
 from PIL import Image
 from tqdm import tqdm
-from transformers import AutoModelForVision2Seq, AutoProcessor
+from transformers import (
+    AutoModel, AutoModelForCausalLM, AutoModelForVision2Seq, AutoProcessor,
+)
 
 import config
+from model_registry import get_model as _registry_get_model, VLAModelConfig
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Universal processor call (architecture-aware)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def call_processor(processor, prompt, image, model_cfg=None, **kwargs):
+    """Call processor with the correct calling convention for each architecture.
+
+    Different VLM processors expect different argument styles:
+      - OpenVLA, TraceVLA, SpatialVLA: positional (text, images)
+      - LLaVA, PaliGemma: keyword (text=..., images=...)
+      - InternVL2: keyword (text=..., images=...)
+
+    This function normalizes the call for all architectures.
+    """
+    arch = model_cfg.architecture if model_cfg else None
+
+    # Architectures that require keyword arguments
+    keyword_archs = {"llava", "paligemma", "internlm2"}
+
+    if arch in keyword_archs:
+        return processor(text=prompt, images=image, **kwargs)
+    else:
+        # Default: positional (works for OpenVLA, TraceVLA, SpatialVLA, ECoT, etc.)
+        return processor(prompt, image, **kwargs)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Token boundary detection
 # ═══════════════════════════════════════════════════════════════════════════
 
-def detect_token_boundaries(processor, model, sample_image, sample_instruction, device):
+def detect_token_boundaries(processor, model, sample_image, sample_instruction, device, model_cfg=None):
     """Detect vision/text token boundaries using a forward hook.
 
     OpenVLA/Prismatic doesn't use <image> placeholders in text.
@@ -42,8 +71,11 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
     Returns:
         dict with keys: vision_start, vision_end, text_start, text_end, total_seq_len
     """
-    prompt = config.PROMPT_TEMPLATE.format(instruction=sample_instruction)
-    inputs = processor(prompt, sample_image, return_tensors="pt").to(device)
+    if model_cfg is not None:
+        prompt = model_cfg.prompt_template.format(instruction=sample_instruction)
+    else:
+        prompt = config.PROMPT_TEMPLATE.format(instruction=sample_instruction)
+    inputs = call_processor(processor, prompt, sample_image, model_cfg=model_cfg, return_tensors="pt").to(device)
     # Cast pixel_values to model dtype (processor returns float32, model is bfloat16)
     if "pixel_values" in inputs and inputs["pixel_values"].dtype != model.dtype:
         inputs["pixel_values"] = inputs["pixel_values"].to(model.dtype)
@@ -60,15 +92,29 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
         h = output[0] if isinstance(output, tuple) else output
         captured["seq_len"] = h.shape[1]
 
-    if hasattr(model, "language_model"):
+    layers = get_layers(model, model_cfg) if model_cfg else None
+    if layers is not None:
+        target_layer = layers[0]
+    elif hasattr(model, "language_model"):
         target_layer = model.language_model.model.layers[0]
     else:
         target_layer = model.model.layers[0]
 
     hook = target_layer.register_forward_hook(hook_fn)
 
+    # Build forward kwargs (some architectures need extra inputs)
+    fwd_kwargs = {k: v for k, v in inputs.items()}
+    fwd_kwargs["use_cache"] = False
+    # SpatialVLA needs intrinsic matrix
+    if model_cfg and model_cfg.architecture == "gemma2" and "intrinsic" not in fwd_kwargs:
+        fwd_kwargs["intrinsic"] = torch.tensor(
+            [[[218.26, 0.0, 111.83],
+              [0.0, 218.26, 111.79],
+              [0.0, 0.0, 1.0]]], device=device, dtype=torch.float32,
+        )
+
     with torch.no_grad():
-        model(**inputs, use_cache=False)
+        model(**fwd_kwargs)
 
     hook.remove()
 
@@ -80,14 +126,110 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
     num_vision_tokens = full_seq_len - num_text_tokens
 
     print(f"  Full sequence length (after vision expansion): {full_seq_len}")
-    print(f"  Vision tokens: {num_vision_tokens}, Text tokens: {num_text_tokens}")
+    print(f"  Vision tokens (from seq diff): {num_vision_tokens}, Text tokens: {num_text_tokens}")
 
-    # OpenVLA/Prismatic layout: [vision_tokens] [text_tokens]
-    # (vision features are prepended to text embeddings)
-    vision_start = 0
-    vision_end = num_vision_tokens
-    text_start = num_vision_tokens
-    text_end = full_seq_len
+    # Detect vision token position from input_ids.
+    # Some models (Phi3V, LLaVA) encode image placeholders as negative IDs or
+    # special token IDs. The expanded sequence inserts vision features at those
+    # positions, shifting text tokens around.
+    #
+    # When the processor already includes image placeholder tokens in input_ids
+    # (e.g., SpatialVLA _SimpleProcessor, LLaVA, PaliGemma), the model replaces
+    # them in-place → full_seq_len == num_text_tokens → num_vision_tokens=0.
+    # In this case, we detect image tokens via special token IDs in input_ids.
+    negative_count = int((input_ids < 0).sum().item())
+    arch = model_cfg.architecture if model_cfg else None
+
+    if negative_count > 0:
+        # Phi3V-style: negative IDs mark image placeholder positions in text
+        # Actual layout after expansion: [text_prefix] [vision_tokens] [text_suffix]
+        first_neg = int((input_ids < 0).nonzero(as_tuple=True)[0][0].item())
+        # Use registry count if seq diff gives 0 (model expands in-place)
+        if num_vision_tokens <= 0 and model_cfg:
+            num_vision_tokens = negative_count  # negative IDs = vision placeholders
+        pre_image_text = first_neg
+        vision_start = pre_image_text
+        vision_end = vision_start + num_vision_tokens
+        text_start = 0  # text wraps around vision
+        text_end = full_seq_len
+        pre_image_tokens = pre_image_text
+    elif num_vision_tokens <= 0 and model_cfg:
+        # Processor already embedded image placeholders in input_ids.
+        # Detect them by looking for the <image> token ID or repeated special IDs.
+        n_vis = model_cfg.num_vision_tokens
+
+        # Try to find image token ID from tokenizer
+        image_token_id = None
+        if hasattr(processor, "tokenizer"):
+            tok = processor.tokenizer
+        elif hasattr(processor, "tokenizer"):
+            tok = processor.tokenizer
+        else:
+            tok = processor
+
+        if hasattr(tok, "convert_tokens_to_ids"):
+            for marker in ("<image>", "<img>", "<visual>"):
+                try:
+                    tid = tok.convert_tokens_to_ids(marker)
+                    if tid != tok.unk_token_id:
+                        image_token_id = tid
+                        break
+                except Exception:
+                    pass
+
+        if image_token_id is not None:
+            # Find contiguous block of image token IDs
+            img_mask = (input_ids == image_token_id)
+            img_positions = img_mask.nonzero(as_tuple=True)[0]
+            if len(img_positions) > 0:
+                vision_start = int(img_positions[0].item())
+                vision_end = int(img_positions[-1].item()) + 1
+                num_vision_tokens = vision_end - vision_start
+            else:
+                # Fallback: use registry value, assume vision-first
+                num_vision_tokens = n_vis
+                vision_start = 0
+                vision_end = n_vis
+        else:
+            # No marker found: use registry value, assume vision-first
+            num_vision_tokens = n_vis
+            vision_start = 0
+            vision_end = n_vis
+
+        # Text = everything outside vision range
+        text_start = 0 if vision_start > 0 else vision_end
+        text_end = full_seq_len
+        pre_image_tokens = vision_start
+
+        print(f"  (Processor-embedded vision tokens detected: {num_vision_tokens} at [{vision_start}:{vision_end}])")
+    elif arch in ("llava", "paligemma"):
+        # LLaVA / PaliGemma: vision tokens are typically prepended or placed
+        # at a known offset. Use the seq_len difference to infer count.
+        # Most HF LLaVA variants prepend vision before text.
+        vision_start = 0
+        vision_end = num_vision_tokens
+        text_start = num_vision_tokens
+        text_end = full_seq_len
+        pre_image_tokens = 0
+    else:
+        # Default: vision-first layout (OpenVLA, SpatialVLA, etc.)
+        vision_start = 0
+        vision_end = num_vision_tokens
+        text_start = num_vision_tokens
+        text_end = full_seq_len
+        pre_image_tokens = 0
+
+    # Compute text-only query ranges (excluding vision tokens).
+    # This ensures sink verification queries only from actual text tokens,
+    # not accidentally sampling vision tokens as "text queries".
+    text_query_ranges = []
+    if vision_start > 0:
+        text_query_ranges.append((0, vision_start))
+    if vision_end < full_seq_len:
+        text_query_ranges.append((vision_end, full_seq_len))
+    if not text_query_ranges:
+        # Fallback: original text range (e.g. vision_start=0, vision_end=seq_len)
+        text_query_ranges = [(text_start, text_end)]
 
     boundaries = {
         "vision_start": vision_start,
@@ -97,7 +239,8 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
         "total_seq_len": full_seq_len,
         "num_vision_tokens": num_vision_tokens,
         "num_text_tokens": num_text_tokens,
-        "pre_image_tokens": 0,
+        "pre_image_tokens": pre_image_tokens,
+        "text_query_ranges": text_query_ranges,
     }
 
     print(f"  Token boundaries: {boundaries}")
@@ -410,7 +553,13 @@ def detokenize_actions(model, token_ids, unnorm_key=config.BRIDGE_UNNORM_KEY):
     """
     n_action_bins = getattr(model.config, "n_action_bins", 256)
     pad_to_multiple = getattr(model.config, "pad_to_multiple_of", 0)
-    vocab_size = model.config.text_config.vocab_size - pad_to_multiple
+    cfg = model.config
+    if hasattr(cfg, "text_config") and hasattr(cfg.text_config, "vocab_size"):
+        vocab_size = cfg.text_config.vocab_size - pad_to_multiple
+    elif hasattr(cfg, "vocab_size"):
+        vocab_size = cfg.vocab_size - pad_to_multiple
+    else:
+        raise RuntimeError(f"Cannot determine vocab_size from model config: {type(cfg).__name__}")
 
     bins = np.linspace(-1, 1, n_action_bins + 1)  # 257 edges → 256 centers
     bin_centers = (bins[:-1] + bins[1:]) / 2.0     # length = n_action_bins = 256
@@ -460,6 +609,226 @@ def load_model(device="cuda"):
     ).to(device).eval()
     print("Model loaded successfully.")
     return processor, model
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Universal model loading (registry-based)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _apply_spatialvla_monkey_patch():
+    """Apply monkey-patch for SpatialVLA processor compatibility.
+
+    SpatialVLA's custom processor references _validate_images_text_input_order
+    which was removed from newer versions of transformers. This patch adds it
+    back if missing.
+    """
+    import transformers.processing_utils as _proc_utils
+    if not hasattr(_proc_utils, '_validate_images_text_input_order'):
+        from transformers.image_utils import is_valid_image
+
+        def _validate_images_text_input_order(images, text):
+            """Validate (images, text) order. Swap if caller passed (text, images)."""
+            if images is not None and not is_valid_image(images):
+                if isinstance(images, str):
+                    images, text = text, images
+            return images, text
+
+        _proc_utils._validate_images_text_input_order = _validate_images_text_input_order
+        print("  Applied SpatialVLA monkey-patch: _validate_images_text_input_order")
+
+
+def _apply_tracevla_torch_patch():
+    """Bypass torch.load CVE-2025-32434 safety check for TraceVLA.
+
+    TraceVLA uses .bin format weights (no safetensors available).
+    Both torch.serialization and transformers.utils enforce version checks.
+    This patch makes both no-ops for loading.
+    """
+    # Patch torch.serialization (torch >= 2.6)
+    try:
+        import torch.serialization as _ser
+        if hasattr(_ser, 'check_torch_load_is_safe'):
+            _ser.check_torch_load_is_safe = lambda *a, **kw: None
+            print("  Applied TraceVLA torch.serialization safety bypass")
+    except Exception:
+        pass
+
+    # Patch transformers.utils (transformers >= 4.57)
+    try:
+        import transformers.utils.import_utils as _tfu
+        if hasattr(_tfu, 'check_torch_load_is_safe'):
+            _tfu.check_torch_load_is_safe = lambda *a, **kw: None
+            print("  Applied TraceVLA transformers safety bypass")
+        # Also patch the modeling_utils reference
+        import transformers.modeling_utils as _mu
+        if hasattr(_mu, 'check_torch_load_is_safe'):
+            _mu.check_torch_load_is_safe = lambda *a, **kw: None
+    except Exception:
+        pass
+
+
+def _make_spatialvla_simple_processor(model_cfg):
+    """Create a simple processor for SpatialVLA that avoids the broken
+    custom processor class.
+
+    SpatialVLA's custom processor imports _validate_images_text_input_order
+    which may not exist. This processor loads image_processor and tokenizer
+    separately and combines them.
+    """
+    from transformers import AutoImageProcessor, AutoTokenizer
+    from transformers.feature_extraction_utils import BatchFeature
+
+    _img_proc = AutoImageProcessor.from_pretrained(
+        model_cfg.hf_id, trust_remote_code=True,
+    )
+    _tokenizer = AutoTokenizer.from_pretrained(
+        model_cfg.hf_id, trust_remote_code=True,
+    )
+
+    class _SimpleProcessor:
+        def __init__(self, image_processor, tokenizer):
+            self.image_processor = image_processor
+            self.tokenizer = tokenizer
+
+        def __call__(self, text, images, return_tensors="pt", **kwargs):
+            image_inputs = self.image_processor(images, return_tensors=return_tensors)
+            text_inputs = self.tokenizer(text, return_tensors=return_tensors, **kwargs)
+            img_seq_len = getattr(self.image_processor, 'image_seq_length', 256)
+            img_token_id = self.tokenizer.convert_tokens_to_ids("<image>")
+            img_ids = torch.full((1, img_seq_len), img_token_id, dtype=torch.long)
+            text_ids = text_inputs["input_ids"]
+            input_ids = torch.cat([img_ids, text_ids], dim=1)
+            attention_mask = torch.ones_like(input_ids)
+            intrinsic = torch.tensor([[[224.0, 0.0, 112.0],
+                                       [0.0, 224.0, 112.0],
+                                       [0.0, 0.0, 1.0]]])
+            return BatchFeature({
+                "input_ids": input_ids,
+                "attention_mask": attention_mask,
+                "pixel_values": image_inputs["pixel_values"],
+                "intrinsic": intrinsic,
+            })
+
+    return _SimpleProcessor(_img_proc, _tokenizer)
+
+
+def load_model_from_registry(model_name, device="cuda"):
+    """Load any VLA model from the registry with eager attention.
+
+    Uses model_registry.get_model() to retrieve config, then loads the
+    processor and model using the appropriate HuggingFace auto class
+    determined by model_cfg.auto_model_class.
+
+    Supported auto classes:
+        - "AutoModelForVision2Seq" : OpenVLA, ECoT (standard VLMs)
+        - "AutoModelForCausalLM"   : TraceVLA (Phi3V config not registered for Vision2Seq)
+        - "AutoModel"              : SpatialVLA (custom architecture)
+
+    Args:
+        model_name: Key in the model registry (e.g., "openvla-7b", "spatialvla-4b")
+        device: Target device (default: "cuda")
+
+    Returns:
+        Tuple of (processor, model, model_cfg)
+    """
+    model_cfg = _registry_get_model(model_name)
+
+    print(f"Loading model from registry: {model_cfg.name} ({model_cfg.hf_id})")
+    print(f"  Architecture: {model_cfg.architecture}, Auto class: {model_cfg.auto_model_class}")
+
+    # Apply architecture-specific patches before loading
+    if model_cfg.architecture == "phi3_v":
+        _apply_tracevla_torch_patch()
+
+    if model_cfg.auto_model_class == "AutoModel":
+        _apply_spatialvla_monkey_patch()
+
+    # Load processor (SpatialVLA needs special handling)
+    if model_cfg.architecture == "gemma2" and model_cfg.auto_model_class == "AutoModel":
+        processor = _make_spatialvla_simple_processor(model_cfg)
+    else:
+        processor = AutoProcessor.from_pretrained(
+            model_cfg.hf_id,
+            trust_remote_code=model_cfg.trust_remote_code,
+        )
+
+    # Select the correct auto class and load the model
+    auto_class_map = {
+        "AutoModelForVision2Seq": AutoModelForVision2Seq,
+        "AutoModelForCausalLM": AutoModelForCausalLM,
+        "AutoModel": AutoModel,
+    }
+
+    auto_cls = auto_class_map.get(model_cfg.auto_model_class)
+    if auto_cls is None:
+        raise ValueError(
+            f"Unknown auto_model_class '{model_cfg.auto_model_class}' for model "
+            f"'{model_cfg.name}'. Supported: {list(auto_class_map.keys())}"
+        )
+
+    # Some architectures don't support attn_implementation="eager"
+    # Gemma2/PaliGemma DO support eager; InternLM2 has custom attention dims
+    skip_attn_impl = {"internlm2"}
+    load_kwargs = dict(
+        torch_dtype=getattr(torch, model_cfg.torch_dtype),
+        trust_remote_code=model_cfg.trust_remote_code,
+    )
+    if model_cfg.architecture not in skip_attn_impl:
+        load_kwargs["attn_implementation"] = model_cfg.attn_impl
+
+    model = auto_cls.from_pretrained(
+        model_cfg.hf_id, **load_kwargs,
+    ).to(device).eval()
+
+    print(f"  Loaded: {model_cfg.num_layers}L x {model_cfg.num_heads}H, "
+          f"hidden={model_cfg.hidden_dim}, dtype={model_cfg.torch_dtype}")
+    print(f"  Layers path: {model_cfg.layers_path}")
+    print("Model loaded successfully.")
+
+    return processor, model, model_cfg
+
+
+def _unwrap_model(model):
+    """Unwrap PeftModel / DDP wrappers to reach the base model."""
+    # PeftModel wraps under .base_model.model
+    if hasattr(model, "base_model") and hasattr(model.base_model, "model"):
+        return model.base_model.model
+    # DDP / DataParallel
+    if hasattr(model, "module"):
+        return model.module
+    return model
+
+
+def get_layers(model, model_cfg):
+    """Navigate to the transformer layers using the model config's layers_path.
+
+    The layers_path is a dot-separated string (e.g., "language_model.model.layers")
+    that specifies how to traverse the model's module hierarchy to reach the
+    nn.ModuleList of transformer layers.
+
+    Handles PeftModel / DDP wrappers automatically.
+
+    Args:
+        model: The loaded model (may be wrapped by PeftModel or DDP)
+        model_cfg: VLAModelConfig with layers_path attribute
+
+    Returns:
+        nn.ModuleList of transformer layers
+    """
+    # Try direct path first
+    obj = model
+    try:
+        for attr in model_cfg.layers_path.split("."):
+            obj = getattr(obj, attr)
+        return obj
+    except AttributeError:
+        pass
+
+    # Try after unwrapping PeftModel/DDP
+    obj = _unwrap_model(model)
+    for attr in model_cfg.layers_path.split("."):
+        obj = getattr(obj, attr)
+    return obj
 
 
 def extract_for_step(processor, model, image, instruction, boundaries, device):

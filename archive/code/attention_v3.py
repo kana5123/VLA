@@ -178,13 +178,16 @@ class V3Context:
     def get_per_head_p(self, layer_idx: int) -> Optional[object]:
         """Get per-head VAR strength for a specific layer.
 
-        Returns (H,) tensor if per_head_var_strength is set, else None.
-        The returned values already include dim_var_factors gating.
+        Returns (H,) or (B, H) tensor if per_head_var_strength is set, else None.
+        Supports both single-sample (L, H) and micro-batch (B, L, H) layouts.
         """
         if self.per_head_var_strength is None:
             return None
-        # per_head_var_strength shape: (num_layers, num_heads)
-        head_p = self.per_head_var_strength[layer_idx]  # (H,)
+        phs = self.per_head_var_strength
+        if phs.dim() == 2:
+            head_p = phs[layer_idx]  # (H,)
+        else:
+            head_p = phs[:, layer_idx, :]  # (B, H)
         # Apply per-dimension gating
         if self.dim_var_factors is not None:
             head_p = head_p * self.dim_var_factors[self.current_token_idx]
@@ -294,9 +297,12 @@ def apply_var(
     # Step 2: Compute per-head effective p
     if per_head_p is not None:
         # Per-head targeted intervention:
-        # effective_p[h] = per_head_p[h] * rho_mask[h]
-        effective_p = per_head_p.float().to(last.device) * head_mask  # (H,)
-        ep = effective_p.unsqueeze(0).unsqueeze(-1)  # (1, H, 1)
+        # per_head_p: (H,) for single-sample, (B, H) for micro-batch
+        effective_p = per_head_p.float().to(last.device) * head_mask  # (H,) or (B, H)
+        if effective_p.dim() == 1:
+            ep = effective_p.unsqueeze(0).unsqueeze(-1)  # (1, H, 1)
+        else:
+            ep = effective_p.unsqueeze(-1)  # (B, H, 1)
     else:
         # Original scalar p × binary mask
         ep = p * head_mask.unsqueeze(0).unsqueeze(-1)  # (1, H, 1)
@@ -311,12 +317,15 @@ def apply_var(
 
     if redistribution_weights is not None:
         # V2: Use learned per-patch weights from adapter cross-attention
-        # redistribution_weights: (V,) — weights for ALL vision tokens
-        # Extract only non-sink entries, matching nonsink_t ordering
-        redist_for_nonsink = redistribution_weights[nonsink_t]  # (NS,)
-        redist_for_nonsink = redist_for_nonsink.float().to(last.device)
-        # Expand for (B, H, NS) broadcasting
-        rw = redist_for_nonsink.unsqueeze(0).unsqueeze(0)  # (1, 1, NS)
+        # redistribution_weights: (V,) or (B, V) for micro-batch
+        if redistribution_weights.dim() == 1:
+            redist_for_nonsink = redistribution_weights[nonsink_t]  # (NS,)
+            redist_for_nonsink = redist_for_nonsink.float().to(last.device)
+            rw = redist_for_nonsink.unsqueeze(0).unsqueeze(0)  # (1, 1, NS)
+        else:
+            redist_for_nonsink = redistribution_weights[:, nonsink_t]  # (B, NS)
+            redist_for_nonsink = redist_for_nonsink.float().to(last.device)
+            rw = redist_for_nonsink.unsqueeze(1)  # (B, 1, NS)
         bonus = freed * rw  # (B, H, NS)
     else:
         # Original: proportional or object-weighted redistribution
@@ -376,7 +385,7 @@ def apply_var(
                     text_idx = text_max_global[b, h].item()
 
                     # Subtract from text sink
-                    attn_weights[b, h, 0, text_idx] = attn_weights[b, h, 0, text_idx] - move_amt.to(orig_dtype)
+                    attn_weights[b, h, -1, text_idx] = attn_weights[b, h, -1, text_idx] - move_amt.to(orig_dtype)
 
                     # Add to non-sink vision tokens using same redistribution as vision sink
                     # Use redistribution_weights if available, else proportional
@@ -391,8 +400,10 @@ def apply_var(
                                 redist_clean[:, si] = 0.0
                         redist_sum = redist_clean.sum(dim=-1, keepdim=True).clamp(min=1e-9)
                         redist_norm = redist_clean / redist_sum
-                        attn_weights[b, h, 0, :vision_end] = (
-                            attn_weights[b, h, 0, :vision_end] + move_amt.to(orig_dtype) * redist_norm[0].to(orig_dtype)
+                        # Use correct batch index (b) for batched redist, or 0 for single-sample
+                        ridx = b if redist_norm.size(0) > 1 else 0
+                        attn_weights[b, h, -1, :vision_end] = (
+                            attn_weights[b, h, -1, :vision_end] + move_amt.to(orig_dtype) * redist_norm[ridx].to(orig_dtype)
                         )
                     else:
                         # Proportional: distribute equally to non-sink vision
@@ -401,7 +412,7 @@ def apply_var(
                             per_token = move_amt / n_targets
                             for vi in range(vision_end):
                                 if vi not in sink_set:
-                                    attn_weights[b, h, 0, vi] = attn_weights[b, h, 0, vi] + per_token.to(orig_dtype)
+                                    attn_weights[b, h, -1, vi] = attn_weights[b, h, -1, vi] + per_token.to(orig_dtype)
 
     return attn_weights
 
@@ -608,15 +619,84 @@ def apply_vt_rebalance(
 # ======================================================================
 
 _original_fn_v3: Optional[Callable] = None
+_patched_arch: Optional[str] = None  # "llama", "gemma2", or "phi3_v"
+_patched_class: Optional[type] = None  # The attention class that was patched
+
+
+def _apply_v3_enhancements(ctx: V3Context, attn_weights: torch.Tensor, layer_idx: int) -> torch.Tensor:
+    """Apply V3 attention enhancements (VAR/ACT/VTR/BG) to attention weights.
+
+    Shared logic extracted to avoid duplication across architecture-specific
+    patched forwards. Operates on post-softmax (B, H, Q, K) weights.
+    """
+    if not ctx.is_active(layer_idx):
+        return attn_weights
+
+    if ctx.use_vt_rebalance:
+        attn_weights = apply_vt_rebalance(
+            attn_weights, ctx.vision_end, ctx.vt_shift_fraction,
+        )
+
+    if ctx.use_var:
+        # Determine sink indices: dynamic detection or hardcoded
+        if ctx.dynamic_sink_detection:
+            last_attn = attn_weights[:, :, -1, :]
+            sink_indices = detect_sinks(last_attn, alpha=ctx.sink_alpha)
+            if not sink_indices:
+                sink_indices = ctx.var_sink_indices
+        else:
+            sink_indices = ctx.var_sink_indices
+
+        obj_idx = ctx.object_patch_indices if ctx.use_object_redirect else None
+        obj_w = ctx.object_redirect_weight if ctx.use_object_redirect else 1.0
+        extra_map = None
+        if ctx.use_temporal and ctx.temporal_patch_indices:
+            extra_map = {idx: ctx.temporal_boost_weight for idx in ctx.temporal_patch_indices}
+
+        attn_weights = apply_var(
+            attn_weights, sink_indices, ctx.vision_end,
+            ctx.effective_var_p(), ctx.var_rho,
+            object_indices=obj_idx, object_weight=obj_w,
+            extra_boost_map=extra_map,
+            per_head_p=ctx.get_per_head_p(layer_idx),
+            redistribution_weights=ctx.redistribution_weights,
+            text_sink_enabled=ctx.text_sink_enabled,
+            text_sink_p=ctx.text_sink_p,
+            text_sink_threshold=ctx.text_sink_threshold,
+            text_end=ctx.text_end,
+        )
+
+    if ctx.use_act:
+        attn_weights = apply_act(attn_weights, ctx.vision_end, ctx.act_alpha, ctx.act_beta)
+
+    if ctx.use_bg_suppress and ctx.object_patch_indices:
+        attn_weights = apply_bg_suppress_v3(
+            attn_weights, ctx.object_patch_indices, ctx.vision_end, ctx.bg_gamma,
+        )
+
+    return attn_weights
+
+
+def _apply_v3_spin(ctx: V3Context, attn_output: torch.Tensor, attn_weights: torch.Tensor, layer_idx: int) -> torch.Tensor:
+    """Apply SPIN head suppression (operates on output, not weights)."""
+    if ctx.is_active(layer_idx) and ctx.use_spin:
+        attn_output = apply_spin(
+            attn_output, attn_weights, ctx.vision_end,
+            ctx.spin_top_k, ctx.spin_suppress_alpha,
+        )
+    return attn_output
 
 
 def _make_v3_patched_forward(ctx: V3Context) -> Callable:
     """Create a patched LlamaAttention.forward that injects VAR/ACT/SPIN/VTR.
 
-    Compatible with transformers 4.46.x where attention is computed inside
-    LlamaAttention.forward (no module-level eager_attention_forward).
+    Compatible with transformers 4.57.x where LlamaAttention uses:
+      - hidden_shape = (*input_shape, -1, self.head_dim) for reshaping
+      - self.num_key_value_groups (not self.num_heads / self.num_key_value_heads)
+      - self.scaling (not 1/sqrt(head_dim))
+      - position_embeddings as required tuple(cos, sin)
+      - Returns (attn_output, attn_weights) — 2 values, not 3
     """
-    import math
     from transformers.models.llama.modeling_llama import (
         apply_rotary_pos_emb,
         repeat_kv,
@@ -625,100 +705,207 @@ def _make_v3_patched_forward(ctx: V3Context) -> Callable:
     def patched_llama_attention_forward(
         self,
         hidden_states,
+        position_embeddings,
         attention_mask=None,
-        position_ids=None,
-        past_key_value=None,
-        output_attentions=False,
-        use_cache=False,
+        past_key_values=None,
         cache_position=None,
-        position_embeddings=None,
         **kwargs,
     ):
-        bsz, q_len, _ = hidden_states.size()
+        input_shape = hidden_states.shape[:-1]
+        hidden_shape = (*input_shape, -1, self.head_dim)
 
-        query_states = self.q_proj(hidden_states)
-        key_states = self.k_proj(hidden_states)
-        value_states = self.v_proj(hidden_states)
+        query_states = self.q_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+        key_states = self.k_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+        value_states = self.v_proj(hidden_states).view(hidden_shape).transpose(1, 2)
 
-        query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
-        key_states = key_states.view(bsz, q_len, self.num_key_value_heads, self.head_dim).transpose(1, 2)
-        value_states = value_states.view(bsz, q_len, self.num_key_value_heads, self.head_dim).transpose(1, 2)
-
-        if position_embeddings is None:
-            cos, sin = self.rotary_emb(value_states, position_ids)
-        else:
-            cos, sin = position_embeddings
+        cos, sin = position_embeddings
         query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)
 
-        if past_key_value is not None:
+        if past_key_values is not None:
             cache_kwargs = {"sin": sin, "cos": cos, "cache_position": cache_position}
-            key_states, value_states = past_key_value.update(key_states, value_states, self.layer_idx, cache_kwargs)
+            key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx, cache_kwargs)
 
+        # Inline eager attention with V3 injection
         key_states = repeat_kv(key_states, self.num_key_value_groups)
         value_states = repeat_kv(value_states, self.num_key_value_groups)
 
-        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(self.head_dim)
+        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) * self.scaling
 
         if attention_mask is not None:
             causal_mask = attention_mask[:, :, :, : key_states.shape[-2]]
             attn_weights = attn_weights + causal_mask
 
         attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)
-        attn_weights = nn.functional.dropout(attn_weights, p=self.attention_dropout, training=self.training)
+        attn_weights = nn.functional.dropout(
+            attn_weights, p=0.0 if not self.training else self.attention_dropout, training=self.training,
+        )
 
         # ── V3 Enhancement injection point ──
         layer_idx = getattr(self, "layer_idx", -1)
-
-        if ctx.is_active(layer_idx):
-            if ctx.use_vt_rebalance:
-                attn_weights = apply_vt_rebalance(
-                    attn_weights, ctx.vision_end, ctx.vt_shift_fraction,
-                )
-
-            if ctx.use_var:
-                # Determine sink indices: dynamic detection or hardcoded
-                if ctx.dynamic_sink_detection:
-                    last_attn = attn_weights[:, :, -1, :]  # (B, H, K)
-                    sink_indices = detect_sinks(last_attn, alpha=ctx.sink_alpha)
-                    if not sink_indices:
-                        sink_indices = ctx.var_sink_indices  # fallback
-                else:
-                    sink_indices = ctx.var_sink_indices
-
-                obj_idx = ctx.object_patch_indices if ctx.use_object_redirect else None
-                obj_w = ctx.object_redirect_weight if ctx.use_object_redirect else 1.0
-                extra_map = None
-                if ctx.use_temporal and ctx.temporal_patch_indices:
-                    extra_map = {idx: ctx.temporal_boost_weight for idx in ctx.temporal_patch_indices}
-
-                attn_weights = apply_var(
-                    attn_weights, sink_indices, ctx.vision_end,
-                    ctx.effective_var_p(), ctx.var_rho,
-                    object_indices=obj_idx, object_weight=obj_w,
-                    extra_boost_map=extra_map,
-                    per_head_p=ctx.get_per_head_p(layer_idx),
-                    redistribution_weights=ctx.redistribution_weights,
-                    text_sink_enabled=ctx.text_sink_enabled,
-                    text_sink_p=ctx.text_sink_p,
-                    text_sink_threshold=ctx.text_sink_threshold,
-                    text_end=ctx.text_end,
-                )
-
-            if ctx.use_act:
-                attn_weights = apply_act(attn_weights, ctx.vision_end, ctx.act_alpha, ctx.act_beta)
-
-            if ctx.use_bg_suppress and ctx.object_patch_indices:
-                attn_weights = apply_bg_suppress_v3(
-                    attn_weights, ctx.object_patch_indices, ctx.vision_end, ctx.bg_gamma,
-                )
-
+        attn_weights = _apply_v3_enhancements(ctx, attn_weights, layer_idx)
         attn_output = torch.matmul(attn_weights, value_states)
+        attn_output = _apply_v3_spin(ctx, attn_output, attn_weights, layer_idx)
 
-        if ctx.is_active(layer_idx) and ctx.use_spin:
-            attn_output = apply_spin(
-                attn_output, attn_weights, ctx.vision_end,
-                ctx.spin_top_k, ctx.spin_suppress_alpha,
+        attn_output = attn_output.transpose(1, 2).contiguous()
+        attn_output = attn_output.reshape(*input_shape, -1).contiguous()
+        attn_output = self.o_proj(attn_output)
+
+        return attn_output, attn_weights
+
+    return patched_llama_attention_forward
+
+
+def _make_v3_patched_forward_gemma2(ctx: V3Context) -> Callable:
+    """Create a patched Gemma2Attention.forward with V3 injection.
+
+    Compatible with transformers 4.57.x Gemma2Attention API.
+    Handles Gemma2-specific features: logit softcapping, sliding window.
+    """
+    from transformers.models.gemma2.modeling_gemma2 import (
+        apply_rotary_pos_emb,
+        repeat_kv,
+    )
+
+    def patched_gemma2_attention_forward(
+        self,
+        hidden_states,
+        position_embeddings,
+        attention_mask=None,
+        past_key_values=None,
+        cache_position=None,
+        **kwargs,
+    ):
+        input_shape = hidden_states.shape[:-1]
+        hidden_shape = (*input_shape, -1, self.head_dim)
+
+        query_states = self.q_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+        key_states = self.k_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+        value_states = self.v_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+
+        cos, sin = position_embeddings
+        query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)
+
+        if past_key_values is not None:
+            cache_kwargs = {"sin": sin, "cos": cos, "cache_position": cache_position}
+            key_states, value_states = past_key_values.update(
+                key_states, value_states, self.layer_idx, cache_kwargs,
             )
+
+        # Inline eager attention with V3 injection (instead of delegating)
+        key_states = repeat_kv(key_states, self.num_key_value_groups)
+        value_states = repeat_kv(value_states, self.num_key_value_groups)
+
+        scaling = self.scaling if hasattr(self, "scaling") else self.head_dim ** -0.5
+        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) * scaling
+
+        # Gemma2 logit softcapping
+        softcap = getattr(self, "attn_logit_softcapping", None)
+        if softcap is not None:
+            attn_weights = attn_weights / softcap
+            attn_weights = torch.tanh(attn_weights)
+            attn_weights = attn_weights * softcap
+
+        if attention_mask is not None:
+            causal_mask = attention_mask[:, :, :, : key_states.shape[-2]]
+            attn_weights = attn_weights + causal_mask
+
+        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)
+        dropout_p = self.attention_dropout if self.training else 0.0
+        attn_weights = nn.functional.dropout(attn_weights, p=dropout_p, training=self.training)
+
+        # ── V3 Enhancement injection point ──
+        layer_idx = getattr(self, "layer_idx", -1)
+        attn_weights = _apply_v3_enhancements(ctx, attn_weights, layer_idx)
+        attn_output = torch.matmul(attn_weights, value_states)
+        attn_output = _apply_v3_spin(ctx, attn_output, attn_weights, layer_idx)
+
+        attn_output = attn_output.transpose(1, 2).contiguous()
+        attn_output = attn_output.reshape(*input_shape, -1).contiguous()
+        attn_output = self.o_proj(attn_output)
+
+        return attn_output, attn_weights
+
+    return patched_gemma2_attention_forward
+
+
+def _make_v3_patched_forward_phi3v(ctx: V3Context) -> Callable:
+    """Create a patched Phi3Attention.forward with V3 injection.
+
+    Handles Phi3V-specific features: fused qkv_proj (single projection
+    for Q, K, V concatenated), custom RoPE variants.
+    """
+    import math
+
+    def patched_phi3v_attention_forward(
+        self,
+        hidden_states,
+        attention_mask=None,
+        position_ids=None,
+        past_key_value=None,
+        output_attentions=False,
+        use_cache=False,
+        **kwargs,
+    ):
+        bsz, q_len, _ = hidden_states.size()
+
+        # Phi3V uses fused QKV projection
+        qkv = self.qkv_proj(hidden_states)
+        query_pos = self.num_heads * self.head_dim
+        query_states = qkv[..., :query_pos]
+        key_states = qkv[..., query_pos:query_pos + self.num_key_value_heads * self.head_dim]
+        value_states = qkv[..., query_pos + self.num_key_value_heads * self.head_dim:]
+
+        query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+        key_states = key_states.view(bsz, q_len, self.num_key_value_heads, self.head_dim).transpose(1, 2)
+        value_states = value_states.view(bsz, q_len, self.num_key_value_heads, self.head_dim).transpose(1, 2)
+
+        kv_seq_len = key_states.shape[-2]
+        if past_key_value is not None:
+            if self.layer_idx is None:
+                raise ValueError("layer_idx must be set for cache use")
+            kv_seq_len += past_key_value.get_usable_length(kv_seq_len, self.layer_idx)
+
+        cos, sin = self.rotary_emb(value_states, position_ids, seq_len=kv_seq_len)
+
+        # Import apply_rotary_pos_emb from the model's own module
+        _apply_rope = getattr(self, "_apply_rotary_pos_emb", None)
+        if _apply_rope is None:
+            # Fallback: use the module-level function from the model's module
+            model_module = type(self).__module__
+            import importlib
+            mod = importlib.import_module(model_module)
+            _apply_rope = mod.apply_rotary_pos_emb
+        query_states, key_states = _apply_rope(query_states, key_states, cos, sin, position_ids)
+
+        if past_key_value is not None:
+            cache_kwargs = {"sin": sin, "cos": cos}
+            key_states, value_states = past_key_value.update(key_states, value_states, self.layer_idx, cache_kwargs)
+
+        # GQA expansion
+        _repeat_kv = None
+        try:
+            model_module = type(self).__module__
+            import importlib
+            mod = importlib.import_module(model_module)
+            _repeat_kv = mod.repeat_kv
+        except (ImportError, AttributeError):
+            from transformers.models.llama.modeling_llama import repeat_kv as _repeat_kv
+        key_states = _repeat_kv(key_states, self.num_key_value_groups)
+        value_states = _repeat_kv(value_states, self.num_key_value_groups)
+
+        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(self.head_dim)
+
+        if attention_mask is not None:
+            attn_weights = attn_weights + attention_mask
+
+        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(value_states.dtype)
+        attn_weights = nn.functional.dropout(attn_weights, p=self.attention_dropout if hasattr(self, 'attention_dropout') else 0.0, training=self.training)
+
+        # ── V3 Enhancement injection point ──
+        layer_idx = getattr(self, "layer_idx", -1)
+        attn_weights = _apply_v3_enhancements(ctx, attn_weights, layer_idx)
+        attn_output = torch.matmul(attn_weights, value_states)
+        attn_output = _apply_v3_spin(ctx, attn_output, attn_weights, layer_idx)
 
         if attn_output.size() != (bsz, self.num_heads, q_len, self.head_dim):
             raise ValueError(
@@ -735,30 +922,113 @@ def _make_v3_patched_forward(ctx: V3Context) -> Callable:
 
         return attn_output, attn_weights, past_key_value
 
-    return patched_llama_attention_forward
+    return patched_phi3v_attention_forward
 
 
-def install_v3_patch(ctx: Optional[V3Context] = None) -> None:
-    """Patch LlamaAttention.forward with V3-enhanced version."""
-    global _original_fn_v3
-    from transformers.models.llama.modeling_llama import LlamaAttention
+def _get_attention_class(architecture: str, model=None):
+    """Get the attention class for a given architecture.
+
+    Returns (attention_class, architecture_name) tuple.
+    """
+    if architecture == "llama":
+        from transformers.models.llama.modeling_llama import LlamaAttention
+        return LlamaAttention, "llama"
+    elif architecture == "gemma2":
+        from transformers.models.gemma2.modeling_gemma2 import Gemma2Attention
+        return Gemma2Attention, "gemma2"
+    elif architecture == "phi3_v":
+        # Phi3V uses trust_remote_code — get attention class from loaded model
+        if model is not None:
+            # Unwrap PeftModel/DDP if needed
+            base = model
+            if hasattr(base, "base_model") and hasattr(base.base_model, "model"):
+                base = base.base_model.model
+            elif hasattr(base, "module"):
+                base = base.module
+            # Walk the model to find the attention class
+            layers_path = "model.layers"
+            obj = base
+            for attr in layers_path.split("."):
+                obj = getattr(obj, attr, None)
+                if obj is None:
+                    break
+            if obj is not None and len(obj) > 0:
+                attn_module = getattr(obj[0], "self_attn", None)
+                if attn_module is not None:
+                    return type(attn_module), "phi3_v"
+        # Fallback: try importing from transformers
+        try:
+            from transformers.models.phi3.modeling_phi3 import Phi3Attention
+            return Phi3Attention, "phi3_v"
+        except ImportError:
+            raise ValueError(
+                "Cannot find Phi3V attention class. Pass the loaded model "
+                "to install_v3_patch() so it can discover the class dynamically."
+            )
+    else:
+        raise ValueError(
+            f"Unsupported architecture for V3 patching: {architecture}. "
+            f"Supported: llama, gemma2, phi3_v"
+        )
+
+
+def _get_patched_forward(architecture: str, ctx: V3Context) -> Callable:
+    """Get the appropriate patched forward function for an architecture."""
+    if architecture == "llama":
+        return _make_v3_patched_forward(ctx)
+    elif architecture == "gemma2":
+        return _make_v3_patched_forward_gemma2(ctx)
+    elif architecture == "phi3_v":
+        return _make_v3_patched_forward_phi3v(ctx)
+    else:
+        raise ValueError(f"No patched forward for architecture: {architecture}")
+
+
+def install_v3_patch(
+    ctx: Optional[V3Context] = None,
+    architecture: str = "llama",
+    model=None,
+) -> None:
+    """Patch the attention forward for the specified architecture.
+
+    Args:
+        ctx: V3Context with enhancement parameters. Uses global if None.
+        architecture: "llama", "gemma2", or "phi3_v"
+        model: The loaded model instance (required for phi3_v to discover
+               the attention class from trust_remote_code modules).
+    """
+    global _original_fn_v3, _patched_arch, _patched_class
 
     if _original_fn_v3 is not None:
         return
 
-    _original_fn_v3 = LlamaAttention.forward
+    attn_class, arch_name = _get_attention_class(architecture, model=model)
     active_ctx = ctx if ctx is not None else _v3_ctx
-    LlamaAttention.forward = _make_v3_patched_forward(active_ctx)
-    print("[attention_v3] V3 patched LlamaAttention.forward installed.")
+    patched_fn = _get_patched_forward(arch_name, active_ctx)
+
+    _original_fn_v3 = attn_class.forward
+    _patched_arch = arch_name
+    _patched_class = attn_class
+    attn_class.forward = patched_fn
+    print(f"[attention_v3] V3 patched {attn_class.__name__}.forward installed ({arch_name}).")
 
 
 def uninstall_v3_patch() -> None:
-    """Restore original LlamaAttention.forward."""
-    global _original_fn_v3
-    from transformers.models.llama.modeling_llama import LlamaAttention
+    """Restore the original attention forward."""
+    global _original_fn_v3, _patched_arch, _patched_class
 
     if _original_fn_v3 is None:
         return
-    LlamaAttention.forward = _original_fn_v3
+
+    if _patched_class is not None:
+        _patched_class.forward = _original_fn_v3
+        print(f"[attention_v3] Original {_patched_class.__name__}.forward restored.")
+    else:
+        # Legacy fallback
+        from transformers.models.llama.modeling_llama import LlamaAttention
+        LlamaAttention.forward = _original_fn_v3
+        print("[attention_v3] Original LlamaAttention.forward restored.")
+
     _original_fn_v3 = None
-    print("[attention_v3] Original LlamaAttention.forward restored.")
+    _patched_arch = None
+    _patched_class = None

@@ -8,9 +8,8 @@ Architecture:
     Output: p ∈ [0, 1]^(4 × 32)  (per-head VAR strength for layers 28-31)
 
 Initialization:
-    Output layer is zero-initialized (LoRA principle) so the adapter
-    starts as identity (p=0.5 after sigmoid of 0, but we use a bias trick
-    to start near 0 — see _init_output_near_zero).
+    Output layer bias = -0.405 → sigmoid ≈ 0.4 (conservative VAR-optimal start).
+    See _init_output_near_var_optimal() for rationale.
 """
 
 from __future__ import annotations
@@ -52,22 +51,22 @@ class AttentionAdapter(nn.Module):
             nn.Linear(intermediate_dim // 2, output_dim),
         )
 
-        # Initialize output layer so sigmoid output starts near 0
-        # sigmoid(-4) ≈ 0.018, so the adapter starts with near-zero modification
-        self._init_output_near_zero()
+        # Initialize output layer so sigmoid output starts near p=0.4
+        # Conservative vs VAR's 0.6 due to object-centric concentration
+        self._init_output_near_var_optimal()
 
-    def _init_output_near_zero(self):
-        """Small-random weights + negative bias → sigmoid ≈ 0 at start.
+    def _init_output_near_var_optimal(self):
+        """Small-random weights + moderate bias → sigmoid ≈ 0.4 at start.
 
-        Uses small random weights (std=0.01) instead of zero to allow
-        gradient flow to earlier layers. Zero weights block backprop:
-        dL/dx = W^T @ dL/dy = 0 when W=0, starving all upstream layers.
-        With std=0.01: output ≈ N(0, 0.01)*x + (-4) ≈ -4 ± noise,
-        so sigmoid still ≈ 0.018 (near-identity start preserved).
+        Conservative start: our object-centric redistribution concentrates
+        freed attention on ~30-50 object tokens (vs VAR's 256 all-vision),
+        so each token gets 5-8x more bonus. p=0.4 is safer than VAR's p=0.6.
+        sigmoid(-0.405) ≈ 0.40. Adapter can learn to increase or decrease.
+        Previous bias=-4.0 (sigmoid≈0.018) caused gradient starvation.
         """
         last_linear = self.net[-1]
         nn.init.normal_(last_linear.weight, std=0.01)
-        nn.init.constant_(last_linear.bias, -4.0)  # sigmoid(-4) ≈ 0.018
+        nn.init.constant_(last_linear.bias, -0.405)  # sigmoid(-0.405) ≈ 0.40
 
     def forward(self, hidden_state: torch.Tensor) -> torch.Tensor:
         """Predict per-head VAR strengths.
@@ -203,7 +202,7 @@ class AttentionAdapterV2(nn.Module):
         mask_dim: Projection dimension for the object mask summary.
         query_dim: Projection dimension for cross-attention query/keys.
         temperature: Softmax temperature in cross-attention.
-        blend_init: Initial logit for blend_alpha (sigmoid(blend_init) ~ 0.018).
+        blend_init: Initial logit for blend_alpha (default -2.0 → sigmoid ≈ 0.12).
         dropout: Dropout rate inside the p_head MLP.
     """
 
@@ -246,8 +245,8 @@ class AttentionAdapterV2(nn.Module):
             nn.Dropout(dropout),
             nn.Linear(output_dim, output_dim),
         )
-        # Zero-init last layer for near-zero start
-        self._init_p_head_near_zero()
+        # Small-random init + positive bias for VAR-optimal start
+        self._init_p_head_near_var_optimal()
 
         # ── Branch 2: redistribution weights via cross-attention ──────────
         self.query_proj = nn.Linear(hidden_dim, query_dim)
@@ -263,16 +262,17 @@ class AttentionAdapterV2(nn.Module):
 
     # -- Initialization helpers -------------------------------------------
 
-    def _init_p_head_near_zero(self):
-        """Small-random weights + negative bias -> sigmoid ~ 0 at start.
+    def _init_p_head_near_var_optimal(self):
+        """Small-random weights + moderate bias -> sigmoid ~ 0.4 at start.
 
-        Uses small random weights (std=0.01) instead of zero to allow
-        gradient flow to earlier layers (h_proj, mask_linear, p_head.0).
-        Zero weights block backprop: dL/dx = W^T @ dL/dy = 0 when W=0.
+        Conservative vs VAR's p=0.6: our object-centric redistribution
+        concentrates on ~30-50 tokens (not 256), so each gets 5-8x more.
+        sigmoid(-0.405) ≈ 0.40. Learning can adjust up or down.
+        Previous bias=-4.0 (sigmoid≈0.018) starved gradient signal.
         """
         last_linear = self.p_head[-1]
         nn.init.normal_(last_linear.weight, std=0.01)
-        nn.init.constant_(last_linear.bias, -4.0)  # sigmoid(-4) ~ 0.018
+        nn.init.constant_(last_linear.bias, -0.405)  # sigmoid(-0.405) ~ 0.40
 
     def _get_mask_linear(self) -> nn.Linear:
         """Return the mask projection layer."""
@@ -282,7 +282,7 @@ class AttentionAdapterV2(nn.Module):
 
     @property
     def blend_alpha(self) -> torch.Tensor:
-        """Blend factor in [0, 1], starts at sigmoid(-4) ~ 0.018."""
+        """Blend factor in [0, 1], starts at sigmoid(blend_init)."""
         return torch.sigmoid(self._blend_logit)
 
     # -- Forward ----------------------------------------------------------

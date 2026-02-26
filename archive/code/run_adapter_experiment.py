@@ -22,6 +22,7 @@ import time
 from pathlib import Path
 
 import config
+from model_registry import list_experiment_models
 
 # ── Experiment Configurations ────────────────────────────────────────────
 
@@ -58,21 +59,28 @@ CONFIGS = {
         "use_lora": True,
         "description": "LoRA fine-tuning baseline (q_proj + v_proj, rank 16)",
     },
-    # ── Ablations (require training) ──
+    # ── Ablations (optional, for internal analysis only) ──
     "v1": {
         "adapter_version": 1,
-        "description": "AttentionAdapter V1, MLP-only per-head p-matrix (no object mask)",
+        "description": "[Ablation] AttentionAdapter V1, MLP-only per-head p-matrix (no object mask)",
     },
     "v2-prop": {
         "adapter_version": 2,
         "freeze_blend": True,
-        "description": "V2 with blend frozen (proportional redistribution only, no cross-attention)",
+        "description": "[Ablation] V2 with blend frozen (proportional redistribution only)",
     },
-    # ── Main method ──
+    # ── Main methods (these are what we train and compare) ──
     "v2-full": {
         "adapter_version": 2,
         "freeze_blend": False,
-        "description": "AttentionAdapterV2, object-centric dynamic adapter",
+        "description": "AttentionAdapterV2, object-centric dynamic adapter (OUR METHOD)",
+    },
+    "lora+adapter": {
+        "adapter_version": 2,
+        "freeze_blend": False,
+        "use_lora": True,
+        "joint_training": True,
+        "description": "LoRA + AttentionAdapterV2 joint training (OUR METHOD + LoRA)",
     },
 }
 
@@ -154,7 +162,12 @@ def train_config(
     n_gpus = len(gpu_list)
 
     # Choose training script
-    train_script = "lora_train.py" if cfg.get("use_lora") else "adapter_train.py"
+    if cfg.get("joint_training"):
+        train_script = "adapter_train.py"  # adapter_train handles LoRA+adapter jointly
+    elif cfg.get("use_lora"):
+        train_script = "lora_train.py"
+    else:
+        train_script = "adapter_train.py"
 
     if n_gpus > 1:
         cmd = [
@@ -167,7 +180,13 @@ def train_config(
 
     cmd.extend(["--model", model_name, "--output_dir", str(output_dir)])
 
-    if not cfg.get("use_lora"):
+    if cfg.get("joint_training"):
+        # Joint LoRA + Adapter: pass both flags to adapter_train.py
+        cmd.extend(["--adapter_version", str(cfg["adapter_version"])])
+        cmd.append("--use_lora")
+        if cfg.get("freeze_blend"):
+            cmd.append("--freeze_blend")
+    elif not cfg.get("use_lora"):
         cmd.extend(["--adapter_version", str(cfg["adapter_version"])])
         if cfg.get("freeze_blend"):
             cmd.append("--freeze_blend")
@@ -239,6 +258,28 @@ def eval_config(
             "--num_episodes", str(num_eval_episodes),
             "--output_dir", str(eval_dir),
             "--baseline_only",
+        ]
+    elif cfg.get("joint_training"):
+        # Joint LoRA + Adapter: need both LoRA dir and adapter .pt checkpoint
+        ckpt_dir = output_dir / "checkpoints"
+        adapter_ckpt = ckpt_dir / "best.pt"
+        if not adapter_ckpt.exists():
+            adapter_ckpt = ckpt_dir / "final.pt"
+        lora_ckpt = ckpt_dir / "lora_best"
+        if not lora_ckpt.exists():
+            lora_ckpt = ckpt_dir / "lora_final"
+        if not adapter_ckpt.exists() or not lora_ckpt.exists():
+            print(f"[{name}] ERROR: Missing LoRA+Adapter checkpoints in {ckpt_dir}")
+            return False
+
+        cmd = [
+            sys.executable, "adapter_eval.py",
+            "--model", model_name,
+            "--checkpoint", str(adapter_ckpt),
+            "--lora_checkpoint", str(lora_ckpt),
+            "--device", device,
+            "--num_episodes", str(num_eval_episodes),
+            "--output_dir", str(eval_dir),
         ]
     elif cfg.get("use_lora"):
         # LoRA: PEFT saves as directories, use lora_eval for these
@@ -314,6 +355,7 @@ def main():
     parser.add_argument("--skip_eval", action="store_true",
                         help="Skip evaluation, training only")
     parser.add_argument("--model", type=str, default="openvla-7b",
+                        choices=list_experiment_models(),
                         help="VLA model name from model_registry")
     parser.add_argument("--seed", type=int, default=42,
                         help="Random seed (default: 42)")

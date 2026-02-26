@@ -20,7 +20,7 @@ def test_v2_adapter_config_exists():
 
     # Blend alpha
     assert hasattr(config, "ADAPTER_V2_BLEND_INIT")
-    assert config.ADAPTER_V2_BLEND_INIT == -4.0
+    assert config.ADAPTER_V2_BLEND_INIT == -1.0
 
     # Object mask MLP
     assert hasattr(config, "ADAPTER_V2_MASK_DIM")

@@ -33,7 +33,7 @@ from peft import LoraConfig, get_peft_model
 
 import config
 from adapter_data import ActionTokenizer, create_dataloaders
-from extract_attention import load_model_from_registry, get_layers
+from extract_attention import load_model_from_registry
 from model_registry import get_model, list_experiment_models
 
 
@@ -46,7 +46,7 @@ def forward_lora(
     device: torch.device,
     model_cfg,
 ) -> torch.Tensor:
-    """Teacher-forced forward pass with LoRA-modified model.
+    """Teacher-forced forward pass with LoRA-modified model (single sample).
 
     Returns:
         total_loss: scalar CE loss
@@ -94,6 +94,110 @@ def forward_lora(
         }
 
     return total_loss / model_cfg.action_tokens
+
+
+def forward_lora_micro_batch(
+    model,
+    processor,
+    images: list,
+    instructions: list[str],
+    target_token_ids_list: list[list[int]],
+    device: torch.device,
+    model_cfg,
+) -> torch.Tensor:
+    """Batched teacher-forced forward pass for M samples simultaneously.
+
+    Left-pads inputs to equal length, then runs a single batched forward pass
+    per action token. Mathematically equivalent to per-sample processing.
+
+    Returns:
+        total_loss: scalar CE loss averaged over M samples and action tokens
+    """
+    M = len(images)
+
+    # Tokenize all samples
+    all_inputs = []
+    for img, instr in zip(images, instructions):
+        prompt = model_cfg.prompt_template.format(instruction=instr)
+        inp = processor(prompt, img, return_tensors="pt")
+        all_inputs.append(inp)
+
+    # Left-pad to max sequence length
+    lengths = [inp["input_ids"].shape[-1] for inp in all_inputs]
+    max_len = max(lengths)
+    pad_token_id = getattr(processor, "pad_token_id", None) or 0
+
+    padded_ids = []
+    padded_masks = []
+    pixel_values_list = []
+
+    for inp, L in zip(all_inputs, lengths):
+        pad_len = max_len - L
+        ids = inp["input_ids"][0]
+        if pad_len > 0:
+            pad_ids = torch.full((pad_len,), pad_token_id, dtype=ids.dtype)
+            ids = torch.cat([pad_ids, ids])
+            mask = torch.cat([torch.zeros(pad_len, dtype=torch.long), torch.ones(L, dtype=torch.long)])
+        else:
+            mask = torch.ones(L, dtype=torch.long)
+        padded_ids.append(ids)
+        padded_masks.append(mask)
+        if "pixel_values" in inp:
+            pixel_values_list.append(inp["pixel_values"])
+
+    input_ids = torch.stack(padded_ids).to(device)
+    attention_mask = torch.stack(padded_masks).to(device)
+    pixel_values = torch.cat(pixel_values_list, dim=0).to(device) if pixel_values_list else None
+    if pixel_values is not None and pixel_values.dtype != model.dtype:
+        pixel_values = pixel_values.to(model.dtype)
+
+    total_loss = torch.tensor(0.0, device=device, requires_grad=True)
+
+    model_inputs = {
+        "input_ids": input_ids,
+        "attention_mask": attention_mask,
+        "pixel_values": pixel_values,
+    }
+    # Pass architecture-specific extra inputs
+    for extra_key in ("intrinsic", "image_sizes"):
+        if extra_key in all_inputs[0]:
+            model_inputs[extra_key] = torch.cat(
+                [inp[extra_key] for inp in all_inputs], dim=0
+            ).to(device)
+
+    for token_idx in range(model_cfg.action_tokens):
+        outputs = model(**model_inputs, use_cache=False)
+        logits = outputs.logits[:, -1, :]  # (M, vocab_size)
+
+        targets = torch.tensor(
+            [target_token_ids_list[b][token_idx] for b in range(M)],
+            device=device, dtype=torch.long,
+        )
+        loss_i = F.cross_entropy(logits.float(), targets)
+        total_loss = total_loss + loss_i
+
+        # Teacher forcing: append ground-truth tokens
+        gt_tokens = torch.tensor(
+            [[target_token_ids_list[b][token_idx]] for b in range(M)],
+            device=device, dtype=torch.long,
+        )
+        input_ids = torch.cat([input_ids, gt_tokens], dim=-1)
+        attention_mask = torch.cat([
+            attention_mask,
+            torch.ones(M, 1, device=device, dtype=attention_mask.dtype),
+        ], dim=-1)
+        model_inputs = {
+            "input_ids": input_ids,
+            "attention_mask": attention_mask,
+            "pixel_values": pixel_values,
+        }
+        for extra_key in ("intrinsic", "image_sizes"):
+            if extra_key in all_inputs[0]:
+                model_inputs[extra_key] = torch.cat(
+                    [inp[extra_key] for inp in all_inputs], dim=0
+                ).to(device)
+
+    return total_loss / (M * model_cfg.action_tokens)
 
 
 @torch.no_grad()
@@ -175,7 +279,14 @@ def train():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--resume", type=str, default=None, help="Path to PEFT checkpoint dir")
     parser.add_argument("--output_dir", type=str, default=None)
+    parser.add_argument("--max_steps", type=int, default=None,
+                        help="Override config.LORA_MAX_STEPS (for smoke tests)")
+    parser.add_argument("--micro_batch_size", type=int, default=8,
+                        help="Samples processed simultaneously in one forward pass (default: 8)")
     args = parser.parse_args()
+
+    if args.max_steps is not None:
+        config.LORA_MAX_STEPS = args.max_steps
 
     accelerator = Accelerator(mixed_precision="bf16")
     device = accelerator.device
@@ -216,6 +327,8 @@ def train():
         print(f"  LoRA rank: {args.lora_r}, alpha: {args.lora_alpha}")
         print(f"  Target layers: {target_layers}")
         print(f"  Target modules: {config.LORA_TARGET_MODULES}")
+        print(f"  Micro-batch: {args.micro_batch_size} samples/forward")
+        print(f"  Batch size: {args.batch_size} (per-GPU: {per_gpu_bs})")
         print(f"  Seed: {args.seed}")
         print(f"  Devices: {accelerator.num_processes} GPU(s)")
         print(f"{'=' * 60}\n")
@@ -269,6 +382,8 @@ def train():
     log_entries = []
     t_start = time.time()
 
+    from contextlib import nullcontext
+
     while global_step < config.LORA_MAX_STEPS:
         for batch in train_loader:
             if global_step >= config.LORA_MAX_STEPS:
@@ -276,27 +391,39 @@ def train():
 
             local_bs = len(batch["images"])
             batch_loss_value = 0.0
+            mbs = min(args.micro_batch_size, local_bs)
+            n_micro = (local_bs + mbs - 1) // mbs
 
+            # Prepare all target tokens upfront
+            all_target_tokens = []
             for i in range(local_bs):
-                image = batch["images"][i]
-                instruction = batch["instructions"][i]
                 gt_action = batch["actions"][i]
                 if isinstance(gt_action, torch.Tensor):
                     gt_action = gt_action.cpu().numpy()
+                all_target_tokens.append(tokenizer.action_to_token_ids(gt_action))
 
-                target_tokens = tokenizer.action_to_token_ids(gt_action)
+            for mi in range(n_micro):
+                start = mi * mbs
+                end = min(start + mbs, local_bs)
+                M = end - start
+                is_last_micro = (mi == n_micro - 1)
 
-                loss_i = forward_lora(
-                    model, processor, image, instruction,
-                    target_tokens, device, model_cfg,
+                micro_images = batch["images"][start:end]
+                micro_instructions = batch["instructions"][start:end]
+                micro_targets = all_target_tokens[start:end]
+
+                micro_loss = forward_lora_micro_batch(
+                    model, processor, micro_images, micro_instructions,
+                    micro_targets, device, model_cfg,
                 )
-                sample_loss = loss_i / local_bs
+                # Scale loss by proportion of batch in this micro-batch
+                scaled_loss = micro_loss * (M / local_bs)
 
-                sync_ctx = accelerator.no_sync(model) if i < local_bs - 1 else __import__("contextlib").nullcontext()
+                sync_ctx = accelerator.no_sync(model) if not is_last_micro else nullcontext()
                 with sync_ctx:
-                    accelerator.backward(sample_loss)
+                    accelerator.backward(scaled_loss)
 
-                batch_loss_value += sample_loss.item()
+                batch_loss_value += scaled_loss.item()
 
             grad_norm = accelerator.clip_grad_norm_(model.parameters(), config.ADAPTER_GRAD_CLIP)
             optimizer.step()

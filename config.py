@@ -84,7 +84,8 @@ V5_RESULTS_DIR = OUTPUT_DIR / "v5_targeted_results"
 # VAR (Visual Attention Redistribution) — ICLR 2025
 VAR_SINK_INDICES = [0]          # Vision token 0 is the confirmed attention sink
 VAR_P = 0.6                    # Fraction of sink attention to redistribute
-VAR_RHO = 0.5                  # Image-centric head selection threshold
+VAR_RHO = 0.3                  # Image-centric head selection threshold (filters text-dominant heads)
+VAR_BASELINE_RHO = 0.5        # Rho for fixed-var baseline (matches VAR paper's conservative default)
 VAR_OBJECT_REDIRECT_WEIGHT = 3.0  # Extra weight for object patches in redistribution
 VAR_TEXT_SINK_ENABLED = True        # Also redistribute from text sink ("\n")
 VAR_TEXT_SINK_P = 0.3               # Fraction of text sink attention to redistribute
@@ -127,7 +128,7 @@ ADAPTER_LOG_DIR = ADAPTER_RESULTS_DIR / "logs"
 # Data
 ADAPTER_TFRECORD_DIR = Path("/ceph_data/kana5123/bridge_data_v2/0.0.1")
 ADAPTER_NUM_TRAIN_EPISODES = None    # None = use all episodes in dataset (auto-detect)
-ADAPTER_BATCH_SIZE = 16              # Steps per batch (1 step = 1 image)
+ADAPTER_BATCH_SIZE = 64              # Steps per batch (1 step = 1 image)
 
 # Architecture
 ADAPTER_SOURCE_LAYER = 27            # Layer to extract hidden state from
@@ -137,13 +138,13 @@ ADAPTER_INTERMEDIATE_DIM = 256
 ADAPTER_DROPOUT = 0.1
 
 # Training
-ADAPTER_LR = 3e-4
-ADAPTER_MIN_LR = 3e-5
+ADAPTER_LR = 1e-3                    # Increased from 3e-4 for stronger adapter gradient signal
+ADAPTER_MIN_LR = 1e-4
 ADAPTER_WEIGHT_DECAY = 0.01
 ADAPTER_WARMUP_STEPS = 500
 ADAPTER_MAX_STEPS = 50000
 ADAPTER_GRAD_CLIP = 1.0
-ADAPTER_L1_LAMBDA = 0.001            # L1 sparsity on adapter output (p values)
+ADAPTER_L1_LAMBDA = 0.0001           # Reduced from 0.001: less aggressive sparsity → allows CE gradient to drive learning
 
 # Evaluation
 ADAPTER_EVAL_EVERY = 500             # Evaluate every N training steps
@@ -161,10 +162,9 @@ ADAPTER_V2_QUERY_DIM = 128        # projection dim for query/key
 ADAPTER_V2_TEMPERATURE = 2.0      # softmax temperature for smoother gradients
 
 # Blend alpha (proportional → learned transition)
-# -2.0 gives sigmoid(-2) ≈ 0.12: enough gradient for Branch 2 to learn,
-# while still starting mostly proportional. Previous -4.0 caused
-# chicken-and-egg: blend too low → no gradient to cross-attention → can't grow.
-ADAPTER_V2_BLEND_INIT = -2.0      # sigmoid(-2) ≈ 0.12
+# -1.0 gives sigmoid(-1) ≈ 0.27: stronger initial cross-attention contribution.
+# Previous -2.0 (≈0.12) was too conservative, causing slow gradient flow to Branch 2.
+ADAPTER_V2_BLEND_INIT = -1.0      # sigmoid(-1) ≈ 0.27
 
 # Object mask embedding (Branch 1 augmentation)
 ADAPTER_V2_MASK_DIM = 64          # mask embedding dimension in p-head MLP
@@ -175,7 +175,7 @@ LORA_ALPHA = 32                      # LoRA alpha (scaling = alpha / r)
 LORA_TARGET_MODULES = ["q_proj", "v_proj"]  # LLaMA attention projections
 LORA_DROPOUT = 0.05                  # Dropout on LoRA A/B matrices
 LORA_LR = 1e-4                      # LoRA learning rate
-LORA_MAX_STEPS = 20000               # Max LoRA fine-tuning steps
+LORA_MAX_STEPS = 50000               # Max LoRA fine-tuning steps
 LORA_WARMUP_STEPS = 200              # Warmup steps for LoRA
 LORA_RESULTS_DIR = OUTPUT_DIR / "lora_results"
 

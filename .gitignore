@@ -1,0 +1,21 @@
+# Virtual environments
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Data (downloaded episodes)
+data/
+
+# Outputs (generated results)
+outputs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

@@ -30,6 +30,19 @@ if not hasattr(transformers.utils, 'is_torch_greater_or_equal'):
         return _pkg_version.parse(torch.__version__.split('+')[0]) >= _pkg_version.parse(ver)
     transformers.utils.is_torch_greater_or_equal = _is_torch_gte
 
+# Monkey-patch _validate_images_text_input_order for SpatialVLA processor
+# (removed from transformers but needed by SpatialVLA's custom code)
+import transformers.processing_utils as _proc_utils
+if not hasattr(_proc_utils, '_validate_images_text_input_order'):
+    from transformers.image_utils import is_valid_image
+    def _validate_images_text_input_order(images, text):
+        """Validate (images, text) order. Swap if caller passed (text, images)."""
+        if images is not None and not is_valid_image(images):
+            if isinstance(images, str):
+                images, text = text, images
+        return images, text
+    _proc_utils._validate_images_text_input_order = _validate_images_text_input_order
+
 import config
 from model_registry import get_model, list_models, VLAModelConfig
 from dataset_registry import load_sample, DatasetSample
@@ -45,22 +58,51 @@ CROSS_MODEL_DIR = config.OUTPUT_DIR / "cross_model_analysis"
 
 def load_vla_model(model_cfg: VLAModelConfig, device: str = "cuda"):
     """Load any VLA model from registry with eager attention."""
-    from transformers import AutoModelForVision2Seq, AutoModelForCausalLM, AutoProcessor
+    from transformers import (
+        AutoModelForVision2Seq, AutoModelForCausalLM,
+        AutoModel, AutoProcessor,
+    )
 
     print(f"Loading {model_cfg.name} ({model_cfg.hf_id})...")
 
     # Special cases for non-standard models
     if model_cfg.name == "smolvla-base":
         # SmolVLA is a LeRobot policy — load the underlying VLM directly
+        # SmolVLM2 uses custom model_type "smolvlm" → needs AutoModel
         vlm_id = "HuggingFaceTB/SmolVLM2-500M-Video-Instruct"
         print(f"  SmolVLA: loading underlying VLM {vlm_id}")
         processor = AutoProcessor.from_pretrained(vlm_id, trust_remote_code=True)
-        model = AutoModelForVision2Seq.from_pretrained(
+        model = AutoModel.from_pretrained(
             vlm_id,
             torch_dtype=getattr(torch, model_cfg.torch_dtype),
             trust_remote_code=True,
-            attn_implementation=model_cfg.attn_impl,
         ).to(device).eval()
+    elif model_cfg.name == "cogact-base":
+        # CogACT uses Prismatic VLM (same as OpenVLA) + DiT action head.
+        # Requires custom `vla` package: pip install git+https://github.com/microsoft/CogACT
+        try:
+            from vla import load_vla
+        except ImportError:
+            raise ImportError(
+                "CogACT requires the `vla` package. Install with:\n"
+                "  pip install git+https://github.com/microsoft/CogACT"
+            )
+        print(f"  CogACT: loading via custom load_vla()...")
+        model_obj = load_vla(
+            model_cfg.hf_id,
+            load_for_training=False,
+            action_model_type="DiT-B",
+            future_action_window_size=15,
+        )
+        model_obj.vlm = model_obj.vlm.to(getattr(torch, model_cfg.torch_dtype))
+        model_obj.to(device).eval()
+        # Use OpenVLA's processor (same Prismatic architecture)
+        processor = AutoProcessor.from_pretrained(
+            "openvla/openvla-7b", trust_remote_code=True,
+        )
+        model = model_obj
+        # Override layers_path at runtime for CogACT's nested structure
+        model_cfg.layers_path = "vlm.llm_backbone.llm.model.layers"
     elif model_cfg.architecture == "phi3_v":
         # Phi-3 Vision uses AutoModelForCausalLM
         processor = AutoProcessor.from_pretrained(
@@ -71,6 +113,52 @@ def load_vla_model(model_cfg: VLAModelConfig, device: str = "cuda"):
             torch_dtype=getattr(torch, model_cfg.torch_dtype),
             trust_remote_code=model_cfg.trust_remote_code,
             attn_implementation=model_cfg.attn_impl,
+        ).to(device).eval()
+    elif model_cfg.architecture == "gemma2":
+        # SpatialVLA uses custom SpatialVLAConfig — needs AutoModel (not Vision2Seq)
+        # Do NOT pass attn_implementation="eager" — SpatialVLA has custom attention
+        # dimensions that conflict with standard Gemma2 eager attention.
+        # Load image processor + tokenizer separately (SpatialVLA's custom
+        # processor class requires functions not in our transformers version)
+        from transformers import AutoImageProcessor, AutoTokenizer
+        _img_proc = AutoImageProcessor.from_pretrained(
+            model_cfg.hf_id, trust_remote_code=True,
+        )
+        _tokenizer = AutoTokenizer.from_pretrained(
+            model_cfg.hf_id, trust_remote_code=True,
+        )
+        # Create a simple namespace that acts like a processor
+        from transformers.feature_extraction_utils import BatchFeature
+        class _SimpleProcessor:
+            def __init__(self, image_processor, tokenizer):
+                self.image_processor = image_processor
+                self.tokenizer = tokenizer
+            def __call__(self, text, images, return_tensors="pt", **kwargs):
+                image_inputs = self.image_processor(images, return_tensors=return_tensors)
+                text_inputs = self.tokenizer(text, return_tensors=return_tensors, **kwargs)
+                # PaliGemma-style: prepend image tokens before text tokens
+                img_seq_len = getattr(self.image_processor, 'image_seq_length', 256)
+                img_token_id = self.tokenizer.convert_tokens_to_ids("<image>")
+                img_ids = torch.full((1, img_seq_len), img_token_id, dtype=torch.long)
+                text_ids = text_inputs["input_ids"]
+                input_ids = torch.cat([img_ids, text_ids], dim=1)
+                attention_mask = torch.ones_like(input_ids)
+                # SpatialVLA needs camera intrinsic matrix for 3D position encoding
+                # Use a reasonable default for 224x224 images
+                intrinsic = torch.tensor([[[224.0, 0.0, 112.0],
+                                           [0.0, 224.0, 112.0],
+                                           [0.0, 0.0, 1.0]]])
+                return BatchFeature({
+                    "input_ids": input_ids,
+                    "attention_mask": attention_mask,
+                    "pixel_values": image_inputs["pixel_values"],
+                    "intrinsic": intrinsic,
+                })
+        processor = _SimpleProcessor(_img_proc, _tokenizer)
+        model = AutoModel.from_pretrained(
+            model_cfg.hf_id,
+            torch_dtype=getattr(torch, model_cfg.torch_dtype),
+            trust_remote_code=True,
         ).to(device).eval()
     else:
         processor = AutoProcessor.from_pretrained(
@@ -197,10 +285,22 @@ def extract_attention_generic(
         return hook_fn
 
     # Set output_attentions on the model config
-    if hasattr(model, "language_model"):
-        model.language_model.config.output_attentions = True
-    else:
-        model.config.output_attentions = True
+    # Navigate to the innermost LLM config that has output_attentions
+    if model_cfg.name == "cogact-base":
+        model.vlm.llm_backbone.llm.config.output_attentions = True
+    elif hasattr(model, "language_model"):
+        # For models using SDPA, we need to bypass the config validation
+        # that blocks output_attentions with sdpa. The custom attention code
+        # handles the fallback internally.
+        lm_config = model.language_model.config
+        if getattr(lm_config, '_attn_implementation', None) == 'sdpa':
+            lm_config._attn_implementation = 'eager'
+        lm_config.output_attentions = True
+    elif hasattr(model, "config"):
+        cfg = model.config
+        if getattr(cfg, '_attn_implementation', None) == 'sdpa':
+            cfg._attn_implementation = 'eager'
+        cfg.output_attentions = True
 
     hooks = []
     for i, layer in enumerate(layers):
@@ -214,6 +314,8 @@ def extract_attention_generic(
     extra_kwargs = {}
     if "image_sizes" in inputs:
         extra_kwargs["image_sizes"] = inputs["image_sizes"]
+    if "intrinsic" in inputs:
+        extra_kwargs["intrinsic"] = inputs["intrinsic"]
 
     num_action_tokens = model_cfg.action_tokens
     attention_analysis = {}

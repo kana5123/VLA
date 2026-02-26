@@ -33,6 +33,44 @@ from torch.utils.data import Dataset, DataLoader
 import config
 
 
+def resize_mask(mask: np.ndarray, target_tokens: int, source_grid: int = 16) -> np.ndarray:
+    """Resize a patch mask from source grid to target number of tokens.
+
+    Used when SAM masks were generated for one vision token count (e.g., 256
+    for OpenVLA) but need to be used with a model that has a different count
+    (e.g., 313 for TraceVLA). Uses nearest-neighbor interpolation on the 2D
+    grid representation.
+
+    Args:
+        mask: (V_source,) uint8 binary mask
+        target_tokens: desired output length
+        source_grid: grid size of the source mask (e.g., 16 for 16x16=256)
+
+    Returns:
+        (target_tokens,) uint8 binary mask
+    """
+    if len(mask) == target_tokens:
+        return mask
+
+    # Reshape to 2D grid
+    grid_2d = mask[:source_grid * source_grid].reshape(source_grid, source_grid).astype(np.float32)
+
+    # Determine target grid (approximate square root)
+    target_grid = int(np.ceil(np.sqrt(target_tokens)))
+
+    # Resize using PIL (nearest-neighbor to keep binary)
+    from PIL import Image as _PILImage
+    grid_img = _PILImage.fromarray((grid_2d * 255).astype(np.uint8), mode="L")
+    resized = grid_img.resize((target_grid, target_grid), _PILImage.NEAREST)
+    resized_arr = (np.array(resized) > 127).astype(np.uint8).flatten()
+
+    # Truncate or pad to exact target length
+    if len(resized_arr) >= target_tokens:
+        return resized_arr[:target_tokens]
+    else:
+        return np.concatenate([resized_arr, np.zeros(target_tokens - len(resized_arr), dtype=np.uint8)])
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Action tokenization (ground truth → target token IDs)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -46,10 +84,20 @@ class ActionTokenizer:
       3. bin index → token ID via (vocab_size - 1 - bin_index)
     """
 
-    def __init__(self, model):
+    def __init__(self, model, model_cfg=None):
         self.n_bins = getattr(model.config, "n_action_bins", 256)
         pad = getattr(model.config, "pad_to_multiple_of", 0)
-        self.vocab_size = model.config.text_config.vocab_size - pad
+
+        # Resolve vocab_size across different model architectures
+        cfg = model.config
+        if hasattr(cfg, "text_config") and hasattr(cfg.text_config, "vocab_size"):
+            self.vocab_size = cfg.text_config.vocab_size - pad
+        elif hasattr(cfg, "vocab_size"):
+            self.vocab_size = cfg.vocab_size - pad
+        else:
+            raise RuntimeError(
+                f"Cannot determine vocab_size from model config: {type(cfg).__name__}"
+            )
 
         # Bin edges and centers
         edges = np.linspace(-1, 1, self.n_bins + 1)
@@ -66,9 +114,18 @@ class ActionTokenizer:
             self.q99 = np.array(stats["q99"], dtype=np.float64)
             self.mask = np.array(stats.get("mask", [True] * 7))
         else:
-            raise RuntimeError(
-                f"No norm_stats found for key '{config.BRIDGE_UNNORM_KEY}'"
-            )
+            # Fallback: use Bridge V2 dataset statistics from OpenVLA
+            # These are dataset-specific, not model-specific
+            print(f"  WARNING: No norm_stats for '{config.BRIDGE_UNNORM_KEY}', using Bridge V2 defaults")
+            self.q01 = np.array([
+                -0.02872725307941437, -0.04170349963009357, -0.026093858778476715,
+                -0.08092105075716972, -0.09288699507713317, -0.20718276381492615, 0.0,
+            ], dtype=np.float64)
+            self.q99 = np.array([
+                0.028309678435325586, 0.040855254605412394, 0.040161586627364146,
+                0.08192047759890528, 0.07792850524187081, 0.20382574498653397, 1.0,
+            ], dtype=np.float64)
+            self.mask = np.array([True, True, True, True, True, True, False])
 
     def action_to_token_ids(self, action: np.ndarray) -> list[int]:
         """Unnormalized 7-dim action → 7 token IDs."""
@@ -95,7 +152,7 @@ class ActionTokenizer:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Disk cache builder (one-time preprocessing)
+# Disk cache builder (one-time preprocessing)                                
 # ═══════════════════════════════════════════════════════════════════════════
 
 def build_data_cache(
@@ -397,7 +454,7 @@ def adapter_collate_fn(batch: list[dict]) -> dict:
         "actions": np.stack([item["action"] for item in batch]),  # (B, 7)
         "episode_ids": [item["episode_id"] for item in batch],
         "step_ids": [item["step_id"] for item in batch],
-        "global_step_ids": [item["global_step_id"] for item in batch],
+        "global_step_ids": [item.get("global_step_id", idx) for idx, item in enumerate(batch)],
     }
     if "object_mask" in batch[0]:
         result["object_masks"] = np.stack([item["object_mask"] for item in batch])  # (B, V)
@@ -526,9 +583,15 @@ def create_dataloaders(
             cache_info = json.load(f)
         actual_episodes = cache_info["total_episodes"]
 
+        # Respect num_episodes limit (cap to available episodes)
+        if num_episodes is not None:
+            actual_episodes = min(actual_episodes, num_episodes)
+
         if use_object_masks:
             # Filter to valid episodes before splitting
             valid_episodes = compute_valid_episodes(cache_dir)
+            if num_episodes is not None:
+                valid_episodes = valid_episodes[:min(len(valid_episodes), num_episodes)]
             train_ids, val_ids, test_ids = split_episodes(len(valid_episodes))
             # Map split indices back to actual episode IDs
             train_ids = [valid_episodes[i] for i in train_ids]

@@ -35,7 +35,7 @@ import torch
 from PIL import Image
 
 import config
-from extract_attention import load_model_from_registry, get_layers
+from extract_attention import load_model_from_registry, get_layers, detokenize_actions
 from model_registry import get_model, list_experiment_models
 
 # Lazy imports for LIBERO (may not be installed)
@@ -107,6 +107,8 @@ def get_observation_image(obs: dict, camera: str = "agentview_image") -> Image.I
 class LiberoEvaluator:
     """Evaluate VLA model on LIBERO benchmark tasks."""
 
+    STATIC_METHODS = {"fixed-var", "act"}
+
     def __init__(
         self,
         model_name: str,
@@ -126,29 +128,34 @@ class LiberoEvaluator:
 
         # Load adapter/LoRA if needed
         self.adapter = None
+        self.adapter_version = 0
         self.adapter_cfg = self.model_cfg.get_adapter_config()
+
+        # Detect vision/text boundaries for V3Context
+        self.vision_end = self.model_cfg.num_vision_tokens
+        dummy = Image.new("RGB", (256, 256), (128, 128, 128))
+        prompt = self.model_cfg.prompt_template.format(instruction="pick up the object")
+        dummy_inputs = self.processor(prompt, dummy, return_tensors="pt").to(device)
+        self.text_end = dummy_inputs["input_ids"].shape[-1]
 
         if method == "adapter" and checkpoint_path:
             self._load_adapter(checkpoint_path)
         elif method == "lora" and checkpoint_path:
             self._load_lora(checkpoint_path)
-        elif method == "fixed-var":
-            print("Using fixed VAR (no adapter)")
+        elif method in self.STATIC_METHODS:
+            print(f"Using static method: {method}")
         elif method == "baseline":
             print("Baseline evaluation (no attention modification)")
 
     def _load_adapter(self, checkpoint_path: str):
         """Load trained attention adapter."""
         from adapter_model import AttentionAdapter, AttentionAdapterV2
-        from attention_v3 import (
-            V3Context, install_v3_patch, set_v3_context, set_var_differentiable,
-        )
 
         ckpt = torch.load(checkpoint_path, map_location=self.device)
         ckpt_cfg = ckpt.get("config", {})
-        version = ckpt_cfg.get("adapter_version", 2)
+        self.adapter_version = ckpt_cfg.get("adapter_version", 2)
 
-        if version == 2:
+        if self.adapter_version == 2:
             self.adapter = AttentionAdapterV2(
                 hidden_dim=ckpt_cfg.get("hidden_dim", self.adapter_cfg["hidden_dim"]),
                 num_target_layers=ckpt_cfg.get("num_target_layers", self.adapter_cfg["num_target_layers"]),
@@ -162,9 +169,15 @@ class LiberoEvaluator:
                 num_heads=ckpt_cfg.get("num_heads", self.adapter_cfg["num_heads"]),
             ).to(self.device)
 
+        # Update adapter_cfg with checkpoint values
+        if "target_layers" in ckpt_cfg:
+            self.adapter_cfg["target_layers"] = ckpt_cfg["target_layers"]
+        if "source_layer" in ckpt_cfg:
+            self.adapter_cfg["source_layer"] = ckpt_cfg["source_layer"]
+
         self.adapter.load_state_dict(ckpt["adapter_state_dict"])
         self.adapter.eval()
-        print(f"Adapter v{version} loaded from {checkpoint_path}")
+        print(f"Adapter v{self.adapter_version} loaded from {checkpoint_path}")
 
     def _load_lora(self, checkpoint_path: str):
         """Load PEFT LoRA checkpoint."""
@@ -173,41 +186,179 @@ class LiberoEvaluator:
         self.model.eval()
         print(f"LoRA model loaded from {checkpoint_path}")
 
+    def _get_static_ctx(self):
+        """Create V3Context for static methods (fixed-var, act)."""
+        from attention_v3 import V3Context
+        target_layers = self.adapter_cfg["target_layers"]
+
+        if self.method == "fixed-var":
+            full_p = torch.zeros(
+                self.model_cfg.num_layers, self.model_cfg.num_heads,
+                device=self.device, dtype=torch.float32,
+            )
+            for layer_idx in target_layers:
+                full_p[layer_idx, :] = config.VAR_P
+            return V3Context(
+                active=True,
+                use_var=True,
+                var_p=config.VAR_P,
+                var_rho=config.VAR_RHO,
+                var_sink_indices=list(config.VAR_SINK_INDICES),
+                dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
+                sink_alpha=config.SINK_ALPHA,
+                vision_end=self.vision_end,
+                enhancement_layers=set(target_layers),
+                per_head_var_strength=full_p,
+                text_end=self.text_end,
+                text_sink_enabled=config.VAR_TEXT_SINK_ENABLED,
+                text_sink_p=config.VAR_TEXT_SINK_P,
+                text_sink_threshold=config.VAR_TEXT_SINK_THRESHOLD,
+            )
+        elif self.method == "act":
+            return V3Context(
+                active=True,
+                use_var=False,
+                use_act=True,
+                act_alpha=config.ACT_SINK_ALPHA,
+                act_beta=config.ACT_SCALE_BETA,
+                vision_end=self.vision_end,
+                enhancement_layers=set(target_layers),
+                text_end=self.text_end,
+            )
+        else:
+            raise ValueError(f"Unknown static method: {self.method}")
+
+    def _get_adapter_ctx(self, inputs: dict) -> "V3Context | None":
+        """Create V3Context using adapter predictions."""
+        from attention_v3 import V3Context
+
+        if self.adapter is None:
+            return None
+
+        target_layers = self.adapter_cfg["target_layers"]
+
+        # Hook to capture hidden states from source layer
+        captured = {}
+        def hook_fn(module, args, output):
+            h = output[0] if isinstance(output, tuple) else output
+            captured["h_last"] = h[:, -1, :]
+            captured["h_vision"] = h[:, :self.vision_end, :]
+
+        layers = get_layers(self.model, self.model_cfg)
+        hook_layer = layers[self.adapter_cfg["source_layer"]]
+        hook = hook_layer.register_forward_hook(hook_fn)
+
+        with torch.no_grad():
+            self.model(**{k: v for k, v in inputs.items()}, use_cache=False)
+        hook.remove()
+
+        # Adapter prediction
+        redistribution_weights = None
+        with torch.no_grad():
+            if self.adapter_version == 2:
+                h_last = captured["h_last"].float()
+                h_vision = captured["h_vision"].float()
+                p_matrix, redist_raw = self.adapter(h_last, h_vision, None)
+
+                if redist_raw is not None:
+                    blend = self.adapter.blend_alpha
+                    V = self.vision_end
+                    prop_weights = torch.ones(1, V, device=self.device, dtype=torch.float32)
+                    for si in config.VAR_SINK_INDICES:
+                        if si < V:
+                            prop_weights[0, si] = 0.0
+                    prop_weights = prop_weights / prop_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)
+                    final_redist = blend * redist_raw + (1 - blend) * prop_weights
+                    redistribution_weights = final_redist.squeeze(0)
+            else:
+                p_matrix = self.adapter(captured["h_last"].float())
+
+        # Build full p tensor
+        full_p = torch.zeros(
+            self.model_cfg.num_layers, self.model_cfg.num_heads,
+            device=self.device, dtype=p_matrix.dtype,
+        )
+        _target_idx = torch.tensor(
+            target_layers, device=self.device,
+        ).unsqueeze(1).expand(-1, self.model_cfg.num_heads)
+        full_p = full_p.scatter(0, _target_idx, p_matrix[0])
+
+        return V3Context(
+            active=True,
+            use_var=True,
+            var_p=config.VAR_P,
+            var_rho=config.VAR_RHO,
+            var_sink_indices=list(config.VAR_SINK_INDICES),
+            dynamic_sink_detection=config.DYNAMIC_SINK_DETECTION,
+            sink_alpha=config.SINK_ALPHA,
+            vision_end=self.vision_end,
+            enhancement_layers=set(target_layers),
+            per_head_var_strength=full_p,
+            redistribution_weights=redistribution_weights,
+            text_end=self.text_end,
+            text_sink_enabled=config.VAR_TEXT_SINK_ENABLED,
+            text_sink_p=config.VAR_TEXT_SINK_P,
+            text_sink_threshold=config.VAR_TEXT_SINK_THRESHOLD,
+        )
+
     def predict_action(self, image: Image.Image, instruction: str) -> np.ndarray:
         """Predict a single action from image + instruction.
 
         Returns unnormalized 7D action array.
         """
+        from attention_v3 import install_v3_patch, set_v3_context, uninstall_v3_patch
+
         prompt = self.model_cfg.prompt_template.format(instruction=instruction)
         inputs = self.processor(prompt, image, return_tensors="pt").to(self.device)
         if "pixel_values" in inputs and inputs["pixel_values"].dtype != self.model.dtype:
             inputs["pixel_values"] = inputs["pixel_values"].to(self.model.dtype)
+
+        # Build V3Context based on method
+        ctx = None
+        if self.method == "lora":
+            pass  # LoRA: model weights already modified, no VAR needed
+        elif self.method in self.STATIC_METHODS:
+            ctx = self._get_static_ctx()
+        elif self.method == "adapter" and self.adapter is not None:
+            ctx = self._get_adapter_ctx(inputs)
+
+        # Install V3 patch if we have a context
+        if ctx is not None:
+            set_v3_context(ctx)
+            install_v3_patch(ctx, architecture=self.model_cfg.architecture, model=self.model)
 
         input_ids = inputs["input_ids"]
         attention_mask = inputs.get("attention_mask")
         pixel_values = inputs.get("pixel_values")
 
         generated_tokens = []
-        with torch.no_grad():
-            for _ in range(self.model_cfg.action_tokens):
-                outputs = self.model(
-                    input_ids=input_ids,
-                    attention_mask=attention_mask,
-                    pixel_values=pixel_values,
-                    use_cache=False,
-                )
-                next_token = outputs.logits[:, -1, :].argmax(dim=-1, keepdim=True)
-                generated_tokens.append(next_token.item())
+        try:
+            with torch.no_grad():
+                for token_idx in range(self.model_cfg.action_tokens):
+                    if ctx is not None:
+                        ctx.current_token_idx = token_idx
 
-                input_ids = torch.cat([input_ids, next_token], dim=-1)
-                if attention_mask is not None:
-                    attention_mask = torch.cat([
-                        attention_mask,
-                        torch.ones(1, 1, device=self.device, dtype=attention_mask.dtype),
-                    ], dim=-1)
+                    outputs = self.model(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask,
+                        pixel_values=pixel_values,
+                        use_cache=False,
+                    )
+                    next_token = outputs.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+                    generated_tokens.append(next_token.item())
+
+                    input_ids = torch.cat([input_ids, next_token], dim=-1)
+                    if attention_mask is not None:
+                        attention_mask = torch.cat([
+                            attention_mask,
+                            torch.ones(1, 1, device=self.device, dtype=attention_mask.dtype),
+                        ], dim=-1)
+        finally:
+            # Always uninstall V3 patch to avoid leaking state between episodes
+            if ctx is not None:
+                uninstall_v3_patch()
 
         # Detokenize to continuous action
-        from extract_attention import detokenize_actions
         result = detokenize_actions(self.model, generated_tokens)
         action = result.get("unnormalized_action")
         if action is None:
@@ -305,7 +456,7 @@ def main():
     parser.add_argument("--checkpoint", type=str, default=None,
                         help="Adapter or LoRA checkpoint path")
     parser.add_argument("--method", type=str, default="adapter",
-                        choices=["baseline", "adapter", "fixed-var", "lora"])
+                        choices=["baseline", "adapter", "fixed-var", "lora", "act"])
     parser.add_argument("--suite", type=str, default="libero_spatial",
                         choices=config.LIBERO_SUITES + ["all"],
                         help="LIBERO suite to evaluate")
@@ -313,6 +464,8 @@ def main():
     parser.add_argument("--max_steps", type=int, default=config.LIBERO_MAX_STEPS)
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--output_dir", type=str, default=None)
+    parser.add_argument("--lora_checkpoint", type=str, default=None,
+                        help="LoRA checkpoint dir for joint LoRA+adapter evaluation")
     parser.add_argument("--baseline_only", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
@@ -329,6 +482,13 @@ def main():
         method=method,
         device=args.device,
     )
+
+    # Load LoRA weights for joint lora+adapter evaluation
+    if args.lora_checkpoint is not None:
+        from peft import PeftModel
+        evaluator.model = PeftModel.from_pretrained(evaluator.model, args.lora_checkpoint)
+        evaluator.model.eval()
+        print(f"  LoRA weights loaded from {args.lora_checkpoint}")
 
     suites = config.LIBERO_SUITES if args.suite == "all" else [args.suite]
 
