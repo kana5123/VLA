@@ -1,7 +1,7 @@
 # tests/test_causal.py
 import torch
 import pytest
-from contribution.causal import AttentionKnockoutHook, ValueZeroHook, compute_output_kl
+from contribution.causal import AttentionKnockoutHook, ValueZeroHook, compute_output_kl, get_deep_layer_ranges
 
 
 class TestAttentionKnockout:
@@ -28,6 +28,31 @@ class TestValueZero:
         for t in target_positions:
             assert zeroed[0, :, t, :].abs().max() < 1e-10
         assert torch.equal(values[0, :, 5, :], zeroed[0, :, 5, :])
+
+
+class TestGetDeepLayerRanges:
+    def test_32L(self):
+        ranges = get_deep_layer_ranges(32)
+        assert ranges["all"] == list(range(22, 32))
+        assert ranges["block1"] == list(range(22, 27))
+        assert ranges["block2"] == list(range(27, 32))
+
+    def test_26L(self):
+        ranges = get_deep_layer_ranges(26)
+        assert ranges["all"] == list(range(16, 26))
+        assert ranges["block1"] == list(range(16, 21))
+        assert ranges["block2"] == list(range(21, 26))
+
+
+class TestValueZeroTargetLayers:
+    def test_target_layers_none(self):
+        """target_layers=None should behave same as before (all layers)."""
+        hook = ValueZeroHook([0, 1], target_layers=None)
+        assert hook.target_layers is None
+
+    def test_target_layers_list(self):
+        hook = ValueZeroHook([0, 1], target_layers=[22, 23, 24])
+        assert hook.target_layers == [22, 23, 24]
 
 
 class TestCausalExperiment:

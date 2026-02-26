@@ -85,19 +85,24 @@ class ValueZeroHook:
     projections at target positions before attention is computed.
     """
 
-    def __init__(self, target_positions: list[int]):
+    def __init__(self, target_positions: list[int], target_layers: list[int] | None = None):
         self.target_positions = target_positions
+        self.target_layers = target_layers  # None = all layers
         self._handles = []
         self._sanity_changed = False
 
     def register(self, model, model_cfg, get_layers_fn):
-        """Register hooks to zero out V projections for target tokens."""
+        """Register hooks to zero out V projections for target tokens.
+        If target_layers is set, only hooks those specific layer indices.
+        """
         layers = get_layers_fn(model, model_cfg)
         num_heads = model_cfg.num_heads
         num_kv_heads = getattr(model_cfg, 'num_kv_heads', None) or num_heads
         head_dim = model_cfg.hidden_dim // num_heads
 
-        for layer in layers:
+        for layer_idx, layer in enumerate(layers):
+            if self.target_layers is not None and layer_idx not in self.target_layers:
+                continue
             attn = layer.self_attn
             if hasattr(attn, "v_proj"):
                 handle = attn.v_proj.register_forward_hook(self._make_v_proj_hook())
@@ -183,4 +188,26 @@ def run_vzero_sanity_check(model, model_cfg, get_layers_fn, inputs, target_posit
         "hook_fired": vzero._sanity_changed if hasattr(vzero, '_sanity_changed') else True,
         "logits_changed": not torch.allclose(logits_orig, logits_masked, atol=1e-5),
         "kl_divergence": kl,
+    }
+
+
+def get_deep_layer_ranges(num_layers: int) -> dict[str, list[int]]:
+    """Return deep layer ranges for block-level V=0 experiments.
+
+    For a model with N layers, deep = last 10 layers.
+    block1 = first half of deep, block2 = second half.
+
+    Args:
+        num_layers: Total number of transformer layers.
+
+    Returns:
+        {"all": [...], "block1": [...], "block2": [...]}
+    """
+    deep_start = max(0, num_layers - 10)
+    deep_end = num_layers
+    mid = deep_start + (deep_end - deep_start) // 2
+    return {
+        "all": list(range(deep_start, deep_end)),
+        "block1": list(range(deep_start, mid)),
+        "block2": list(range(mid, deep_end)),
     }
