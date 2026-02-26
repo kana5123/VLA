@@ -28,7 +28,8 @@ from contribution.causal import (
 from contribution.visualize import plot_masking_ablation
 
 
-def run_causal(model_name, device, n_samples, output_dir, candidate_positions):
+def run_causal(model_name, device, n_samples, output_dir, candidate_positions,
+               target_layers=None, sample_list_path=None):
     """Run V=0 causal ablation, measure KL divergence.
 
     AttentionKnockoutHook was removed — it was a no-op bug (Phase 2.5).
@@ -39,7 +40,12 @@ def run_causal(model_name, device, n_samples, output_dir, candidate_positions):
     print(f"{'='*70}")
 
     processor, model, model_cfg = load_model_from_registry(model_name, device)
-    samples = load_samples_from_cache(config.DATA_CACHE_DIR, n_samples=n_samples)
+    if sample_list_path:
+        from data_sampler import reload_samples_from_list
+        samples = reload_samples_from_list(sample_list_path, config.DATA_CACHE_DIR)
+        print(f"  Loaded {len(samples)} samples from {sample_list_path}")
+    else:
+        samples = load_samples_from_cache(config.DATA_CACHE_DIR, n_samples=n_samples)
 
     # B4: Sanity check V=0 on first sample
     print("\n  B4 Sanity Check: Verifying V=0 hook works...")
@@ -62,6 +68,7 @@ def run_causal(model_name, device, n_samples, output_dir, candidate_positions):
         "model": model_name,
         "method": "v_zero",
         "candidates_abs_t": candidate_positions,
+        "target_layers": target_layers,
         "sanity_check": sanity,
         "per_k": {},
     }
@@ -83,7 +90,7 @@ def run_causal(model_name, device, n_samples, output_dir, candidate_positions):
             logits_orig = out_orig.logits[0, -1, :]
 
             # V=0 forward
-            vzero = ValueZeroHook(targets)
+            vzero = ValueZeroHook(targets, target_layers=target_layers)
             vzero.register(model, model_cfg, get_layers)
             with torch.no_grad():
                 out_vz = model(**inputs)
@@ -132,6 +139,16 @@ def main():
                        help="Path to contribution_report.json (to auto-detect candidates)")
     parser.add_argument("--candidates", type=int, nargs="+", default=None,
                        help="Manual candidate positions (e.g., --candidates 0 1 5)")
+    parser.add_argument("--layer_mode", choices=["all", "block1", "block2"],
+                        default="all",
+                        help="Layer range for V=0: all=deep22-31, block1=22-26, block2=27-31")
+    parser.add_argument("--candidates_json", type=str, default=None,
+                        help="Path to mode_tokens.json (from Gate ①)")
+    parser.add_argument("--sample_list", type=str, default=None,
+                        help="Path to sample_list.json (reuse Gate ① samples)")
+    parser.add_argument("--peak_type", choices=["A_mode", "C_mode", "R_mode"],
+                        default=None,
+                        help="Which mode token to target (requires --candidates_json)")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir) if args.output_dir else config.OUTPUT_DIR / "causal_experiment" / args.model
@@ -139,19 +156,28 @@ def main():
     # Get candidate positions
     if args.candidates:
         candidate_positions = args.candidates
+    elif args.candidates_json and args.peak_type:
+        # Gate ②: use mode tokens from Gate ①
+        with open(args.candidates_json) as f:
+            mode_tokens = json.load(f)
+        peak = mode_tokens.get(args.peak_type, {})
+        abs_t = peak.get("abs_t", 0)
+        freq = peak.get("freq", 0)
+        candidate_positions = [abs_t]
+        print(f"  Gate ② mode: {args.peak_type} → abs_t={abs_t}, freq={freq:.2f}")
+        if freq < 0.7:
+            print(f"  WARNING: freq={freq:.2f} < 0.7 (unstable). Consider testing Top-3.")
     elif args.report:
         with open(args.report) as f:
             report = json.load(f)
         positions = []
         for layer_info in report.get("layer_analysis", {}).values():
-            # Phase 2.5 format: a_peak, c_peak
             if "a_peak" in layer_info:
                 positions.append(layer_info["a_peak"].get("abs_t", 0))
             if "c_peak" in layer_info:
                 pos = layer_info["c_peak"].get("abs_t", 0)
                 if pos not in positions:
                     positions.append(pos)
-            # Phase 2 format fallback
             elif "dominant_position" in layer_info:
                 positions.append(layer_info["dominant_position"])
         if positions:
@@ -163,7 +189,16 @@ def main():
         candidate_positions = [0]
         print("  WARNING: No candidates specified, defaulting to position 0")
 
-    run_causal(args.model, args.device, args.n_samples, output_dir, candidate_positions)
+    # Resolve layer_mode → target_layers
+    from contribution.causal import get_deep_layer_ranges
+    from model_registry import get_model as _get_model
+    model_cfg_temp = _get_model(args.model)
+    layer_ranges = get_deep_layer_ranges(model_cfg_temp.num_layers)
+    target_layers = layer_ranges.get(args.layer_mode, layer_ranges["all"])
+    print(f"  Layer mode: {args.layer_mode} → layers {target_layers}")
+
+    run_causal(args.model, args.device, args.n_samples, output_dir, candidate_positions,
+               target_layers=target_layers, sample_list_path=args.sample_list)
 
 
 if __name__ == "__main__":
