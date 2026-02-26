@@ -134,6 +134,11 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
 
         # Collect per-layer stats
         sample_c_tildes = []
+        # Phase 2.5: Extract input_ids once per sample (not per layer)
+        sample_input_ids = inputs.get("input_ids", None)
+        if sample_input_ids is not None:
+            sample_input_ids = sample_input_ids[0].tolist()
+
         for r in results:
             l = r.layer_idx
             if l in all_layer_top1:
@@ -147,10 +152,6 @@ def run_analysis(model_name: str, device: str, n_samples: int, top_k: int, outpu
                 all_layer_classifications[l].append(cls_result)
 
                 # Phase 2.5: Dual-track classification
-                sample_input_ids = inputs.get("input_ids", None)
-                if sample_input_ids is not None:
-                    sample_input_ids = sample_input_ids[0].tolist()
-
                 dual = classify_layer_dual_track(
                     r.a_tilde, r.c_tilde,
                     sample_boundaries,
