@@ -20,14 +20,17 @@ class TestAttentionKnockout:
 
 class TestValueZero:
     def test_value_zeroed(self):
-        H, seq, D = 4, 32, 64
+        """Verify that _make_v_proj_hook zeroes target positions."""
+        seq, D = 32, 64
         target_positions = [0, 1]
         hook = ValueZeroHook(target_positions)
-        values = torch.randn(1, H, seq, D // H)
-        zeroed = hook.apply(values)
+        # Simulate v_proj output: (batch, seq, D)
+        values = torch.randn(1, seq, D)
+        hook_fn = hook._make_v_proj_hook()
+        zeroed = hook_fn(None, None, values)
         for t in target_positions:
-            assert zeroed[0, :, t, :].abs().max() < 1e-10
-        assert torch.equal(values[0, :, 5, :], zeroed[0, :, 5, :])
+            assert zeroed[0, t, :].abs().max() < 1e-10
+        assert torch.equal(values[0, 5, :], zeroed[0, 5, :])
 
 
 class TestGetDeepLayerRanges:
