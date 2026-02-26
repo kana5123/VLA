@@ -26,7 +26,7 @@ SKILL_VERBS = {
     "close": ["close", "shut"],
     "pour": ["pour", "dump"],
     "stack": ["stack"],
-    "fold": ["fold"],
+    "fold": ["fold", "unfold"],
     "wipe": ["wipe", "clean"],
     "turn": ["turn", "rotate", "twist"],
 }
@@ -37,17 +37,59 @@ for skill, verbs in SKILL_VERBS.items():
         _VERB_TO_SKILL[v] = skill
 
 
+def _stem_word(word: str) -> str:
+    """Simple suffix-based stemming for skill verbs.
+    Handles: -ed, -ing, -s (placed->place, picking->pick, moves->move).
+    """
+    if word.endswith("ing") and len(word) > 4:
+        # closing->close, moving->move, picking->pick
+        base = word[:-3]
+        if base + "e" in _VERB_TO_SKILL:
+            return base + "e"
+        if base in _VERB_TO_SKILL:
+            return base
+        # doubling: putting->put, grabbing->grab
+        if len(base) >= 3 and base[-1] == base[-2]:
+            shorter = base[:-1]
+            if shorter in _VERB_TO_SKILL:
+                return shorter
+    if word.endswith("ed") and len(word) > 3:
+        # placed->place, moved->move
+        base = word[:-1]  # placed->place (just remove d)
+        if base in _VERB_TO_SKILL:
+            return base
+        base = word[:-2]  # opened->open
+        if base in _VERB_TO_SKILL:
+            return base
+        # doubled: grabbed->grab
+        if len(base) >= 2 and base[-1] == base[-2]:
+            shorter = base[:-1]
+            if shorter in _VERB_TO_SKILL:
+                return shorter
+    if word.endswith("s") and not word.endswith("ss") and len(word) > 3:
+        base = word[:-1]
+        if base in _VERB_TO_SKILL:
+            return base
+    return word
+
+
 def label_skill_from_instruction(instruction: str) -> str:
     """Extract primary skill verb from instruction text.
-
-    Simple rule-based: find the first matching verb.
+    Applies stemming (placed->place, picking->pick) and synonym matching.
     Returns skill label or "unknown".
     """
     words = instruction.lower().split()
     for word in words:
         clean = re.sub(r"[^a-z]", "", word)
+        if not clean:
+            continue
+        # Direct match
         if clean in _VERB_TO_SKILL:
             return _VERB_TO_SKILL[clean]
+        # Stemmed match
+        stemmed = _stem_word(clean)
+        if stemmed in _VERB_TO_SKILL:
+            return _VERB_TO_SKILL[stemmed]
     return "unknown"
 
 

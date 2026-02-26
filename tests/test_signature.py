@@ -32,6 +32,72 @@ class TestSkillLabeling:
         assert label == "close"
 
 
+class TestExactMatch:
+    """Exact match tests for skill labeling."""
+    def test_pick(self):
+        assert label_skill_from_instruction("pick up the red cup") == "pick"
+
+    def test_place(self):
+        assert label_skill_from_instruction("place the cup on the table") == "place"
+
+    def test_open(self):
+        assert label_skill_from_instruction("open the drawer") == "open"
+
+    def test_close(self):
+        assert label_skill_from_instruction("close the lid") == "close"
+
+    def test_fold(self):
+        assert label_skill_from_instruction("fold the towel") == "fold"
+
+    def test_move(self):
+        assert label_skill_from_instruction("move the bowl to the right") == "move"
+
+
+class TestStemming:
+    """Past tense and -ing forms should resolve to base skill."""
+    def test_placed(self):
+        assert label_skill_from_instruction("placed the cup on the table") == "place"
+
+    def test_opened(self):
+        assert label_skill_from_instruction("opened the drawer") == "open"
+
+    def test_moved(self):
+        assert label_skill_from_instruction("moved the bowl") == "move"
+
+    def test_folded(self):
+        assert label_skill_from_instruction("folded the cloth") == "fold"
+
+    def test_picked(self):
+        assert label_skill_from_instruction("picked up the toy") == "pick"
+
+    def test_closing(self):
+        assert label_skill_from_instruction("closing the jar") == "close"
+
+    def test_picking(self):
+        assert label_skill_from_instruction("picking up the sponge") == "pick"
+
+
+class TestSynonyms:
+    """Synonyms should map to canonical skill."""
+    def test_put(self):
+        assert label_skill_from_instruction("put the cup down") == "place"
+
+    def test_slide(self):
+        assert label_skill_from_instruction("slide the plate left") == "move"
+
+    def test_unfold(self):
+        assert label_skill_from_instruction("unfold the cloth") == "fold"
+
+
+class TestUnknown:
+    """Instructions with no recognizable verb should return 'unknown'."""
+    def test_unrecognized_verb(self):
+        assert label_skill_from_instruction("do something with the robot") == "unknown"
+
+    def test_empty_string(self):
+        assert label_skill_from_instruction("") == "unknown"
+
+
 class TestSkillSignature:
     def test_signature_shape(self):
         c_tildes = [np.random.dirichlet(np.ones(256)) for _ in range(5)]
