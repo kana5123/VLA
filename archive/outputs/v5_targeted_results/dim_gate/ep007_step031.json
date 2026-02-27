@@ -1,0 +1,63 @@
+{
+  "episode_id": 7,
+  "step_id": 31,
+  "instruction": "Move the blue fork to the lower right burner",
+  "condition": "dim_gate",
+  "condition_desc": "VAR only for z/pitch/yaw tokens + obj + SAM2 + L8-24",
+  "predicted_action": [
+    -0.006781402477063252,
+    0.007799503397836756,
+    0.0012106314180709808,
+    0.060611136974184535,
+    0.018877052983152648,
+    0.00394074754207388,
+    0.43359375
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31901,
+    31846,
+    31894,
+    31777,
+    31832,
+    31868,
+    31816
+  ],
+  "mse_per_dim": [
+    4.5987419555919614e-05,
+    6.08322532528671e-05,
+    1.465628430420554e-06,
+    0.0036737099253033594,
+    0.00035634312932875226,
+    1.5529491190361327e-05,
+    0.3208160400390625
+  ],
+  "mse_mean": 0.046424272555160594,
+  "mse_spatial": 0.0006923113078436133,
+  "mse_gripper": 0.3208160400390625,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "fork",
+      "burner"
+    ],
+    "num_patches": 18,
+    "patch_coverage": 0.0703125
+  }
+}

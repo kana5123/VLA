@@ -1,0 +1,69 @@
+{
+  "episode_id": 18,
+  "step_id": 21,
+  "instruction": "Pick up the blue fork and place it on the left of the pot",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    -0.00020878732204438963,
+    0.0021659560519105767,
+    1.8581469707623643e-05,
+    0.01263300376896749,
+    -0.00011073313916434846,
+    0.011215875175653645,
+    0.06274509803921569
+  ],
+  "ground_truth_action": [
+    0.001443364773876965,
+    0.0016839202726259828,
+    0.011306463740766048,
+    -0.002953064627945423,
+    -0.03462380915880203,
+    0.011682849377393723,
+    0.0
+  ],
+  "action_token_ids": [
+    31872,
+    31864,
+    31899,
+    31853,
+    31861,
+    31864,
+    31864
+  ],
+  "mse_per_dim": [
+    2.729606548057325e-06,
+    2.3235849251050573e-07,
+    0.0001274162861652751,
+    0.0002429255280732475,
+    0.0011911524163372897,
+    2.1806490509078305e-07,
+    0.003936947327950788
+  ],
+  "mse_mean": 0.0007859459412103227,
+  "mse_spatial": 0.00026077904342024515,
+  "mse_gripper": 0.003936947327950788,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "fork",
+      "pot"
+    ],
+    "num_boxes": 1,
+    "num_patches": 19,
+    "patch_coverage": 0.07421875,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 27,
+    "motion_coverage": 0.10546875
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "d0_mean_nll": 14.422279317756084,
+  "d0_mean_gt_prob": 0.002218432486062008,
+  "d0_n_with_nll": 175,
+  "d1_mean_entropy": 1.9622280440160207,
+  "d1_mean_top1_prob": 0.5740080189279148,
+  "d2_mean_consistency": 0.4857142857142857,
+  "d2_mean_aug_kl": 1.7101627053072135,
+  "d3_mean_kl": 0.009705122352003985,
+  "d3_top1_change_rate": 0.05714285714285714,
+  "d4_diversity": {
+    "close": {
+      "n_samples": 25,
+      "n_unique_actions": 23,
+      "action_entropy": 3.108
+    },
+    "fold": {
+      "n_samples": 25,
+      "n_unique_actions": 25,
+      "action_entropy": 3.2189
+    },
+    "move": {
+      "n_samples": 25,
+      "n_unique_actions": 24,
+      "action_entropy": 3.1634
+    },
+    "open": {
+      "n_samples": 25,
+      "n_unique_actions": 22,
+      "action_entropy": 3.0316
+    },
+    "pick": {
+      "n_samples": 25,
+      "n_unique_actions": 21,
+      "action_entropy": 2.9971
+    },
+    "place": {
+      "n_samples": 25,
+      "n_unique_actions": 23,
+      "action_entropy": 3.108
+    },
+    "turn": {
+      "n_samples": 25,
+      "n_unique_actions": 22,
+      "action_entropy": 3.0525
+    }
+  }
+}

@@ -1,0 +1,29 @@
+2026-02-22 07:38:19.189863: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 07:38:19.228819: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 07:38:20.703287: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Loading smolvla-base (lerobot/smolvla_base)...
+  SmolVLA: loading underlying VLM HuggingFaceTB/SmolVLM2-500M-Video-Instruct
+Traceback (most recent call last):
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/configuration_auto.py", line 1034, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/configuration_auto.py", line 736, in __getitem__
+    raise KeyError(key)
+KeyError: 'smolvlm'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kana5123/ATLASVLA/cross_model_extract.py", line 438, in <module>
+    main()
+  File "/home/kana5123/ATLASVLA/cross_model_extract.py", line 432, in main
+    run_single_model(args.model, args.dataset, args.device, args.episode, args.step)
+  File "/home/kana5123/ATLASVLA/cross_model_extract.py", line 341, in run_single_model
+    processor, model = load_vla_model(model_cfg, device)
+  File "/home/kana5123/ATLASVLA/cross_model_extract.py", line 61, in load_vla_model
+    model = AutoModelForVision2Seq.from_pretrained(
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 526, in from_pretrained
+    config, kwargs = AutoConfig.from_pretrained(
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/configuration_auto.py", line 1036, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `smolvlm` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.

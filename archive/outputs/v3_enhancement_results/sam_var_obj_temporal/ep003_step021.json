@@ -1,0 +1,68 @@
+{
+  "episode_id": 3,
+  "step_id": 21,
+  "instruction": "put the rectangle block on top of the red arch and yellow block",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    0.0038173490201725453,
+    0.04069337469514669,
+    -0.0025796712913057455,
+    -0.03270718647919457,
+    0.013956425710635989,
+    0.17723107676996888,
+    0.0
+  ],
+  "ground_truth_action": [
+    -0.0010722758015617728,
+    0.02076752483844757,
+    -0.0034850123338401318,
+    -0.03542197495698929,
+    -0.001898503745906055,
+    0.10014036297798157,
+    0.0
+  ],
+  "action_token_ids": [
+    31854,
+    31744,
+    31909,
+    31924,
+    31840,
+    31761,
+    31872
+  ],
+  "mse_per_dim": [
+    2.3908430897320363e-05,
+    0.0003970394925117162,
+    8.196424032972493e-07,
+    7.370076479166953e-06,
+    0.0002513787880719246,
+    0.0059429781529581035,
+    0.0
+  ],
+  "mse_mean": 0.0009462135119030756,
+  "mse_spatial": 0.0011039157638869214,
+  "mse_gripper": 0.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "block"
+    ],
+    "num_boxes": 1,
+    "num_patches": 16,
+    "patch_coverage": 0.0625,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 34,
+    "motion_coverage": 0.1328125
+  }
+}

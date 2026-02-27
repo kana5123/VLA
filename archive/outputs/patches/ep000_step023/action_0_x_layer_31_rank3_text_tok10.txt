@@ -1,0 +1,4 @@
+Token index: 10
+Token text: put
+Global position: 266
+Attention score: 0.043945

@@ -1,0 +1,63 @@
+{
+  "episode_id": 6,
+  "step_id": 45,
+  "instruction": "Picked the piece of chocolate and put it into the drawer",
+  "condition": "targeted",
+  "condition_desc": "per-head VAR strength + dim gate + obj + SAM2 + L8-24",
+  "predicted_action": [
+    -0.01948103175964207,
+    0.007477008264104315,
+    0.023209509775479076,
+    0.013539757683756606,
+    0.03422375808993815,
+    -0.04582981407060294,
+    -0.21484375
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31958,
+    31847,
+    31809,
+    31851,
+    31809,
+    31899,
+    31899
+  ],
+  "mse_per_dim": [
+    0.00037951059842018304,
+    5.590565258148422e-05,
+    0.0005386813440180588,
+    0.00018332503813484605,
+    0.0011712656177986069,
+    0.002100371857746035,
+    1.4758453369140625
+  ],
+  "mse_mean": 0.21146777100325168,
+  "mse_spatial": 0.0007381766847832024,
+  "mse_gripper": 1.4758453369140625,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "chocolate",
+      "drawer"
+    ],
+    "num_patches": 0,
+    "patch_coverage": 0.0
+  }
+}

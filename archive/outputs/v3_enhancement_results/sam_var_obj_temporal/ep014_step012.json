@@ -1,0 +1,69 @@
+{
+  "episode_id": 14,
+  "step_id": 12,
+  "instruction": "move the silver pot to the lower right burner",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    0.004264697502641097,
+    -0.00010036269180919988,
+    -0.01089408012654852,
+    -0.009717794240689859,
+    0.003908455103635758,
+    -0.014572894004045822,
+    -0.1411764705882353
+  ],
+  "ground_truth_action": [
+    0.0047598183155059814,
+    0.004277870524674654,
+    -0.004601240158081055,
+    -0.005315248388797045,
+    0.01128700003027916,
+    0.003414930310100317,
+    1.0
+  ],
+  "action_token_ids": [
+    31852,
+    31871,
+    31941,
+    31888,
+    31855,
+    31880,
+    31890
+  ],
+  "mse_per_dim": [
+    2.451446193319842e-07,
+    1.916892609792255e-05,
+    3.9599834868741615e-05,
+    1.9382409978018624e-05,
+    5.444292523449508e-05,
+    0.000323561823556587,
+    1.3022837370242213
+  ],
+  "mse_mean": 0.18610573401265376,
+  "mse_spatial": 7.606684405918282e-05,
+  "mse_gripper": 1.3022837370242213,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "pot",
+      "burner"
+    ],
+    "num_boxes": 2,
+    "num_patches": 42,
+    "patch_coverage": 0.1640625,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 2,
+    "motion_coverage": 0.0078125
+  }
+}

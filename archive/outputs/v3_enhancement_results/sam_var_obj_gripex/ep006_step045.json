@@ -1,0 +1,65 @@
+{
+  "episode_id": 6,
+  "step_id": 45,
+  "instruction": "Picked the piece of chocolate and put it into the drawer",
+  "condition": "sam_var_obj_gripex",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + gripex + SAM2",
+  "predicted_action": [
+    -0.019444772068191986,
+    0.006698593539350123,
+    0.023402856318827926,
+    0.01391019222666219,
+    0.03472223163176981,
+    -0.04519705740493893,
+    -0.1647058823529412
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31958,
+    31850,
+    31809,
+    31851,
+    31809,
+    31899,
+    31893
+  ],
+  "mse_per_dim": [
+    0.00037809916078393924,
+    4.487115540542321e-05,
+    0.0005476936838797042,
+    0.00019349344778269323,
+    0.0012056333694902758,
+    0.0020427739980653447,
+    1.3565397923875435
+  ],
+  "mse_mean": 0.19442176531470728,
+  "mse_spatial": 0.0007354274692345634,
+  "mse_gripper": 1.3565397923875435,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "chocolate",
+      "drawer"
+    ],
+    "num_boxes": 0,
+    "num_patches": 0,
+    "patch_coverage": 0.0,
+    "segmentation": "sam2"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "episode_id": 26,
+  "step_id": 9,
+  "instruction": "take out the object from the silver pot and put it on the orange cloth",
+  "condition": "sam_var_obj_decay_laysel",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + decay + L8-24 + SAM2",
+  "predicted_action": [
+    0.004041023261406821,
+    0.00022339712872219974,
+    -0.005177924052319111,
+    -0.0033318519522163442,
+    0.009267372760702552,
+    -0.008125701709120942,
+    -0.14901960784313728
+  ],
+  "ground_truth_action": [
+    0.008329768665134907,
+    0.0034493962302803993,
+    -0.006374476011842489,
+    -0.0009736942010931671,
+    -0.0015276558697223663,
+    -0.01174999587237835,
+    0.8908429741859436
+  ],
+  "action_token_ids": [
+    31853,
+    31870,
+    31919,
+    31878,
+    31847,
+    31876,
+    31891
+  ],
+  "mse_per_dim": [
+    1.839333713799878e-05,
+    1.0407070203254311e-05,
+    1.4317365918392356e-06,
+    5.56090797918232e-06,
+    0.0001165326431316937,
+    1.3135508181821712e-05,
+    1.0813141895041867
+  ],
+  "mse_mean": 0.15449709295820177,
+  "mse_spatial": 2.7576867204298343e-05,
+  "mse_gripper": 1.0813141895041867,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "object",
+      "pot",
+      "cloth"
+    ],
+    "num_boxes": 2,
+    "num_patches": 42,
+    "patch_coverage": 0.1640625,
+    "segmentation": "sam2"
+  }
+}

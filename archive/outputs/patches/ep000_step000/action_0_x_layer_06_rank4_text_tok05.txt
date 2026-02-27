@@ -1,0 +1,4 @@
+Token index: 5
+Token text: should
+Global position: 261
+Attention score: 0.006561

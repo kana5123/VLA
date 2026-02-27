@@ -1,0 +1,15 @@
+{
+  "n_samples": 10,
+  "anchor_vs_nll": {
+    "rho": NaN,
+    "p": NaN
+  },
+  "anchor_vs_entropy": {
+    "rho": NaN,
+    "p": NaN
+  },
+  "anchor_vs_consistency": {
+    "rho": NaN,
+    "p": NaN
+  }
+}

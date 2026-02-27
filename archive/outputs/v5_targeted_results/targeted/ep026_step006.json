@@ -1,0 +1,64 @@
+{
+  "episode_id": 26,
+  "step_id": 6,
+  "instruction": "take out the object from the silver pot and put it on the orange cloth",
+  "condition": "targeted",
+  "condition_desc": "per-head VAR strength + dim gate + obj + SAM2 + L8-24",
+  "predicted_action": [
+    -0.0023253922024741927,
+    0.02392426008445902,
+    -0.005000816588726597,
+    -0.0029988350399072633,
+    0.010870076405699328,
+    0.04568379921722218,
+    0.99609375
+  ],
+  "ground_truth_action": [
+    0.0006630757125094533,
+    0.015251364558935165,
+    -0.008139083161950111,
+    -0.011350668966770172,
+    0.009852224960923195,
+    0.027170788496732712,
+    1.0
+  ],
+  "action_token_ids": [
+    31881,
+    31796,
+    31918,
+    31877,
+    31844,
+    31842,
+    31744
+  ],
+  "mse_per_dim": [
+    8.930940478886701e-06,
+    7.521911679665168e-05,
+    9.84871708461206e-06,
+    6.975312994189831e-05,
+    1.0360215636328608e-06,
+    0.00034273156593695803,
+    1.52587890625e-05
+  ],
+  "mse_mean": 7.46826115521628e-05,
+  "mse_spatial": 8.45865819671066e-05,
+  "mse_gripper": 1.52587890625e-05,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "object",
+      "pot",
+      "cloth"
+    ],
+    "num_patches": 26,
+    "patch_coverage": 0.1015625
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "episode_id": 6,
+  "step_id": 46,
+  "instruction": "Picked the piece of chocolate and put it into the drawer",
+  "condition": "spin_k8",
+  "condition_desc": "SPIN(k=8,a=0.05)",
+  "predicted_action": [
+    -0.005800643352901248,
+    -0.010460676948813866,
+    -0.0121932065070552,
+    -0.0173809249868581,
+    -0.06441774502396586,
+    -0.04680885547867014,
+    -0.6666666666666667
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31897,
+    31903,
+    31946,
+    31900,
+    31957,
+    31900,
+    31957
+  ],
+  "mse_per_dim": [
+    3.364746330755743e-05,
+    0.00010942576222744578,
+    0.00014867428492369326,
+    0.0003020965533987883,
+    0.004149645873972678,
+    0.002191068951223028,
+    2.777777777777778
+  ],
+  "mse_mean": 0.3978160480952616,
+  "mse_spatial": 0.0011557598148421984,
+  "mse_gripper": 2.777777777777778,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "piece",
+      "chocolate",
+      "it",
+      "drawer"
+    ],
+    "num_boxes": 0,
+    "num_patches": 0,
+    "patch_coverage": 0.0
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "episode_id": 9,
+  "step_id": 21,
+  "instruction": "Move the can in the middle bottom of the table",
+  "condition": "sam_var_obj_laysel",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + L8-24 + SAM2",
+  "predicted_action": [
+    0.003021820127032681,
+    0.006187027729174531,
+    0.016480441101448366,
+    -0.036076020487235,
+    0.0649171683035092,
+    0.10508737275493321,
+    0.99609375
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31857,
+    31851,
+    31835,
+    31929,
+    31763,
+    31805,
+    31744
+  ],
+  "gt_is_zero_spatial": true,
+  "mse_per_dim": [
+    9.131396880139809e-06,
+    3.8279312121574555e-05,
+    0.0002716049388983086,
+    0.0013014792541953997,
+    0.0042142387405461395,
+    0.011043355912534279,
+    1.52587890625e-05
+  ],
+  "mse_mean": 0.0024133354777483343,
+  "mse_spatial": 0.0028130149258626404,
+  "mse_gripper": 1.52587890625e-05,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "can",
+      "table"
+    ],
+    "num_boxes": 0,
+    "num_patches": 0,
+    "patch_coverage": 0.0
+  }
+}

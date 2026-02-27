@@ -1,0 +1,175 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading spatialvla-4b...
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  5.33it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.84it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.90it/s]
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)], 'text_ranges': [(256, 281)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  Text input_ids length: 280
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 0, Text tokens: 280
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 280, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)], 'text_ranges': [(256, 280)]}
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)], 'text_ranges': [(256, 278)]}
+
+============================================================
+  VAR Baseline Comparison for spatialvla-4b
+============================================================
+  Anchor targets: [{'target_abs': 225, 'mode': 'A_mode', 'anchor_rel': 225, 'is_anchored': True}]
+  Sink dimensions (gemma2): []
+
+  === Baseline (no intervention) ===
+    [1/20] H=2.554 D2=1.00
+    [10/20] H=5.361 D2=0.40
+    [20/20] H=3.827 D2=1.00
+  Baseline: entropy=3.2826, D2=0.7900
+
+  === VAR (p=0.3) ===
+    [1/20] H=2.246 D2=1.00 changed=False
+    [10/20] H=5.272 D2=0.40 changed=True
+    [20/20] H=3.641 D2=1.00 changed=False
+  VAR p=0.3: entropy=3.0835, D2=0.7800 (delta=-0.0100), change=0.1000
+
+  === VAR (p=0.6) ===
+    [1/20] H=2.031 D2=1.00 changed=False
+    [10/20] H=5.078 D2=0.20 changed=True
+    [20/20] H=3.526 D2=1.00 changed=False
+  VAR p=0.6: entropy=2.9264, D2=0.8300 (delta=+0.0400), change=0.1500
+
+  === VAR (p=0.9) ===
+    [1/20] H=1.881 D2=1.00 changed=False
+    [10/20] H=4.973 D2=0.40 changed=True
+    [20/20] H=3.426 D2=1.00 changed=False
+  VAR p=0.9: entropy=2.8320, D2=0.8200 (delta=+0.0300), change=0.2000
+
+  === K-scale (alpha=0.0) ===
+    [1/20] H=3.085 D2=0.80 changed=False
+    [10/20] H=5.217 D2=1.00 changed=True
+    [20/20] H=4.377 D2=0.60 changed=True
+  K-scale α=0.0: entropy=3.6926, D2=0.7700 (delta=-0.0200), change=0.1500
+
+  === K-scale (alpha=0.1) ===
+    [1/20] H=3.010 D2=0.80 changed=False
+    [10/20] H=5.257 D2=0.80 changed=True
+    [20/20] H=4.343 D2=0.80 changed=False
+  K-scale α=0.1: entropy=3.6362, D2=0.7800 (delta=-0.0100), change=0.1000
+
+  === K-scale (alpha=0.3) ===
+    [1/20] H=2.858 D2=1.00 changed=False
+    [10/20] H=5.304 D2=0.80 changed=True
+    [20/20] H=4.201 D2=1.00 changed=False
+  K-scale α=0.3: entropy=3.5528, D2=0.8100 (delta=+0.0200), change=0.1000
+
+============================================================
+  COMPARISON SUMMARY: spatialvla-4b
+============================================================
+  Method                Entropy       D2      ΔD2  Change%
+  ----------------------------------------------------
+  Baseline               3.2826   0.7900      ---      ---
+  VAR_p0.3               3.0835   0.7800  -0.0100   0.1000
+  VAR_p0.6               2.9264   0.8300  +0.0400   0.1500
+  VAR_p0.9               2.8320   0.8200  +0.0300   0.2000
+  K-scale_a0.0           3.6926   0.7700  -0.0200   0.1500
+  K-scale_a0.1           3.6362   0.7800  -0.0100   0.1000
+  K-scale_a0.3           3.5528   0.8100  +0.0200   0.1000
+
+  Results saved to /home/kana5123/ATLASVLA/outputs/phase3_gate/verification/spatialvla-4b/var_comparison.json
+
+Done. Results in: /home/kana5123/ATLASVLA/outputs/phase3_gate/verification/spatialvla-4b

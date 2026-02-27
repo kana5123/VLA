@@ -1,0 +1,356 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-22 01:29:08.782306: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.782306: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.782306: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.802169: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.830419: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:08.830419: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:08.830420: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:08.841214: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:10.236245: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:10.236245: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:10.236245: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:10.245867: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+
+============================================================
+Differentiable Attention Adapter Training
+  Devices: 4 GPU(s)
+  Episodes: None
+  Batch size: 16 (effective = 4/GPU × 4 GPUs)
+  Per-GPU batch: 4
+  LR: 0.0003 → 3e-05
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+============================================================
+
+Loading frozen OpenVLA model...
+Loading model: openvla/openvla-7b
+Loading model: openvla/openvla-7b
+Loading model: openvla/openvla-7b
+Loading model: openvla/openvla-7b
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.38it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.38it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.79it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.99it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.63it/s]
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.82it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.70it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.66it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.24it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.94it/s]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.24it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.94it/s]
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.79it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.71it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.32it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.99it/s]
+Model loaded successfully.
+Model loaded successfully.
+  Text input_ids length: 18
+  Text input_ids length: 18
+Model loaded successfully.
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  Vision tokens: 0..255
+  Text tokens end: 274
+Adapter v1 parameters: 1,098,240
+Creating data loaders...
+Episode split: train=42548, val=5318, test=5320
+Model loaded successfully.
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  [train] 1109516 steps from 30952 episodes (cached)
+  [train] 1109516 steps from 30952 episodes (cached)
+  [train] 1109516 steps from 30952 episodes (cached)
+  [train] 1109516 steps from 30952 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed.
+[attention_v3] V3 patched LlamaAttention.forward installed.
+[attention_v3] V3 patched LlamaAttention.forward installed.
+[attention_v3] V3 patched LlamaAttention.forward installed.
+Step     50 | Loss 12.7406 | GradNorm 0.0092 | LR 1.22e-04 | MeanP 0.0167 | Active 0.00%
+Step    100 | Loss 10.2128 | GradNorm 0.1113 | LR 2.41e-04 | MeanP 0.1886 | Active 21.68%
+Step    150 | Loss 12.1807 | GradNorm 0.0142 | LR 3.00e-04 | MeanP 0.1807 | Active 17.97%
+Step    200 | Loss 11.7436 | GradNorm 0.0116 | LR 3.00e-04 | MeanP 0.1811 | Active 18.75%
+Step    250 | Loss 13.0863 | GradNorm 0.0031 | LR 3.00e-04 | MeanP 0.1800 | Active 17.97%
+Step    300 | Loss 14.8975 | GradNorm 0.0052 | LR 3.00e-04 | MeanP 0.1799 | Active 17.97%
+Step    350 | Loss 9.9198 | GradNorm 0.0031 | LR 3.00e-04 | MeanP 0.1797 | Active 17.97%
+Step    400 | Loss 12.7142 | GradNorm 0.0119 | LR 3.00e-04 | MeanP 0.1801 | Active 17.97%
+Step    450 | Loss 14.8373 | GradNorm 0.0086 | LR 3.00e-04 | MeanP 0.1876 | Active 18.75%
+Step    500 | Loss 12.9362 | GradNorm 0.0119 | LR 2.99e-04 | MeanP 0.1874 | Active 18.75%
+  >>> Val Loss: 14.3114 (best: inf)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt
+Step    550 | Loss 9.7970 | GradNorm 0.0007 | LR 2.99e-04 | MeanP 0.1876 | Active 18.75%
+Step    600 | Loss 12.7275 | GradNorm 0.0083 | LR 2.99e-04 | MeanP 0.1877 | Active 18.75%
+Step    650 | Loss 9.6483 | GradNorm 0.0024 | LR 2.99e-04 | MeanP 0.1875 | Active 18.75%
+Step    700 | Loss 13.3352 | GradNorm 0.0033 | LR 2.99e-04 | MeanP 0.1876 | Active 18.75%
+Step    750 | Loss 13.9599 | GradNorm 0.0052 | LR 2.98e-04 | MeanP 0.1875 | Active 18.75%
+Step    800 | Loss 13.0835 | GradNorm 0.0010 | LR 2.98e-04 | MeanP 0.1954 | Active 19.53%
+Step    850 | Loss 13.7776 | GradNorm 0.0052 | LR 2.98e-04 | MeanP 0.1952 | Active 19.53%
+Step    900 | Loss 14.3569 | GradNorm 0.0023 | LR 2.97e-04 | MeanP 0.2033 | Active 20.31%
+Step    950 | Loss 11.1471 | GradNorm 0.0685 | LR 2.97e-04 | MeanP 0.2091 | Active 21.09%
+Step   1000 | Loss 13.6770 | GradNorm 0.0012 | LR 2.97e-04 | MeanP 0.2032 | Active 20.31%
+  >>> Val Loss: 14.2715 (best: 14.3114)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt
+Step   1050 | Loss 14.7077 | GradNorm 0.0011 | LR 2.96e-04 | MeanP 0.2032 | Active 20.31%
+Step   1100 | Loss 14.0659 | GradNorm 0.0018 | LR 2.96e-04 | MeanP 0.2030 | Active 20.31%
+Step   1150 | Loss 14.8444 | GradNorm 0.0036 | LR 2.95e-04 | MeanP 0.2031 | Active 20.31%
+Step   1200 | Loss 12.8026 | GradNorm 0.0012 | LR 2.95e-04 | MeanP 0.2031 | Active 20.31%
+Step   1250 | Loss 13.4600 | GradNorm 0.0028 | LR 2.95e-04 | MeanP 0.2032 | Active 20.31%
+Step   1300 | Loss 10.1069 | GradNorm 0.0009 | LR 2.94e-04 | MeanP 0.2032 | Active 20.31%
+Step   1350 | Loss 9.9534 | GradNorm 0.0015 | LR 2.94e-04 | MeanP 0.2032 | Active 20.31%
+Step   1400 | Loss 12.3617 | GradNorm 0.0002 | LR 2.93e-04 | MeanP 0.2032 | Active 20.31%
+Step   1450 | Loss 11.1761 | GradNorm 0.0010 | LR 2.92e-04 | MeanP 0.2032 | Active 20.31%
+Step   1500 | Loss 12.1408 | GradNorm 0.0009 | LR 2.92e-04 | MeanP 0.2032 | Active 20.31%
+  >>> Val Loss: 14.2716 (best: 14.2715)
+Step   1550 | Loss 9.4371 | GradNorm 0.0007 | LR 2.91e-04 | MeanP 0.2032 | Active 20.31%
+Step   1600 | Loss 14.0720 | GradNorm 0.0036 | LR 2.91e-04 | MeanP 0.2032 | Active 20.31%
+Step   1650 | Loss 14.2297 | GradNorm 0.0003 | LR 2.90e-04 | MeanP 0.2032 | Active 20.31%
+Step   1700 | Loss 13.4109 | GradNorm 0.0002 | LR 2.89e-04 | MeanP 0.2032 | Active 20.31%
+Step   1750 | Loss 10.3623 | GradNorm 0.0004 | LR 2.89e-04 | MeanP 0.2031 | Active 20.31%
+Step   1800 | Loss 11.5047 | GradNorm 0.0012 | LR 2.88e-04 | MeanP 0.2031 | Active 20.31%
+Step   1850 | Loss 11.2799 | GradNorm 0.0019 | LR 2.87e-04 | MeanP 0.2032 | Active 20.31%
+Step   1900 | Loss 13.4622 | GradNorm 0.0003 | LR 2.87e-04 | MeanP 0.2032 | Active 20.31%
+Step   1950 | Loss 9.0408 | GradNorm 0.0003 | LR 2.86e-04 | MeanP 0.2031 | Active 20.31%
+Step   2000 | Loss 12.9385 | GradNorm 0.0005 | LR 2.85e-04 | MeanP 0.2032 | Active 20.31%
+  >>> Val Loss: 14.2716 (best: 14.2715)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_2000.pt
+Step   2050 | Loss 12.9554 | GradNorm 0.0002 | LR 2.84e-04 | MeanP 0.2032 | Active 20.31%
+Step   2100 | Loss 11.8606 | GradNorm 0.0004 | LR 2.83e-04 | MeanP 0.2031 | Active 20.31%
+Step   2150 | Loss 10.3309 | GradNorm 0.0002 | LR 2.83e-04 | MeanP 0.2032 | Active 20.31%
+Step   2200 | Loss 13.0501 | GradNorm 0.0002 | LR 2.82e-04 | MeanP 0.2031 | Active 20.31%
+Step   2250 | Loss 15.7814 | GradNorm 0.0001 | LR 2.81e-04 | MeanP 0.2031 | Active 20.31%
+Step   2300 | Loss 11.5200 | GradNorm 0.0037 | LR 2.80e-04 | MeanP 0.2031 | Active 20.31%
+Step   2350 | Loss 10.6710 | GradNorm 0.0004 | LR 2.79e-04 | MeanP 0.2032 | Active 20.31%
+Step   2400 | Loss 9.8980 | GradNorm 0.0012 | LR 2.78e-04 | MeanP 0.2032 | Active 20.31%
+Step   2450 | Loss 14.1436 | GradNorm 0.0003 | LR 2.77e-04 | MeanP 0.2031 | Active 20.31%
+Step   2500 | Loss 13.6929 | GradNorm 0.0003 | LR 2.76e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2717 (best: 14.2715)
+Step   2550 | Loss 11.0993 | GradNorm 0.0001 | LR 2.75e-04 | MeanP 0.2031 | Active 20.31%
+Step   2600 | Loss 10.9265 | GradNorm 0.0024 | LR 2.74e-04 | MeanP 0.2031 | Active 20.31%
+Step   2650 | Loss 12.9682 | GradNorm 0.0002 | LR 2.73e-04 | MeanP 0.2031 | Active 20.31%
+Step   2700 | Loss 11.1815 | GradNorm 0.0003 | LR 2.72e-04 | MeanP 0.2031 | Active 20.31%
+Step   2750 | Loss 15.2686 | GradNorm 0.0001 | LR 2.71e-04 | MeanP 0.2031 | Active 20.31%
+Step   2800 | Loss 11.9123 | GradNorm 0.0001 | LR 2.70e-04 | MeanP 0.2031 | Active 20.31%
+Step   2850 | Loss 13.9554 | GradNorm 0.0004 | LR 2.69e-04 | MeanP 0.2031 | Active 20.31%
+Step   2900 | Loss 14.5359 | GradNorm 0.0001 | LR 2.68e-04 | MeanP 0.2031 | Active 20.31%
+Step   2950 | Loss 10.3855 | GradNorm 0.0002 | LR 2.67e-04 | MeanP 0.2031 | Active 20.31%
+Step   3000 | Loss 14.7436 | GradNorm 0.0000 | LR 2.66e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2715)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt
+Step   3050 | Loss 10.8219 | GradNorm 0.0001 | LR 2.64e-04 | MeanP 0.2031 | Active 20.31%
+Step   3100 | Loss 10.6107 | GradNorm 0.0000 | LR 2.63e-04 | MeanP 0.2031 | Active 20.31%
+Step   3150 | Loss 15.2489 | GradNorm 0.0001 | LR 2.62e-04 | MeanP 0.2031 | Active 20.31%
+Step   3200 | Loss 13.2284 | GradNorm 0.0001 | LR 2.61e-04 | MeanP 0.2031 | Active 20.31%
+Step   3250 | Loss 12.3184 | GradNorm 0.0002 | LR 2.60e-04 | MeanP 0.2031 | Active 20.31%
+Step   3300 | Loss 14.6146 | GradNorm 0.0001 | LR 2.58e-04 | MeanP 0.2031 | Active 20.31%
+Step   3350 | Loss 9.9248 | GradNorm 0.0001 | LR 2.57e-04 | MeanP 0.2031 | Active 20.31%
+Step   3400 | Loss 13.2412 | GradNorm 0.0001 | LR 2.56e-04 | MeanP 0.2031 | Active 20.31%
+Step   3450 | Loss 13.6169 | GradNorm 0.0000 | LR 2.55e-04 | MeanP 0.2031 | Active 20.31%
+Step   3500 | Loss 11.3336 | GradNorm 0.0001 | LR 2.53e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   3550 | Loss 12.0340 | GradNorm 0.0000 | LR 2.52e-04 | MeanP 0.2031 | Active 20.31%
+Step   3600 | Loss 12.1696 | GradNorm 0.0002 | LR 2.51e-04 | MeanP 0.2031 | Active 20.31%
+Step   3650 | Loss 11.6575 | GradNorm 0.0001 | LR 2.49e-04 | MeanP 0.2031 | Active 20.31%
+Step   3700 | Loss 14.8991 | GradNorm 0.0000 | LR 2.48e-04 | MeanP 0.2031 | Active 20.31%
+Step   3750 | Loss 12.6435 | GradNorm 0.0000 | LR 2.47e-04 | MeanP 0.2031 | Active 20.31%
+Step   3800 | Loss 12.4199 | GradNorm 0.0000 | LR 2.45e-04 | MeanP 0.2031 | Active 20.31%
+Step   3850 | Loss 12.4102 | GradNorm 0.0001 | LR 2.44e-04 | MeanP 0.2031 | Active 20.31%
+Step   3900 | Loss 12.4367 | GradNorm 0.0001 | LR 2.43e-04 | MeanP 0.2031 | Active 20.31%
+Step   3950 | Loss 12.8782 | GradNorm 0.0000 | LR 2.41e-04 | MeanP 0.2031 | Active 20.31%
+Step   4000 | Loss 14.9003 | GradNorm 0.0002 | LR 2.40e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_4000.pt
+Step   4050 | Loss 9.8254 | GradNorm 0.0003 | LR 2.38e-04 | MeanP 0.2031 | Active 20.31%
+Step   4100 | Loss 11.9145 | GradNorm 0.0000 | LR 2.37e-04 | MeanP 0.2031 | Active 20.31%
+Step   4150 | Loss 11.2797 | GradNorm 0.0000 | LR 2.35e-04 | MeanP 0.2031 | Active 20.31%
+Step   4200 | Loss 14.4497 | GradNorm 0.0000 | LR 2.34e-04 | MeanP 0.2031 | Active 20.31%
+Step   4250 | Loss 11.5271 | GradNorm 0.0000 | LR 2.33e-04 | MeanP 0.2031 | Active 20.31%
+Step   4300 | Loss 11.5918 | GradNorm 0.0000 | LR 2.31e-04 | MeanP 0.2031 | Active 20.31%
+Step   4350 | Loss 10.8910 | GradNorm 0.0000 | LR 2.30e-04 | MeanP 0.2031 | Active 20.31%
+Step   4400 | Loss 11.2483 | GradNorm 0.0001 | LR 2.28e-04 | MeanP 0.2031 | Active 20.31%
+Step   4450 | Loss 14.2926 | GradNorm 0.0000 | LR 2.26e-04 | MeanP 0.2031 | Active 20.31%
+Step   4500 | Loss 13.3148 | GradNorm 0.0001 | LR 2.25e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   4550 | Loss 13.4396 | GradNorm 0.0000 | LR 2.23e-04 | MeanP 0.2031 | Active 20.31%
+Step   4600 | Loss 13.4564 | GradNorm 0.0000 | LR 2.22e-04 | MeanP 0.2031 | Active 20.31%
+Step   4650 | Loss 12.4574 | GradNorm 0.0000 | LR 2.20e-04 | MeanP 0.2031 | Active 20.31%
+Step   4700 | Loss 12.7253 | GradNorm 0.0000 | LR 2.19e-04 | MeanP 0.2031 | Active 20.31%
+Step   4750 | Loss 13.2927 | GradNorm 0.0000 | LR 2.17e-04 | MeanP 0.2031 | Active 20.31%
+Step   4800 | Loss 10.1547 | GradNorm 0.0000 | LR 2.16e-04 | MeanP 0.2031 | Active 20.31%
+Step   4850 | Loss 10.2793 | GradNorm 0.0000 | LR 2.14e-04 | MeanP 0.2031 | Active 20.31%
+Step   4900 | Loss 12.6223 | GradNorm 0.0000 | LR 2.12e-04 | MeanP 0.2031 | Active 20.31%
+Step   4950 | Loss 12.9689 | GradNorm 0.0000 | LR 2.11e-04 | MeanP 0.2031 | Active 20.31%
+Step   5000 | Loss 16.7751 | GradNorm 0.0000 | LR 2.09e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   5050 | Loss 13.9969 | GradNorm 0.0000 | LR 2.08e-04 | MeanP 0.2031 | Active 20.31%
+Step   5100 | Loss 9.4985 | GradNorm 0.0000 | LR 2.06e-04 | MeanP 0.2031 | Active 20.31%
+Step   5150 | Loss 11.2042 | GradNorm 0.0000 | LR 2.04e-04 | MeanP 0.2031 | Active 20.31%
+Step   5200 | Loss 12.7452 | GradNorm 0.0002 | LR 2.03e-04 | MeanP 0.2031 | Active 20.31%
+Step   5250 | Loss 8.9768 | GradNorm 0.0000 | LR 2.01e-04 | MeanP 0.2031 | Active 20.31%
+Step   5300 | Loss 12.6302 | GradNorm 0.0000 | LR 1.99e-04 | MeanP 0.2031 | Active 20.31%
+Step   5350 | Loss 12.1653 | GradNorm 0.0000 | LR 1.98e-04 | MeanP 0.2031 | Active 20.31%
+Step   5400 | Loss 8.6444 | GradNorm 0.0000 | LR 1.96e-04 | MeanP 0.2031 | Active 20.31%
+Step   5450 | Loss 13.4867 | GradNorm 0.0000 | LR 1.94e-04 | MeanP 0.2031 | Active 20.31%
+Step   5500 | Loss 11.5441 | GradNorm 0.0000 | LR 1.93e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   5550 | Loss 11.9168 | GradNorm 0.0002 | LR 1.91e-04 | MeanP 0.2031 | Active 20.31%
+Step   5600 | Loss 12.5975 | GradNorm 0.0000 | LR 1.89e-04 | MeanP 0.2031 | Active 20.31%
+Step   5650 | Loss 9.5840 | GradNorm 0.0001 | LR 1.88e-04 | MeanP 0.2031 | Active 20.31%
+Step   5700 | Loss 7.7698 | GradNorm 0.0001 | LR 1.86e-04 | MeanP 0.2031 | Active 20.31%
+Step   5750 | Loss 13.4010 | GradNorm 0.0001 | LR 1.84e-04 | MeanP 0.2031 | Active 20.31%
+Step   5800 | Loss 10.6604 | GradNorm 0.0000 | LR 1.83e-04 | MeanP 0.2031 | Active 20.31%
+Step   5850 | Loss 12.8823 | GradNorm 0.0000 | LR 1.81e-04 | MeanP 0.2031 | Active 20.31%
+Step   5900 | Loss 12.0755 | GradNorm 0.0001 | LR 1.79e-04 | MeanP 0.2031 | Active 20.31%
+Step   5950 | Loss 11.7039 | GradNorm 0.0000 | LR 1.77e-04 | MeanP 0.2031 | Active 20.31%
+Step   6000 | Loss 13.8329 | GradNorm 0.0000 | LR 1.76e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_6000.pt
+Step   6050 | Loss 11.9294 | GradNorm 0.0000 | LR 1.74e-04 | MeanP 0.2031 | Active 20.31%
+Step   6100 | Loss 11.9495 | GradNorm 0.0000 | LR 1.72e-04 | MeanP 0.2031 | Active 20.31%
+Step   6150 | Loss 11.8371 | GradNorm 0.0000 | LR 1.71e-04 | MeanP 0.2031 | Active 20.31%
+Step   6200 | Loss 10.8816 | GradNorm 0.0000 | LR 1.69e-04 | MeanP 0.2031 | Active 20.31%
+Step   6250 | Loss 12.1071 | GradNorm 0.0000 | LR 1.67e-04 | MeanP 0.2031 | Active 20.31%
+Step   6300 | Loss 13.7430 | GradNorm 0.0000 | LR 1.65e-04 | MeanP 0.2031 | Active 20.31%
+Step   6350 | Loss 11.1050 | GradNorm 0.0000 | LR 1.64e-04 | MeanP 0.2031 | Active 20.31%
+Step   6400 | Loss 10.8013 | GradNorm 0.0000 | LR 1.62e-04 | MeanP 0.2031 | Active 20.31%
+Step   6450 | Loss 8.8483 | GradNorm 0.0000 | LR 1.60e-04 | MeanP 0.2031 | Active 20.31%
+Step   6500 | Loss 7.3505 | GradNorm 0.0000 | LR 1.59e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   6550 | Loss 11.4482 | GradNorm 0.0000 | LR 1.57e-04 | MeanP 0.2031 | Active 20.31%
+Step   6600 | Loss 14.0413 | GradNorm 0.0000 | LR 1.55e-04 | MeanP 0.2031 | Active 20.31%
+Step   6650 | Loss 12.7751 | GradNorm 0.0000 | LR 1.53e-04 | MeanP 0.2031 | Active 20.31%
+Step   6700 | Loss 15.2752 | GradNorm 0.0000 | LR 1.52e-04 | MeanP 0.2031 | Active 20.31%
+Step   6750 | Loss 14.2337 | GradNorm 0.0001 | LR 1.50e-04 | MeanP 0.2031 | Active 20.31%
+Step   6800 | Loss 8.8245 | GradNorm 0.0000 | LR 1.48e-04 | MeanP 0.2031 | Active 20.31%
+Step   6850 | Loss 12.5025 | GradNorm 0.0000 | LR 1.47e-04 | MeanP 0.2031 | Active 20.31%
+Step   6900 | Loss 14.4025 | GradNorm 0.0000 | LR 1.45e-04 | MeanP 0.2031 | Active 20.31%
+Step   6950 | Loss 11.0391 | GradNorm 0.0000 | LR 1.43e-04 | MeanP 0.2031 | Active 20.31%
+Step   7000 | Loss 11.8746 | GradNorm 0.0000 | LR 1.42e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   7050 | Loss 11.3396 | GradNorm 0.0000 | LR 1.40e-04 | MeanP 0.2031 | Active 20.31%
+Step   7100 | Loss 13.1877 | GradNorm 0.0000 | LR 1.38e-04 | MeanP 0.2031 | Active 20.31%
+Step   7150 | Loss 11.2060 | GradNorm 0.0000 | LR 1.37e-04 | MeanP 0.2031 | Active 20.31%
+Step   7200 | Loss 14.3150 | GradNorm 0.0000 | LR 1.35e-04 | MeanP 0.2031 | Active 20.31%
+Step   7250 | Loss 13.3341 | GradNorm 0.0000 | LR 1.33e-04 | MeanP 0.2031 | Active 20.31%
+Step   7300 | Loss 8.1156 | GradNorm 0.0000 | LR 1.32e-04 | MeanP 0.2031 | Active 20.31%
+Step   7350 | Loss 13.2846 | GradNorm 0.0000 | LR 1.30e-04 | MeanP 0.2031 | Active 20.31%
+Step   7400 | Loss 12.3727 | GradNorm 0.0000 | LR 1.28e-04 | MeanP 0.2031 | Active 20.31%
+Step   7450 | Loss 12.0979 | GradNorm 0.0000 | LR 1.27e-04 | MeanP 0.2031 | Active 20.31%
+Step   7500 | Loss 13.3715 | GradNorm 0.0000 | LR 1.25e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   7550 | Loss 13.0124 | GradNorm 0.0000 | LR 1.23e-04 | MeanP 0.2031 | Active 20.31%
+Step   7600 | Loss 14.8169 | GradNorm 0.0000 | LR 1.22e-04 | MeanP 0.2031 | Active 20.31%
+Step   7650 | Loss 14.1562 | GradNorm 0.0001 | LR 1.20e-04 | MeanP 0.2031 | Active 20.31%
+Step   7700 | Loss 14.7699 | GradNorm 0.0000 | LR 1.18e-04 | MeanP 0.2031 | Active 20.31%
+Step   7750 | Loss 14.5726 | GradNorm 0.0000 | LR 1.17e-04 | MeanP 0.2031 | Active 20.31%
+Step   7800 | Loss 14.0559 | GradNorm 0.0000 | LR 1.15e-04 | MeanP 0.2031 | Active 20.31%
+Step   7850 | Loss 11.8529 | GradNorm 0.0000 | LR 1.14e-04 | MeanP 0.2031 | Active 20.31%
+Step   7900 | Loss 12.9516 | GradNorm 0.0000 | LR 1.12e-04 | MeanP 0.2031 | Active 20.31%
+Step   7950 | Loss 10.5331 | GradNorm 0.0000 | LR 1.10e-04 | MeanP 0.2031 | Active 20.31%
+Step   8000 | Loss 15.2622 | GradNorm 0.0000 | LR 1.09e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_8000.pt
+Step   8050 | Loss 11.1119 | GradNorm 0.0000 | LR 1.07e-04 | MeanP 0.2031 | Active 20.31%
+Step   8100 | Loss 9.4360 | GradNorm 0.0000 | LR 1.06e-04 | MeanP 0.2031 | Active 20.31%
+Step   8150 | Loss 14.4646 | GradNorm 0.0000 | LR 1.04e-04 | MeanP 0.2031 | Active 20.31%
+Step   8200 | Loss 12.8989 | GradNorm 0.0000 | LR 1.03e-04 | MeanP 0.2031 | Active 20.31%
+Step   8250 | Loss 13.3862 | GradNorm 0.0000 | LR 1.01e-04 | MeanP 0.2031 | Active 20.31%
+Step   8300 | Loss 11.9372 | GradNorm 0.0000 | LR 9.97e-05 | MeanP 0.2031 | Active 20.31%
+Step   8350 | Loss 9.2071 | GradNorm 0.0000 | LR 9.82e-05 | MeanP 0.2031 | Active 20.31%
+Step   8400 | Loss 8.8211 | GradNorm 0.0000 | LR 9.68e-05 | MeanP 0.2031 | Active 20.31%
+Step   8450 | Loss 12.2432 | GradNorm 0.0000 | LR 9.53e-05 | MeanP 0.2031 | Active 20.31%
+Step   8500 | Loss 14.6726 | GradNorm 0.0000 | LR 9.38e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   8550 | Loss 11.1839 | GradNorm 0.0000 | LR 9.24e-05 | MeanP 0.2031 | Active 20.31%
+Step   8600 | Loss 14.8440 | GradNorm 0.0000 | LR 9.09e-05 | MeanP 0.2031 | Active 20.31%
+Step   8650 | Loss 14.5819 | GradNorm 0.0000 | LR 8.95e-05 | MeanP 0.2031 | Active 20.31%
+Step   8700 | Loss 14.0609 | GradNorm 0.0000 | LR 8.81e-05 | MeanP 0.2031 | Active 20.31%
+Step   8750 | Loss 11.9933 | GradNorm 0.0000 | LR 8.67e-05 | MeanP 0.2031 | Active 20.31%
+Step   8800 | Loss 11.1255 | GradNorm 0.0000 | LR 8.53e-05 | MeanP 0.2031 | Active 20.31%
+Step   8850 | Loss 11.0562 | GradNorm 0.0000 | LR 8.39e-05 | MeanP 0.2031 | Active 20.31%
+Step   8900 | Loss 12.1247 | GradNorm 0.0000 | LR 8.26e-05 | MeanP 0.2031 | Active 20.31%
+Step   8950 | Loss 13.2256 | GradNorm 0.0000 | LR 8.12e-05 | MeanP 0.2031 | Active 20.31%
+Step   9000 | Loss 12.5091 | GradNorm 0.0000 | LR 7.99e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   9050 | Loss 14.5103 | GradNorm 0.0000 | LR 7.86e-05 | MeanP 0.2031 | Active 20.31%
+Step   9100 | Loss 14.5400 | GradNorm 0.0000 | LR 7.72e-05 | MeanP 0.2031 | Active 20.31%
+Step   9150 | Loss 12.6824 | GradNorm 0.0000 | LR 7.59e-05 | MeanP 0.2031 | Active 20.31%
+Step   9200 | Loss 12.9455 | GradNorm 0.0000 | LR 7.47e-05 | MeanP 0.2031 | Active 20.31%
+Step   9250 | Loss 13.1476 | GradNorm 0.0000 | LR 7.34e-05 | MeanP 0.2031 | Active 20.31%
+Step   9300 | Loss 12.7090 | GradNorm 0.0000 | LR 7.21e-05 | MeanP 0.2031 | Active 20.31%
+Step   9350 | Loss 16.6174 | GradNorm 0.0000 | LR 7.09e-05 | MeanP 0.2031 | Active 20.31%
+Step   9400 | Loss 13.6219 | GradNorm 0.0000 | LR 6.97e-05 | MeanP 0.2031 | Active 20.31%
+Step   9450 | Loss 12.6978 | GradNorm 0.0000 | LR 6.85e-05 | MeanP 0.2031 | Active 20.31%
+Step   9500 | Loss 12.2520 | GradNorm 0.0000 | LR 6.73e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   9550 | Loss 6.1646 | GradNorm 0.0000 | LR 6.61e-05 | MeanP 0.2031 | Active 20.31%
+Step   9600 | Loss 9.8201 | GradNorm 0.0000 | LR 6.50e-05 | MeanP 0.2031 | Active 20.31%
+Step   9650 | Loss 10.6104 | GradNorm 0.0000 | LR 6.38e-05 | MeanP 0.2031 | Active 20.31%
+Step   9700 | Loss 14.1595 | GradNorm 0.0000 | LR 6.27e-05 | MeanP 0.2031 | Active 20.31%
+Step   9750 | Loss 10.5118 | GradNorm 0.0000 | LR 6.16e-05 | MeanP 0.2031 | Active 20.31%
+Step   9800 | Loss 11.2823 | GradNorm 0.0000 | LR 6.05e-05 | MeanP 0.2031 | Active 20.31%
+Step   9850 | Loss 8.4451 | GradNorm 0.0000 | LR 5.94e-05 | MeanP 0.2031 | Active 20.31%
+Step   9900 | Loss 12.3473 | GradNorm 0.0000 | LR 5.84e-05 | MeanP 0.2031 | Active 20.31%
+Step   9950 | Loss 11.8836 | GradNorm 0.0000 | LR 5.73e-05 | MeanP 0.2031 | Active 20.31%
+Step  10000 | Loss 14.2896 | GradNorm 0.0000 | LR 5.63e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_10000.pt
+Step  10050 | Loss 13.1068 | GradNorm 0.0000 | LR 5.53e-05 | MeanP 0.2031 | Active 20.31%
+Step  10100 | Loss 12.4007 | GradNorm 0.0000 | LR 5.43e-05 | MeanP 0.2031 | Active 20.31%
+Step  10150 | Loss 12.2050 | GradNorm 0.0000 | LR 5.33e-05 | MeanP 0.2031 | Active 20.31%
+Step  10200 | Loss 13.4680 | GradNorm 0.0000 | LR 5.24e-05 | MeanP 0.2031 | Active 20.31%
+Step  10250 | Loss 11.6401 | GradNorm 0.0000 | LR 5.14e-05 | MeanP 0.2031 | Active 20.31%
+Step  10300 | Loss 11.6568 | GradNorm 0.0000 | LR 5.05e-05 | MeanP 0.2031 | Active 20.31%
+Step  10350 | Loss 11.0624 | GradNorm 0.0000 | LR 4.96e-05 | MeanP 0.2031 | Active 20.31%
+Step  10400 | Loss 13.6124 | GradNorm 0.0003 | LR 4.87e-05 | MeanP 0.2031 | Active 20.31%
+Step  10450 | Loss 13.2835 | GradNorm 0.0000 | LR 4.79e-05 | MeanP 0.2031 | Active 20.31%
+Step  10500 | Loss 13.8640 | GradNorm 0.0000 | LR 4.70e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Early stopping at step 10500
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] Original LlamaAttention.forward restored.[attention_v3] Original LlamaAttention.forward restored.[attention_v3] Original LlamaAttention.forward restored.
+
+
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/final.pt
+
+Training complete. Logs: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/logs/training_log.json

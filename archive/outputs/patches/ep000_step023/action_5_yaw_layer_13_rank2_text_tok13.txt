@@ -1,0 +1,4 @@
+Token index: 13
+Token text: oon
+Global position: 269
+Attention score: 0.027222

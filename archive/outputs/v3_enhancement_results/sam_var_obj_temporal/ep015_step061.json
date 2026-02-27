@@ -1,0 +1,68 @@
+{
+  "episode_id": 15,
+  "step_id": 61,
+  "instruction": "sweep into pile",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    0.011869621704606429,
+    0.023210344386451302,
+    -0.003878797671812425,
+    0.017103163370898955,
+    -0.008818974331897864,
+    0.07085240390370864,
+    0.0
+  ],
+  "ground_truth_action": [
+    0.00859223585575819,
+    -0.005389041732996702,
+    -0.004310772754251957,
+    0.003953250125050545,
+    0.003703294787555933,
+    -0.02279256097972393,
+    0.0
+  ],
+  "action_token_ids": [
+    31818,
+    31799,
+    31914,
+    31846,
+    31874,
+    31827,
+    31872
+  ],
+  "mse_per_dim": [
+    1.0741258002230692e-05,
+    0.0008179248864092752,
+    1.8660247184864046e-07,
+    0.00017292021837333948,
+    0.00015680722390002617,
+    0.00876937944801932,
+    0.0
+  ],
+  "mse_mean": 0.0014182799481680059,
+  "mse_spatial": 0.0016546599395293401,
+  "mse_gripper": 0.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "pile"
+    ],
+    "num_boxes": 1,
+    "num_patches": 5,
+    "patch_coverage": 0.01953125,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 16,
+    "motion_coverage": 0.0625
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "configs_run": [
+    "base",
+    "v1",
+    "v2-prop",
+    "v2-full"
+  ],
+  "total_time_s": 33413.45887684822,
+  "results": {
+    "base": {
+      "baseline": {
+        "summary": {
+          "n_steps": 398,
+          "overall_mse": 0.06785348421650163,
+          "spatial_mse": 8.871447842461285e-05,
+          "rotational_mse": 0.0028809692164277222,
+          "per_dim_mse": {
+            "x": 0.00010760365905407675,
+            "y": 7.928272784308476e-05,
+            "z": 7.925704837667704e-05,
+            "roll": 0.0014230765465711264,
+            "pitch": 0.001509201340329809,
+            "yaw": 0.00571062976238223,
+            "gripper": 0.4660653384309544
+          }
+        }
+      },
+      "status": "complete"
+    },
+    "v1": {
+      "status": "eval_failed"
+    },
+    "v2-prop": {
+      "status": "train_failed"
+    },
+    "v2-full": {
+      "status": "train_failed"
+    }
+  }
+}

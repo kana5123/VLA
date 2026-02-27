@@ -1,0 +1,69 @@
+{
+  "episode_id": 28,
+  "step_id": 17,
+  "instruction": "Move the bowl closer to the bottom right of the table.",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    -0.010050453936352462,
+    -0.018554672462098763,
+    -0.012712857059257874,
+    0.026682076803609248,
+    0.020655072781969472,
+    -0.10322178805926271,
+    0.0
+  ],
+  "ground_truth_action": [
+    -0.010826113633811474,
+    -0.01631776988506317,
+    -0.02266583777964115,
+    0.042915523052215576,
+    0.037949491292238235,
+    -0.06176770105957985,
+    0.0
+  ],
+  "action_token_ids": [
+    31916,
+    31928,
+    31948,
+    31831,
+    31830,
+    31935,
+    31872
+  ],
+  "mse_per_dim": [
+    6.016479662622063e-07,
+    5.003733139148472e-06,
+    9.906182522032123e-05,
+    0.0002635247771063909,
+    0.00029909691160832685,
+    0.001718441328977276,
+    0.0
+  ],
+  "mse_mean": 0.0003408186034311037,
+  "mse_spatial": 0.0003976217040029543,
+  "mse_gripper": 0.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "bowl",
+      "table"
+    ],
+    "num_boxes": 0,
+    "num_patches": 0,
+    "patch_coverage": 0.0,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 31,
+    "motion_coverage": 0.12109375
+  }
+}

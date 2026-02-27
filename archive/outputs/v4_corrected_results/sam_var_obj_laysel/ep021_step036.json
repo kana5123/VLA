@@ -1,0 +1,65 @@
+{
+  "episode_id": 21,
+  "step_id": 36,
+  "instruction": "moved the green object and put it on the table",
+  "condition": "sam_var_obj_laysel",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + L8-24 + SAM2",
+  "predicted_action": [
+    -0.0012113896338269287,
+    0.0023170861243851926,
+    -0.02492921227720217,
+    -0.011268131401739198,
+    -0.03250104672217278,
+    0.07939934095484194,
+    0.07421875
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31876,
+    31863,
+    31995,
+    31890,
+    31909,
+    31821,
+    31862
+  ],
+  "gt_is_zero_spatial": true,
+  "mse_per_dim": [
+    1.4674648449433403e-06,
+    5.368888107818392e-06,
+    0.0006214656247618074,
+    0.000126970785286861,
+    0.0010563180380368578,
+    0.0063042553440632405,
+    0.8570709228515625
+  ],
+  "mse_mean": 0.12359810985666629,
+  "mse_spatial": 0.001352641024183588,
+  "mse_gripper": 0.8570709228515625,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "object",
+      "table"
+    ],
+    "num_boxes": 1,
+    "num_patches": 35,
+    "patch_coverage": 0.13671875
+  }
+}

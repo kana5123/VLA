@@ -1,0 +1,68 @@
+{
+  "episode_id": 8,
+  "step_id": 15,
+  "instruction": "open the drawer",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    -0.004234923664261325,
+    -0.009813157307751078,
+    -0.0010207196346977247,
+    -0.01929670767340016,
+    -0.019536809646031453,
+    0.016051269396847284,
+    0.0
+  ],
+  "ground_truth_action": [
+    -0.006061522755771875,
+    -0.009012156166136265,
+    0.0007509413408115506,
+    -0.011098458431661129,
+    -0.0010687059257179499,
+    -0.009583557955920696,
+    0.0
+  ],
+  "action_token_ids": [
+    31890,
+    31901,
+    31903,
+    31903,
+    31890,
+    31861,
+    31872
+  ],
+  "mse_per_dim": [
+    3.3364642411071695e-06,
+    6.416028288682332e-07,
+    3.1387826121424772e-06,
+    6.721129062967457e-05,
+    0.00034107085502425746,
+    0.0006571443734062214,
+    0.0
+  ],
+  "mse_mean": 0.0001532204812488959,
+  "mse_spatial": 0.00017875722812371188,
+  "mse_gripper": 0.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "drawer"
+    ],
+    "num_boxes": 0,
+    "num_patches": 0,
+    "patch_coverage": 0.0,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 19,
+    "motion_coverage": 0.07421875
+  }
+}

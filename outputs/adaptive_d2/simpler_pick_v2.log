@@ -1,0 +1,200 @@
+openvla/openvla-7b
+2026-02-27 07:30:11.731723: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:11.795261: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:13.249389: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:15.964549: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:16.026478: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:17.380295: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:20.122262: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:20.185781: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:21.562393: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:24.021165: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:24.082881: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:25.405475: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:27.842066: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:27.902985: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:29.232291: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:31.738253: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:31.800091: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:33.134653: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:35.597872: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:35.661321: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:37.006069: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:39.474054: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:39.536361: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:40.868611: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:43.295294: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:43.357664: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:44.688253: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:47.149499: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:47.212994: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:48.550104: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:51.007095: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:51.068347: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:52.414882: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+2026-02-27 07:30:54.848710: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 07:30:54.909600: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 07:30:56.226867: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/kana5123/miniconda3/envs/simpler/lib/python3.10/site-packages/sapien/core/renderer_config.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 7, in <module>
+    from simpler_env.evaluation.maniskill2_evaluator import maniskill2_evaluator
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/evaluation/maniskill2_evaluator.py", line 15, in <module>
+    from simpler_env.utils.visualization import write_interval_video, write_video
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/utils/visualization.py", line 7, in <module>
+    import mediapy as media
+ModuleNotFoundError: No module named 'mediapy'
+SimplerEnv Evaluation — 20260227_073011
+  Model:      openvla (openvla/openvla-7b)
+  Tasks:      ['pick_coke_can']
+  Device:     GPU 6
+  Output dir: /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla
+
+======================================================================
+  Task:    pick_coke_can — Pick up coke can (visual matching, 4 URDF x 3 orientations)
+  Model:   openvla (ckpt: openvla/openvla-7b)
+  Device:  GPU 6
+  LogDir:  /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla/pick_coke_can
+  Command: bash scripts/pick_coke_can_visual_matching.sh openvla/openvla-7b openvla -0.8 /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla/pick_coke_can 6
+======================================================================
+
+
+  [pick_coke_can] Process exited with code 1 (47.0s elapsed)
+  [pick_coke_can] Result: 0/0 (success rate: N/A)
+
+======================================================================
+  SimplerEnv Evaluation Summary — openvla
+======================================================================
+  Task                  Success     Fail    Total       Rate
+  -------------------- -------- -------- -------- ----------
+  pick_coke_can               0        0        0        N/A
+  -------------------- -------- -------- -------- ----------
+  OVERALL                     0        0        0        N/A
+======================================================================
+
+Results saved to: /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla/results.json
+
+WARNING: One or more tasks exited with a non-zero return code.

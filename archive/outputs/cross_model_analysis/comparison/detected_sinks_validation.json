@@ -1,0 +1,34 @@
+{
+  "ecot-7b": {
+    "seq_len": 273,
+    "threshold": 0.018315018315018316,
+    "total_head_action_pairs": 7168,
+    "vision_token0_is_sink_pct": 98.7,
+    "text_sink_exists_pct": 52.5,
+    "sink_type": "vision[0]"
+  },
+  "openvla-7b": {
+    "seq_len": 273,
+    "threshold": 0.018315018315018316,
+    "total_head_action_pairs": 7168,
+    "vision_token0_is_sink_pct": 99.3,
+    "text_sink_exists_pct": 99.3,
+    "sink_type": "vision[0]"
+  },
+  "spatialvla-4b": {
+    "seq_len": 266,
+    "threshold": 0.018796992481203006,
+    "total_head_action_pairs": 1456,
+    "vision_token0_is_sink_pct": 1.0,
+    "text_sink_exists_pct": 86.1,
+    "sink_type": "text_token"
+  },
+  "tracevla-phi3v": {
+    "seq_len": 336,
+    "threshold": 0.01488095238095238,
+    "total_head_action_pairs": 1024,
+    "vision_token0_is_sink_pct": 1.3,
+    "text_sink_exists_pct": 97.5,
+    "sink_type": "text_token"
+  }
+}

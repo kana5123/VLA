@@ -1,0 +1,67 @@
+{
+  "episode_id": 1,
+  "step_id": 46,
+  "instruction": "put the blue cube on the right side of the table on top of the rectangular block",
+  "condition": "spin_k8",
+  "condition_desc": "SPIN(k=8,a=0.05)",
+  "predicted_action": [
+    -0.005576969111666975,
+    -0.02761994743697785,
+    0.010931243065963766,
+    -0.03398437493688928,
+    -0.08183422740943291,
+    0.14177151914788214,
+    -0.29803921568627456
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31896,
+    31956,
+    31857,
+    31926,
+    31983,
+    31783,
+    31910
+  ],
+  "mse_per_dim": [
+    3.110258447248753e-05,
+    0.0007628614964214193,
+    0.00011949207496718091,
+    0.0011549377398510682,
+    0.006696840775698781,
+    0.020099163641498313,
+    1.6849058054594388
+  ],
+  "mse_mean": 0.24482431482462116,
+  "mse_spatial": 0.004810733052151542,
+  "mse_gripper": 1.6849058054594388,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "cube",
+      "side",
+      "table",
+      "top",
+      "block"
+    ],
+    "num_boxes": 3,
+    "num_patches": 256,
+    "patch_coverage": 1.0
+  }
+}

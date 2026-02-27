@@ -1,0 +1,66 @@
+{
+  "episode_id": 1,
+  "step_id": 2,
+  "instruction": "put the blue cube on the right side of the table on top of the rectangular block",
+  "condition": "sam_var_obj_vt",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + VTR(f=0.3) + SAM2",
+  "predicted_action": [
+    -0.00311655245808996,
+    -0.007223078743499908,
+    -0.003878797671812425,
+    -0.05441939026000458,
+    0.00591804922503579,
+    0.10147656730460172,
+    0.996078431372549
+  ],
+  "ground_truth_action": [
+    -0.006694343872368336,
+    -0.011381210759282112,
+    -0.01398628018796444,
+    -0.040579669177532196,
+    0.06429138779640198,
+    0.08027472347021103,
+    1.0
+  ],
+  "action_token_ids": [
+    31885,
+    31893,
+    31914,
+    31958,
+    31852,
+    31808,
+    31744
+  ],
+  "mse_per_dim": [
+    1.280059140408406e-05,
+    1.7290061860672975e-05,
+    0.00010216120281431866,
+    0.00019153787964063052,
+    0.0034074466559673475,
+    0.00044951818197789064,
+    1.5378700499807656e-05
+  ],
+  "mse_mean": 0.0005994476105949646,
+  "mse_spatial": 0.0006967924289441574,
+  "mse_gripper": 1.5378700499807656e-05,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "cube",
+      "table",
+      "block"
+    ],
+    "num_boxes": 1,
+    "num_patches": 15,
+    "patch_coverage": 0.05859375,
+    "segmentation": "sam2"
+  }
+}

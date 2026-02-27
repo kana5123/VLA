@@ -1,0 +1,64 @@
+{
+  "model": "ecot-7b",
+  "n_samples": 20,
+  "baseline": {
+    "mean_entropy": 1.3226,
+    "mean_d2_consistency": 0.63
+  },
+  "methods": [
+    {
+      "name": "VAR_p0.3",
+      "type": "VAR",
+      "p": 0.3,
+      "mean_entropy": 1.2241,
+      "mean_d2_consistency": 0.62,
+      "d2_delta": -0.01,
+      "action_change_rate": 0.15
+    },
+    {
+      "name": "VAR_p0.6",
+      "type": "VAR",
+      "p": 0.6,
+      "mean_entropy": 1.1085,
+      "mean_d2_consistency": 0.6,
+      "d2_delta": -0.03,
+      "action_change_rate": 0.25
+    },
+    {
+      "name": "VAR_p0.9",
+      "type": "VAR",
+      "p": 0.9,
+      "mean_entropy": 1.2615,
+      "mean_d2_consistency": 0.59,
+      "d2_delta": -0.04,
+      "action_change_rate": 0.4
+    },
+    {
+      "name": "K-scale_a0.0",
+      "type": "K-scale",
+      "alpha": 0.0,
+      "mean_entropy": 1.1931,
+      "mean_d2_consistency": 0.6,
+      "d2_delta": -0.03,
+      "action_change_rate": 0.15
+    },
+    {
+      "name": "K-scale_a0.1",
+      "type": "K-scale",
+      "alpha": 0.1,
+      "mean_entropy": 1.1783,
+      "mean_d2_consistency": 0.59,
+      "d2_delta": -0.04,
+      "action_change_rate": 0.15
+    },
+    {
+      "name": "K-scale_a0.3",
+      "type": "K-scale",
+      "alpha": 0.3,
+      "mean_entropy": 1.1748,
+      "mean_d2_consistency": 0.58,
+      "d2_delta": -0.05,
+      "action_change_rate": 0.1
+    }
+  ]
+}

@@ -1,0 +1,1665 @@
+Python: /home/kana5123/miniconda3/envs/interp/bin/python
+torch 2.4.0+cu121, accelerate 1.11.0, absl OK
+
+############################################################
+  ADAPTER EXPERIMENT PIPELINE
+  Configs: ['base', 'v1', 'v2-prop', 'v2-full']
+  GPUs (train): 1,2,3,4
+  Eval device: cuda:0
+############################################################
+
+
+************************************************************
+  CONFIG: base — Raw OpenVLA baseline (no adapter)
+************************************************************
+[base] Skipping training (eval-only config)
+[base] Running baseline-only evaluation...
+
+============================================================
+  Evaluating [base]: Raw OpenVLA baseline (no adapter)
+  CMD: env CUDA_VISIBLE_DEVICES=1 /home/kana5123/miniconda3/envs/interp/bin/python adapter_eval.py --checkpoint NONE --device cuda:0 --num_episodes 200 --output_dir /home/kana5123/ATLASVLA/outputs/experiment_results/base/eval --baseline_only
+============================================================
+
+2026-02-22 01:26:36.809303: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:26:36.858530: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:26:38.286141: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading OpenVLA model...
+Loading model: openvla/openvla-7b
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.86it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  2.57it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  3.09it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.81it/s]
+Model loaded successfully.
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+
+Evaluating on test set (200 episodes, conditions: ['baseline'])...
+Episode split: train=160, val=20, test=20
+  [train] 3596 steps from 105 episodes (cached)
+  [val] 550 steps from 12 episodes (cached)
+  [test] 398 steps from 11 episodes (cached)
+
+Eval:   0%|          | 0/398 [00:00<?, ?it/s]
+Eval:   0%|          | 1/398 [00:00<03:05,  2.14it/s]
+Eval:   1%|          | 2/398 [00:00<02:25,  2.73it/s]
+Eval:   1%|          | 3/398 [00:01<02:12,  2.99it/s]
+Eval:   1%|          | 4/398 [00:01<02:06,  3.12it/s]
+Eval:   1%|▏         | 5/398 [00:01<02:02,  3.21it/s]
+Eval:   2%|▏         | 6/398 [00:01<01:59,  3.27it/s]
+Eval:   2%|▏         | 7/398 [00:02<01:58,  3.31it/s]
+Eval:   2%|▏         | 8/398 [00:02<01:57,  3.33it/s]
+Eval:   2%|▏         | 9/398 [00:02<01:56,  3.35it/s]
+Eval:   3%|▎         | 10/398 [00:03<01:55,  3.36it/s]
+Eval:   3%|▎         | 11/398 [00:03<01:55,  3.36it/s]
+Eval:   3%|▎         | 12/398 [00:03<01:54,  3.37it/s]
+Eval:   3%|▎         | 13/398 [00:04<01:54,  3.37it/s]
+Eval:   4%|▎         | 14/398 [00:04<01:53,  3.38it/s]
+Eval:   4%|▍         | 15/398 [00:04<01:53,  3.38it/s]
+Eval:   4%|▍         | 16/398 [00:04<01:52,  3.38it/s]
+Eval:   4%|▍         | 17/398 [00:05<01:52,  3.38it/s]
+Eval:   5%|▍         | 18/398 [00:05<01:52,  3.39it/s]
+Eval:   5%|▍         | 19/398 [00:05<01:51,  3.39it/s]
+Eval:   5%|▌         | 20/398 [00:06<01:51,  3.39it/s]
+Eval:   5%|▌         | 21/398 [00:06<01:50,  3.40it/s]
+Eval:   6%|▌         | 22/398 [00:06<01:50,  3.40it/s]
+Eval:   6%|▌         | 23/398 [00:06<01:50,  3.40it/s]
+Eval:   6%|▌         | 24/398 [00:07<01:49,  3.40it/s]
+Eval:   6%|▋         | 25/398 [00:07<01:49,  3.40it/s]
+Eval:   7%|▋         | 26/398 [00:07<01:49,  3.40it/s]
+Eval:   7%|▋         | 27/398 [00:08<01:48,  3.40it/s]
+Eval:   7%|▋         | 28/398 [00:08<01:48,  3.41it/s]
+Eval:   7%|▋         | 29/398 [00:08<01:48,  3.39it/s]
+Eval:   8%|▊         | 30/398 [00:09<01:48,  3.40it/s]
+Eval:   8%|▊         | 31/398 [00:09<01:47,  3.40it/s]
+Eval:   8%|▊         | 32/398 [00:09<01:47,  3.40it/s]
+Eval:   8%|▊         | 33/398 [00:09<01:47,  3.40it/s]
+Eval:   9%|▊         | 34/398 [00:10<01:46,  3.40it/s]
+Eval:   9%|▉         | 35/398 [00:10<01:46,  3.40it/s]
+Eval:   9%|▉         | 36/398 [00:10<01:46,  3.40it/s]
+Eval:   9%|▉         | 37/398 [00:11<01:45,  3.41it/s]
+Eval:  10%|▉         | 38/398 [00:11<01:43,  3.48it/s]
+Eval:  10%|▉         | 39/398 [00:11<01:39,  3.60it/s]
+Eval:  10%|█         | 40/398 [00:11<01:37,  3.69it/s]
+Eval:  10%|█         | 41/398 [00:12<01:35,  3.76it/s]
+Eval:  11%|█         | 42/398 [00:12<01:33,  3.80it/s]
+Eval:  11%|█         | 43/398 [00:12<01:32,  3.83it/s]
+Eval:  11%|█         | 44/398 [00:12<01:31,  3.86it/s]
+Eval:  11%|█▏        | 45/398 [00:13<01:31,  3.87it/s]
+Eval:  12%|█▏        | 46/398 [00:13<01:30,  3.88it/s]
+Eval:  12%|█▏        | 47/398 [00:13<01:30,  3.89it/s]
+Eval:  12%|█▏        | 48/398 [00:13<01:29,  3.89it/s]
+Eval:  12%|█▏        | 49/398 [00:14<01:29,  3.90it/s]
+Eval:  13%|█▎        | 50/398 [00:14<01:29,  3.90it/s]
+Eval:  13%|█▎        | 51/398 [00:14<01:28,  3.90it/s]
+Eval:  13%|█▎        | 52/398 [00:14<01:28,  3.90it/s]
+Eval:  13%|█▎        | 53/398 [00:15<01:28,  3.90it/s]
+Eval:  14%|█▎        | 54/398 [00:15<01:28,  3.90it/s]
+Eval:  14%|█▍        | 55/398 [00:15<01:27,  3.91it/s]
+Eval:  14%|█▍        | 56/398 [00:15<01:27,  3.91it/s]
+Eval:  14%|█▍        | 57/398 [00:16<01:27,  3.91it/s]
+Eval:  15%|█▍        | 58/398 [00:16<01:29,  3.80it/s]
+Eval:  15%|█▍        | 59/398 [00:16<01:29,  3.80it/s]
+Eval:  15%|█▌        | 60/398 [00:17<01:28,  3.83it/s]
+Eval:  15%|█▌        | 61/398 [00:17<01:27,  3.85it/s]
+Eval:  16%|█▌        | 62/398 [00:17<01:26,  3.87it/s]
+Eval:  16%|█▌        | 63/398 [00:17<01:26,  3.88it/s]
+Eval:  16%|█▌        | 64/398 [00:18<01:25,  3.90it/s]
+Eval:  16%|█▋        | 65/398 [00:18<01:25,  3.90it/s]
+Eval:  17%|█▋        | 66/398 [00:18<01:25,  3.91it/s]
+Eval:  17%|█▋        | 67/398 [00:18<01:24,  3.91it/s]
+Eval:  17%|█▋        | 68/398 [00:19<01:24,  3.91it/s]
+Eval:  17%|█▋        | 69/398 [00:19<01:24,  3.90it/s]
+Eval:  18%|█▊        | 70/398 [00:19<01:24,  3.90it/s]
+Eval:  18%|█▊        | 71/398 [00:19<01:23,  3.91it/s]
+Eval:  18%|█▊        | 72/398 [00:20<01:23,  3.90it/s]
+Eval:  18%|█▊        | 73/398 [00:20<01:23,  3.90it/s]
+Eval:  19%|█▊        | 74/398 [00:20<01:23,  3.90it/s]
+Eval:  19%|█▉        | 75/398 [00:20<01:22,  3.90it/s]
+Eval:  19%|█▉        | 76/398 [00:21<01:22,  3.90it/s]
+Eval:  19%|█▉        | 77/398 [00:21<01:44,  3.08it/s]
+Eval:  20%|█▉        | 78/398 [00:21<01:37,  3.29it/s]
+Eval:  20%|█▉        | 79/398 [00:22<01:32,  3.45it/s]
+Eval:  20%|██        | 80/398 [00:22<01:28,  3.57it/s]
+Eval:  20%|██        | 81/398 [00:22<01:26,  3.67it/s]
+Eval:  21%|██        | 82/398 [00:22<01:24,  3.73it/s]
+Eval:  21%|██        | 83/398 [00:23<01:23,  3.78it/s]
+Eval:  21%|██        | 84/398 [00:23<01:22,  3.82it/s]
+Eval:  21%|██▏       | 85/398 [00:23<01:21,  3.84it/s]
+Eval:  22%|██▏       | 86/398 [00:23<01:20,  3.86it/s]
+Eval:  22%|██▏       | 87/398 [00:24<01:20,  3.86it/s]
+Eval:  22%|██▏       | 88/398 [00:24<01:20,  3.87it/s]
+Eval:  22%|██▏       | 89/398 [00:24<01:19,  3.88it/s]
+Eval:  23%|██▎       | 90/398 [00:24<01:19,  3.88it/s]
+Eval:  23%|██▎       | 91/398 [00:25<01:18,  3.89it/s]
+Eval:  23%|██▎       | 92/398 [00:25<01:18,  3.89it/s]
+Eval:  23%|██▎       | 93/398 [00:25<01:18,  3.88it/s]
+Eval:  24%|██▎       | 94/398 [00:25<01:18,  3.89it/s]
+Eval:  24%|██▍       | 95/398 [00:26<01:17,  3.89it/s]
+Eval:  24%|██▍       | 96/398 [00:26<01:17,  3.89it/s]
+Eval:  24%|██▍       | 97/398 [00:26<01:17,  3.89it/s]
+Eval:  25%|██▍       | 98/398 [00:26<01:17,  3.89it/s]
+Eval:  25%|██▍       | 99/398 [00:27<01:16,  3.90it/s]
+Eval:  25%|██▌       | 100/398 [00:27<01:16,  3.88it/s]
+Eval:  25%|██▌       | 101/398 [00:27<01:16,  3.89it/s]
+Eval:  26%|██▌       | 102/398 [00:28<01:16,  3.89it/s]
+Eval:  26%|██▌       | 103/398 [00:28<01:16,  3.88it/s]
+Eval:  26%|██▌       | 104/398 [00:28<01:15,  3.89it/s]
+Eval:  26%|██▋       | 105/398 [00:28<01:15,  3.89it/s]
+Eval:  27%|██▋       | 106/398 [00:29<01:14,  3.90it/s]
+Eval:  27%|██▋       | 107/398 [00:29<01:14,  3.90it/s]
+Eval:  27%|██▋       | 108/398 [00:29<01:14,  3.91it/s]
+Eval:  27%|██▋       | 109/398 [00:29<01:13,  3.91it/s]
+Eval:  28%|██▊       | 110/398 [00:30<01:13,  3.91it/s]
+Eval:  28%|██▊       | 111/398 [00:30<01:13,  3.91it/s]
+Eval:  28%|██▊       | 112/398 [00:30<01:13,  3.92it/s]
+Eval:  28%|██▊       | 113/398 [00:30<01:12,  3.92it/s]
+Eval:  29%|██▊       | 114/398 [00:31<01:12,  3.92it/s]
+Eval:  29%|██▉       | 115/398 [00:31<01:12,  3.93it/s]
+Eval:  29%|██▉       | 116/398 [00:31<01:12,  3.91it/s]
+Eval:  29%|██▉       | 117/398 [00:31<01:11,  3.91it/s]
+Eval:  30%|██▉       | 118/398 [00:32<01:11,  3.92it/s]
+Eval:  30%|██▉       | 119/398 [00:32<01:11,  3.91it/s]
+Eval:  30%|███       | 120/398 [00:32<01:11,  3.91it/s]
+Eval:  30%|███       | 121/398 [00:32<01:10,  3.91it/s]
+Eval:  31%|███       | 122/398 [00:33<01:10,  3.91it/s]
+Eval:  31%|███       | 123/398 [00:33<01:10,  3.91it/s]
+Eval:  31%|███       | 124/398 [00:33<01:09,  3.92it/s]
+Eval:  31%|███▏      | 125/398 [00:33<01:09,  3.91it/s]
+Eval:  32%|███▏      | 126/398 [00:34<01:09,  3.91it/s]
+Eval:  32%|███▏      | 127/398 [00:34<01:09,  3.91it/s]
+Eval:  32%|███▏      | 128/398 [00:34<01:09,  3.91it/s]
+Eval:  32%|███▏      | 129/398 [00:34<01:08,  3.91it/s]
+Eval:  33%|███▎      | 130/398 [00:35<01:08,  3.91it/s]
+Eval:  33%|███▎      | 131/398 [00:35<01:08,  3.91it/s]
+Eval:  33%|███▎      | 132/398 [00:35<01:08,  3.91it/s]
+Eval:  33%|███▎      | 133/398 [00:35<01:07,  3.91it/s]
+Eval:  34%|███▎      | 134/398 [00:36<01:07,  3.91it/s]
+Eval:  34%|███▍      | 135/398 [00:36<01:07,  3.91it/s]
+Eval:  34%|███▍      | 136/398 [00:36<01:06,  3.91it/s]
+Eval:  34%|███▍      | 137/398 [00:36<01:06,  3.91it/s]
+Eval:  35%|███▍      | 138/398 [00:37<01:06,  3.91it/s]
+Eval:  35%|███▍      | 139/398 [00:37<01:06,  3.90it/s]
+Eval:  35%|███▌      | 140/398 [00:37<01:19,  3.24it/s]
+Eval:  35%|███▌      | 141/398 [00:38<01:15,  3.42it/s]
+Eval:  36%|███▌      | 142/398 [00:38<01:12,  3.55it/s]
+Eval:  36%|███▌      | 143/398 [00:38<01:10,  3.64it/s]
+Eval:  36%|███▌      | 144/398 [00:38<01:08,  3.71it/s]
+Eval:  36%|███▋      | 145/398 [00:39<01:07,  3.77it/s]
+Eval:  37%|███▋      | 146/398 [00:39<01:06,  3.80it/s]
+Eval:  37%|███▋      | 147/398 [00:39<01:05,  3.83it/s]
+Eval:  37%|███▋      | 148/398 [00:39<01:04,  3.85it/s]
+Eval:  37%|███▋      | 149/398 [00:40<01:04,  3.86it/s]
+Eval:  38%|███▊      | 150/398 [00:40<01:04,  3.86it/s]
+Eval:  38%|███▊      | 151/398 [00:40<01:03,  3.87it/s]
+Eval:  38%|███▊      | 152/398 [00:40<01:03,  3.88it/s]
+Eval:  38%|███▊      | 153/398 [00:41<01:03,  3.88it/s]
+Eval:  39%|███▊      | 154/398 [00:41<01:02,  3.89it/s]
+Eval:  39%|███▉      | 155/398 [00:41<01:02,  3.89it/s]
+Eval:  39%|███▉      | 156/398 [00:42<01:02,  3.89it/s]
+Eval:  39%|███▉      | 157/398 [00:42<01:02,  3.88it/s]
+Eval:  40%|███▉      | 158/398 [00:42<01:01,  3.88it/s]
+Eval:  40%|███▉      | 159/398 [00:42<01:01,  3.88it/s]
+Eval:  40%|████      | 160/398 [00:43<01:01,  3.87it/s]
+Eval:  40%|████      | 161/398 [00:43<01:01,  3.87it/s]
+Eval:  41%|████      | 162/398 [00:43<01:00,  3.87it/s]
+Eval:  41%|████      | 163/398 [00:43<01:01,  3.85it/s]
+Eval:  41%|████      | 164/398 [00:44<01:00,  3.85it/s]
+Eval:  41%|████▏     | 165/398 [00:44<01:00,  3.85it/s]
+Eval:  42%|████▏     | 166/398 [00:44<01:00,  3.84it/s]
+Eval:  42%|████▏     | 167/398 [00:44<01:00,  3.85it/s]
+Eval:  42%|████▏     | 168/398 [00:45<00:59,  3.84it/s]
+Eval:  42%|████▏     | 169/398 [00:45<00:59,  3.83it/s]
+Eval:  43%|████▎     | 170/398 [00:45<00:59,  3.83it/s]
+Eval:  43%|████▎     | 171/398 [00:45<00:59,  3.83it/s]
+Eval:  43%|████▎     | 172/398 [00:46<00:58,  3.84it/s]
+Eval:  43%|████▎     | 173/398 [00:46<00:58,  3.84it/s]
+Eval:  44%|████▎     | 174/398 [00:46<00:58,  3.82it/s]
+Eval:  44%|████▍     | 175/398 [00:46<00:58,  3.83it/s]
+Eval:  44%|████▍     | 176/398 [00:47<00:57,  3.83it/s]
+Eval:  44%|████▍     | 177/398 [00:47<00:57,  3.84it/s]
+Eval:  45%|████▍     | 178/398 [00:47<00:57,  3.84it/s]
+Eval:  45%|████▍     | 179/398 [00:48<00:58,  3.76it/s]
+Eval:  45%|████▌     | 180/398 [00:48<00:57,  3.80it/s]
+Eval:  45%|████▌     | 181/398 [00:48<00:56,  3.82it/s]
+Eval:  46%|████▌     | 182/398 [00:48<00:56,  3.84it/s]
+Eval:  46%|████▌     | 183/398 [00:49<00:55,  3.86it/s]
+Eval:  46%|████▌     | 184/398 [00:49<00:55,  3.87it/s]
+Eval:  46%|████▋     | 185/398 [00:49<00:54,  3.88it/s]
+Eval:  47%|████▋     | 186/398 [00:49<00:54,  3.88it/s]
+Eval:  47%|████▋     | 187/398 [00:50<00:54,  3.88it/s]
+Eval:  47%|████▋     | 188/398 [00:50<00:53,  3.89it/s]
+Eval:  47%|████▋     | 189/398 [00:50<00:53,  3.90it/s]
+Eval:  48%|████▊     | 190/398 [00:50<00:53,  3.90it/s]
+Eval:  48%|████▊     | 191/398 [00:51<00:52,  3.91it/s]
+Eval:  48%|████▊     | 192/398 [00:51<00:52,  3.92it/s]
+Eval:  48%|████▊     | 193/398 [00:51<00:52,  3.92it/s]
+Eval:  49%|████▊     | 194/398 [00:51<00:52,  3.92it/s]
+Eval:  49%|████▉     | 195/398 [00:52<00:51,  3.92it/s]
+Eval:  49%|████▉     | 196/398 [00:52<00:51,  3.91it/s]
+Eval:  49%|████▉     | 197/398 [00:52<00:51,  3.92it/s]
+Eval:  50%|████▉     | 198/398 [00:52<00:51,  3.92it/s]
+Eval:  50%|█████     | 199/398 [00:53<00:50,  3.92it/s]
+Eval:  50%|█████     | 200/398 [00:53<00:50,  3.92it/s]
+Eval:  51%|█████     | 201/398 [00:53<00:50,  3.92it/s]
+Eval:  51%|█████     | 202/398 [00:53<00:50,  3.92it/s]
+Eval:  51%|█████     | 203/398 [00:54<00:49,  3.92it/s]
+Eval:  51%|█████▏    | 204/398 [00:54<00:49,  3.92it/s]
+Eval:  52%|█████▏    | 205/398 [00:54<00:49,  3.92it/s]
+Eval:  52%|█████▏    | 206/398 [00:54<00:48,  3.92it/s]
+Eval:  52%|█████▏    | 207/398 [00:55<00:48,  3.92it/s]
+Eval:  52%|█████▏    | 208/398 [00:55<00:48,  3.92it/s]
+Eval:  53%|█████▎    | 209/398 [00:55<00:48,  3.92it/s]
+Eval:  53%|█████▎    | 210/398 [00:55<00:48,  3.91it/s]
+Eval:  53%|█████▎    | 211/398 [00:56<00:57,  3.27it/s]
+Eval:  53%|█████▎    | 212/398 [00:56<00:54,  3.43it/s]
+Eval:  54%|█████▎    | 213/398 [00:56<00:51,  3.57it/s]
+Eval:  54%|█████▍    | 214/398 [00:57<00:50,  3.67it/s]
+Eval:  54%|█████▍    | 215/398 [00:57<00:49,  3.72it/s]
+Eval:  54%|█████▍    | 216/398 [00:57<00:48,  3.78it/s]
+Eval:  55%|█████▍    | 217/398 [00:57<00:47,  3.82it/s]
+Eval:  55%|█████▍    | 218/398 [00:58<00:46,  3.85it/s]
+Eval:  55%|█████▌    | 219/398 [00:58<00:46,  3.87it/s]
+Eval:  55%|█████▌    | 220/398 [00:58<00:45,  3.88it/s]
+Eval:  56%|█████▌    | 221/398 [00:58<00:45,  3.86it/s]
+Eval:  56%|█████▌    | 222/398 [00:59<00:45,  3.87it/s]
+Eval:  56%|█████▌    | 223/398 [00:59<00:45,  3.88it/s]
+Eval:  56%|█████▋    | 224/398 [00:59<00:44,  3.89it/s]
+Eval:  57%|█████▋    | 225/398 [00:59<00:44,  3.90it/s]
+Eval:  57%|█████▋    | 226/398 [01:00<00:44,  3.90it/s]
+Eval:  57%|█████▋    | 227/398 [01:00<00:43,  3.90it/s]
+Eval:  57%|█████▋    | 228/398 [01:00<00:43,  3.91it/s]
+Eval:  58%|█████▊    | 229/398 [01:00<00:43,  3.90it/s]
+Eval:  58%|█████▊    | 230/398 [01:01<00:43,  3.90it/s]
+Eval:  58%|█████▊    | 231/398 [01:01<00:42,  3.90it/s]
+Eval:  58%|█████▊    | 232/398 [01:01<00:42,  3.90it/s]
+Eval:  59%|█████▊    | 233/398 [01:02<00:42,  3.90it/s]
+Eval:  59%|█████▉    | 234/398 [01:02<00:42,  3.90it/s]
+Eval:  59%|█████▉    | 235/398 [01:02<00:41,  3.90it/s]
+Eval:  59%|█████▉    | 236/398 [01:02<00:41,  3.90it/s]
+Eval:  60%|█████▉    | 237/398 [01:03<00:41,  3.90it/s]
+Eval:  60%|█████▉    | 238/398 [01:03<00:40,  3.90it/s]
+Eval:  60%|██████    | 239/398 [01:03<00:40,  3.90it/s]
+Eval:  60%|██████    | 240/398 [01:03<00:40,  3.90it/s]
+Eval:  61%|██████    | 241/398 [01:04<00:40,  3.90it/s]
+Eval:  61%|██████    | 242/398 [01:04<00:39,  3.90it/s]
+Eval:  61%|██████    | 243/398 [01:04<00:39,  3.90it/s]
+Eval:  61%|██████▏   | 244/398 [01:04<00:39,  3.90it/s]
+Eval:  62%|██████▏   | 245/398 [01:05<00:39,  3.90it/s]
+Eval:  62%|██████▏   | 246/398 [01:05<00:39,  3.89it/s]
+Eval:  62%|██████▏   | 247/398 [01:05<00:38,  3.89it/s]
+Eval:  62%|██████▏   | 248/398 [01:05<00:38,  3.89it/s]
+Eval:  63%|██████▎   | 249/398 [01:06<00:38,  3.89it/s]
+Eval:  63%|██████▎   | 250/398 [01:06<00:38,  3.89it/s]
+Eval:  63%|██████▎   | 251/398 [01:06<00:37,  3.89it/s]
+Eval:  63%|██████▎   | 252/398 [01:06<00:37,  3.89it/s]
+Eval:  64%|██████▎   | 253/398 [01:07<00:37,  3.88it/s]
+Eval:  64%|██████▍   | 254/398 [01:07<00:37,  3.88it/s]
+Eval:  64%|██████▍   | 255/398 [01:07<00:36,  3.89it/s]
+Eval:  64%|██████▍   | 256/398 [01:07<00:36,  3.89it/s]
+Eval:  65%|██████▍   | 257/398 [01:08<00:36,  3.89it/s]
+Eval:  65%|██████▍   | 258/398 [01:08<00:43,  3.22it/s]
+Eval:  65%|██████▌   | 259/398 [01:08<00:41,  3.39it/s]
+Eval:  65%|██████▌   | 260/398 [01:09<00:39,  3.52it/s]
+Eval:  66%|██████▌   | 261/398 [01:09<00:37,  3.62it/s]
+Eval:  66%|██████▌   | 262/398 [01:09<00:36,  3.69it/s]
+Eval:  66%|██████▌   | 263/398 [01:09<00:36,  3.75it/s]
+Eval:  66%|██████▋   | 264/398 [01:10<00:35,  3.78it/s]
+Eval:  67%|██████▋   | 265/398 [01:10<00:34,  3.81it/s]
+Eval:  67%|██████▋   | 266/398 [01:10<00:34,  3.83it/s]
+Eval:  67%|██████▋   | 267/398 [01:10<00:34,  3.85it/s]
+Eval:  67%|██████▋   | 268/398 [01:11<00:33,  3.85it/s]
+Eval:  68%|██████▊   | 269/398 [01:11<00:33,  3.86it/s]
+Eval:  68%|██████▊   | 270/398 [01:11<00:33,  3.87it/s]
+Eval:  68%|██████▊   | 271/398 [01:11<00:32,  3.87it/s]
+Eval:  68%|██████▊   | 272/398 [01:12<00:32,  3.87it/s]
+Eval:  69%|██████▊   | 273/398 [01:12<00:32,  3.88it/s]
+Eval:  69%|██████▉   | 274/398 [01:12<00:31,  3.88it/s]
+Eval:  69%|██████▉   | 275/398 [01:12<00:31,  3.88it/s]
+Eval:  69%|██████▉   | 276/398 [01:13<00:31,  3.88it/s]
+Eval:  70%|██████▉   | 277/398 [01:13<00:31,  3.87it/s]
+Eval:  70%|██████▉   | 278/398 [01:13<00:30,  3.88it/s]
+Eval:  70%|███████   | 279/398 [01:14<00:30,  3.88it/s]
+Eval:  70%|███████   | 280/398 [01:14<00:30,  3.89it/s]
+Eval:  71%|███████   | 281/398 [01:14<00:30,  3.88it/s]
+Eval:  71%|███████   | 282/398 [01:14<00:29,  3.88it/s]
+Eval:  71%|███████   | 283/398 [01:15<00:29,  3.88it/s]
+Eval:  71%|███████▏  | 284/398 [01:15<00:29,  3.87it/s]
+Eval:  72%|███████▏  | 285/398 [01:15<00:29,  3.87it/s]
+Eval:  72%|███████▏  | 286/398 [01:15<00:28,  3.87it/s]
+Eval:  72%|███████▏  | 287/398 [01:16<00:28,  3.87it/s]
+Eval:  72%|███████▏  | 288/398 [01:16<00:28,  3.86it/s]
+Eval:  73%|███████▎  | 289/398 [01:16<00:28,  3.86it/s]
+Eval:  73%|███████▎  | 290/398 [01:16<00:27,  3.86it/s]
+Eval:  73%|███████▎  | 291/398 [01:17<00:27,  3.86it/s]
+Eval:  73%|███████▎  | 292/398 [01:17<00:27,  3.86it/s]
+Eval:  74%|███████▎  | 293/398 [01:17<00:27,  3.86it/s]
+Eval:  74%|███████▍  | 294/398 [01:17<00:26,  3.86it/s]
+Eval:  74%|███████▍  | 295/398 [01:18<00:26,  3.86it/s]
+Eval:  74%|███████▍  | 296/398 [01:18<00:26,  3.86it/s]
+Eval:  75%|███████▍  | 297/398 [01:18<00:26,  3.83it/s]
+Eval:  75%|███████▍  | 298/398 [01:18<00:26,  3.84it/s]
+Eval:  75%|███████▌  | 299/398 [01:19<00:25,  3.85it/s]
+Eval:  75%|███████▌  | 300/398 [01:19<00:25,  3.85it/s]
+Eval:  76%|███████▌  | 301/398 [01:19<00:25,  3.86it/s]
+Eval:  76%|███████▌  | 302/398 [01:19<00:24,  3.86it/s]
+Eval:  76%|███████▌  | 303/398 [01:20<00:24,  3.86it/s]
+Eval:  76%|███████▋  | 304/398 [01:20<00:24,  3.87it/s]
+Eval:  77%|███████▋  | 305/398 [01:20<00:24,  3.86it/s]
+Eval:  77%|███████▋  | 306/398 [01:21<00:23,  3.87it/s]
+Eval:  77%|███████▋  | 307/398 [01:21<00:23,  3.87it/s]
+Eval:  77%|███████▋  | 308/398 [01:21<00:23,  3.86it/s]
+Eval:  78%|███████▊  | 309/398 [01:21<00:23,  3.87it/s]
+Eval:  78%|███████▊  | 310/398 [01:22<00:22,  3.86it/s]
+Eval:  78%|███████▊  | 311/398 [01:22<00:22,  3.87it/s]
+Eval:  78%|███████▊  | 312/398 [01:22<00:22,  3.87it/s]
+Eval:  79%|███████▊  | 313/398 [01:22<00:21,  3.87it/s]
+Eval:  79%|███████▉  | 314/398 [01:23<00:21,  3.87it/s]
+Eval:  79%|███████▉  | 315/398 [01:23<00:21,  3.86it/s]
+Eval:  79%|███████▉  | 316/398 [01:23<00:25,  3.22it/s]
+Eval:  80%|███████▉  | 317/398 [01:24<00:23,  3.40it/s]
+Eval:  80%|███████▉  | 318/398 [01:24<00:22,  3.54it/s]
+Eval:  80%|████████  | 319/398 [01:24<00:21,  3.64it/s]
+Eval:  80%|████████  | 320/398 [01:24<00:21,  3.71it/s]
+Eval:  81%|████████  | 321/398 [01:25<00:20,  3.77it/s]
+Eval:  81%|████████  | 322/398 [01:25<00:19,  3.81it/s]
+Eval:  81%|████████  | 323/398 [01:25<00:19,  3.84it/s]
+Eval:  81%|████████▏ | 324/398 [01:25<00:19,  3.86it/s]
+Eval:  82%|████████▏ | 325/398 [01:26<00:18,  3.88it/s]
+Eval:  82%|████████▏ | 326/398 [01:26<00:18,  3.88it/s]
+Eval:  82%|████████▏ | 327/398 [01:26<00:18,  3.88it/s]
+Eval:  82%|████████▏ | 328/398 [01:26<00:18,  3.89it/s]
+Eval:  83%|████████▎ | 329/398 [01:27<00:17,  3.89it/s]
+Eval:  83%|████████▎ | 330/398 [01:27<00:17,  3.90it/s]
+Eval:  83%|████████▎ | 331/398 [01:27<00:17,  3.90it/s]
+Eval:  83%|████████▎ | 332/398 [01:27<00:16,  3.91it/s]
+Eval:  84%|████████▎ | 333/398 [01:28<00:16,  3.91it/s]
+Eval:  84%|████████▍ | 334/398 [01:28<00:16,  3.91it/s]
+Eval:  84%|████████▍ | 335/398 [01:28<00:16,  3.91it/s]
+Eval:  84%|████████▍ | 336/398 [01:28<00:15,  3.91it/s]
+Eval:  85%|████████▍ | 337/398 [01:29<00:15,  3.91it/s]
+Eval:  85%|████████▍ | 338/398 [01:29<00:15,  3.91it/s]
+Eval:  85%|████████▌ | 339/398 [01:29<00:15,  3.91it/s]
+Eval:  85%|████████▌ | 340/398 [01:29<00:14,  3.91it/s]
+Eval:  86%|████████▌ | 341/398 [01:30<00:14,  3.91it/s]
+Eval:  86%|████████▌ | 342/398 [01:30<00:14,  3.91it/s]
+Eval:  86%|████████▌ | 343/398 [01:30<00:14,  3.91it/s]
+Eval:  86%|████████▋ | 344/398 [01:30<00:13,  3.91it/s]
+Eval:  87%|████████▋ | 345/398 [01:31<00:13,  3.91it/s]
+Eval:  87%|████████▋ | 346/398 [01:31<00:13,  3.91it/s]
+Eval:  87%|████████▋ | 347/398 [01:31<00:13,  3.91it/s]
+Eval:  87%|████████▋ | 348/398 [01:31<00:12,  3.91it/s]
+Eval:  88%|████████▊ | 349/398 [01:32<00:12,  3.91it/s]
+Eval:  88%|████████▊ | 350/398 [01:32<00:12,  3.91it/s]
+Eval:  88%|████████▊ | 351/398 [01:32<00:13,  3.61it/s]
+Eval:  88%|████████▊ | 352/398 [01:33<00:12,  3.69it/s]
+Eval:  89%|████████▊ | 353/398 [01:33<00:12,  3.74it/s]
+Eval:  89%|████████▉ | 354/398 [01:33<00:11,  3.78it/s]
+Eval:  89%|████████▉ | 355/398 [01:33<00:11,  3.82it/s]
+Eval:  89%|████████▉ | 356/398 [01:34<00:10,  3.84it/s]
+Eval:  90%|████████▉ | 357/398 [01:34<00:10,  3.86it/s]
+Eval:  90%|████████▉ | 358/398 [01:34<00:10,  3.88it/s]
+Eval:  90%|█████████ | 359/398 [01:34<00:10,  3.88it/s]
+Eval:  90%|█████████ | 360/398 [01:35<00:09,  3.89it/s]
+Eval:  91%|█████████ | 361/398 [01:35<00:09,  3.88it/s]
+Eval:  91%|█████████ | 362/398 [01:35<00:09,  3.89it/s]
+Eval:  91%|█████████ | 363/398 [01:35<00:08,  3.89it/s]
+Eval:  91%|█████████▏| 364/398 [01:36<00:08,  3.90it/s]
+Eval:  92%|█████████▏| 365/398 [01:36<00:08,  3.90it/s]
+Eval:  92%|█████████▏| 366/398 [01:36<00:08,  3.90it/s]
+Eval:  92%|█████████▏| 367/398 [01:36<00:07,  3.90it/s]
+Eval:  92%|█████████▏| 368/398 [01:37<00:07,  3.90it/s]
+Eval:  93%|█████████▎| 369/398 [01:37<00:07,  3.91it/s]
+Eval:  93%|█████████▎| 370/398 [01:37<00:07,  3.91it/s]
+Eval:  93%|█████████▎| 371/398 [01:37<00:06,  3.91it/s]
+Eval:  93%|█████████▎| 372/398 [01:38<00:06,  3.91it/s]
+Eval:  94%|█████████▎| 373/398 [01:38<00:06,  3.91it/s]
+Eval:  94%|█████████▍| 374/398 [01:38<00:06,  3.91it/s]
+Eval:  94%|█████████▍| 375/398 [01:38<00:05,  3.90it/s]
+Eval:  94%|█████████▍| 376/398 [01:39<00:05,  3.90it/s]
+Eval:  95%|█████████▍| 377/398 [01:39<00:05,  3.90it/s]
+Eval:  95%|█████████▍| 378/398 [01:39<00:05,  3.90it/s]
+Eval:  95%|█████████▌| 379/398 [01:39<00:04,  3.90it/s]
+Eval:  95%|█████████▌| 380/398 [01:40<00:04,  3.89it/s]
+Eval:  96%|█████████▌| 381/398 [01:40<00:04,  3.88it/s]
+Eval:  96%|█████████▌| 382/398 [01:40<00:04,  3.88it/s]
+Eval:  96%|█████████▌| 383/398 [01:41<00:03,  3.88it/s]
+Eval:  96%|█████████▋| 384/398 [01:41<00:03,  3.89it/s]
+Eval:  97%|█████████▋| 385/398 [01:41<00:03,  3.89it/s]
+Eval:  97%|█████████▋| 386/398 [01:41<00:03,  3.90it/s]
+Eval:  97%|█████████▋| 387/398 [01:42<00:02,  3.89it/s]
+Eval:  97%|█████████▋| 388/398 [01:42<00:02,  3.90it/s]
+Eval:  98%|█████████▊| 389/398 [01:42<00:02,  3.89it/s]
+Eval:  98%|█████████▊| 390/398 [01:42<00:02,  3.89it/s]
+Eval:  98%|█████████▊| 391/398 [01:43<00:01,  3.90it/s]
+Eval:  98%|█████████▊| 392/398 [01:43<00:01,  3.89it/s]
+Eval:  99%|█████████▊| 393/398 [01:43<00:01,  3.89it/s]
+Eval:  99%|█████████▉| 394/398 [01:43<00:01,  3.90it/s]
+Eval:  99%|█████████▉| 395/398 [01:44<00:00,  3.90it/s]
+Eval:  99%|█████████▉| 396/398 [01:44<00:00,  3.90it/s]
+Eval: 100%|█████████▉| 397/398 [01:44<00:00,  3.90it/s]
+Eval: 100%|██████████| 398/398 [01:44<00:00,  3.91it/s]
+Eval: 100%|██████████| 398/398 [01:44<00:00,  3.80it/s]
+
+Results saved: /home/kana5123/ATLASVLA/outputs/adapter_results/eval/eval_results.json
+Results saved: /home/kana5123/ATLASVLA/outputs/experiment_results/base/eval/eval_results.json
+[base] Evaluation completed in 150s
+
+************************************************************
+  CONFIG: v1 — AttentionAdapter v1 (MLP only)
+************************************************************
+
+============================================================
+  Training [v1]: AttentionAdapter v1 (MLP only)
+  CMD: env CUDA_VISIBLE_DEVICES=1,2,3,4 /home/kana5123/miniconda3/envs/interp/bin/python -m accelerate.commands.launch --num_processes 4 adapter_train.py --adapter_version 1 --output_dir /home/kana5123/ATLASVLA/outputs/experiment_results/v1
+============================================================
+
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-22 01:29:08.782306: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.782306: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.782306: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.802169: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:08.830419: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:08.830419: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:08.830420: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:08.841214: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 01:29:10.236245: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:10.236245: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:10.236245: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 01:29:10.245867: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+
+============================================================
+Differentiable Attention Adapter Training
+  Devices: 4 GPU(s)
+  Episodes: None
+  Batch size: 16 (effective = 4/GPU × 4 GPUs)
+  Per-GPU batch: 4
+  LR: 0.0003 → 3e-05
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+============================================================
+
+Loading frozen OpenVLA model...
+Loading model: openvla/openvla-7b
+Loading model: openvla/openvla-7b
+Loading model: openvla/openvla-7b
+Loading model: openvla/openvla-7b
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.46.3` and `tokenizers==0.20.3`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.38it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.38it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.79it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.99it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.63it/s]
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.82it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.70it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.66it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.24it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.94it/s]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.24it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.94it/s]
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.79it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.71it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.32it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.99it/s]
+Model loaded successfully.
+Model loaded successfully.
+  Text input_ids length: 18
+  Text input_ids length: 18
+Model loaded successfully.
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  Vision tokens: 0..255
+  Text tokens end: 274
+Adapter v1 parameters: 1,098,240
+Creating data loaders...
+Episode split: train=42548, val=5318, test=5320
+Model loaded successfully.
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+  [train] 1109516 steps from 30952 episodes (cached)
+  [train] 1109516 steps from 30952 episodes (cached)
+  [train] 1109516 steps from 30952 episodes (cached)
+  [train] 1109516 steps from 30952 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed.
+[attention_v3] V3 patched LlamaAttention.forward installed.
+[attention_v3] V3 patched LlamaAttention.forward installed.
+[attention_v3] V3 patched LlamaAttention.forward installed.
+Step     50 | Loss 12.7406 | GradNorm 0.0092 | LR 1.22e-04 | MeanP 0.0167 | Active 0.00%
+Step    100 | Loss 10.2128 | GradNorm 0.1113 | LR 2.41e-04 | MeanP 0.1886 | Active 21.68%
+Step    150 | Loss 12.1807 | GradNorm 0.0142 | LR 3.00e-04 | MeanP 0.1807 | Active 17.97%
+Step    200 | Loss 11.7436 | GradNorm 0.0116 | LR 3.00e-04 | MeanP 0.1811 | Active 18.75%
+Step    250 | Loss 13.0863 | GradNorm 0.0031 | LR 3.00e-04 | MeanP 0.1800 | Active 17.97%
+Step    300 | Loss 14.8975 | GradNorm 0.0052 | LR 3.00e-04 | MeanP 0.1799 | Active 17.97%
+Step    350 | Loss 9.9198 | GradNorm 0.0031 | LR 3.00e-04 | MeanP 0.1797 | Active 17.97%
+Step    400 | Loss 12.7142 | GradNorm 0.0119 | LR 3.00e-04 | MeanP 0.1801 | Active 17.97%
+Step    450 | Loss 14.8373 | GradNorm 0.0086 | LR 3.00e-04 | MeanP 0.1876 | Active 18.75%
+Step    500 | Loss 12.9362 | GradNorm 0.0119 | LR 2.99e-04 | MeanP 0.1874 | Active 18.75%
+  >>> Val Loss: 14.3114 (best: inf)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt
+Step    550 | Loss 9.7970 | GradNorm 0.0007 | LR 2.99e-04 | MeanP 0.1876 | Active 18.75%
+Step    600 | Loss 12.7275 | GradNorm 0.0083 | LR 2.99e-04 | MeanP 0.1877 | Active 18.75%
+Step    650 | Loss 9.6483 | GradNorm 0.0024 | LR 2.99e-04 | MeanP 0.1875 | Active 18.75%
+Step    700 | Loss 13.3352 | GradNorm 0.0033 | LR 2.99e-04 | MeanP 0.1876 | Active 18.75%
+Step    750 | Loss 13.9599 | GradNorm 0.0052 | LR 2.98e-04 | MeanP 0.1875 | Active 18.75%
+Step    800 | Loss 13.0835 | GradNorm 0.0010 | LR 2.98e-04 | MeanP 0.1954 | Active 19.53%
+Step    850 | Loss 13.7776 | GradNorm 0.0052 | LR 2.98e-04 | MeanP 0.1952 | Active 19.53%
+Step    900 | Loss 14.3569 | GradNorm 0.0023 | LR 2.97e-04 | MeanP 0.2033 | Active 20.31%
+Step    950 | Loss 11.1471 | GradNorm 0.0685 | LR 2.97e-04 | MeanP 0.2091 | Active 21.09%
+Step   1000 | Loss 13.6770 | GradNorm 0.0012 | LR 2.97e-04 | MeanP 0.2032 | Active 20.31%
+  >>> Val Loss: 14.2715 (best: 14.3114)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt
+Step   1050 | Loss 14.7077 | GradNorm 0.0011 | LR 2.96e-04 | MeanP 0.2032 | Active 20.31%
+Step   1100 | Loss 14.0659 | GradNorm 0.0018 | LR 2.96e-04 | MeanP 0.2030 | Active 20.31%
+Step   1150 | Loss 14.8444 | GradNorm 0.0036 | LR 2.95e-04 | MeanP 0.2031 | Active 20.31%
+Step   1200 | Loss 12.8026 | GradNorm 0.0012 | LR 2.95e-04 | MeanP 0.2031 | Active 20.31%
+Step   1250 | Loss 13.4600 | GradNorm 0.0028 | LR 2.95e-04 | MeanP 0.2032 | Active 20.31%
+Step   1300 | Loss 10.1069 | GradNorm 0.0009 | LR 2.94e-04 | MeanP 0.2032 | Active 20.31%
+Step   1350 | Loss 9.9534 | GradNorm 0.0015 | LR 2.94e-04 | MeanP 0.2032 | Active 20.31%
+Step   1400 | Loss 12.3617 | GradNorm 0.0002 | LR 2.93e-04 | MeanP 0.2032 | Active 20.31%
+Step   1450 | Loss 11.1761 | GradNorm 0.0010 | LR 2.92e-04 | MeanP 0.2032 | Active 20.31%
+Step   1500 | Loss 12.1408 | GradNorm 0.0009 | LR 2.92e-04 | MeanP 0.2032 | Active 20.31%
+  >>> Val Loss: 14.2716 (best: 14.2715)
+Step   1550 | Loss 9.4371 | GradNorm 0.0007 | LR 2.91e-04 | MeanP 0.2032 | Active 20.31%
+Step   1600 | Loss 14.0720 | GradNorm 0.0036 | LR 2.91e-04 | MeanP 0.2032 | Active 20.31%
+Step   1650 | Loss 14.2297 | GradNorm 0.0003 | LR 2.90e-04 | MeanP 0.2032 | Active 20.31%
+Step   1700 | Loss 13.4109 | GradNorm 0.0002 | LR 2.89e-04 | MeanP 0.2032 | Active 20.31%
+Step   1750 | Loss 10.3623 | GradNorm 0.0004 | LR 2.89e-04 | MeanP 0.2031 | Active 20.31%
+Step   1800 | Loss 11.5047 | GradNorm 0.0012 | LR 2.88e-04 | MeanP 0.2031 | Active 20.31%
+Step   1850 | Loss 11.2799 | GradNorm 0.0019 | LR 2.87e-04 | MeanP 0.2032 | Active 20.31%
+Step   1900 | Loss 13.4622 | GradNorm 0.0003 | LR 2.87e-04 | MeanP 0.2032 | Active 20.31%
+Step   1950 | Loss 9.0408 | GradNorm 0.0003 | LR 2.86e-04 | MeanP 0.2031 | Active 20.31%
+Step   2000 | Loss 12.9385 | GradNorm 0.0005 | LR 2.85e-04 | MeanP 0.2032 | Active 20.31%
+  >>> Val Loss: 14.2716 (best: 14.2715)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_2000.pt
+Step   2050 | Loss 12.9554 | GradNorm 0.0002 | LR 2.84e-04 | MeanP 0.2032 | Active 20.31%
+Step   2100 | Loss 11.8606 | GradNorm 0.0004 | LR 2.83e-04 | MeanP 0.2031 | Active 20.31%
+Step   2150 | Loss 10.3309 | GradNorm 0.0002 | LR 2.83e-04 | MeanP 0.2032 | Active 20.31%
+Step   2200 | Loss 13.0501 | GradNorm 0.0002 | LR 2.82e-04 | MeanP 0.2031 | Active 20.31%
+Step   2250 | Loss 15.7814 | GradNorm 0.0001 | LR 2.81e-04 | MeanP 0.2031 | Active 20.31%
+Step   2300 | Loss 11.5200 | GradNorm 0.0037 | LR 2.80e-04 | MeanP 0.2031 | Active 20.31%
+Step   2350 | Loss 10.6710 | GradNorm 0.0004 | LR 2.79e-04 | MeanP 0.2032 | Active 20.31%
+Step   2400 | Loss 9.8980 | GradNorm 0.0012 | LR 2.78e-04 | MeanP 0.2032 | Active 20.31%
+Step   2450 | Loss 14.1436 | GradNorm 0.0003 | LR 2.77e-04 | MeanP 0.2031 | Active 20.31%
+Step   2500 | Loss 13.6929 | GradNorm 0.0003 | LR 2.76e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2717 (best: 14.2715)
+Step   2550 | Loss 11.0993 | GradNorm 0.0001 | LR 2.75e-04 | MeanP 0.2031 | Active 20.31%
+Step   2600 | Loss 10.9265 | GradNorm 0.0024 | LR 2.74e-04 | MeanP 0.2031 | Active 20.31%
+Step   2650 | Loss 12.9682 | GradNorm 0.0002 | LR 2.73e-04 | MeanP 0.2031 | Active 20.31%
+Step   2700 | Loss 11.1815 | GradNorm 0.0003 | LR 2.72e-04 | MeanP 0.2031 | Active 20.31%
+Step   2750 | Loss 15.2686 | GradNorm 0.0001 | LR 2.71e-04 | MeanP 0.2031 | Active 20.31%
+Step   2800 | Loss 11.9123 | GradNorm 0.0001 | LR 2.70e-04 | MeanP 0.2031 | Active 20.31%
+Step   2850 | Loss 13.9554 | GradNorm 0.0004 | LR 2.69e-04 | MeanP 0.2031 | Active 20.31%
+Step   2900 | Loss 14.5359 | GradNorm 0.0001 | LR 2.68e-04 | MeanP 0.2031 | Active 20.31%
+Step   2950 | Loss 10.3855 | GradNorm 0.0002 | LR 2.67e-04 | MeanP 0.2031 | Active 20.31%
+Step   3000 | Loss 14.7436 | GradNorm 0.0000 | LR 2.66e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2715)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt
+Step   3050 | Loss 10.8219 | GradNorm 0.0001 | LR 2.64e-04 | MeanP 0.2031 | Active 20.31%
+Step   3100 | Loss 10.6107 | GradNorm 0.0000 | LR 2.63e-04 | MeanP 0.2031 | Active 20.31%
+Step   3150 | Loss 15.2489 | GradNorm 0.0001 | LR 2.62e-04 | MeanP 0.2031 | Active 20.31%
+Step   3200 | Loss 13.2284 | GradNorm 0.0001 | LR 2.61e-04 | MeanP 0.2031 | Active 20.31%
+Step   3250 | Loss 12.3184 | GradNorm 0.0002 | LR 2.60e-04 | MeanP 0.2031 | Active 20.31%
+Step   3300 | Loss 14.6146 | GradNorm 0.0001 | LR 2.58e-04 | MeanP 0.2031 | Active 20.31%
+Step   3350 | Loss 9.9248 | GradNorm 0.0001 | LR 2.57e-04 | MeanP 0.2031 | Active 20.31%
+Step   3400 | Loss 13.2412 | GradNorm 0.0001 | LR 2.56e-04 | MeanP 0.2031 | Active 20.31%
+Step   3450 | Loss 13.6169 | GradNorm 0.0000 | LR 2.55e-04 | MeanP 0.2031 | Active 20.31%
+Step   3500 | Loss 11.3336 | GradNorm 0.0001 | LR 2.53e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   3550 | Loss 12.0340 | GradNorm 0.0000 | LR 2.52e-04 | MeanP 0.2031 | Active 20.31%
+Step   3600 | Loss 12.1696 | GradNorm 0.0002 | LR 2.51e-04 | MeanP 0.2031 | Active 20.31%
+Step   3650 | Loss 11.6575 | GradNorm 0.0001 | LR 2.49e-04 | MeanP 0.2031 | Active 20.31%
+Step   3700 | Loss 14.8991 | GradNorm 0.0000 | LR 2.48e-04 | MeanP 0.2031 | Active 20.31%
+Step   3750 | Loss 12.6435 | GradNorm 0.0000 | LR 2.47e-04 | MeanP 0.2031 | Active 20.31%
+Step   3800 | Loss 12.4199 | GradNorm 0.0000 | LR 2.45e-04 | MeanP 0.2031 | Active 20.31%
+Step   3850 | Loss 12.4102 | GradNorm 0.0001 | LR 2.44e-04 | MeanP 0.2031 | Active 20.31%
+Step   3900 | Loss 12.4367 | GradNorm 0.0001 | LR 2.43e-04 | MeanP 0.2031 | Active 20.31%
+Step   3950 | Loss 12.8782 | GradNorm 0.0000 | LR 2.41e-04 | MeanP 0.2031 | Active 20.31%
+Step   4000 | Loss 14.9003 | GradNorm 0.0002 | LR 2.40e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_4000.pt
+Step   4050 | Loss 9.8254 | GradNorm 0.0003 | LR 2.38e-04 | MeanP 0.2031 | Active 20.31%
+Step   4100 | Loss 11.9145 | GradNorm 0.0000 | LR 2.37e-04 | MeanP 0.2031 | Active 20.31%
+Step   4150 | Loss 11.2797 | GradNorm 0.0000 | LR 2.35e-04 | MeanP 0.2031 | Active 20.31%
+Step   4200 | Loss 14.4497 | GradNorm 0.0000 | LR 2.34e-04 | MeanP 0.2031 | Active 20.31%
+Step   4250 | Loss 11.5271 | GradNorm 0.0000 | LR 2.33e-04 | MeanP 0.2031 | Active 20.31%
+Step   4300 | Loss 11.5918 | GradNorm 0.0000 | LR 2.31e-04 | MeanP 0.2031 | Active 20.31%
+Step   4350 | Loss 10.8910 | GradNorm 0.0000 | LR 2.30e-04 | MeanP 0.2031 | Active 20.31%
+Step   4400 | Loss 11.2483 | GradNorm 0.0001 | LR 2.28e-04 | MeanP 0.2031 | Active 20.31%
+Step   4450 | Loss 14.2926 | GradNorm 0.0000 | LR 2.26e-04 | MeanP 0.2031 | Active 20.31%
+Step   4500 | Loss 13.3148 | GradNorm 0.0001 | LR 2.25e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   4550 | Loss 13.4396 | GradNorm 0.0000 | LR 2.23e-04 | MeanP 0.2031 | Active 20.31%
+Step   4600 | Loss 13.4564 | GradNorm 0.0000 | LR 2.22e-04 | MeanP 0.2031 | Active 20.31%
+Step   4650 | Loss 12.4574 | GradNorm 0.0000 | LR 2.20e-04 | MeanP 0.2031 | Active 20.31%
+Step   4700 | Loss 12.7253 | GradNorm 0.0000 | LR 2.19e-04 | MeanP 0.2031 | Active 20.31%
+Step   4750 | Loss 13.2927 | GradNorm 0.0000 | LR 2.17e-04 | MeanP 0.2031 | Active 20.31%
+Step   4800 | Loss 10.1547 | GradNorm 0.0000 | LR 2.16e-04 | MeanP 0.2031 | Active 20.31%
+Step   4850 | Loss 10.2793 | GradNorm 0.0000 | LR 2.14e-04 | MeanP 0.2031 | Active 20.31%
+Step   4900 | Loss 12.6223 | GradNorm 0.0000 | LR 2.12e-04 | MeanP 0.2031 | Active 20.31%
+Step   4950 | Loss 12.9689 | GradNorm 0.0000 | LR 2.11e-04 | MeanP 0.2031 | Active 20.31%
+Step   5000 | Loss 16.7751 | GradNorm 0.0000 | LR 2.09e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   5050 | Loss 13.9969 | GradNorm 0.0000 | LR 2.08e-04 | MeanP 0.2031 | Active 20.31%
+Step   5100 | Loss 9.4985 | GradNorm 0.0000 | LR 2.06e-04 | MeanP 0.2031 | Active 20.31%
+Step   5150 | Loss 11.2042 | GradNorm 0.0000 | LR 2.04e-04 | MeanP 0.2031 | Active 20.31%
+Step   5200 | Loss 12.7452 | GradNorm 0.0002 | LR 2.03e-04 | MeanP 0.2031 | Active 20.31%
+Step   5250 | Loss 8.9768 | GradNorm 0.0000 | LR 2.01e-04 | MeanP 0.2031 | Active 20.31%
+Step   5300 | Loss 12.6302 | GradNorm 0.0000 | LR 1.99e-04 | MeanP 0.2031 | Active 20.31%
+Step   5350 | Loss 12.1653 | GradNorm 0.0000 | LR 1.98e-04 | MeanP 0.2031 | Active 20.31%
+Step   5400 | Loss 8.6444 | GradNorm 0.0000 | LR 1.96e-04 | MeanP 0.2031 | Active 20.31%
+Step   5450 | Loss 13.4867 | GradNorm 0.0000 | LR 1.94e-04 | MeanP 0.2031 | Active 20.31%
+Step   5500 | Loss 11.5441 | GradNorm 0.0000 | LR 1.93e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   5550 | Loss 11.9168 | GradNorm 0.0002 | LR 1.91e-04 | MeanP 0.2031 | Active 20.31%
+Step   5600 | Loss 12.5975 | GradNorm 0.0000 | LR 1.89e-04 | MeanP 0.2031 | Active 20.31%
+Step   5650 | Loss 9.5840 | GradNorm 0.0001 | LR 1.88e-04 | MeanP 0.2031 | Active 20.31%
+Step   5700 | Loss 7.7698 | GradNorm 0.0001 | LR 1.86e-04 | MeanP 0.2031 | Active 20.31%
+Step   5750 | Loss 13.4010 | GradNorm 0.0001 | LR 1.84e-04 | MeanP 0.2031 | Active 20.31%
+Step   5800 | Loss 10.6604 | GradNorm 0.0000 | LR 1.83e-04 | MeanP 0.2031 | Active 20.31%
+Step   5850 | Loss 12.8823 | GradNorm 0.0000 | LR 1.81e-04 | MeanP 0.2031 | Active 20.31%
+Step   5900 | Loss 12.0755 | GradNorm 0.0001 | LR 1.79e-04 | MeanP 0.2031 | Active 20.31%
+Step   5950 | Loss 11.7039 | GradNorm 0.0000 | LR 1.77e-04 | MeanP 0.2031 | Active 20.31%
+Step   6000 | Loss 13.8329 | GradNorm 0.0000 | LR 1.76e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_6000.pt
+Step   6050 | Loss 11.9294 | GradNorm 0.0000 | LR 1.74e-04 | MeanP 0.2031 | Active 20.31%
+Step   6100 | Loss 11.9495 | GradNorm 0.0000 | LR 1.72e-04 | MeanP 0.2031 | Active 20.31%
+Step   6150 | Loss 11.8371 | GradNorm 0.0000 | LR 1.71e-04 | MeanP 0.2031 | Active 20.31%
+Step   6200 | Loss 10.8816 | GradNorm 0.0000 | LR 1.69e-04 | MeanP 0.2031 | Active 20.31%
+Step   6250 | Loss 12.1071 | GradNorm 0.0000 | LR 1.67e-04 | MeanP 0.2031 | Active 20.31%
+Step   6300 | Loss 13.7430 | GradNorm 0.0000 | LR 1.65e-04 | MeanP 0.2031 | Active 20.31%
+Step   6350 | Loss 11.1050 | GradNorm 0.0000 | LR 1.64e-04 | MeanP 0.2031 | Active 20.31%
+Step   6400 | Loss 10.8013 | GradNorm 0.0000 | LR 1.62e-04 | MeanP 0.2031 | Active 20.31%
+Step   6450 | Loss 8.8483 | GradNorm 0.0000 | LR 1.60e-04 | MeanP 0.2031 | Active 20.31%
+Step   6500 | Loss 7.3505 | GradNorm 0.0000 | LR 1.59e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   6550 | Loss 11.4482 | GradNorm 0.0000 | LR 1.57e-04 | MeanP 0.2031 | Active 20.31%
+Step   6600 | Loss 14.0413 | GradNorm 0.0000 | LR 1.55e-04 | MeanP 0.2031 | Active 20.31%
+Step   6650 | Loss 12.7751 | GradNorm 0.0000 | LR 1.53e-04 | MeanP 0.2031 | Active 20.31%
+Step   6700 | Loss 15.2752 | GradNorm 0.0000 | LR 1.52e-04 | MeanP 0.2031 | Active 20.31%
+Step   6750 | Loss 14.2337 | GradNorm 0.0001 | LR 1.50e-04 | MeanP 0.2031 | Active 20.31%
+Step   6800 | Loss 8.8245 | GradNorm 0.0000 | LR 1.48e-04 | MeanP 0.2031 | Active 20.31%
+Step   6850 | Loss 12.5025 | GradNorm 0.0000 | LR 1.47e-04 | MeanP 0.2031 | Active 20.31%
+Step   6900 | Loss 14.4025 | GradNorm 0.0000 | LR 1.45e-04 | MeanP 0.2031 | Active 20.31%
+Step   6950 | Loss 11.0391 | GradNorm 0.0000 | LR 1.43e-04 | MeanP 0.2031 | Active 20.31%
+Step   7000 | Loss 11.8746 | GradNorm 0.0000 | LR 1.42e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   7050 | Loss 11.3396 | GradNorm 0.0000 | LR 1.40e-04 | MeanP 0.2031 | Active 20.31%
+Step   7100 | Loss 13.1877 | GradNorm 0.0000 | LR 1.38e-04 | MeanP 0.2031 | Active 20.31%
+Step   7150 | Loss 11.2060 | GradNorm 0.0000 | LR 1.37e-04 | MeanP 0.2031 | Active 20.31%
+Step   7200 | Loss 14.3150 | GradNorm 0.0000 | LR 1.35e-04 | MeanP 0.2031 | Active 20.31%
+Step   7250 | Loss 13.3341 | GradNorm 0.0000 | LR 1.33e-04 | MeanP 0.2031 | Active 20.31%
+Step   7300 | Loss 8.1156 | GradNorm 0.0000 | LR 1.32e-04 | MeanP 0.2031 | Active 20.31%
+Step   7350 | Loss 13.2846 | GradNorm 0.0000 | LR 1.30e-04 | MeanP 0.2031 | Active 20.31%
+Step   7400 | Loss 12.3727 | GradNorm 0.0000 | LR 1.28e-04 | MeanP 0.2031 | Active 20.31%
+Step   7450 | Loss 12.0979 | GradNorm 0.0000 | LR 1.27e-04 | MeanP 0.2031 | Active 20.31%
+Step   7500 | Loss 13.3715 | GradNorm 0.0000 | LR 1.25e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   7550 | Loss 13.0124 | GradNorm 0.0000 | LR 1.23e-04 | MeanP 0.2031 | Active 20.31%
+Step   7600 | Loss 14.8169 | GradNorm 0.0000 | LR 1.22e-04 | MeanP 0.2031 | Active 20.31%
+Step   7650 | Loss 14.1562 | GradNorm 0.0001 | LR 1.20e-04 | MeanP 0.2031 | Active 20.31%
+Step   7700 | Loss 14.7699 | GradNorm 0.0000 | LR 1.18e-04 | MeanP 0.2031 | Active 20.31%
+Step   7750 | Loss 14.5726 | GradNorm 0.0000 | LR 1.17e-04 | MeanP 0.2031 | Active 20.31%
+Step   7800 | Loss 14.0559 | GradNorm 0.0000 | LR 1.15e-04 | MeanP 0.2031 | Active 20.31%
+Step   7850 | Loss 11.8529 | GradNorm 0.0000 | LR 1.14e-04 | MeanP 0.2031 | Active 20.31%
+Step   7900 | Loss 12.9516 | GradNorm 0.0000 | LR 1.12e-04 | MeanP 0.2031 | Active 20.31%
+Step   7950 | Loss 10.5331 | GradNorm 0.0000 | LR 1.10e-04 | MeanP 0.2031 | Active 20.31%
+Step   8000 | Loss 15.2622 | GradNorm 0.0000 | LR 1.09e-04 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_8000.pt
+Step   8050 | Loss 11.1119 | GradNorm 0.0000 | LR 1.07e-04 | MeanP 0.2031 | Active 20.31%
+Step   8100 | Loss 9.4360 | GradNorm 0.0000 | LR 1.06e-04 | MeanP 0.2031 | Active 20.31%
+Step   8150 | Loss 14.4646 | GradNorm 0.0000 | LR 1.04e-04 | MeanP 0.2031 | Active 20.31%
+Step   8200 | Loss 12.8989 | GradNorm 0.0000 | LR 1.03e-04 | MeanP 0.2031 | Active 20.31%
+Step   8250 | Loss 13.3862 | GradNorm 0.0000 | LR 1.01e-04 | MeanP 0.2031 | Active 20.31%
+Step   8300 | Loss 11.9372 | GradNorm 0.0000 | LR 9.97e-05 | MeanP 0.2031 | Active 20.31%
+Step   8350 | Loss 9.2071 | GradNorm 0.0000 | LR 9.82e-05 | MeanP 0.2031 | Active 20.31%
+Step   8400 | Loss 8.8211 | GradNorm 0.0000 | LR 9.68e-05 | MeanP 0.2031 | Active 20.31%
+Step   8450 | Loss 12.2432 | GradNorm 0.0000 | LR 9.53e-05 | MeanP 0.2031 | Active 20.31%
+Step   8500 | Loss 14.6726 | GradNorm 0.0000 | LR 9.38e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   8550 | Loss 11.1839 | GradNorm 0.0000 | LR 9.24e-05 | MeanP 0.2031 | Active 20.31%
+Step   8600 | Loss 14.8440 | GradNorm 0.0000 | LR 9.09e-05 | MeanP 0.2031 | Active 20.31%
+Step   8650 | Loss 14.5819 | GradNorm 0.0000 | LR 8.95e-05 | MeanP 0.2031 | Active 20.31%
+Step   8700 | Loss 14.0609 | GradNorm 0.0000 | LR 8.81e-05 | MeanP 0.2031 | Active 20.31%
+Step   8750 | Loss 11.9933 | GradNorm 0.0000 | LR 8.67e-05 | MeanP 0.2031 | Active 20.31%
+Step   8800 | Loss 11.1255 | GradNorm 0.0000 | LR 8.53e-05 | MeanP 0.2031 | Active 20.31%
+Step   8850 | Loss 11.0562 | GradNorm 0.0000 | LR 8.39e-05 | MeanP 0.2031 | Active 20.31%
+Step   8900 | Loss 12.1247 | GradNorm 0.0000 | LR 8.26e-05 | MeanP 0.2031 | Active 20.31%
+Step   8950 | Loss 13.2256 | GradNorm 0.0000 | LR 8.12e-05 | MeanP 0.2031 | Active 20.31%
+Step   9000 | Loss 12.5091 | GradNorm 0.0000 | LR 7.99e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   9050 | Loss 14.5103 | GradNorm 0.0000 | LR 7.86e-05 | MeanP 0.2031 | Active 20.31%
+Step   9100 | Loss 14.5400 | GradNorm 0.0000 | LR 7.72e-05 | MeanP 0.2031 | Active 20.31%
+Step   9150 | Loss 12.6824 | GradNorm 0.0000 | LR 7.59e-05 | MeanP 0.2031 | Active 20.31%
+Step   9200 | Loss 12.9455 | GradNorm 0.0000 | LR 7.47e-05 | MeanP 0.2031 | Active 20.31%
+Step   9250 | Loss 13.1476 | GradNorm 0.0000 | LR 7.34e-05 | MeanP 0.2031 | Active 20.31%
+Step   9300 | Loss 12.7090 | GradNorm 0.0000 | LR 7.21e-05 | MeanP 0.2031 | Active 20.31%
+Step   9350 | Loss 16.6174 | GradNorm 0.0000 | LR 7.09e-05 | MeanP 0.2031 | Active 20.31%
+Step   9400 | Loss 13.6219 | GradNorm 0.0000 | LR 6.97e-05 | MeanP 0.2031 | Active 20.31%
+Step   9450 | Loss 12.6978 | GradNorm 0.0000 | LR 6.85e-05 | MeanP 0.2031 | Active 20.31%
+Step   9500 | Loss 12.2520 | GradNorm 0.0000 | LR 6.73e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Step   9550 | Loss 6.1646 | GradNorm 0.0000 | LR 6.61e-05 | MeanP 0.2031 | Active 20.31%
+Step   9600 | Loss 9.8201 | GradNorm 0.0000 | LR 6.50e-05 | MeanP 0.2031 | Active 20.31%
+Step   9650 | Loss 10.6104 | GradNorm 0.0000 | LR 6.38e-05 | MeanP 0.2031 | Active 20.31%
+Step   9700 | Loss 14.1595 | GradNorm 0.0000 | LR 6.27e-05 | MeanP 0.2031 | Active 20.31%
+Step   9750 | Loss 10.5118 | GradNorm 0.0000 | LR 6.16e-05 | MeanP 0.2031 | Active 20.31%
+Step   9800 | Loss 11.2823 | GradNorm 0.0000 | LR 6.05e-05 | MeanP 0.2031 | Active 20.31%
+Step   9850 | Loss 8.4451 | GradNorm 0.0000 | LR 5.94e-05 | MeanP 0.2031 | Active 20.31%
+Step   9900 | Loss 12.3473 | GradNorm 0.0000 | LR 5.84e-05 | MeanP 0.2031 | Active 20.31%
+Step   9950 | Loss 11.8836 | GradNorm 0.0000 | LR 5.73e-05 | MeanP 0.2031 | Active 20.31%
+Step  10000 | Loss 14.2896 | GradNorm 0.0000 | LR 5.63e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/step_10000.pt
+Step  10050 | Loss 13.1068 | GradNorm 0.0000 | LR 5.53e-05 | MeanP 0.2031 | Active 20.31%
+Step  10100 | Loss 12.4007 | GradNorm 0.0000 | LR 5.43e-05 | MeanP 0.2031 | Active 20.31%
+Step  10150 | Loss 12.2050 | GradNorm 0.0000 | LR 5.33e-05 | MeanP 0.2031 | Active 20.31%
+Step  10200 | Loss 13.4680 | GradNorm 0.0000 | LR 5.24e-05 | MeanP 0.2031 | Active 20.31%
+Step  10250 | Loss 11.6401 | GradNorm 0.0000 | LR 5.14e-05 | MeanP 0.2031 | Active 20.31%
+Step  10300 | Loss 11.6568 | GradNorm 0.0000 | LR 5.05e-05 | MeanP 0.2031 | Active 20.31%
+Step  10350 | Loss 11.0624 | GradNorm 0.0000 | LR 4.96e-05 | MeanP 0.2031 | Active 20.31%
+Step  10400 | Loss 13.6124 | GradNorm 0.0003 | LR 4.87e-05 | MeanP 0.2031 | Active 20.31%
+Step  10450 | Loss 13.2835 | GradNorm 0.0000 | LR 4.79e-05 | MeanP 0.2031 | Active 20.31%
+Step  10500 | Loss 13.8640 | GradNorm 0.0000 | LR 4.70e-05 | MeanP 0.2031 | Active 20.31%
+  >>> Val Loss: 14.2714 (best: 14.2714)
+Early stopping at step 10500
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] Original LlamaAttention.forward restored.[attention_v3] Original LlamaAttention.forward restored.[attention_v3] Original LlamaAttention.forward restored.
+
+
+  Checkpoint saved: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/final.pt
+
+Training complete. Logs: /home/kana5123/ATLASVLA/outputs/experiment_results/v1/logs/training_log.json
+[v1] Training completed in 33129s
+
+============================================================
+  Evaluating [v1]: AttentionAdapter v1 (MLP only)
+  CMD: env CUDA_VISIBLE_DEVICES=1 /home/kana5123/miniconda3/envs/interp/bin/python adapter_eval.py --checkpoint /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt --device cuda:0 --num_episodes 200 --output_dir /home/kana5123/ATLASVLA/outputs/experiment_results/v1/eval
+============================================================
+
+2026-02-22 10:41:17.585444: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:41:17.629385: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:41:17.629427: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:41:17.630849: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:41:17.638253: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:41:18.447003: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading OpenVLA model...
+Loading model: openvla/openvla-7b
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.29it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.70it/s]
+/home/kana5123/ATLASVLA/adapter_eval.py:65: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(checkpoint_path, map_location=device)
+Model loaded successfully.
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens: 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0}
+Adapter v1 loaded from /home/kana5123/ATLASVLA/outputs/experiment_results/v1/checkpoints/best.pt (step 3000)
+
+Evaluating on test set (200 episodes, conditions: ['baseline', 'adapter'])...
+Episode split: train=160, val=20, test=20
+  [train] 3596 steps from 105 episodes (cached)
+  [val] 550 steps from 12 episodes (cached)
+  [test] 398 steps from 11 episodes (cached)
+
+Eval:   0%|          | 0/398 [00:00<?, ?it/s]
+Eval:   0%|          | 0/398 [00:00<?, ?it/s]
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+Traceback (most recent call last):
+  File "/home/kana5123/ATLASVLA/adapter_eval.py", line 387, in <module>
+    main()
+  File "/home/kana5123/ATLASVLA/adapter_eval.py", line 369, in main
+    results = evaluator.evaluate(num_episodes=args.num_episodes)
+  File "/home/kana5123/ATLASVLA/adapter_eval.py", line 176, in evaluate
+    pred = self._run_inference(
+  File "/home/kana5123/ATLASVLA/adapter_eval.py", line 127, in _run_inference
+    outputs = self.model(**model_inputs, use_cache=False)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+    language_model_output = self.language_model(
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+    hidden_states = decoder_layer(
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+    hidden_states, _ = self.self_attn(
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+    query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[v1] Evaluation FAILED (exit code 1) after 35s
+
+************************************************************
+  CONFIG: v2-prop — AttentionAdapterV2, proportional redistribution (blend frozen)
+************************************************************
+
+============================================================
+  Training [v2-prop]: AttentionAdapterV2, proportional redistribution (blend frozen)
+  CMD: env CUDA_VISIBLE_DEVICES=1,2,3,4 /home/kana5123/miniconda3/envs/interp/bin/python -m accelerate.commands.launch --num_processes 4 adapter_train.py --adapter_version 2 --output_dir /home/kana5123/ATLASVLA/outputs/experiment_results/v2-prop --freeze_blend
+============================================================
+
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-22 10:41:54.246508: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:41:54.247602: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:41:54.248177: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:41:54.289410: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:41:54.289410: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:41:54.289411: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:41:54.289446: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:41:54.289447: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:41:54.289448: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:41:54.291081: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:41:54.291096: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:41:54.291096: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:41:54.298328: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:41:54.298386: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:41:54.298387: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:41:54.298693: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:41:54.338482: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:41:54.338519: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:41:54.339571: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:41:54.345653: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:41:55.107093: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:41:55.116012: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:41:55.142799: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:41:55.196460: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: openvla-7b (llama)
+  Devices: 4 GPU(s)
+  Episodes: None
+  Batch size: 16 (effective = 4/GPU × 4 GPUs)
+  Per-GPU batch: 4
+  LR: 0.0003 → 3e-05
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+  Source layer: 27
+  Action type: discrete
+============================================================
+
+Loading frozen openvla-7b model...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.14it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.30it/s]
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.09it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.20it/s]
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.10it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.09it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.20it/s]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.18it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Vision tokens: 0..255
+  Text tokens end: 18
+  blend_alpha FROZEN at 0.000000
+Adapter v2 parameters: 2,171,713
+Creating data loaders...
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+  Dynamic sink detection: ON (α=5.0)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 777, in <module>
+[rank2]:     if __name__ == "__main__":
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 638, in train
+[rank2]:     
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank2]:     _ = model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank2]:     language_model_output = self.language_model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank2]:     output = func(self, *args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank2]:     outputs: BaseModelOutputWithPast = self.model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank2]:     outputs = func(self, *args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank2]:     hidden_states = decoder_layer(
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank2]:     return super().__call__(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank2]:     hidden_states, _ = self.self_attn(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank2]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank2]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank2]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 777, in <module>
+[rank3]:     if __name__ == "__main__":
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 638, in train
+[rank3]:     
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank3]:     _ = model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank3]:     language_model_output = self.language_model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank3]:     output = func(self, *args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank3]:     outputs: BaseModelOutputWithPast = self.model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank3]:     outputs = func(self, *args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank3]:     hidden_states = decoder_layer(
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank3]:     return super().__call__(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank3]:     hidden_states, _ = self.self_attn(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank3]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank3]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank3]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 777, in <module>
+[rank1]:     if __name__ == "__main__":
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 638, in train
+[rank1]:     
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank1]:     _ = model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank1]:     language_model_output = self.language_model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank1]:     output = func(self, *args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank1]:     outputs: BaseModelOutputWithPast = self.model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank1]:     outputs = func(self, *args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank1]:     hidden_states = decoder_layer(
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank1]:     return super().__call__(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank1]:     hidden_states, _ = self.self_attn(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank1]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank1]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank1]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 777, in <module>
+[rank0]:     if __name__ == "__main__":
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 638, in train
+[rank0]:     
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank0]:     _ = model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank0]:     language_model_output = self.language_model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank0]:     output = func(self, *args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank0]:     outputs: BaseModelOutputWithPast = self.model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank0]:     outputs = func(self, *args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank0]:     hidden_states = decoder_layer(
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank0]:     return super().__call__(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank0]:     hidden_states, _ = self.self_attn(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank0]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank0]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank0]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+W0222 10:42:38.143000 140166835476288 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2743204 closing signal SIGTERM
+W0222 10:42:38.143000 140166835476288 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2743205 closing signal SIGTERM
+W0222 10:42:38.143000 140166835476288 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2743207 closing signal SIGTERM
+E0222 10:42:38.824000 140166835476288 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 2 (pid: 2743206) of binary: /home/kana5123/miniconda3/envs/interp/bin/python
+Traceback (most recent call last):
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1245, in <module>
+    main()
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1241, in main
+    launch_command(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+adapter_train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-22_10:42:38
+  host      : node1.cluster.local
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2743206)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+[v2-prop] Training FAILED (exit code 1) after 51s
+
+************************************************************
+  CONFIG: v2-full — AttentionAdapterV2, learned redistribution (blend learnable)
+************************************************************
+
+============================================================
+  Training [v2-full]: AttentionAdapterV2, learned redistribution (blend learnable)
+  CMD: env CUDA_VISIBLE_DEVICES=1,2,3,4 /home/kana5123/miniconda3/envs/interp/bin/python -m accelerate.commands.launch --num_processes 4 adapter_train.py --adapter_version 2 --output_dir /home/kana5123/ATLASVLA/outputs/experiment_results/v2-full
+============================================================
+
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-22 10:42:44.155335: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:44.182774: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:44.182797: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:44.183620: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:44.187973: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:44.435926: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:44.462961: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:44.462986: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:44.463744: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:44.468138: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:44.870358: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:42:44.969513: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:44.982365: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:42:45.006911: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:45.006934: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:45.007894: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:45.013510: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:45.066086: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:45.103537: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:45.103561: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:45.104672: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:45.110360: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:45.683927: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:42:45.764951: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: openvla-7b (llama)
+  Devices: 4 GPU(s)
+  Episodes: None
+  Batch size: 16 (effective = 4/GPU × 4 GPUs)
+  Per-GPU batch: 4
+  LR: 0.0003 → 3e-05
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+  Source layer: 27
+  Action type: discrete
+============================================================
+
+Loading frozen openvla-7b model...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.07it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.13it/s]
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.20it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.44it/s]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.29it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.29it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.72it/s]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.73it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Vision tokens: 0..255
+  Text tokens end: 18
+Adapter v2 parameters: 2,171,713
+Creating data loaders...
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+  Dynamic sink detection: ON (α=5.0)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank3]:     train()
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank3]:     loss_i, p_matrix = forward_with_adapter(
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank3]:     _ = model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank3]:     language_model_output = self.language_model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank3]:     output = func(self, *args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank3]:     outputs: BaseModelOutputWithPast = self.model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank3]:     outputs = func(self, *args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank3]:     hidden_states = decoder_layer(
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank3]:     return super().__call__(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank3]:     hidden_states, _ = self.self_attn(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank3]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank3]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank3]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank0]:     train()
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank0]:     loss_i, p_matrix = forward_with_adapter(
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank0]:     _ = model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank0]:     language_model_output = self.language_model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank0]:     output = func(self, *args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank0]:     outputs: BaseModelOutputWithPast = self.model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank0]:     outputs = func(self, *args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank0]:     hidden_states = decoder_layer(
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank0]:     return super().__call__(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank0]:     hidden_states, _ = self.self_attn(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank0]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank0]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank0]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank2]:     train()
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank2]:     loss_i, p_matrix = forward_with_adapter(
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank2]:     _ = model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank2]:     language_model_output = self.language_model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank2]:     output = func(self, *args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank2]:     outputs: BaseModelOutputWithPast = self.model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank2]:     outputs = func(self, *args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank2]:     hidden_states = decoder_layer(
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank2]:     return super().__call__(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank2]:     hidden_states, _ = self.self_attn(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank2]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank2]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank2]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank1]:     train()
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank1]:     loss_i, p_matrix = forward_with_adapter(
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank1]:     _ = model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank1]:     language_model_output = self.language_model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank1]:     output = func(self, *args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank1]:     outputs: BaseModelOutputWithPast = self.model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank1]:     outputs = func(self, *args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank1]:     hidden_states = decoder_layer(
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank1]:     return super().__call__(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank1]:     hidden_states, _ = self.self_attn(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank1]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank1]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank1]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+W0222 10:43:26.291000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2744993 closing signal SIGTERM
+W0222 10:43:26.292000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2744994 closing signal SIGTERM
+W0222 10:43:26.294000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2744995 closing signal SIGTERM
+E0222 10:43:26.987000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 3 (pid: 2744996) of binary: /home/kana5123/miniconda3/envs/interp/bin/python
+Traceback (most recent call last):
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1245, in <module>
+    main()
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1241, in main
+    launch_command(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+adapter_train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-22_10:43:26
+  host      : node1.cluster.local
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2744996)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+[v2-full] Training FAILED (exit code 1) after 48s
+
+############################################################
+  EXPERIMENT COMPLETE
+  Total time: 556.9 min
+  Summary: /home/kana5123/ATLASVLA/outputs/experiment_results/experiment_summary.json
+    base      : complete
+    v1        : eval_failed
+    v2-prop   : train_failed
+    v2-full   : train_failed
+############################################################
+

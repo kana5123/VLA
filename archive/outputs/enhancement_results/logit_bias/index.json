@@ -1,0 +1,2325 @@
+{
+  "method": "logit_bias",
+  "token_boundaries": {
+    "vision_start": 0,
+    "vision_end": 256,
+    "text_start": 256,
+    "text_end": 279,
+    "total_seq_len": 279,
+    "num_vision_tokens": 256,
+    "num_text_tokens": 23,
+    "pre_image_tokens": 0
+  },
+  "results": [
+    {
+      "episode_id": 0,
+      "step_id": 0,
+      "mse_mean": 0.18108506913190228,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step000.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 1,
+      "mse_mean": 0.0027810950614286234,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step001.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 2,
+      "mse_mean": 0.008381225168662505,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step002.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 3,
+      "mse_mean": 0.0008066412001111787,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step003.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 4,
+      "mse_mean": 0.0002904890544430508,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step004.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 5,
+      "mse_mean": 0.0004969470531588764,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step005.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 6,
+      "mse_mean": 0.0004073069684732445,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step006.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 7,
+      "mse_mean": 0.018316223505320424,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step007.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 8,
+      "mse_mean": 0.00028345604165886176,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step008.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 9,
+      "mse_mean": 5.34248023566939e-06,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step009.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 10,
+      "mse_mean": 0.001105305130852962,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step010.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 11,
+      "mse_mean": 0.0022675909339265918,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step011.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 12,
+      "mse_mean": 0.05417024082582213,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step012.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 13,
+      "mse_mean": 0.007309339919507616,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step013.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 14,
+      "mse_mean": 0.0013262608845102998,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step014.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 15,
+      "mse_mean": 0.014449146748795468,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step015.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 16,
+      "mse_mean": 0.011786467445098937,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step016.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 17,
+      "mse_mean": 0.0030450148385924203,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step017.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 18,
+      "mse_mean": 0.005028691672190831,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step018.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 19,
+      "mse_mean": 0.0012914372492967856,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step019.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 20,
+      "mse_mean": 0.0026948483013208915,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step020.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 21,
+      "mse_mean": 0.0036226187695233484,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step021.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 22,
+      "mse_mean": 0.005691698546367793,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step022.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 23,
+      "mse_mean": 0.0005182851437261362,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step023.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 24,
+      "mse_mean": 0.004221050402190161,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step024.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 25,
+      "mse_mean": 0.07167792360715389,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step025.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 26,
+      "mse_mean": 0.1384974396137659,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step026.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 27,
+      "mse_mean": 0.1787742584408897,
+      "output_path": "outputs/enhancement_results/logit_bias/ep000_step027.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 0,
+      "mse_mean": 0.3752280613960387,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step000.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 1,
+      "mse_mean": 0.3330026181745994,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step001.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 2,
+      "mse_mean": 0.05920926718726499,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step002.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 3,
+      "mse_mean": 0.16823850868541038,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step003.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 4,
+      "mse_mean": 0.3654307469450232,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step004.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 5,
+      "mse_mean": 0.1971310267527933,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step005.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 6,
+      "mse_mean": 0.17370087192208533,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step006.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 7,
+      "mse_mean": 0.2240744176557151,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step007.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 8,
+      "mse_mean": 0.18431610609094368,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step008.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 9,
+      "mse_mean": 0.3607712893849338,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step009.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 10,
+      "mse_mean": 0.23881213885552,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step010.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 11,
+      "mse_mean": 0.014723845851326694,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step011.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 12,
+      "mse_mean": 0.02302462521937678,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step012.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 13,
+      "mse_mean": 0.004685465228380279,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step013.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 14,
+      "mse_mean": 0.003431972549055835,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step014.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 15,
+      "mse_mean": 0.0016489155428687954,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step015.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 16,
+      "mse_mean": 0.14236957331509173,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step016.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 17,
+      "mse_mean": 0.002835667049087754,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step017.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 18,
+      "mse_mean": 0.03206143041360253,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step018.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 19,
+      "mse_mean": 0.01291844291415955,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step019.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 20,
+      "mse_mean": 0.009367310923342424,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step020.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 21,
+      "mse_mean": 0.1430449972682317,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step021.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 22,
+      "mse_mean": 0.006598692318202902,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step022.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 23,
+      "mse_mean": 0.011368608166008726,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step023.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 24,
+      "mse_mean": 0.022627697903689955,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step024.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 25,
+      "mse_mean": 0.0021355605345083667,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step025.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 26,
+      "mse_mean": 0.028073969785129906,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step026.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 27,
+      "mse_mean": 0.11556650820661675,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step027.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 28,
+      "mse_mean": 0.09983953376483679,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step028.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 29,
+      "mse_mean": 0.19737104948590337,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step029.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 30,
+      "mse_mean": 0.09268692187133343,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step030.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 31,
+      "mse_mean": 0.1429424701300046,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step031.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 32,
+      "mse_mean": 0.0016867890629447928,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step032.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 33,
+      "mse_mean": 0.007123757530953292,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step033.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 34,
+      "mse_mean": 0.004411789456951791,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step034.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 35,
+      "mse_mean": 0.10220665874178027,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step035.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 36,
+      "mse_mean": 0.20472449009212007,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step036.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 37,
+      "mse_mean": 0.000715859675870892,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step037.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 38,
+      "mse_mean": 0.2004633378726875,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step038.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 39,
+      "mse_mean": 0.12381059490712128,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step039.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 40,
+      "mse_mean": 0.13235130931249267,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step040.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 41,
+      "mse_mean": 0.11733448244978266,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step041.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 42,
+      "mse_mean": 0.14598876363310212,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step042.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 43,
+      "mse_mean": 0.10780413939337363,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step043.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 44,
+      "mse_mean": 0.007028814455444028,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step044.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 45,
+      "mse_mean": 0.2249991625378098,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step045.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 46,
+      "mse_mean": 0.27482039010068837,
+      "output_path": "outputs/enhancement_results/logit_bias/ep001_step046.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 0,
+      "mse_mean": 0.19643593346895755,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step000.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 1,
+      "mse_mean": 0.0006785081823343326,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step001.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 2,
+      "mse_mean": 0.12768930356831815,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step002.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 3,
+      "mse_mean": 0.10556693152921606,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step003.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 4,
+      "mse_mean": 0.08708604769360313,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step004.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 5,
+      "mse_mean": 0.24961154042908898,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step005.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 6,
+      "mse_mean": 0.19661975341188984,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step006.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 7,
+      "mse_mean": 0.13415059421211803,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step007.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 8,
+      "mse_mean": 0.1714831866684063,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step008.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 9,
+      "mse_mean": 0.16138208746009952,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step009.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 10,
+      "mse_mean": 0.22925478886379588,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step010.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 11,
+      "mse_mean": 0.13852344732224148,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step011.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 12,
+      "mse_mean": 0.14296239038234002,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step012.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 13,
+      "mse_mean": 0.154513151420867,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step013.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 14,
+      "mse_mean": 0.1543488258678401,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step014.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 15,
+      "mse_mean": 0.18620642638094337,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step015.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 16,
+      "mse_mean": 0.18607667631496297,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step016.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 17,
+      "mse_mean": 0.15431339410846578,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step017.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 18,
+      "mse_mean": 0.17350363285302267,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step018.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 19,
+      "mse_mean": 0.1321374099501287,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step019.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 20,
+      "mse_mean": 0.04389938717336849,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step020.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 21,
+      "mse_mean": 0.0001470844916211743,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step021.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 22,
+      "mse_mean": 0.14175225240176878,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step022.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 23,
+      "mse_mean": 9.725376402357634e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step023.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 24,
+      "mse_mean": 0.0016558556072896011,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step024.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 25,
+      "mse_mean": 0.005938273817735308,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step025.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 26,
+      "mse_mean": 0.005668433387087591,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step026.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 27,
+      "mse_mean": 0.015309772514334978,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step027.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 28,
+      "mse_mean": 0.02896522992281549,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step028.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 29,
+      "mse_mean": 0.002960175889168177,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step029.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 30,
+      "mse_mean": 0.000519403679849227,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step030.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 31,
+      "mse_mean": 0.035415476160810914,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step031.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 32,
+      "mse_mean": 0.00035321754817436974,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step032.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 33,
+      "mse_mean": 0.000251525402903327,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step033.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 34,
+      "mse_mean": 0.00038766784835231793,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step034.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 35,
+      "mse_mean": 0.1428924495055333,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step035.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 36,
+      "mse_mean": 0.1662828713119838,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step036.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 37,
+      "mse_mean": 0.16159790223242165,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step037.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 38,
+      "mse_mean": 0.0021346298448637305,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step038.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 39,
+      "mse_mean": 0.0013359931311062961,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step039.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 40,
+      "mse_mean": 0.07786869420076471,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step040.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 41,
+      "mse_mean": 0.0888674963754091,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step041.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 42,
+      "mse_mean": 0.20985949293042275,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step042.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 43,
+      "mse_mean": 0.21019410184424517,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step043.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 44,
+      "mse_mean": 0.2747323819458026,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step044.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 45,
+      "mse_mean": 0.23846682841132685,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step045.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 46,
+      "mse_mean": 0.23812369936860284,
+      "output_path": "outputs/enhancement_results/logit_bias/ep002_step046.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 0,
+      "mse_mean": 0.06735012267947706,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step000.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 1,
+      "mse_mean": 0.11413783271848861,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step001.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 2,
+      "mse_mean": 0.130474393576343,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step002.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 3,
+      "mse_mean": 0.12812375790098202,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step003.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 4,
+      "mse_mean": 0.14172196015859748,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step004.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 5,
+      "mse_mean": 0.048357692462388614,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step005.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 6,
+      "mse_mean": 0.1545276908922029,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step006.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 7,
+      "mse_mean": 0.12554572630797398,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step007.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 8,
+      "mse_mean": 0.14069144397812064,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step008.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 9,
+      "mse_mean": 0.14073116585262818,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step009.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 10,
+      "mse_mean": 0.15206358006436269,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step010.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 11,
+      "mse_mean": 0.17610502822838275,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step011.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 12,
+      "mse_mean": 0.1428965692670725,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step012.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 13,
+      "mse_mean": 0.18350215513104698,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step013.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 14,
+      "mse_mean": 0.009313975017641083,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step014.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 15,
+      "mse_mean": 0.0002422159572692091,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step015.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 16,
+      "mse_mean": 0.0013037331696376202,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step016.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 17,
+      "mse_mean": 0.02575416360802271,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step017.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 18,
+      "mse_mean": 0.027367526982087133,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step018.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 19,
+      "mse_mean": 0.030301340703385676,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step019.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 20,
+      "mse_mean": 0.008246618021637874,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step020.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 21,
+      "mse_mean": 0.010210857703752884,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step021.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 22,
+      "mse_mean": 0.02704477209066806,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step022.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 23,
+      "mse_mean": 0.0006698584619391877,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step023.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 24,
+      "mse_mean": 0.003393046479739607,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step024.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 25,
+      "mse_mean": 0.00719870384915908,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step025.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 26,
+      "mse_mean": 0.0008025499860706678,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step026.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 27,
+      "mse_mean": 0.06815126831372888,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step027.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 28,
+      "mse_mean": 0.005794259222797156,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step028.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 29,
+      "mse_mean": 0.011589649507911746,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step029.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 30,
+      "mse_mean": 5.798506185749375e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step030.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 31,
+      "mse_mean": 0.00010253068669371282,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step031.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 32,
+      "mse_mean": 0.00015250144639139437,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step032.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 33,
+      "mse_mean": 0.0006874877860624153,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step033.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 34,
+      "mse_mean": 5.322402548305891e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step034.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 35,
+      "mse_mean": 0.0015104284713247024,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step035.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 36,
+      "mse_mean": 0.2865553332666214,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step036.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 37,
+      "mse_mean": 0.14472769467668525,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step037.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 38,
+      "mse_mean": 0.002868576771178812,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step038.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 39,
+      "mse_mean": 0.1658625591393839,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step039.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 40,
+      "mse_mean": 0.43248387869556143,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step040.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 41,
+      "mse_mean": 0.571997722584049,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step041.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 42,
+      "mse_mean": 0.5705210982420635,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step042.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 43,
+      "mse_mean": 0.4208015992891432,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step043.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 44,
+      "mse_mean": 0.1568157291124934,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step044.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 45,
+      "mse_mean": 0.16887654332969684,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step045.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 46,
+      "mse_mean": 0.17924501332924642,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step046.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 47,
+      "mse_mean": 0.17942230071641782,
+      "output_path": "outputs/enhancement_results/logit_bias/ep003_step047.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 0,
+      "mse_mean": 0.03971026005964629,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step000.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 1,
+      "mse_mean": 0.030102754923328878,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step001.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 2,
+      "mse_mean": 0.17879885465059836,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step002.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 3,
+      "mse_mean": 0.054693751422698236,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step003.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 4,
+      "mse_mean": 0.05197296277380754,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step004.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 5,
+      "mse_mean": 0.1412580169716649,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step005.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 6,
+      "mse_mean": 0.14889346071748857,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step006.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 7,
+      "mse_mean": 0.145341936562571,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step007.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 8,
+      "mse_mean": 0.1407718883381409,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step008.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 9,
+      "mse_mean": 0.0026775408916702437,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step009.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 10,
+      "mse_mean": 0.14380424049763985,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step010.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 11,
+      "mse_mean": 0.0023952914456238828,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step011.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 12,
+      "mse_mean": 0.00013487711304268135,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step012.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 13,
+      "mse_mean": 0.0027934182400611643,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step013.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 14,
+      "mse_mean": 0.053395036803618054,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step014.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 15,
+      "mse_mean": 0.04846490790783225,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step015.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 16,
+      "mse_mean": 0.024004435123020567,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step016.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 17,
+      "mse_mean": 0.018804005398743297,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step017.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 18,
+      "mse_mean": 0.00614529418039448,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step018.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 19,
+      "mse_mean": 0.006281465370525314,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step019.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 20,
+      "mse_mean": 0.010484519938271495,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step020.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 21,
+      "mse_mean": 0.04878236610171948,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step021.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 22,
+      "mse_mean": 0.0010062997063850795,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step022.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 23,
+      "mse_mean": 0.0022306211269124713,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step023.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 24,
+      "mse_mean": 0.013925032155370479,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step024.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 25,
+      "mse_mean": 0.1428230789246172,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step025.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 26,
+      "mse_mean": 0.14143013482308237,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step026.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 27,
+      "mse_mean": 0.01121928723115776,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step027.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 28,
+      "mse_mean": 0.003129681633627643,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step028.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 29,
+      "mse_mean": 0.002952157034621056,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step029.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 30,
+      "mse_mean": 0.0016908414957615004,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step030.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 31,
+      "mse_mean": 0.1461664925122992,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step031.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 32,
+      "mse_mean": 0.14489494938244288,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step032.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 33,
+      "mse_mean": 0.14392830559149047,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step033.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 34,
+      "mse_mean": 0.0007672533501986234,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step034.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 35,
+      "mse_mean": 0.00013190015242567975,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step035.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 36,
+      "mse_mean": 0.00046483564196783813,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step036.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 37,
+      "mse_mean": 0.0008136343316588215,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step037.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 38,
+      "mse_mean": 0.0008861602629354671,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step038.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 39,
+      "mse_mean": 6.21622982227081e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step039.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 40,
+      "mse_mean": 0.00011077084478983623,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step040.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 41,
+      "mse_mean": 0.00042466389746536806,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step041.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 42,
+      "mse_mean": 0.0005031013797006411,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step042.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 43,
+      "mse_mean": 0.14272871879773888,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step043.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 44,
+      "mse_mean": 0.11967150939225182,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step044.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 45,
+      "mse_mean": 0.0004119840847056508,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step045.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 46,
+      "mse_mean": 0.0007362612308862276,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step046.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 47,
+      "mse_mean": 0.00018931183374491835,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step047.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 48,
+      "mse_mean": 0.0010939121962373337,
+      "output_path": "outputs/enhancement_results/logit_bias/ep004_step048.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 0,
+      "mse_mean": 0.0009624104365178276,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step000.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 1,
+      "mse_mean": 0.3319209498481372,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step001.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 2,
+      "mse_mean": 0.13757760706439134,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step002.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 3,
+      "mse_mean": 0.0001467567507685918,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step003.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 4,
+      "mse_mean": 0.08237497398713405,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step004.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 5,
+      "mse_mean": 0.14766296160932946,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step005.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 6,
+      "mse_mean": 0.2968999950335053,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step006.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 7,
+      "mse_mean": 0.25084341330480153,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step007.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 8,
+      "mse_mean": 0.11137863270149213,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step008.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 9,
+      "mse_mean": 7.308131568777306e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step009.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 10,
+      "mse_mean": 7.304325838517983e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step010.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 11,
+      "mse_mean": 0.13847046531884213,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step011.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 12,
+      "mse_mean": 0.13430474529725084,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step012.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 13,
+      "mse_mean": 0.12763281132303947,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step013.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 14,
+      "mse_mean": 1.290075880740426e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step014.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 15,
+      "mse_mean": 1.472735686520939e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step015.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 16,
+      "mse_mean": 0.000320409833849565,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step016.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 17,
+      "mse_mean": 0.0007487654665207248,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step017.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 18,
+      "mse_mean": 0.0002473435249676073,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step018.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 19,
+      "mse_mean": 0.003126786616912014,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step019.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 20,
+      "mse_mean": 0.0011272399661708943,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step020.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 21,
+      "mse_mean": 0.0003453328411051595,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step021.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 22,
+      "mse_mean": 0.0017544962724290924,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step022.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 23,
+      "mse_mean": 0.001643734765695352,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step023.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 24,
+      "mse_mean": 0.17371946603895586,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step024.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 25,
+      "mse_mean": 0.12771054630187972,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step025.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 26,
+      "mse_mean": 0.22099104680718712,
+      "output_path": "outputs/enhancement_results/logit_bias/ep005_step026.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 0,
+      "mse_mean": 0.12142349309355627,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step000.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 1,
+      "mse_mean": 0.12181643786350445,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step001.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 2,
+      "mse_mean": 0.11566584628061723,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step002.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 3,
+      "mse_mean": 3.0625082222855734e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step003.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 4,
+      "mse_mean": 0.0946276069405673,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step004.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 5,
+      "mse_mean": 0.024247352638607785,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step005.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 6,
+      "mse_mean": 0.024317658272602703,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step006.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 7,
+      "mse_mean": 0.11521609485077285,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step007.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 8,
+      "mse_mean": 0.08537746155323847,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step008.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 9,
+      "mse_mean": 2.09636255637656e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step009.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 10,
+      "mse_mean": 3.9608922014564724e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step010.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 11,
+      "mse_mean": 1.3529260669520806e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step011.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 12,
+      "mse_mean": 0.12341926026391638,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step012.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 13,
+      "mse_mean": 0.14290778309743724,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step013.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 14,
+      "mse_mean": 0.14966274726987677,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step014.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 15,
+      "mse_mean": 0.16883670765094147,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step015.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 16,
+      "mse_mean": 0.13625068275770988,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step016.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 17,
+      "mse_mean": 0.14558949133358792,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step017.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 18,
+      "mse_mean": 0.0002411148165774305,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step018.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 19,
+      "mse_mean": 0.00019230990479553626,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step019.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 20,
+      "mse_mean": 8.638957122063448e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step020.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 21,
+      "mse_mean": 0.00013864223189395688,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step021.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 22,
+      "mse_mean": 0.00037161279807375536,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step022.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 23,
+      "mse_mean": 0.0006885902518072507,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step023.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 24,
+      "mse_mean": 0.002213773882798552,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step024.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 25,
+      "mse_mean": 0.035718729253162704,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step025.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 26,
+      "mse_mean": 0.006501000051512104,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step026.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 27,
+      "mse_mean": 0.013059490132303868,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step027.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 28,
+      "mse_mean": 0.016352746806403983,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step028.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 29,
+      "mse_mean": 0.0004179997531079352,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step029.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 30,
+      "mse_mean": 0.005509499479489664,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step030.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 31,
+      "mse_mean": 8.245933662411463e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step031.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 32,
+      "mse_mean": 0.00015618101660099171,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step032.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 33,
+      "mse_mean": 1.3380880171367606e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step033.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 34,
+      "mse_mean": 0.0001324617106752297,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step034.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 35,
+      "mse_mean": 0.0005545264277049389,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step035.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 36,
+      "mse_mean": 0.004124227315837199,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step036.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 37,
+      "mse_mean": 0.005530242802204255,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step037.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 38,
+      "mse_mean": 8.965745104235639e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step038.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 39,
+      "mse_mean": 0.1911942545609049,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step039.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 40,
+      "mse_mean": 0.1711630416336904,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step040.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 41,
+      "mse_mean": 0.14291805991646683,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step041.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 42,
+      "mse_mean": 0.0005792126694053774,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step042.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 43,
+      "mse_mean": 0.00010660501041731667,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step043.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 44,
+      "mse_mean": 0.001297892226193574,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step044.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 45,
+      "mse_mean": 0.21040003186199976,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step045.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 46,
+      "mse_mean": 0.14369136586816864,
+      "output_path": "outputs/enhancement_results/logit_bias/ep006_step046.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 0,
+      "mse_mean": 0.09709620003592821,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step000.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 1,
+      "mse_mean": 0.09763192474529143,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step001.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 2,
+      "mse_mean": 0.09830229663471231,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step002.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 3,
+      "mse_mean": 0.0645741444453131,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step003.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 4,
+      "mse_mean": 0.10358517942237747,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step004.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 5,
+      "mse_mean": 0.18872609287861358,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step005.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 6,
+      "mse_mean": 0.11953558324407951,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step006.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 7,
+      "mse_mean": 0.16392604632144323,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step007.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 8,
+      "mse_mean": 0.11124908083655004,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step008.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 9,
+      "mse_mean": 0.14983757271952428,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step009.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 10,
+      "mse_mean": 0.0007050513566448705,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step010.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 11,
+      "mse_mean": 0.10856307504961439,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step011.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 12,
+      "mse_mean": 0.055427232790094406,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step012.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 13,
+      "mse_mean": 0.00029552515593707677,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step013.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 14,
+      "mse_mean": 0.000479000676160028,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step014.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 15,
+      "mse_mean": 0.0003779998183023286,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step015.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 16,
+      "mse_mean": 0.0028414310645290086,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step016.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 17,
+      "mse_mean": 0.006205881983781246,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step017.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 18,
+      "mse_mean": 0.0009820277499702431,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step018.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 19,
+      "mse_mean": 0.013001330262246799,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step019.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 20,
+      "mse_mean": 0.005212641684459811,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step020.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 21,
+      "mse_mean": 0.0034742824055816754,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step021.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 22,
+      "mse_mean": 0.0006991659229383147,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step022.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 23,
+      "mse_mean": 0.0027838049672231405,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step023.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 24,
+      "mse_mean": 0.15435035895684682,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step024.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 25,
+      "mse_mean": 0.09136107973722274,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step025.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 26,
+      "mse_mean": 0.1160610139490079,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step026.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 27,
+      "mse_mean": 0.1527128681845915,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step027.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 28,
+      "mse_mean": 0.09845838135331746,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step028.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 29,
+      "mse_mean": 0.09500828044897826,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step029.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 30,
+      "mse_mean": 0.1408051883328639,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step030.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 31,
+      "mse_mean": 0.10737937085141466,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step031.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 32,
+      "mse_mean": 0.12769468866006828,
+      "output_path": "outputs/enhancement_results/logit_bias/ep007_step032.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 0,
+      "mse_mean": 0.00021592628290794362,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step000.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 1,
+      "mse_mean": 0.0019019704253928264,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step001.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 2,
+      "mse_mean": 0.00019358765473906418,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step002.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 3,
+      "mse_mean": 0.16438131282938978,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step003.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 4,
+      "mse_mean": 0.0013030307353282702,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step004.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 5,
+      "mse_mean": 0.0013885218380534747,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step005.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 6,
+      "mse_mean": 3.668036649061639e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step006.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 7,
+      "mse_mean": 0.11530650848717526,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step007.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 8,
+      "mse_mean": 2.523389882474682e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step008.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 9,
+      "mse_mean": 1.2645827854817047e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step009.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 10,
+      "mse_mean": 0.00025415522913990166,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step010.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 11,
+      "mse_mean": 8.6569254140902e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step011.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 12,
+      "mse_mean": 4.442645908205175e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step012.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 13,
+      "mse_mean": 0.0007629981773321456,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step013.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 14,
+      "mse_mean": 7.530488707559932e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step014.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 15,
+      "mse_mean": 0.0015575755861488726,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step015.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 16,
+      "mse_mean": 0.0003651585997650914,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step016.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 17,
+      "mse_mean": 0.03285934418492127,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step017.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 18,
+      "mse_mean": 0.00030680957592900757,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step018.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 19,
+      "mse_mean": 0.0075451417939596975,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step019.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 20,
+      "mse_mean": 8.237591783705967e-05,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step020.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 21,
+      "mse_mean": 0.000362340492326571,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step021.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 22,
+      "mse_mean": 0.014170252492030036,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step022.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 23,
+      "mse_mean": 0.0229571165296082,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step023.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 24,
+      "mse_mean": 0.0029840399281654212,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step024.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 25,
+      "mse_mean": 0.006997842807310748,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step025.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 26,
+      "mse_mean": 0.00018703244249727036,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step026.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 27,
+      "mse_mean": 0.17025834816912888,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step027.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 28,
+      "mse_mean": 0.15921520814406667,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step028.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 29,
+      "mse_mean": 0.09251788172764529,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step029.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 30,
+      "mse_mean": 0.08208741803263285,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step030.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 31,
+      "mse_mean": 0.0005442765972678144,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step031.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 32,
+      "mse_mean": 0.11755970158399541,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step032.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 33,
+      "mse_mean": 0.0006550948815498466,
+      "output_path": "outputs/enhancement_results/logit_bias/ep008_step033.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 0,
+      "mse_mean": 0.14331473140437853,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step000.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 1,
+      "mse_mean": 0.14330155926143714,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step001.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 2,
+      "mse_mean": 0.2293574718833141,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step002.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 3,
+      "mse_mean": 0.19950274940204502,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step003.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 4,
+      "mse_mean": 0.19519455747820436,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step004.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 5,
+      "mse_mean": 0.15456421795676895,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step005.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 6,
+      "mse_mean": 0.17643319641315056,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step006.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 7,
+      "mse_mean": 0.1993173240837723,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step007.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 8,
+      "mse_mean": 0.1912396997067829,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step008.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 9,
+      "mse_mean": 0.21009643843978068,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step009.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 10,
+      "mse_mean": 0.16631620311619422,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step010.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 11,
+      "mse_mean": 0.18151585001418843,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step011.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 12,
+      "mse_mean": 0.18658539986442021,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step012.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 13,
+      "mse_mean": 0.16639864895048975,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step013.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 14,
+      "mse_mean": 0.18105638621300055,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step014.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 15,
+      "mse_mean": 0.1860942261431872,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step015.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 16,
+      "mse_mean": 0.18615553369685894,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step016.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 17,
+      "mse_mean": 0.17122232417012576,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step017.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 18,
+      "mse_mean": 0.17200742794568913,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step018.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 19,
+      "mse_mean": 0.08412646009977234,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step019.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 20,
+      "mse_mean": 0.0030838031050635074,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step020.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 21,
+      "mse_mean": 0.06465640209741708,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step021.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 22,
+      "mse_mean": 0.20772991238618785,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step022.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 23,
+      "mse_mean": 0.15912652907128755,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step023.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 24,
+      "mse_mean": 0.15912652907128755,
+      "output_path": "outputs/enhancement_results/logit_bias/ep009_step024.json"
+    }
+  ]
+}

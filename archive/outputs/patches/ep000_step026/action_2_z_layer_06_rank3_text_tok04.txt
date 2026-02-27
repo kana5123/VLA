@@ -1,0 +1,4 @@
+Token index: 4
+Token text: action
+Global position: 260
+Attention score: 0.022095

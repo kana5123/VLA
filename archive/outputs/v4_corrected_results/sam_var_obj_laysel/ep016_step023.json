@@ -1,0 +1,65 @@
+{
+  "episode_id": 16,
+  "step_id": 23,
+  "instruction": "move the pan to the left side of the stove",
+  "condition": "sam_var_obj_laysel",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + L8-24 + SAM2",
+  "predicted_action": [
+    -0.01480222097132356,
+    -0.008002758155053052,
+    -0.00681248892404256,
+    0.028170051246997715,
+    0.06158092806290365,
+    0.06334432107978491,
+    0.73046875
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31937,
+    31895,
+    31925,
+    31828,
+    31768,
+    31831,
+    31778
+  ],
+  "gt_is_zero_spatial": true,
+  "mse_per_dim": [
+    0.00021910574568389097,
+    6.404413808826814e-05,
+    4.6410005340202555e-05,
+    0.0007935517872584776,
+    0.003792210701088514,
+    0.004012503013058883,
+    0.0726470947265625
+  ],
+  "mse_mean": 0.011653560016725819,
+  "mse_spatial": 0.001487970898419706,
+  "mse_gripper": 0.0726470947265625,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "pan",
+      "stove"
+    ],
+    "num_boxes": 1,
+    "num_patches": 44,
+    "patch_coverage": 0.171875
+  }
+}

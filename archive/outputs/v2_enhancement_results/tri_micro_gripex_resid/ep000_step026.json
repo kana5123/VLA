@@ -1,0 +1,64 @@
+{
+  "episode_id": 0,
+  "step_id": 26,
+  "instruction": "put small spoon from basket to tray",
+  "condition": "tri_micro_gripex_resid",
+  "condition_desc": "wr(\u03bb=1.1) + gripex + resid(\u03b1=1.5)",
+  "predicted_action": [
+    1.4886919189882608e-05,
+    -0.00010036269180919988,
+    1.8581469707623643e-05,
+    -0.0014160692656742802,
+    -0.00011073313916434846,
+    0.0015450867332663376,
+    0.007843137254901933
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31871,
+    31871,
+    31899,
+    31875,
+    31861,
+    31870,
+    31871
+  ],
+  "mse_per_dim": [
+    2.2162036296609505e-10,
+    1.0072669907188437e-08,
+    3.452710164953351e-10,
+    2.005252165187295e-06,
+    1.2261828109190963e-08,
+    2.3872930133156425e-06,
+    0.9843752402921954
+  ],
+  "mse_mean": 0.14062566510553762,
+  "mse_spatial": 7.359077613164631e-07,
+  "mse_gripper": 0.9843752402921954,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "spoon",
+      "basket"
+    ],
+    "num_boxes": 4,
+    "num_patches": 111,
+    "patch_coverage": 0.43359375
+  }
+}

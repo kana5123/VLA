@@ -1,0 +1,65 @@
+{
+  "episode_id": 9,
+  "step_id": 21,
+  "instruction": "Move the can in the middle bottom of the table",
+  "condition": "tri_micro_gripex_resid",
+  "condition_desc": "wr(\u03bb=1.1) + gripex + resid(\u03b1=1.5)",
+  "predicted_action": [
+    0.003146326296469725,
+    0.006374833718818716,
+    0.016647399140193166,
+    -0.04484047682729428,
+    -0.014177891988964658,
+    -0.009737499782852183,
+    0.996078431372549
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31857,
+    31851,
+    31835,
+    31943,
+    31882,
+    31877,
+    31744
+  ],
+  "mse_per_dim": [
+    9.899369163856896e-06,
+    4.063850494258806e-05,
+    0.00027713589813290417,
+    0.002010668362099115,
+    0.00020101262125074823,
+    9.48189020210463e-05,
+    1.5378700499807656e-05
+  ],
+  "mse_mean": 0.0003785074797300095,
+  "mse_spatial": 0.00043902894293504314,
+  "mse_gripper": 1.5378700499807656e-05,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "can",
+      "bottom",
+      "table"
+    ],
+    "num_boxes": 1,
+    "num_patches": 224,
+    "patch_coverage": 0.875
+  }
+}

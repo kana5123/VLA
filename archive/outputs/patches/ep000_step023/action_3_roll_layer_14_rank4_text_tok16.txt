@@ -1,0 +1,4 @@
+Token index: 16
+Token text: to
+Global position: 272
+Attention score: 0.024780

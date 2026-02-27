@@ -1,0 +1,2325 @@
+{
+  "method": "weight_rescale",
+  "token_boundaries": {
+    "vision_start": 0,
+    "vision_end": 256,
+    "text_start": 256,
+    "text_end": 279,
+    "total_seq_len": 279,
+    "num_vision_tokens": 256,
+    "num_text_tokens": 23,
+    "pre_image_tokens": 0
+  },
+  "results": [
+    {
+      "episode_id": 0,
+      "step_id": 0,
+      "mse_mean": 0.338597124785967,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step000.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 1,
+      "mse_mean": 0.33475454082085554,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step001.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 2,
+      "mse_mean": 0.00037576722926827786,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step002.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 3,
+      "mse_mean": 0.17491993220210514,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step003.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 4,
+      "mse_mean": 0.0003821220046068256,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step004.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 5,
+      "mse_mean": 0.16394548390846345,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step005.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 6,
+      "mse_mean": 0.0006636082250836992,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step006.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 7,
+      "mse_mean": 0.000670643024905669,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step007.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 8,
+      "mse_mean": 4.103643400737277e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step008.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 9,
+      "mse_mean": 4.030891065184884e-06,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step009.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 10,
+      "mse_mean": 0.00028041027105262705,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step010.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 11,
+      "mse_mean": 0.0005363528616411155,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step011.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 12,
+      "mse_mean": 0.0010683143967856422,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step012.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 13,
+      "mse_mean": 0.0033636453177439646,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step013.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 14,
+      "mse_mean": 0.0021420617214363774,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step014.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 15,
+      "mse_mean": 0.009808551865206835,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step015.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 16,
+      "mse_mean": 0.0037174435884029977,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step016.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 17,
+      "mse_mean": 0.0016072066904735155,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step017.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 18,
+      "mse_mean": 0.0005184103790095558,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step018.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 19,
+      "mse_mean": 0.0033689137870317664,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step019.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 20,
+      "mse_mean": 0.0012519644813683253,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step020.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 21,
+      "mse_mean": 0.0013527280004214139,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step021.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 22,
+      "mse_mean": 0.0008199177828277984,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step022.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 23,
+      "mse_mean": 0.0001430305672583738,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step023.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 24,
+      "mse_mean": 9.827720762370673e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step024.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 25,
+      "mse_mean": 0.18379521664873746,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step025.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 26,
+      "mse_mean": 0.1686525555299684,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step026.json"
+    },
+    {
+      "episode_id": 0,
+      "step_id": 27,
+      "mse_mean": 0.15204952321422252,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep000_step027.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 0,
+      "mse_mean": 0.2864807137193976,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step000.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 1,
+      "mse_mean": 0.00036142378197149926,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step001.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 2,
+      "mse_mean": 0.10788669918231962,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step002.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 3,
+      "mse_mean": 0.1836859331731894,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step003.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 4,
+      "mse_mean": 0.1546023625795762,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step004.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 5,
+      "mse_mean": 0.18732425627664315,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step005.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 6,
+      "mse_mean": 0.14073625838076195,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step006.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 7,
+      "mse_mean": 0.15905505461679548,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step007.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 8,
+      "mse_mean": 0.18357596648795282,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step008.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 9,
+      "mse_mean": 0.16867288637521524,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step009.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 10,
+      "mse_mean": 0.0003120755824717912,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step010.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 11,
+      "mse_mean": 0.002698111837016993,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step011.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 12,
+      "mse_mean": 0.0011480070782088597,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step012.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 13,
+      "mse_mean": 0.0006401343585458057,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step013.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 14,
+      "mse_mean": 0.0005359433036790637,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step014.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 15,
+      "mse_mean": 0.04612443344493068,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step015.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 16,
+      "mse_mean": 0.010997350427109686,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step016.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 17,
+      "mse_mean": 0.019621769934647735,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step017.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 18,
+      "mse_mean": 0.01531681200758887,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step018.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 19,
+      "mse_mean": 0.011388852650605925,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step019.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 20,
+      "mse_mean": 0.00032250118594769186,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step020.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 21,
+      "mse_mean": 0.0003089468411259716,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step021.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 22,
+      "mse_mean": 0.0003200873437518905,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step022.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 23,
+      "mse_mean": 0.0003440331420024909,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step023.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 24,
+      "mse_mean": 0.00010955794678949062,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step024.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 25,
+      "mse_mean": 1.834293558657906e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step025.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 26,
+      "mse_mean": 0.004118087845142817,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step026.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 27,
+      "mse_mean": 0.07688164405778793,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step027.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 28,
+      "mse_mean": 0.13409364113715988,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step028.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 29,
+      "mse_mean": 0.10755551470037479,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step029.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 30,
+      "mse_mean": 0.024756240764360078,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step030.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 31,
+      "mse_mean": 0.0003277156489759833,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step031.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 32,
+      "mse_mean": 0.0002031681298046906,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step032.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 33,
+      "mse_mean": 0.004317164284543383,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step033.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 34,
+      "mse_mean": 0.03462678867027652,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step034.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 35,
+      "mse_mean": 0.1734967728142672,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step035.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 36,
+      "mse_mean": 0.1520338491514818,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step036.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 37,
+      "mse_mean": 1.3115121867869328e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step037.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 38,
+      "mse_mean": 0.1178800255475611,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step038.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 39,
+      "mse_mean": 0.16379528385825406,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step039.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 40,
+      "mse_mean": 0.11337118453867327,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step040.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 41,
+      "mse_mean": 0.14071843026926403,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step041.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 42,
+      "mse_mean": 0.10745948007421505,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step042.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 43,
+      "mse_mean": 0.10638223822036004,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step043.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 44,
+      "mse_mean": 0.23103169213726127,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step044.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 45,
+      "mse_mean": 0.18159810900987244,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step045.json"
+    },
+    {
+      "episode_id": 1,
+      "step_id": 46,
+      "mse_mean": 0.14089145858329696,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep001_step046.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 0,
+      "mse_mean": 0.1319417744207595,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step000.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 1,
+      "mse_mean": 0.12896243743694732,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step001.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 2,
+      "mse_mean": 0.20997086362819026,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step002.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 3,
+      "mse_mean": 0.09452724018103363,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step003.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 4,
+      "mse_mean": 0.10158386284552434,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step004.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 5,
+      "mse_mean": 0.09626697092791763,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step005.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 6,
+      "mse_mean": 0.2499417346015718,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step006.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 7,
+      "mse_mean": 0.12553178997801112,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step007.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 8,
+      "mse_mean": 0.0001331259611605068,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step008.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 9,
+      "mse_mean": 0.12977467859983818,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step009.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 10,
+      "mse_mean": 0.13872954360804154,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step010.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 11,
+      "mse_mean": 0.12976106729386072,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step011.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 12,
+      "mse_mean": 0.1428905083444847,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step012.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 13,
+      "mse_mean": 0.13200697591192115,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step013.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 14,
+      "mse_mean": 0.18622222130877236,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step014.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 15,
+      "mse_mean": 0.1590873522414223,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step015.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 16,
+      "mse_mean": 0.15903377313829203,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step016.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 17,
+      "mse_mean": 0.16377541749248933,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step017.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 18,
+      "mse_mean": 0.1860647028901742,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step018.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 19,
+      "mse_mean": 0.14076059383629388,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step019.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 20,
+      "mse_mean": 0.03161356934904561,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step020.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 21,
+      "mse_mean": 0.002521397849202303,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step021.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 22,
+      "mse_mean": 0.0006446899958631822,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step022.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 23,
+      "mse_mean": 0.0004997169813755447,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step023.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 24,
+      "mse_mean": 0.0016680157160210447,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step024.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 25,
+      "mse_mean": 0.008060056499139706,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step025.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 26,
+      "mse_mean": 0.00451988592041234,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step026.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 27,
+      "mse_mean": 0.0015413127134176856,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step027.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 28,
+      "mse_mean": 0.013057076223364912,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step028.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 29,
+      "mse_mean": 0.00016111008489272277,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step029.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 30,
+      "mse_mean": 0.0037307319011031723,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step030.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 31,
+      "mse_mean": 0.00021743757101283802,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step031.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 32,
+      "mse_mean": 0.018827811836700657,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step032.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 33,
+      "mse_mean": 0.0005188417063743652,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step033.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 34,
+      "mse_mean": 0.00042440120683187496,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step034.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 35,
+      "mse_mean": 0.12974726710731668,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step035.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 36,
+      "mse_mean": 0.14295603812639227,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step036.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 37,
+      "mse_mean": 0.13424151402943882,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step037.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 38,
+      "mse_mean": 0.0012788829258769765,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step038.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 39,
+      "mse_mean": 0.09186790779099722,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step039.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 40,
+      "mse_mean": 0.001906735498692049,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step040.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 41,
+      "mse_mean": 0.0015601584916304918,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step041.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 42,
+      "mse_mean": 8.62881319866109e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step042.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 43,
+      "mse_mean": 0.1914290654587448,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step043.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 44,
+      "mse_mean": 0.1498497625695306,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step044.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 45,
+      "mse_mean": 0.09980594472034755,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step045.json"
+    },
+    {
+      "episode_id": 2,
+      "step_id": 46,
+      "mse_mean": 9.62526633187635e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep002_step046.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 0,
+      "mse_mean": 0.12593344950928895,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step000.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 1,
+      "mse_mean": 0.07865948103962617,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step001.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 2,
+      "mse_mean": 0.1302490938676636,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step002.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 3,
+      "mse_mean": 0.11954457815437892,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step003.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 4,
+      "mse_mean": 0.1298629445384855,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step004.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 5,
+      "mse_mean": 0.1060130407282712,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step005.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 6,
+      "mse_mean": 0.1594170417508119,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step006.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 7,
+      "mse_mean": 0.11931327085621804,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step007.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 8,
+      "mse_mean": 0.17600652737808734,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step008.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 9,
+      "mse_mean": 0.12979722598983628,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step009.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 10,
+      "mse_mean": 3.2534354348677486e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step010.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 11,
+      "mse_mean": 0.1428735087554267,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step011.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 12,
+      "mse_mean": 0.1406624972123684,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step012.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 13,
+      "mse_mean": 0.10926083842479635,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step013.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 14,
+      "mse_mean": 0.012398238675382547,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step014.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 15,
+      "mse_mean": 9.512895114820755e-06,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step015.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 16,
+      "mse_mean": 4.1588726487066565e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step016.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 17,
+      "mse_mean": 4.510466177385285e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step017.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 18,
+      "mse_mean": 0.003620839872979747,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step018.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 19,
+      "mse_mean": 0.009711681805224108,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step019.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 20,
+      "mse_mean": 0.00621065229279883,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step020.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 21,
+      "mse_mean": 0.0005487836774081151,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step021.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 22,
+      "mse_mean": 0.010956078791789545,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step022.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 23,
+      "mse_mean": 0.0008589104489304388,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step023.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 24,
+      "mse_mean": 0.027669943799310055,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step024.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 25,
+      "mse_mean": 0.0005825044196284839,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step025.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 26,
+      "mse_mean": 0.002980127003920065,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step026.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 27,
+      "mse_mean": 0.004906673771890317,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step027.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 28,
+      "mse_mean": 0.00033362594059307304,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step028.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 29,
+      "mse_mean": 0.00015097524036739168,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step029.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 30,
+      "mse_mean": 0.0002867243502520588,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step030.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 31,
+      "mse_mean": 0.0009375012172321552,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step031.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 32,
+      "mse_mean": 0.0003290128817245843,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step032.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 33,
+      "mse_mean": 0.00011735850955017533,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step033.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 34,
+      "mse_mean": 0.0012337436886695826,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step034.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 35,
+      "mse_mean": 0.0035950853186423465,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step035.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 36,
+      "mse_mean": 0.0005087518008599377,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step036.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 37,
+      "mse_mean": 0.16688324898106927,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step037.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 38,
+      "mse_mean": 0.144554882916799,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step038.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 39,
+      "mse_mean": 0.10210517832964476,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step039.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 40,
+      "mse_mean": 0.26467262152686527,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step040.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 41,
+      "mse_mean": 0.20146104288406863,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step041.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 42,
+      "mse_mean": 0.5434460866784895,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step042.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 43,
+      "mse_mean": 0.5745229822302295,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step043.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 44,
+      "mse_mean": 0.12555932257085742,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step044.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 45,
+      "mse_mean": 0.12980286147908252,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step045.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 46,
+      "mse_mean": 0.2470373591007565,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step046.json"
+    },
+    {
+      "episode_id": 3,
+      "step_id": 47,
+      "mse_mean": 0.17863733255057274,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep003_step047.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 0,
+      "mse_mean": 0.03971026005964629,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step000.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 1,
+      "mse_mean": 0.030102754923328878,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step001.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 2,
+      "mse_mean": 0.17879885465059836,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step002.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 3,
+      "mse_mean": 0.054693751422698236,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step003.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 4,
+      "mse_mean": 0.05197296277380754,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step004.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 5,
+      "mse_mean": 0.1412580169716649,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step005.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 6,
+      "mse_mean": 0.14889346071748857,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step006.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 7,
+      "mse_mean": 0.145341936562571,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step007.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 8,
+      "mse_mean": 0.1407718883381409,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step008.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 9,
+      "mse_mean": 0.0026775408916702437,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step009.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 10,
+      "mse_mean": 0.14380424049763985,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step010.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 11,
+      "mse_mean": 0.0023952914456238828,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step011.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 12,
+      "mse_mean": 0.00013487711304268135,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step012.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 13,
+      "mse_mean": 0.0027934182400611643,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step013.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 14,
+      "mse_mean": 0.053395036803618054,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step014.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 15,
+      "mse_mean": 0.04846490790783225,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step015.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 16,
+      "mse_mean": 0.024004435123020567,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step016.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 17,
+      "mse_mean": 0.018804005398743297,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step017.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 18,
+      "mse_mean": 0.00614529418039448,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step018.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 19,
+      "mse_mean": 0.006281465370525314,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step019.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 20,
+      "mse_mean": 0.010484519938271495,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step020.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 21,
+      "mse_mean": 0.04878236610171948,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step021.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 22,
+      "mse_mean": 0.0010062997063850795,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step022.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 23,
+      "mse_mean": 0.0022306211269124713,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step023.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 24,
+      "mse_mean": 0.013925032155370479,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step024.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 25,
+      "mse_mean": 0.1428230789246172,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step025.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 26,
+      "mse_mean": 0.14143013482308237,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step026.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 27,
+      "mse_mean": 0.01121928723115776,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step027.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 28,
+      "mse_mean": 0.003129681633627643,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step028.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 29,
+      "mse_mean": 0.002952157034621056,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step029.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 30,
+      "mse_mean": 0.0016908414957615004,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step030.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 31,
+      "mse_mean": 0.1461664925122992,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step031.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 32,
+      "mse_mean": 0.14489494938244288,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step032.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 33,
+      "mse_mean": 0.14392830559149047,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step033.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 34,
+      "mse_mean": 0.0007672533501986234,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step034.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 35,
+      "mse_mean": 0.00013190015242567975,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step035.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 36,
+      "mse_mean": 0.00046483564196783813,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step036.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 37,
+      "mse_mean": 0.0008136343316588215,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step037.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 38,
+      "mse_mean": 0.0008861602629354671,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step038.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 39,
+      "mse_mean": 6.21622982227081e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step039.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 40,
+      "mse_mean": 0.00011077084478983623,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step040.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 41,
+      "mse_mean": 0.00042466389746536806,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step041.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 42,
+      "mse_mean": 0.0005031013797006411,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step042.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 43,
+      "mse_mean": 0.14272871879773888,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step043.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 44,
+      "mse_mean": 0.11967150939225182,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step044.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 45,
+      "mse_mean": 0.0004119840847056508,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step045.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 46,
+      "mse_mean": 0.0007362612308862276,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step046.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 47,
+      "mse_mean": 0.00018931183374491835,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step047.json"
+    },
+    {
+      "episode_id": 4,
+      "step_id": 48,
+      "mse_mean": 0.0010939121962373337,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep004_step048.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 0,
+      "mse_mean": 0.14349694550466327,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step000.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 1,
+      "mse_mean": 0.00017596563925263253,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step001.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 2,
+      "mse_mean": 0.49353767397687653,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step002.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 3,
+      "mse_mean": 0.0001467567507685918,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step003.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 4,
+      "mse_mean": 0.24774147995413814,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step004.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 5,
+      "mse_mean": 0.1304650931511173,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step005.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 6,
+      "mse_mean": 0.12373297929852567,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step006.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 7,
+      "mse_mean": 0.17507426388488387,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step007.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 8,
+      "mse_mean": 0.10545612355427447,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step008.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 9,
+      "mse_mean": 0.1276604576158957,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step009.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 10,
+      "mse_mean": 0.1341903332435489,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step010.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 11,
+      "mse_mean": 3.0010924160705806e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step011.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 12,
+      "mse_mean": 0.13196008337252688,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step012.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 13,
+      "mse_mean": 0.12769014670485712,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step013.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 14,
+      "mse_mean": 1.290075880740426e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step014.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 15,
+      "mse_mean": 1.472735686520939e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step015.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 16,
+      "mse_mean": 0.0031531580686042387,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step016.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 17,
+      "mse_mean": 0.00035710358780820733,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step017.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 18,
+      "mse_mean": 0.00041841537552836513,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step018.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 19,
+      "mse_mean": 0.00031229614557056856,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step019.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 20,
+      "mse_mean": 0.00033941629333265286,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step020.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 21,
+      "mse_mean": 0.0006931839360345981,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step021.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 22,
+      "mse_mean": 0.00014127883529995756,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step022.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 23,
+      "mse_mean": 0.0001815797905543082,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step023.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 24,
+      "mse_mean": 0.16634673910337225,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step024.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 25,
+      "mse_mean": 0.14511745889306651,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step025.json"
+    },
+    {
+      "episode_id": 5,
+      "step_id": 26,
+      "mse_mean": 0.14741875128765689,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep005_step026.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 0,
+      "mse_mean": 0.12142349309355627,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step000.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 1,
+      "mse_mean": 0.12181643786350445,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step001.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 2,
+      "mse_mean": 0.11566584628061723,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step002.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 3,
+      "mse_mean": 3.0625082222855734e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step003.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 4,
+      "mse_mean": 0.0946276069405673,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step004.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 5,
+      "mse_mean": 0.024247352638607785,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step005.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 6,
+      "mse_mean": 0.024317658272602703,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step006.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 7,
+      "mse_mean": 0.11521609485077285,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step007.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 8,
+      "mse_mean": 0.131976668761999,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step008.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 9,
+      "mse_mean": 2.09636255637656e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step009.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 10,
+      "mse_mean": 3.9608922014564724e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step010.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 11,
+      "mse_mean": 0.10932083775033821,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step011.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 12,
+      "mse_mean": 4.1218796442128384e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step012.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 13,
+      "mse_mean": 0.12975069315253046,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step013.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 14,
+      "mse_mean": 0.14286135902450692,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step014.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 15,
+      "mse_mean": 3.1240458362639096e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step015.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 16,
+      "mse_mean": 0.14289428137362684,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step016.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 17,
+      "mse_mean": 0.10577457598848994,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step017.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 18,
+      "mse_mean": 0.0004986573498224824,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step018.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 19,
+      "mse_mean": 0.001024847519988659,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step019.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 20,
+      "mse_mean": 0.00046573995858740336,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step020.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 21,
+      "mse_mean": 0.0015996527889279345,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step021.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 22,
+      "mse_mean": 0.013408110469070285,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step022.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 23,
+      "mse_mean": 0.00038740626408438557,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step023.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 24,
+      "mse_mean": 0.0067574073090187715,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step024.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 25,
+      "mse_mean": 0.0014786928162741693,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step025.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 26,
+      "mse_mean": 0.006501000051512104,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step026.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 27,
+      "mse_mean": 7.424763763558367e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step027.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 28,
+      "mse_mean": 1.327986088939541e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step028.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 29,
+      "mse_mean": 0.0004179997531079352,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step029.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 30,
+      "mse_mean": 0.005509499479489664,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step030.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 31,
+      "mse_mean": 8.245933662411463e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step031.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 32,
+      "mse_mean": 0.00015618101660099171,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step032.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 33,
+      "mse_mean": 1.3380880171367606e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step033.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 34,
+      "mse_mean": 0.0001324617106752297,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step034.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 35,
+      "mse_mean": 0.0005545264277049389,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step035.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 36,
+      "mse_mean": 0.004124227315837199,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step036.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 37,
+      "mse_mean": 9.436368900822395e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step037.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 38,
+      "mse_mean": 8.965745104235639e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step038.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 39,
+      "mse_mean": 0.1911942545609049,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step039.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 40,
+      "mse_mean": 0.1711630416336904,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step040.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 41,
+      "mse_mean": 0.14291805991646683,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step041.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 42,
+      "mse_mean": 0.0005792126694053774,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step042.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 43,
+      "mse_mean": 0.00010660501041731667,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step043.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 44,
+      "mse_mean": 0.001297892226193574,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step044.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 45,
+      "mse_mean": 0.21040003186199976,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step045.json"
+    },
+    {
+      "episode_id": 6,
+      "step_id": 46,
+      "mse_mean": 0.14369136586816864,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep006_step046.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 0,
+      "mse_mean": 0.14069345204870393,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step000.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 1,
+      "mse_mean": 0.13783049981163636,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step001.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 2,
+      "mse_mean": 0.1421504296996461,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step002.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 3,
+      "mse_mean": 0.06160100664100673,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step003.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 4,
+      "mse_mean": 0.08745774437788015,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step004.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 5,
+      "mse_mean": 0.08952733772640832,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step005.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 6,
+      "mse_mean": 0.14991463118516796,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step006.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 7,
+      "mse_mean": 0.04898811716030388,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step007.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 8,
+      "mse_mean": 0.14077673095398333,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step008.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 9,
+      "mse_mean": 0.14066799564914886,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step009.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 10,
+      "mse_mean": 0.167021372641146,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step010.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 11,
+      "mse_mean": 0.09835171637888639,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step011.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 12,
+      "mse_mean": 0.19349237635120597,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step012.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 13,
+      "mse_mean": 0.0003824033601915446,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step013.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 14,
+      "mse_mean": 6.89900844249182e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step014.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 15,
+      "mse_mean": 0.00034965647219537693,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step015.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 16,
+      "mse_mean": 0.004669221256688221,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step016.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 17,
+      "mse_mean": 0.004762151757884981,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step017.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 18,
+      "mse_mean": 0.000753578668675905,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step018.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 19,
+      "mse_mean": 0.05298990802659156,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step019.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 20,
+      "mse_mean": 0.015151103781523447,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step020.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 21,
+      "mse_mean": 3.5899907828065065e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step021.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 22,
+      "mse_mean": 0.001307676008089107,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step022.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 23,
+      "mse_mean": 0.0032888798974414256,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step023.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 24,
+      "mse_mean": 0.09620618589015924,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step024.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 25,
+      "mse_mean": 0.00012491461545742938,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step025.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 26,
+      "mse_mean": 0.1692551511657807,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step026.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 27,
+      "mse_mean": 0.20991897870039686,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step027.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 28,
+      "mse_mean": 0.07690309037468837,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step028.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 29,
+      "mse_mean": 0.11968845128137147,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step029.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 30,
+      "mse_mean": 0.10183830780548907,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step030.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 31,
+      "mse_mean": 0.10549345671164687,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step031.json"
+    },
+    {
+      "episode_id": 7,
+      "step_id": 32,
+      "mse_mean": 0.0015233436264071793,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep007_step032.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 0,
+      "mse_mean": 0.00021592628290794362,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step000.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 1,
+      "mse_mean": 0.0019019704253928264,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step001.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 2,
+      "mse_mean": 0.00019358765473906418,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step002.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 3,
+      "mse_mean": 0.16438131282938978,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step003.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 4,
+      "mse_mean": 0.0013030307353282702,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step004.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 5,
+      "mse_mean": 0.0013885218380534747,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step005.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 6,
+      "mse_mean": 3.668036649061639e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step006.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 7,
+      "mse_mean": 0.11530650848717526,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step007.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 8,
+      "mse_mean": 2.523389882474682e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step008.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 9,
+      "mse_mean": 1.2645827854817047e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step009.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 10,
+      "mse_mean": 0.00025415522913990166,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step010.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 11,
+      "mse_mean": 8.6569254140902e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step011.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 12,
+      "mse_mean": 4.442645908205175e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step012.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 13,
+      "mse_mean": 0.0007629981773321456,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step013.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 14,
+      "mse_mean": 7.530488707559932e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step014.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 15,
+      "mse_mean": 0.0015575755861488726,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step015.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 16,
+      "mse_mean": 0.0003651585997650914,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step016.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 17,
+      "mse_mean": 0.0006470215831631199,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step017.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 18,
+      "mse_mean": 0.00030680957592900757,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step018.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 19,
+      "mse_mean": 0.0004872312331458642,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step019.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 20,
+      "mse_mean": 8.237591783705967e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step020.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 21,
+      "mse_mean": 1.3235593201653171e-05,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step021.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 22,
+      "mse_mean": 0.003225965238888321,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step022.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 23,
+      "mse_mean": 0.0229571165296082,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step023.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 24,
+      "mse_mean": 0.0029840399281654212,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step024.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 25,
+      "mse_mean": 0.0007802541004154196,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step025.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 26,
+      "mse_mean": 0.00018703244249727036,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step026.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 27,
+      "mse_mean": 0.14300771605371065,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step027.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 28,
+      "mse_mean": 0.15927390905790909,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step028.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 29,
+      "mse_mean": 0.09251788172764529,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step029.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 30,
+      "mse_mean": 0.08208741803263285,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step030.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 31,
+      "mse_mean": 0.0005442765972678144,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step031.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 32,
+      "mse_mean": 0.0009819809025425823,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step032.json"
+    },
+    {
+      "episode_id": 8,
+      "step_id": 33,
+      "mse_mean": 0.00042641769337477145,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep008_step033.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 0,
+      "mse_mean": 0.4918261558223465,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step000.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 1,
+      "mse_mean": 0.56992474423542,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step001.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 2,
+      "mse_mean": 0.19677177631057932,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step002.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 3,
+      "mse_mean": 0.24380208023653843,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step003.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 4,
+      "mse_mean": 0.15248983753532358,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step004.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 5,
+      "mse_mean": 0.2379396264434946,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step005.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 6,
+      "mse_mean": 0.24392392015594355,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step006.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 7,
+      "mse_mean": 0.23814197465422654,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step007.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 8,
+      "mse_mean": 0.19642935677749512,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step008.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 9,
+      "mse_mean": 0.00011987885896095758,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step009.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 10,
+      "mse_mean": 0.20441768346416156,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step010.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 11,
+      "mse_mean": 0.23221416728042504,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step011.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 12,
+      "mse_mean": 0.262930695463978,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step012.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 13,
+      "mse_mean": 0.24666040544547613,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step013.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 14,
+      "mse_mean": 0.24663963417007698,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step014.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 15,
+      "mse_mean": 0.17363758572042606,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step015.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 16,
+      "mse_mean": 0.1861332729407181,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step016.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 17,
+      "mse_mean": 0.13251203590419525,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step017.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 18,
+      "mse_mean": 0.001448121111659182,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step018.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 19,
+      "mse_mean": 0.0007230694498459982,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step019.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 20,
+      "mse_mean": 0.0009860009375235164,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step020.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 21,
+      "mse_mean": 0.0009875684319300422,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step021.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 22,
+      "mse_mean": 0.14285993881061979,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step022.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 23,
+      "mse_mean": 0.19119186046829592,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step023.json"
+    },
+    {
+      "episode_id": 9,
+      "step_id": 24,
+      "mse_mean": 0.19119684587717098,
+      "output_path": "outputs/enhancement_results/weight_rescale/ep009_step024.json"
+    }
+  ]
+}

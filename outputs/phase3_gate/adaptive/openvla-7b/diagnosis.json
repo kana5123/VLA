@@ -1,0 +1,26 @@
+{
+  "model": "openvla-7b",
+  "classification": "normal",
+  "d3_kl_mean": 0.6828,
+  "d3_kls": [
+    0.5881,
+    0.6685,
+    0.792
+  ],
+  "flip_rate": 0.6667,
+  "has_coexist": false,
+  "phi_mean": 6.8116,
+  "anchor_targets": [
+    {
+      "target_abs": 0,
+      "mode": "A_mode",
+      "anchor_rel": 0,
+      "is_anchored": true
+    }
+  ],
+  "n_samples_used": 3,
+  "recommended_hook": "var",
+  "recommended_params": {
+    "p": 0.6
+  }
+}

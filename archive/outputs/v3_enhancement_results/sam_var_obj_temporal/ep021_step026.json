@@ -1,0 +1,69 @@
+{
+  "episode_id": 21,
+  "step_id": 26,
+  "instruction": "moved the green object and put it on the table",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    0.008961856568560859,
+    0.013821309591040831,
+    -0.01946831423789263,
+    0.007524249938188662,
+    0.0360619610460365,
+    0.003156884806997551,
+    0.996078431372549
+  ],
+  "ground_truth_action": [
+    -0.04568471387028694,
+    0.01520800031721592,
+    -0.030231898650527,
+    0.04429061338305473,
+    0.05363329499959946,
+    0.137079119682312,
+    0.0
+  ],
+  "action_token_ids": [
+    31831,
+    31828,
+    31974,
+    31861,
+    31807,
+    31869,
+    31744
+  ],
+  "mse_per_dim": [
+    0.0029862476607279537,
+    1.9229111700599936e-06,
+    0.0001158547494079056,
+    0.001351765480959984,
+    0.0003087517769076345,
+    0.017935164993998894,
+    0.9921722414455979
+  ],
+  "mse_mean": 0.14498170700268148,
+  "mse_spatial": 0.0037832845955287388,
+  "mse_gripper": 0.9921722414455979,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "object",
+      "table"
+    ],
+    "num_boxes": 1,
+    "num_patches": 36,
+    "patch_coverage": 0.140625,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 9,
+    "motion_coverage": 0.03515625
+  }
+}

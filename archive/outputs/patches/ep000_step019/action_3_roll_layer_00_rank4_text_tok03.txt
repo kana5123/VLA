@@ -1,0 +1,4 @@
+Token index: 3
+Token text: What
+Global position: 259
+Attention score: 0.029419

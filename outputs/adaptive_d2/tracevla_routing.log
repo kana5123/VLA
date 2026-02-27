@@ -1,0 +1,269 @@
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+============================================================
+  Adaptive Routing Pipeline
+  Model: tracevla-phi3v
+  Mode:  both
+  Output: /home/kana5123/ATLASVLA/outputs/phase3_gate/adaptive/tracevla-phi3v
+============================================================
+
+Loading tracevla-phi3v...
+Loading model from registry: tracevla-phi3v (furonghuang-lab/tracevla_phi3v)
+  Architecture: phi3_v, Auto class: AutoModelForCausalLM
+  Applied TraceVLA transformers safety bypass
+  Applied DynamicCache.get_usable_length compatibility patch
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 21.47it/s]
+/home/kana5123/.cache/huggingface/modules/transformers_modules/furonghuang_hyphen_lab/tracevla_phi3v/b879e42622f075e2b2fae76aee899b818e666afd/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.
+  warnings.warn(
+You are not running the flash-attention implementation, expect numerical differences.
+  Loaded: 32L x 32H, hidden=3072, dtype=bfloat16
+  Layers path: model.layers
+Model loaded successfully.
+Loading samples from /home/kana5123/ATLASVLA/outputs/phase3_gate/tracevla-phi3v/sample_list.json...
+  Loaded 20 samples
+  Deep layers: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)], 'text_ranges': [(313, 341)]}
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)], 'text_ranges': [(313, 345)]}
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)], 'text_ranges': [(313, 340)]}
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)], 'text_ranges': [(313, 344)]}
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)], 'text_ranges': [(313, 343)]}
+  Text input_ids length: 351
+  Full sequence length (after vision expansion): 351
+  Vision tokens (from seq diff): 0, Text tokens: 351
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 351, 'total_seq_len': 351, 'num_vision_tokens': 313, 'num_text_tokens': 351, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 351)], 'text_ranges': [(313, 351)]}
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)], 'text_ranges': [(313, 337)]}
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)], 'text_ranges': [(313, 343)]}
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)], 'text_ranges': [(313, 342)]}
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)], 'text_ranges': [(313, 340)]}
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)], 'text_ranges': [(313, 341)]}
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)], 'text_ranges': [(313, 338)]}
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)], 'text_ranges': [(313, 336)]}
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)], 'text_ranges': [(313, 345)]}
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)], 'text_ranges': [(313, 339)]}
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)], 'text_ranges': [(313, 342)]}
+  Text input_ids length: 335
+  Full sequence length (after vision expansion): 335
+  Vision tokens (from seq diff): 0, Text tokens: 335
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 335, 'total_seq_len': 335, 'num_vision_tokens': 313, 'num_text_tokens': 335, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 335)], 'text_ranges': [(313, 335)]}
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)], 'text_ranges': [(313, 344)]}
+  Text input_ids length: 353
+  Full sequence length (after vision expansion): 353
+  Vision tokens (from seq diff): 0, Text tokens: 353
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 353, 'total_seq_len': 353, 'num_vision_tokens': 313, 'num_text_tokens': 353, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 353)], 'text_ranges': [(313, 353)]}
+  Text input_ids length: 349
+  Full sequence length (after vision expansion): 349
+  Vision tokens (from seq diff): 0, Text tokens: 349
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 349, 'total_seq_len': 349, 'num_vision_tokens': 313, 'num_text_tokens': 349, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 349)], 'text_ranges': [(313, 349)]}
+  Anchor targets: [{'target_abs': 0, 'mode': 'A_mode', 'anchor_rel': 0, 'is_anchored': True}, {'target_abs': 1, 'mode': 'C_mode', 'anchor_rel': 1, 'is_anchored': True}]
+
+============================================================
+  Adaptive Router: Diagnosing tracevla-phi3v
+  Using 3 samples, deep layers: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+============================================================
+  Anchor targets: [{'target_abs': 0, 'mode': 'A_mode', 'anchor_rel': 0, 'is_anchored': True}, {'target_abs': 1, 'mode': 'C_mode', 'anchor_rel': 1, 'is_anchored': True}]
+  Has coexist (A-peak != C-peak): True
+    D3 [1/3] KL=0.006 flip=False
+    D3 [2/3] KL=0.012 flip=False
+    D3 [3/3] KL=0.002 flip=False
+  No known sink dims for phi3_v, skipping phi
+
+  ==================================================
+  DIAGNOSIS: SINK
+  ==================================================
+  D3 KL (mean) = 0.0068
+  Flip rate    = 0.0000
+  Has coexist  = True
+  Phi (mean)   = 0.0000
+  Recommended  = kscale {'alpha': 0.0}
+  ==================================================
+
+  Diagnosis saved to /home/kana5123/ATLASVLA/outputs/phase3_gate/adaptive/tracevla-phi3v/diagnosis.json
+  Installed KeyScaleHook(alpha=0.0) at targets=[0, 1]
+  Removed 1 hook(s)
+
+============================================================
+  Full D2 Comparison: tracevla-phi3v
+  Testing 10 configs on 20 samples
+============================================================
+
+  --- D2 measurement: baseline ---
+    [1/20] D2=0.60 H=4.078
+    [5/20] D2=0.60 H=0.794
+    [10/20] D2=0.80 H=0.137
+    [15/20] D2=0.40 H=0.250
+    [20/20] D2=0.20 H=2.240
+  baseline: D2=0.5500, H=2.2163
+
+  --- D2 measurement: VAR_p0.3 ---
+    [1/20] D2=0.60 H=4.034
+    [5/20] D2=0.60 H=0.726
+    [10/20] D2=0.80 H=0.154
+    [15/20] D2=0.40 H=0.253
+    [20/20] D2=0.20 H=2.233
+  VAR_p0.3: D2=0.5600, H=2.2184
+
+  --- D2 measurement: VAR_p0.6 ---
+    [1/20] D2=0.40 H=4.011
+    [5/20] D2=0.60 H=0.728
+    [10/20] D2=0.80 H=0.146
+    [15/20] D2=0.40 H=0.261
+    [20/20] D2=0.00 H=2.133
+  VAR_p0.6: D2=0.5300, H=2.1862
+
+  --- D2 measurement: VAR_p0.9 ---
+    [1/20] D2=0.40 H=4.119
+    [5/20] D2=0.60 H=0.688
+    [10/20] D2=0.80 H=0.180
+    [15/20] D2=0.40 H=0.264
+    [20/20] D2=0.00 H=2.039
+  VAR_p0.9: D2=0.5400, H=2.2016
+
+  --- D2 measurement: Kscale_a0.0 ---
+    [1/20] D2=0.40 H=4.166
+    [5/20] D2=0.60 H=0.676
+    [10/20] D2=0.80 H=0.149
+    [15/20] D2=0.40 H=0.309
+    [20/20] D2=0.20 H=2.343
+  Kscale_a0.0: D2=0.5800, H=2.2191
+
+  --- D2 measurement: Kscale_a0.1 ---
+    [1/20] D2=0.40 H=4.115
+    [5/20] D2=0.60 H=0.747
+    [10/20] D2=0.80 H=0.136
+    [15/20] D2=0.40 H=0.340
+    [20/20] D2=0.20 H=2.357
+  Kscale_a0.1: D2=0.5700, H=2.2216
+
+  --- D2 measurement: Kscale_a0.3 ---
+    [1/20] D2=0.40 H=4.264
+    [5/20] D2=0.60 H=0.740
+    [10/20] D2=0.80 H=0.134
+    [15/20] D2=0.40 H=0.332
+    [20/20] D2=0.20 H=2.309
+  Kscale_a0.3: D2=0.5800, H=2.2486
+
+  --- D2 measurement: hybrid_p0.6_a0.3 ---
+    [1/20] D2=0.40 H=4.072
+    [5/20] D2=0.60 H=0.765
+    [10/20] D2=0.80 H=0.154
+    [15/20] D2=0.40 H=0.367
+    [20/20] D2=0.20 H=2.321
+  hybrid_p0.6_a0.3: D2=0.5800, H=2.2383
+
+  --- D2 measurement: hybrid_p0.9_a0.0 ---
+    [1/20] D2=0.40 H=4.171
+    [5/20] D2=0.60 H=0.722
+    [10/20] D2=0.80 H=0.141
+    [15/20] D2=0.40 H=0.321
+    [20/20] D2=0.00 H=2.252
+  hybrid_p0.9_a0.0: D2=0.5700, H=2.2155
+
+  --- D2 measurement: hybrid_p0.3_a0.1 ---
+    [1/20] D2=0.40 H=4.115
+    [5/20] D2=0.60 H=0.700
+    [10/20] D2=0.80 H=0.160
+    [15/20] D2=0.40 H=0.306
+    [20/20] D2=0.00 H=2.336
+  hybrid_p0.3_a0.1: D2=0.5600, H=2.2192
+
+  --- D2 measurement: Kscale_a0.0 ---
+    [1/20] D2=0.40 H=4.166
+    [5/20] D2=0.60 H=0.676
+    [10/20] D2=0.80 H=0.149
+    [15/20] D2=0.40 H=0.309
+    [20/20] D2=0.20 H=2.343
+  Kscale_a0.0: D2=0.5800, H=2.2191
+
+============================================================
+  COMPARISON TABLE: tracevla-phi3v
+============================================================
+  Config                             D2      dD2        H
+  ----------------------------------------------------
+  baseline                       0.5500  +0.0000   2.2163
+  VAR_p0.3                       0.5600  +0.0100   2.2184
+  VAR_p0.6                       0.5300  -0.0200   2.1862
+  VAR_p0.9                       0.5400  -0.0100   2.2016
+  Kscale_a0.0                    0.5800  +0.0300   2.2191
+  Kscale_a0.1                    0.5700  +0.0200   2.2216
+  Kscale_a0.3                    0.5800  +0.0300   2.2486
+  hybrid_p0.6_a0.3               0.5800  +0.0300   2.2383
+  hybrid_p0.9_a0.0               0.5700  +0.0200   2.2155
+  hybrid_p0.3_a0.1               0.5600  +0.0100   2.2192
+  *AUTO* Kscale_a0.0             0.5800  +0.0300   2.2191
+
+  Best config: Kscale_a0.0 (D2=0.5800)
+  Auto-selected: Kscale_a0.0 (D2=0.5800, delta=+0.0300)
+
+  Comparison saved to /home/kana5123/ATLASVLA/outputs/phase3_gate/adaptive/tracevla-phi3v/comparison.json
+
+Done. Results in: /home/kana5123/ATLASVLA/outputs/phase3_gate/adaptive/tracevla-phi3v

@@ -1,0 +1,47 @@
+2026-02-23 12:09:39.962653: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 12:09:40.006230: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 12:09:40.006297: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 12:09:40.007762: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 12:09:40.015229: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 12:09:40.756567: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+  Seed: 42
+Loading frozen ecot-7b model...
+Loading model from registry: ecot-7b (Embodied-CoT/ecot-openvla-7b-bridge)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 17.02it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 25.33it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: ecot-7b (llama)
+  Devices: 1 GPU(s)
+  Episodes: None
+  Batch size: 64 (effective = 64/GPU × 1 GPUs)
+  Micro-batch: 24 samples/forward
+  Per-GPU batch: 64
+  LR: 0.001 → 0.0001
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+  Source layer: 27
+  Action type: discrete
+============================================================
+
+  Vision tokens: 0..255
+  Text tokens: 256..273 (18 tokens)
+  Text end index: 274
+Adapter v2 parameters: 2,171,713
+Creating data loaders...
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+  Dynamic sink detection: ON (α=5.0)

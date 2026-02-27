@@ -1,0 +1,1612 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  5.53it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.62it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.74it/s]
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  D0 [1/175] skill=pick NLL=N/A top1=0.3084 H=3.561
+  D0 [2/175] skill=pick NLL=N/A top1=0.2360 H=3.360
+  D0 [3/175] skill=open NLL=N/A top1=0.2145 H=4.275
+  D0 [4/175] skill=close NLL=N/A top1=0.1274 H=5.015
+  D0 [5/175] skill=close NLL=N/A top1=0.6599 H=1.546
+  D0 [6/175] skill=close NLL=N/A top1=0.1260 H=4.657
+  D0 [7/175] skill=turn NLL=N/A top1=0.6971 H=2.076
+  D0 [8/175] skill=open NLL=N/A top1=0.2554 H=2.998
+  D0 [9/175] skill=open NLL=N/A top1=0.4546 H=3.086
+  D0 [10/175] skill=place NLL=N/A top1=0.5074 H=2.936
+  D0 [11/175] skill=place NLL=N/A top1=0.4812 H=2.623
+  D0 [12/175] skill=turn NLL=N/A top1=0.1574 H=6.298
+  D0 [13/175] skill=pick NLL=N/A top1=0.6302 H=1.974
+  D0 [14/175] skill=close NLL=N/A top1=0.3208 H=3.814
+  D0 [15/175] skill=turn NLL=N/A top1=0.2419 H=3.467
+  D0 [16/175] skill=turn NLL=N/A top1=0.2268 H=4.154
+  D0 [17/175] skill=move NLL=N/A top1=0.3323 H=3.838
+  D0 [18/175] skill=turn NLL=N/A top1=0.4828 H=2.518
+  D0 [19/175] skill=turn NLL=N/A top1=0.6999 H=1.767
+  D0 [20/175] skill=move NLL=N/A top1=0.3598 H=3.210
+  D0 [21/175] skill=open NLL=N/A top1=0.2609 H=3.633
+  D0 [22/175] skill=move NLL=N/A top1=0.4660 H=3.039
+  D0 [23/175] skill=move NLL=N/A top1=0.3188 H=3.278
+  D0 [24/175] skill=fold NLL=N/A top1=0.1252 H=4.916
+  D0 [25/175] skill=open NLL=N/A top1=0.3162 H=3.343
+  D0 [26/175] skill=open NLL=N/A top1=0.2292 H=3.391
+  D0 [27/175] skill=close NLL=N/A top1=0.4233 H=2.255
+  D0 [28/175] skill=open NLL=N/A top1=0.1338 H=5.513
+  D0 [29/175] skill=open NLL=N/A top1=0.2752 H=2.624
+  D0 [30/175] skill=move NLL=N/A top1=0.2051 H=3.458
+  D0 [31/175] skill=place NLL=N/A top1=0.3234 H=2.947
+  D0 [32/175] skill=place NLL=N/A top1=0.1159 H=4.078
+  D0 [33/175] skill=move NLL=N/A top1=0.4396 H=2.445
+  D0 [34/175] skill=place NLL=N/A top1=0.4026 H=2.619
+  D0 [35/175] skill=move NLL=N/A top1=0.3320 H=3.589
+  D0 [36/175] skill=close NLL=N/A top1=0.3513 H=3.152
+  D0 [37/175] skill=close NLL=N/A top1=0.3985 H=2.947
+  D0 [38/175] skill=close NLL=N/A top1=0.4599 H=2.592
+  D0 [39/175] skill=move NLL=N/A top1=0.2195 H=3.269
+  D0 [40/175] skill=pick NLL=N/A top1=0.6298 H=2.157
+  D0 [41/175] skill=place NLL=N/A top1=0.5767 H=2.424
+  D0 [42/175] skill=place NLL=N/A top1=0.1954 H=3.299
+  D0 [43/175] skill=fold NLL=N/A top1=0.7535 H=1.514
+  D0 [44/175] skill=place NLL=N/A top1=0.3029 H=3.106
+  D0 [45/175] skill=fold NLL=N/A top1=0.3512 H=4.887
+  D0 [46/175] skill=close NLL=N/A top1=0.7559 H=1.462
+  D0 [47/175] skill=turn NLL=N/A top1=0.0590 H=7.520
+  D0 [48/175] skill=turn NLL=N/A top1=0.3632 H=4.747
+  D0 [49/175] skill=place NLL=N/A top1=0.3319 H=2.721
+  D0 [50/175] skill=open NLL=N/A top1=0.1270 H=5.008
+  D0 [51/175] skill=open NLL=N/A top1=0.3388 H=4.581
+  D0 [52/175] skill=move NLL=N/A top1=0.2534 H=4.515
+  D0 [53/175] skill=close NLL=N/A top1=0.1924 H=3.639
+  D0 [54/175] skill=place NLL=N/A top1=0.7360 H=1.251
+  D0 [55/175] skill=turn NLL=N/A top1=0.3331 H=2.312
+  D0 [56/175] skill=fold NLL=N/A top1=0.7876 H=1.117
+  D0 [57/175] skill=fold NLL=N/A top1=0.3564 H=3.370
+  D0 [58/175] skill=fold NLL=N/A top1=0.0843 H=6.384
+  D0 [59/175] skill=open NLL=N/A top1=0.9255 H=0.523
+  D0 [60/175] skill=turn NLL=N/A top1=0.1006 H=6.223
+  D0 [61/175] skill=fold NLL=N/A top1=0.1736 H=5.418
+  D0 [62/175] skill=fold NLL=N/A top1=0.9037 H=0.512
+  D0 [63/175] skill=open NLL=N/A top1=0.8042 H=1.147
+  D0 [64/175] skill=open NLL=N/A top1=0.6547 H=2.584
+  D0 [65/175] skill=pick NLL=N/A top1=0.0808 H=5.898
+  D0 [66/175] skill=open NLL=N/A top1=0.3259 H=3.215
+  D0 [67/175] skill=place NLL=N/A top1=0.5634 H=2.258
+  D0 [68/175] skill=open NLL=N/A top1=0.8112 H=1.102
+  D0 [69/175] skill=close NLL=N/A top1=0.2536 H=3.751
+  D0 [70/175] skill=fold NLL=N/A top1=0.1995 H=5.410
+  D0 [71/175] skill=fold NLL=N/A top1=0.2971 H=3.928
+  D0 [72/175] skill=close NLL=N/A top1=0.1237 H=4.892
+  D0 [73/175] skill=close NLL=N/A top1=0.6889 H=2.380
+  D0 [74/175] skill=place NLL=N/A top1=0.5707 H=2.459
+  D0 [75/175] skill=fold NLL=N/A top1=0.2289 H=4.766
+  D0 [76/175] skill=turn NLL=N/A top1=0.2817 H=3.812
+  D0 [77/175] skill=place NLL=N/A top1=0.0787 H=6.880
+  D0 [78/175] skill=pick NLL=N/A top1=0.3458 H=2.975
+  D0 [79/175] skill=close NLL=N/A top1=0.6093 H=1.545
+  D0 [80/175] skill=place NLL=N/A top1=0.8224 H=1.179
+  D0 [81/175] skill=place NLL=N/A top1=0.5904 H=2.869
+  D0 [82/175] skill=fold NLL=N/A top1=0.3292 H=2.597
+  D0 [83/175] skill=place NLL=N/A top1=0.1308 H=4.136
+  D0 [84/175] skill=close NLL=N/A top1=0.4272 H=2.432
+  D0 [85/175] skill=turn NLL=N/A top1=0.2360 H=6.178
+  D0 [86/175] skill=place NLL=N/A top1=0.3548 H=2.875
+  D0 [87/175] skill=place NLL=N/A top1=0.3337 H=3.251
+  D0 [88/175] skill=pick NLL=N/A top1=0.2524 H=2.421
+  D0 [89/175] skill=place NLL=N/A top1=0.0783 H=5.422
+  D0 [90/175] skill=open NLL=N/A top1=0.7146 H=1.924
+  D0 [91/175] skill=place NLL=N/A top1=0.1087 H=5.012
+  D0 [92/175] skill=turn NLL=N/A top1=0.6137 H=2.297
+  D0 [93/175] skill=close NLL=N/A top1=0.3452 H=2.225
+  D0 [94/175] skill=move NLL=N/A top1=0.1799 H=3.159
+  D0 [95/175] skill=close NLL=N/A top1=0.2113 H=5.722
+  D0 [96/175] skill=open NLL=N/A top1=0.2971 H=4.683
+  D0 [97/175] skill=pick NLL=N/A top1=0.3321 H=2.511
+  D0 [98/175] skill=place NLL=N/A top1=0.9446 H=0.378
+  D0 [99/175] skill=move NLL=N/A top1=0.2052 H=3.654
+  D0 [100/175] skill=open NLL=N/A top1=0.1958 H=4.261
+  D0 [101/175] skill=open NLL=N/A top1=0.8417 H=0.973
+  D0 [102/175] skill=close NLL=N/A top1=0.5171 H=2.422
+  D0 [103/175] skill=fold NLL=N/A top1=0.3648 H=4.128
+  D0 [104/175] skill=fold NLL=N/A top1=0.2718 H=4.145
+  D0 [105/175] skill=pick NLL=N/A top1=0.3868 H=3.280
+  D0 [106/175] skill=turn NLL=N/A top1=0.6915 H=1.853
+  D0 [107/175] skill=move NLL=N/A top1=0.1131 H=4.501
+  D0 [108/175] skill=place NLL=N/A top1=0.9072 H=0.657
+  D0 [109/175] skill=fold NLL=N/A top1=0.1790 H=3.537
+  D0 [110/175] skill=fold NLL=N/A top1=0.6734 H=2.134
+  D0 [111/175] skill=turn NLL=N/A top1=0.1916 H=5.875
+  D0 [112/175] skill=move NLL=N/A top1=0.2194 H=3.504
+  D0 [113/175] skill=move NLL=N/A top1=0.7791 H=1.467
+  D0 [114/175] skill=move NLL=N/A top1=0.2622 H=3.193
+  D0 [115/175] skill=fold NLL=N/A top1=0.2188 H=4.937
+  D0 [116/175] skill=place NLL=N/A top1=0.2683 H=4.997
+  D0 [117/175] skill=move NLL=N/A top1=0.8301 H=1.125
+  D0 [118/175] skill=pick NLL=N/A top1=0.3691 H=3.580
+  D0 [119/175] skill=open NLL=N/A top1=0.5332 H=2.283
+  D0 [120/175] skill=move NLL=N/A top1=0.8843 H=0.551
+  D0 [121/175] skill=move NLL=N/A top1=0.6753 H=1.468
+  D0 [122/175] skill=move NLL=N/A top1=0.3854 H=3.769
+  D0 [123/175] skill=open NLL=N/A top1=0.4720 H=2.897
+  D0 [124/175] skill=fold NLL=N/A top1=0.1207 H=5.218
+  D0 [125/175] skill=pick NLL=N/A top1=0.2261 H=4.146
+  D0 [126/175] skill=close NLL=N/A top1=0.1046 H=5.374
+  D0 [127/175] skill=pick NLL=N/A top1=0.8088 H=1.285
+  D0 [128/175] skill=turn NLL=N/A top1=0.0650 H=7.322
+  D0 [129/175] skill=move NLL=N/A top1=0.1776 H=3.459
+  D0 [130/175] skill=close NLL=N/A top1=0.1706 H=4.743
+  D0 [131/175] skill=turn NLL=N/A top1=0.7152 H=0.777
+  D0 [132/175] skill=pick NLL=N/A top1=0.1542 H=4.206
+  D0 [133/175] skill=pick NLL=N/A top1=0.3687 H=4.728
+  D0 [134/175] skill=turn NLL=N/A top1=0.0612 H=5.820
+  D0 [135/175] skill=move NLL=N/A top1=0.5335 H=1.125
+  D0 [136/175] skill=pick NLL=N/A top1=0.4286 H=2.807
+  D0 [137/175] skill=turn NLL=N/A top1=0.9648 H=0.297
+  D0 [138/175] skill=fold NLL=N/A top1=0.3269 H=3.617
+  D0 [139/175] skill=turn NLL=N/A top1=0.4113 H=2.421
+  D0 [140/175] skill=pick NLL=N/A top1=0.5914 H=1.666
+  D0 [141/175] skill=close NLL=N/A top1=0.2492 H=3.807
+  D0 [142/175] skill=open NLL=N/A top1=0.5468 H=1.362
+  D0 [143/175] skill=close NLL=N/A top1=0.1585 H=4.730
+  D0 [144/175] skill=fold NLL=N/A top1=0.2059 H=3.590
+  D0 [145/175] skill=move NLL=N/A top1=0.6193 H=1.998
+  D0 [146/175] skill=pick NLL=N/A top1=0.2247 H=4.247
+  D0 [147/175] skill=open NLL=N/A top1=0.3626 H=3.986
+  D0 [148/175] skill=move NLL=N/A top1=0.8145 H=0.889
+  D0 [149/175] skill=fold NLL=N/A top1=0.4220 H=3.670
+  D0 [150/175] skill=close NLL=N/A top1=0.0702 H=6.792
+  D0 [151/175] skill=pick NLL=N/A top1=0.2446 H=3.490
+  D0 [152/175] skill=turn NLL=N/A top1=0.0398 H=7.938
+  D0 [153/175] skill=pick NLL=N/A top1=0.8471 H=0.965
+  D0 [154/175] skill=move NLL=N/A top1=0.4885 H=2.485
+  D0 [155/175] skill=open NLL=N/A top1=0.3321 H=3.947
+  D0 [156/175] skill=close NLL=N/A top1=0.1105 H=4.132
+  D0 [157/175] skill=turn NLL=N/A top1=0.6444 H=2.512
+  D0 [158/175] skill=pick NLL=N/A top1=0.2262 H=3.571
+  D0 [159/175] skill=pick NLL=N/A top1=0.2664 H=3.659
+  D0 [160/175] skill=pick NLL=N/A top1=0.4701 H=3.139
+  D0 [161/175] skill=fold NLL=N/A top1=0.5167 H=2.782
+  D0 [162/175] skill=fold NLL=N/A top1=0.1252 H=5.737
+  D0 [163/175] skill=place NLL=N/A top1=0.1059 H=4.235
+  D0 [164/175] skill=open NLL=N/A top1=0.2286 H=3.491
+  D0 [165/175] skill=pick NLL=N/A top1=0.3801 H=2.835
+  D0 [166/175] skill=fold NLL=N/A top1=0.3755 H=2.395
+  D0 [167/175] skill=place NLL=N/A top1=0.6122 H=2.113
+  D0 [168/175] skill=pick NLL=N/A top1=0.5104 H=2.524
+  D0 [169/175] skill=move NLL=N/A top1=0.2264 H=3.338
+  D0 [170/175] skill=turn NLL=N/A top1=0.4955 H=2.952
+  D0 [171/175] skill=turn NLL=N/A top1=0.1785 H=5.032
+  D0 [172/175] skill=pick NLL=N/A top1=0.1442 H=4.405
+  D0 [173/175] skill=close NLL=N/A top1=0.9875 H=0.091
+  D0 [174/175] skill=fold NLL=N/A top1=0.3943 H=2.128
+  D0 [175/175] skill=turn NLL=N/A top1=0.1714 H=5.323
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [1/175] skill=pick H=3.573 top1=0.296
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [2/175] skill=pick H=3.360 top1=0.236
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [3/175] skill=open H=4.275 top1=0.215
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [4/175] skill=close H=5.015 top1=0.127
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [5/175] skill=close H=1.546 top1=0.660
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [6/175] skill=close H=4.657 top1=0.126
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [7/175] skill=turn H=2.076 top1=0.697
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [8/175] skill=open H=2.998 top1=0.255
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [9/175] skill=open H=3.086 top1=0.455
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [10/175] skill=place H=2.936 top1=0.507
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [11/175] skill=place H=2.623 top1=0.481
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [12/175] skill=turn H=6.298 top1=0.157
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [13/175] skill=pick H=1.974 top1=0.630
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [14/175] skill=close H=3.814 top1=0.321
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [15/175] skill=turn H=3.467 top1=0.242
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [16/175] skill=turn H=4.154 top1=0.227
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [17/175] skill=move H=3.838 top1=0.332
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [18/175] skill=turn H=2.518 top1=0.483
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [19/175] skill=turn H=1.767 top1=0.700
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  D1 [20/175] skill=move H=3.210 top1=0.360
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [21/175] skill=open H=3.633 top1=0.261
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [22/175] skill=move H=3.039 top1=0.466
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [23/175] skill=move H=3.278 top1=0.319
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [24/175] skill=fold H=4.916 top1=0.125
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [25/175] skill=open H=3.343 top1=0.316
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [26/175] skill=open H=3.391 top1=0.229
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [27/175] skill=close H=2.255 top1=0.423
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [28/175] skill=open H=5.513 top1=0.134
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [29/175] skill=open H=2.624 top1=0.275
+  Text input_ids length: 277
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 0, Text tokens: 277
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 277, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)], 'text_ranges': [(256, 277)]}
+  D1 [30/175] skill=move H=3.458 top1=0.205
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [31/175] skill=place H=2.947 top1=0.323
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [32/175] skill=place H=4.078 top1=0.116
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [33/175] skill=move H=2.445 top1=0.440
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [34/175] skill=place H=2.619 top1=0.403
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [35/175] skill=move H=3.589 top1=0.332
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [36/175] skill=close H=3.152 top1=0.351
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [37/175] skill=close H=2.947 top1=0.398
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [38/175] skill=close H=2.592 top1=0.460
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [39/175] skill=move H=3.269 top1=0.220
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [40/175] skill=pick H=2.157 top1=0.630
+  Text input_ids length: 279
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 0, Text tokens: 279
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 279, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)], 'text_ranges': [(256, 279)]}
+  D1 [41/175] skill=place H=2.424 top1=0.577
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [42/175] skill=place H=3.299 top1=0.195
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  D1 [43/175] skill=fold H=1.514 top1=0.754
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [44/175] skill=place H=3.106 top1=0.303
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [45/175] skill=fold H=4.887 top1=0.351
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [46/175] skill=close H=1.462 top1=0.756
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [47/175] skill=turn H=7.520 top1=0.059
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [48/175] skill=turn H=4.747 top1=0.363
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [49/175] skill=place H=2.721 top1=0.332
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [50/175] skill=open H=5.008 top1=0.127
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [51/175] skill=open H=4.581 top1=0.339
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [52/175] skill=move H=4.515 top1=0.253
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [53/175] skill=close H=3.639 top1=0.192
+  Text input_ids length: 279
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 0, Text tokens: 279
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 279, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)], 'text_ranges': [(256, 279)]}
+  D1 [54/175] skill=place H=1.251 top1=0.736
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [55/175] skill=turn H=2.312 top1=0.333
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  D1 [56/175] skill=fold H=1.117 top1=0.788
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [57/175] skill=fold H=3.370 top1=0.356
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [58/175] skill=fold H=6.384 top1=0.084
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [59/175] skill=open H=0.523 top1=0.925
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [60/175] skill=turn H=6.223 top1=0.101
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [61/175] skill=fold H=5.418 top1=0.174
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  D1 [62/175] skill=fold H=0.512 top1=0.904
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [63/175] skill=open H=1.147 top1=0.804
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [64/175] skill=open H=2.584 top1=0.655
+  Text input_ids length: 277
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 0, Text tokens: 277
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 277, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)], 'text_ranges': [(256, 277)]}
+  D1 [65/175] skill=pick H=5.898 top1=0.081
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [66/175] skill=open H=3.215 top1=0.326
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  D1 [67/175] skill=place H=2.258 top1=0.563
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [68/175] skill=open H=1.102 top1=0.811
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [69/175] skill=close H=3.751 top1=0.254
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [70/175] skill=fold H=5.410 top1=0.199
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [71/175] skill=fold H=3.928 top1=0.297
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [72/175] skill=close H=4.892 top1=0.124
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [73/175] skill=close H=2.380 top1=0.689
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [74/175] skill=place H=2.459 top1=0.571
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [75/175] skill=fold H=4.766 top1=0.229
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [76/175] skill=turn H=3.812 top1=0.282
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [77/175] skill=place H=6.880 top1=0.079
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [78/175] skill=pick H=2.975 top1=0.346
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [79/175] skill=close H=1.545 top1=0.609
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [80/175] skill=place H=1.179 top1=0.822
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [81/175] skill=place H=2.869 top1=0.590
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [82/175] skill=fold H=2.597 top1=0.329
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [83/175] skill=place H=4.136 top1=0.131
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [84/175] skill=close H=2.432 top1=0.427
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [85/175] skill=turn H=6.178 top1=0.236
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [86/175] skill=place H=2.875 top1=0.355
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [87/175] skill=place H=3.251 top1=0.334
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [88/175] skill=pick H=2.421 top1=0.252
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [89/175] skill=place H=5.422 top1=0.078
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [90/175] skill=open H=1.924 top1=0.715
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [91/175] skill=place H=5.012 top1=0.109
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [92/175] skill=turn H=2.297 top1=0.614
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [93/175] skill=close H=2.225 top1=0.345
+  Text input_ids length: 279
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 0, Text tokens: 279
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 279, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)], 'text_ranges': [(256, 279)]}
+  D1 [94/175] skill=move H=3.159 top1=0.180
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [95/175] skill=close H=5.722 top1=0.211
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [96/175] skill=open H=4.683 top1=0.297
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [97/175] skill=pick H=2.511 top1=0.332
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [98/175] skill=place H=0.378 top1=0.945
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [99/175] skill=move H=3.654 top1=0.205
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [100/175] skill=open H=4.261 top1=0.196
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [101/175] skill=open H=0.973 top1=0.842
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [102/175] skill=close H=2.422 top1=0.517
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [103/175] skill=fold H=4.128 top1=0.365
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [104/175] skill=fold H=4.145 top1=0.272
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [105/175] skill=pick H=3.280 top1=0.387
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [106/175] skill=turn H=1.853 top1=0.691
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [107/175] skill=move H=4.501 top1=0.113
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)], 'text_ranges': [(256, 281)]}
+  D1 [108/175] skill=place H=0.657 top1=0.907
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [109/175] skill=fold H=3.537 top1=0.179
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [110/175] skill=fold H=2.134 top1=0.673
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [111/175] skill=turn H=5.875 top1=0.192
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [112/175] skill=move H=3.504 top1=0.219
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [113/175] skill=move H=1.467 top1=0.779
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [114/175] skill=move H=3.193 top1=0.262
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [115/175] skill=fold H=4.937 top1=0.219
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [116/175] skill=place H=4.997 top1=0.268
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [117/175] skill=move H=1.125 top1=0.830
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [118/175] skill=pick H=3.580 top1=0.369
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [119/175] skill=open H=2.283 top1=0.533
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [120/175] skill=move H=0.551 top1=0.884
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [121/175] skill=move H=1.468 top1=0.675
+  Text input_ids length: 282
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 0, Text tokens: 282
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 282, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)], 'text_ranges': [(256, 282)]}
+  D1 [122/175] skill=move H=3.769 top1=0.385
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [123/175] skill=open H=2.897 top1=0.472
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [124/175] skill=fold H=5.218 top1=0.121
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [125/175] skill=pick H=4.146 top1=0.226
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [126/175] skill=close H=5.374 top1=0.105
+  Text input_ids length: 277
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 0, Text tokens: 277
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 277, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)], 'text_ranges': [(256, 277)]}
+  D1 [127/175] skill=pick H=1.285 top1=0.809
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [128/175] skill=turn H=7.322 top1=0.065
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [129/175] skill=move H=3.459 top1=0.178
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [130/175] skill=close H=4.743 top1=0.171
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [131/175] skill=turn H=0.777 top1=0.715
+  Text input_ids length: 277
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 0, Text tokens: 277
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 277, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)], 'text_ranges': [(256, 277)]}
+  D1 [132/175] skill=pick H=4.206 top1=0.154
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [133/175] skill=pick H=4.728 top1=0.369
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [134/175] skill=turn H=5.820 top1=0.061
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [135/175] skill=move H=1.125 top1=0.533
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [136/175] skill=pick H=2.807 top1=0.429
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [137/175] skill=turn H=0.297 top1=0.965
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [138/175] skill=fold H=3.617 top1=0.327
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [139/175] skill=turn H=2.421 top1=0.411
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [140/175] skill=pick H=1.666 top1=0.591
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [141/175] skill=close H=3.807 top1=0.249
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [142/175] skill=open H=1.362 top1=0.547
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [143/175] skill=close H=4.730 top1=0.158
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [144/175] skill=fold H=3.590 top1=0.206
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [145/175] skill=move H=1.998 top1=0.619
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)], 'text_ranges': [(256, 270)]}
+  D1 [146/175] skill=pick H=4.247 top1=0.225
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [147/175] skill=open H=3.986 top1=0.363
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)], 'text_ranges': [(256, 272)]}
+  D1 [148/175] skill=move H=0.889 top1=0.814
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [149/175] skill=fold H=3.670 top1=0.422
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [150/175] skill=close H=6.792 top1=0.070
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [151/175] skill=pick H=3.490 top1=0.245
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [152/175] skill=turn H=7.938 top1=0.040
+  Text input_ids length: 276
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 0, Text tokens: 276
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 276, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)], 'text_ranges': [(256, 276)]}
+  D1 [153/175] skill=pick H=0.965 top1=0.847
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [154/175] skill=move H=2.485 top1=0.488
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [155/175] skill=open H=3.947 top1=0.332
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)], 'text_ranges': [(256, 266)]}
+  D1 [156/175] skill=close H=4.132 top1=0.110
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [157/175] skill=turn H=2.512 top1=0.644
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)], 'text_ranges': [(256, 278)]}
+  D1 [158/175] skill=pick H=3.571 top1=0.226
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [159/175] skill=pick H=3.659 top1=0.266
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)], 'text_ranges': [(256, 268)]}
+  D1 [160/175] skill=pick H=3.139 top1=0.470
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [161/175] skill=fold H=2.782 top1=0.517
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)], 'text_ranges': [(256, 273)]}
+  D1 [162/175] skill=fold H=5.737 top1=0.125
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [163/175] skill=place H=4.235 top1=0.106
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [164/175] skill=open H=3.491 top1=0.229
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)], 'text_ranges': [(256, 275)]}
+  D1 [165/175] skill=pick H=2.835 top1=0.380
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)], 'text_ranges': [(256, 271)]}
+  D1 [166/175] skill=fold H=2.395 top1=0.375
+  Text input_ids length: 277
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 0, Text tokens: 277
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 277, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)], 'text_ranges': [(256, 277)]}
+  D1 [167/175] skill=place H=2.113 top1=0.612
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)], 'text_ranges': [(256, 278)]}
+  D1 [168/175] skill=pick H=2.524 top1=0.510
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)], 'text_ranges': [(256, 267)]}
+  D1 [169/175] skill=move H=3.338 top1=0.226
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [170/175] skill=turn H=2.952 top1=0.495
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [171/175] skill=turn H=5.032 top1=0.178
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [172/175] skill=pick H=4.405 top1=0.144
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [173/175] skill=close H=0.091 top1=0.988
+  Text input_ids length: 274
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 0, Text tokens: 274
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 274, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)], 'text_ranges': [(256, 274)]}
+  D1 [174/175] skill=fold H=2.128 top1=0.394
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)], 'text_ranges': [(256, 269)]}
+  D1 [175/175] skill=turn H=5.323 top1=0.171
+
+  D1 Summary: mean_entropy=3.336, mean_top1_prob=0.386
+  D2 [1/175] consistency=0.40 mean_kl=0.483
+  D2 [2/175] consistency=0.60 mean_kl=0.367
+  D2 [3/175] consistency=0.80 mean_kl=0.523
+  D2 [4/175] consistency=0.60 mean_kl=0.170
+  D2 [5/175] consistency=0.60 mean_kl=0.304
+  D2 [6/175] consistency=0.40 mean_kl=0.388
+  D2 [7/175] consistency=1.00 mean_kl=0.093
+  D2 [8/175] consistency=0.80 mean_kl=0.189
+  D2 [9/175] consistency=1.00 mean_kl=0.127
+  D2 [10/175] consistency=1.00 mean_kl=0.128
+  D2 [11/175] consistency=0.60 mean_kl=0.327
+  D2 [12/175] consistency=0.80 mean_kl=0.425
+  D2 [13/175] consistency=1.00 mean_kl=0.216
+  D2 [14/175] consistency=1.00 mean_kl=0.192
+  D2 [15/175] consistency=0.60 mean_kl=0.538
+  D2 [16/175] consistency=0.80 mean_kl=0.462
+  D2 [17/175] consistency=0.40 mean_kl=0.773
+  D2 [18/175] consistency=0.80 mean_kl=0.586
+  D2 [19/175] consistency=0.60 mean_kl=0.689
+  D2 [20/175] consistency=1.00 mean_kl=0.192
+  D2 [21/175] consistency=0.40 mean_kl=0.759
+  D2 [22/175] consistency=1.00 mean_kl=0.162
+  D2 [23/175] consistency=0.60 mean_kl=0.187
+  D2 [24/175] consistency=0.60 mean_kl=0.248
+  D2 [25/175] consistency=0.80 mean_kl=0.409
+  D2 [26/175] consistency=1.00 mean_kl=0.381
+  D2 [27/175] consistency=1.00 mean_kl=0.083
+  D2 [28/175] consistency=0.80 mean_kl=0.600
+  D2 [29/175] consistency=0.60 mean_kl=0.132
+  D2 [30/175] consistency=0.80 mean_kl=0.187
+  D2 [31/175] consistency=0.80 mean_kl=0.358
+  D2 [32/175] consistency=0.60 mean_kl=0.276
+  D2 [33/175] consistency=0.60 mean_kl=0.742
+  D2 [34/175] consistency=0.60 mean_kl=0.227
+  D2 [35/175] consistency=0.40 mean_kl=0.450
+  D2 [36/175] consistency=1.00 mean_kl=0.114
+  D2 [37/175] consistency=1.00 mean_kl=0.189
+  D2 [38/175] consistency=0.80 mean_kl=0.236
+  D2 [39/175] consistency=0.40 mean_kl=0.375
+  D2 [40/175] consistency=1.00 mean_kl=0.124
+  D2 [41/175] consistency=0.60 mean_kl=0.608
+  D2 [42/175] consistency=0.20 mean_kl=0.806
+  D2 [43/175] consistency=1.00 mean_kl=0.057
+  D2 [44/175] consistency=0.40 mean_kl=1.039
+  D2 [45/175] consistency=1.00 mean_kl=0.276
+  D2 [46/175] consistency=1.00 mean_kl=0.221
+  D2 [47/175] consistency=1.00 mean_kl=0.270
+  D2 [48/175] consistency=0.80 mean_kl=0.453
+  D2 [49/175] consistency=0.80 mean_kl=0.077
+  D2 [50/175] consistency=0.40 mean_kl=0.849
+  D2 [51/175] consistency=0.80 mean_kl=0.346
+  D2 [52/175] consistency=0.60 mean_kl=0.655
+  D2 [53/175] consistency=0.60 mean_kl=0.375
+  D2 [54/175] consistency=0.80 mean_kl=0.199
+  D2 [55/175] consistency=0.60 mean_kl=0.273
+  D2 [56/175] consistency=0.80 mean_kl=0.328
+  D2 [57/175] consistency=1.00 mean_kl=0.287
+  D2 [58/175] consistency=0.00 mean_kl=0.114
+  D2 [59/175] consistency=1.00 mean_kl=0.025
+  D2 [60/175] consistency=0.80 mean_kl=0.300
+  D2 [61/175] consistency=0.80 mean_kl=0.186
+  D2 [62/175] consistency=0.80 mean_kl=0.201
+  D2 [63/175] consistency=1.00 mean_kl=0.118
+  D2 [64/175] consistency=1.00 mean_kl=0.096
+  D2 [65/175] consistency=0.80 mean_kl=0.198
+  D2 [66/175] consistency=0.60 mean_kl=0.435
+  D2 [67/175] consistency=0.80 mean_kl=0.191
+  D2 [68/175] consistency=0.80 mean_kl=0.346
+  D2 [69/175] consistency=0.80 mean_kl=0.699
+  D2 [70/175] consistency=1.00 mean_kl=0.153
+  D2 [71/175] consistency=0.60 mean_kl=0.603
+  D2 [72/175] consistency=0.20 mean_kl=0.229
+  D2 [73/175] consistency=1.00 mean_kl=0.124
+  D2 [74/175] consistency=0.60 mean_kl=0.768
+  D2 [75/175] consistency=1.00 mean_kl=0.262
+  D2 [76/175] consistency=0.60 mean_kl=0.876
+  D2 [77/175] consistency=0.60 mean_kl=0.532
+  D2 [78/175] consistency=1.00 mean_kl=0.158
+  D2 [79/175] consistency=0.60 mean_kl=0.219
+  D2 [80/175] consistency=1.00 mean_kl=0.033
+  D2 [81/175] consistency=1.00 mean_kl=0.153
+  D2 [82/175] consistency=1.00 mean_kl=0.940
+  D2 [83/175] consistency=0.40 mean_kl=0.456
+  D2 [84/175] consistency=0.80 mean_kl=0.311
+  D2 [85/175] consistency=0.80 mean_kl=0.342
+  D2 [86/175] consistency=0.60 mean_kl=0.459
+  D2 [87/175] consistency=1.00 mean_kl=0.123
+  D2 [88/175] consistency=0.60 mean_kl=0.199
+  D2 [89/175] consistency=0.40 mean_kl=1.417
+  D2 [90/175] consistency=1.00 mean_kl=0.149
+  D2 [91/175] consistency=0.80 mean_kl=0.250
+  D2 [92/175] consistency=0.80 mean_kl=0.410
+  D2 [93/175] consistency=0.60 mean_kl=0.342
+  D2 [94/175] consistency=0.40 mean_kl=0.327
+  D2 [95/175] consistency=1.00 mean_kl=0.158
+  D2 [96/175] consistency=0.80 mean_kl=0.158
+  D2 [97/175] consistency=0.60 mean_kl=0.550
+  D2 [98/175] consistency=1.00 mean_kl=0.134
+  D2 [99/175] consistency=0.40 mean_kl=0.360
+  D2 [100/175] consistency=0.00 mean_kl=0.267
+  D2 [101/175] consistency=1.00 mean_kl=0.064
+  D2 [102/175] consistency=1.00 mean_kl=0.210
+  D2 [103/175] consistency=1.00 mean_kl=0.174
+  D2 [104/175] consistency=1.00 mean_kl=0.317
+  D2 [105/175] consistency=0.60 mean_kl=0.698
+  D2 [106/175] consistency=1.00 mean_kl=0.130
+  D2 [107/175] consistency=0.60 mean_kl=0.196
+  D2 [108/175] consistency=1.00 mean_kl=0.024
+  D2 [109/175] consistency=1.00 mean_kl=0.364
+  D2 [110/175] consistency=1.00 mean_kl=0.111
+  D2 [111/175] consistency=0.60 mean_kl=0.268
+  D2 [112/175] consistency=0.80 mean_kl=0.102
+  D2 [113/175] consistency=1.00 mean_kl=0.064
+  D2 [114/175] consistency=0.40 mean_kl=0.177
+  D2 [115/175] consistency=1.00 mean_kl=0.156
+  D2 [116/175] consistency=0.80 mean_kl=0.460
+  D2 [117/175] consistency=0.80 mean_kl=0.282
+  D2 [118/175] consistency=1.00 mean_kl=0.266
+  D2 [119/175] consistency=1.00 mean_kl=0.226
+  D2 [120/175] consistency=0.80 mean_kl=0.272
+  D2 [121/175] consistency=1.00 mean_kl=0.114
+  D2 [122/175] consistency=1.00 mean_kl=0.085
+  D2 [123/175] consistency=0.80 mean_kl=0.369
+  D2 [124/175] consistency=0.60 mean_kl=0.465
+  D2 [125/175] consistency=0.80 mean_kl=0.134
+  D2 [126/175] consistency=0.40 mean_kl=0.363
+  D2 [127/175] consistency=1.00 mean_kl=0.054
+  D2 [128/175] consistency=0.80 mean_kl=0.282
+  D2 [129/175] consistency=0.60 mean_kl=0.118
+  D2 [130/175] consistency=0.80 mean_kl=0.319
+  D2 [131/175] consistency=1.00 mean_kl=0.067
+  D2 [132/175] consistency=0.80 mean_kl=0.148
+  D2 [133/175] consistency=1.00 mean_kl=0.074
+  D2 [134/175] consistency=0.20 mean_kl=0.682
+  D2 [135/175] consistency=0.80 mean_kl=0.186
+  D2 [136/175] consistency=0.80 mean_kl=0.157
+  D2 [137/175] consistency=1.00 mean_kl=0.034
+  D2 [138/175] consistency=1.00 mean_kl=0.147
+  D2 [139/175] consistency=0.80 mean_kl=0.474
+  D2 [140/175] consistency=0.40 mean_kl=0.679
+  D2 [141/175] consistency=0.60 mean_kl=0.526
+  D2 [142/175] consistency=0.80 mean_kl=0.362
+  D2 [143/175] consistency=0.60 mean_kl=0.441
+  D2 [144/175] consistency=0.80 mean_kl=0.272
+  D2 [145/175] consistency=1.00 mean_kl=0.164
+  D2 [146/175] consistency=0.80 mean_kl=0.235
+  D2 [147/175] consistency=0.80 mean_kl=0.468
+  D2 [148/175] consistency=1.00 mean_kl=0.149
+  D2 [149/175] consistency=0.60 mean_kl=0.940
+  D2 [150/175] consistency=0.80 mean_kl=0.295
+  D2 [151/175] consistency=1.00 mean_kl=0.499
+  D2 [152/175] consistency=0.40 mean_kl=0.535
+  D2 [153/175] consistency=1.00 mean_kl=0.043
+  D2 [154/175] consistency=0.80 mean_kl=0.122
+  D2 [155/175] consistency=1.00 mean_kl=0.209
+  D2 [156/175] consistency=0.60 mean_kl=0.660
+  D2 [157/175] consistency=0.80 mean_kl=0.393
+  D2 [158/175] consistency=1.00 mean_kl=0.232
+  D2 [159/175] consistency=0.80 mean_kl=0.248
+  D2 [160/175] consistency=0.60 mean_kl=0.494
+  D2 [161/175] consistency=1.00 mean_kl=0.141
+  D2 [162/175] consistency=0.60 mean_kl=0.497
+  D2 [163/175] consistency=0.40 mean_kl=0.626
+  D2 [164/175] consistency=0.40 mean_kl=0.179
+  D2 [165/175] consistency=0.80 mean_kl=0.247
+  D2 [166/175] consistency=1.00 mean_kl=0.101
+  D2 [167/175] consistency=1.00 mean_kl=0.168
+  D2 [168/175] consistency=1.00 mean_kl=0.104
+  D2 [169/175] consistency=0.60 mean_kl=0.389
+  D2 [170/175] consistency=0.60 mean_kl=1.001
+  D2 [171/175] consistency=0.40 mean_kl=0.917
+  D2 [172/175] consistency=0.40 mean_kl=0.548
+  D2 [173/175] consistency=1.00 mean_kl=0.011
+  D2 [174/175] consistency=0.60 mean_kl=0.332
+  D2 [175/175] consistency=0.80 mean_kl=0.514
+
+  D2 Summary: mean_consistency=0.759
+  Anchor: rel=225, abs=225, is_anchored=True
+  V=0 applied to deep layers only: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+  D3 [1/175] KL=0.864 top1_changed=True
+  D3 [2/175] KL=0.130 top1_changed=True
+  D3 [3/175] KL=0.234 top1_changed=False
+  D3 [4/175] KL=0.461 top1_changed=False
+  D3 [5/175] KL=0.061 top1_changed=False
+  D3 [6/175] KL=0.237 top1_changed=False
+  D3 [7/175] KL=0.294 top1_changed=False
+  D3 [8/175] KL=0.152 top1_changed=True
+  D3 [9/175] KL=0.091 top1_changed=False
+  D3 [10/175] KL=0.349 top1_changed=False
+  D3 [11/175] KL=0.275 top1_changed=False
+  D3 [12/175] KL=0.464 top1_changed=False
+  D3 [13/175] KL=0.193 top1_changed=False
+  D3 [14/175] KL=0.164 top1_changed=False
+  D3 [15/175] KL=0.251 top1_changed=False
+  D3 [16/175] KL=1.365 top1_changed=False
+  D3 [17/175] KL=0.219 top1_changed=True
+  D3 [18/175] KL=0.449 top1_changed=True
+  D3 [19/175] KL=0.603 top1_changed=True
+  D3 [20/175] KL=0.071 top1_changed=False
+  D3 [21/175] KL=0.268 top1_changed=True
+  D3 [22/175] KL=0.174 top1_changed=False
+  D3 [23/175] KL=0.094 top1_changed=False
+  D3 [24/175] KL=0.462 top1_changed=True
+  D3 [25/175] KL=0.237 top1_changed=False
+  D3 [26/175] KL=0.211 top1_changed=False
+  D3 [27/175] KL=0.106 top1_changed=False
+  D3 [28/175] KL=0.174 top1_changed=False
+  D3 [29/175] KL=0.138 top1_changed=False
+  D3 [30/175] KL=0.197 top1_changed=True
+  D3 [31/175] KL=0.754 top1_changed=True
+  D3 [32/175] KL=0.491 top1_changed=False
+  D3 [33/175] KL=0.315 top1_changed=True
+  D3 [34/175] KL=0.054 top1_changed=False
+  D3 [35/175] KL=0.151 top1_changed=False
+  D3 [36/175] KL=0.054 top1_changed=False
+  D3 [37/175] KL=0.100 top1_changed=False
+  D3 [38/175] KL=0.121 top1_changed=False
+  D3 [39/175] KL=0.076 top1_changed=False
+  D3 [40/175] KL=0.100 top1_changed=False
+  D3 [41/175] KL=0.189 top1_changed=False
+/home/kana5123/ATLASVLA/run_phase3_exp_de.py:943: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, p = spearmanr(anchors, entropies)
+/home/kana5123/ATLASVLA/run_phase3_exp_de.py:948: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, p = spearmanr(
+  D3 [42/175] KL=0.204 top1_changed=False
+  D3 [43/175] KL=0.169 top1_changed=False
+  D3 [44/175] KL=0.221 top1_changed=True
+  D3 [45/175] KL=0.108 top1_changed=False
+  D3 [46/175] KL=0.235 top1_changed=False
+  D3 [47/175] KL=0.787 top1_changed=False
+  D3 [48/175] KL=0.332 top1_changed=False
+  D3 [49/175] KL=0.545 top1_changed=False
+  D3 [50/175] KL=0.474 top1_changed=True
+  D3 [51/175] KL=0.196 top1_changed=False
+  D3 [52/175] KL=0.346 top1_changed=False
+  D3 [53/175] KL=0.157 top1_changed=True
+  D3 [54/175] KL=0.060 top1_changed=False
+  D3 [55/175] KL=0.641 top1_changed=False
+  D3 [56/175] KL=0.022 top1_changed=False
+  D3 [57/175] KL=0.245 top1_changed=True
+  D3 [58/175] KL=0.341 top1_changed=True
+  D3 [59/175] KL=0.047 top1_changed=False
+  D3 [60/175] KL=0.765 top1_changed=True
+  D3 [61/175] KL=0.625 top1_changed=False
+  D3 [62/175] KL=0.006 top1_changed=False
+  D3 [63/175] KL=0.049 top1_changed=False
+  D3 [64/175] KL=0.200 top1_changed=False
+  D3 [65/175] KL=0.343 top1_changed=True
+  D3 [66/175] KL=0.198 top1_changed=False
+  D3 [67/175] KL=0.096 top1_changed=False
+  D3 [68/175] KL=0.262 top1_changed=False
+  D3 [69/175] KL=0.170 top1_changed=False
+  D3 [70/175] KL=0.159 top1_changed=False
+  D3 [71/175] KL=0.307 top1_changed=True
+  D3 [72/175] KL=0.131 top1_changed=True
+  D3 [73/175] KL=0.150 top1_changed=False
+  D3 [74/175] KL=0.074 top1_changed=False
+  D3 [75/175] KL=1.072 top1_changed=False
+  D3 [76/175] KL=0.429 top1_changed=True
+  D3 [77/175] KL=0.334 top1_changed=False
+  D3 [78/175] KL=0.172 top1_changed=False
+  D3 [79/175] KL=0.389 top1_changed=True
+  D3 [80/175] KL=0.235 top1_changed=False
+  D3 [81/175] KL=0.049 top1_changed=False
+  D3 [82/175] KL=0.139 top1_changed=False
+  D3 [83/175] KL=0.200 top1_changed=False
+  D3 [84/175] KL=0.265 top1_changed=False
+  D3 [85/175] KL=0.276 top1_changed=False
+  D3 [86/175] KL=0.392 top1_changed=False
+  D3 [87/175] KL=0.107 top1_changed=False
+  D3 [88/175] KL=0.090 top1_changed=True
+  D3 [89/175] KL=0.315 top1_changed=False
+  D3 [90/175] KL=0.657 top1_changed=False
+  D3 [91/175] KL=0.289 top1_changed=True
+  D3 [92/175] KL=0.167 top1_changed=False
+  D3 [93/175] KL=0.036 top1_changed=False
+  D3 [94/175] KL=0.126 top1_changed=True
+  D3 [95/175] KL=1.412 top1_changed=False
+  D3 [96/175] KL=0.498 top1_changed=False
+  D3 [97/175] KL=0.174 top1_changed=False
+  D3 [98/175] KL=0.006 top1_changed=False
+  D3 [99/175] KL=0.165 top1_changed=True
+  D3 [100/175] KL=0.244 top1_changed=False
+  D3 [101/175] KL=0.093 top1_changed=False
+  D3 [102/175] KL=0.293 top1_changed=False
+  D3 [103/175] KL=0.223 top1_changed=False
+  D3 [104/175] KL=0.119 top1_changed=False
+  D3 [105/175] KL=1.045 top1_changed=True
+  D3 [106/175] KL=0.180 top1_changed=False
+  D3 [107/175] KL=0.120 top1_changed=False
+  D3 [108/175] KL=0.015 top1_changed=False
+  D3 [109/175] KL=0.279 top1_changed=True
+  D3 [110/175] KL=0.246 top1_changed=False
+  D3 [111/175] KL=0.316 top1_changed=False
+  D3 [112/175] KL=0.205 top1_changed=True
+  D3 [113/175] KL=0.080 top1_changed=False
+  D3 [114/175] KL=0.341 top1_changed=True
+  D3 [115/175] KL=0.683 top1_changed=False
+  D3 [116/175] KL=0.242 top1_changed=False
+  D3 [117/175] KL=0.218 top1_changed=False
+  D3 [118/175] KL=0.175 top1_changed=False
+  D3 [119/175] KL=0.440 top1_changed=False
+  D3 [120/175] KL=0.210 top1_changed=False
+  D3 [121/175] KL=0.113 top1_changed=False
+  D3 [122/175] KL=0.081 top1_changed=False
+  D3 [123/175] KL=0.172 top1_changed=False
+  D3 [124/175] KL=0.509 top1_changed=True
+  D3 [125/175] KL=0.233 top1_changed=True
+  D3 [126/175] KL=0.620 top1_changed=False
+  D3 [127/175] KL=0.054 top1_changed=False
+  D3 [128/175] KL=0.520 top1_changed=True
+  D3 [129/175] KL=0.273 top1_changed=True
+  D3 [130/175] KL=0.247 top1_changed=False
+  D3 [131/175] KL=0.101 top1_changed=False
+  D3 [132/175] KL=0.137 top1_changed=False
+  D3 [133/175] KL=0.105 top1_changed=False
+  D3 [134/175] KL=1.275 top1_changed=True
+  D3 [135/175] KL=0.023 top1_changed=False
+  D3 [136/175] KL=0.293 top1_changed=False
+  D3 [137/175] KL=0.045 top1_changed=False
+  D3 [138/175] KL=0.173 top1_changed=False
+  D3 [139/175] KL=0.301 top1_changed=False
+  D3 [140/175] KL=0.164 top1_changed=False
+  D3 [141/175] KL=0.263 top1_changed=False
+  D3 [142/175] KL=0.318 top1_changed=False
+  D3 [143/175] KL=0.241 top1_changed=False
+  D3 [144/175] KL=0.211 top1_changed=True
+  D3 [145/175] KL=0.099 top1_changed=False
+  D3 [146/175] KL=0.158 top1_changed=False
+  D3 [147/175] KL=0.355 top1_changed=False
+  D3 [148/175] KL=0.014 top1_changed=False
+  D3 [149/175] KL=0.094 top1_changed=False
+  D3 [150/175] KL=0.182 top1_changed=True
+  D3 [151/175] KL=0.133 top1_changed=False
+  D3 [152/175] KL=0.407 top1_changed=True
+  D3 [153/175] KL=0.014 top1_changed=False
+  D3 [154/175] KL=0.154 top1_changed=False
+  D3 [155/175] KL=0.237 top1_changed=False
+  D3 [156/175] KL=0.132 top1_changed=True
+  D3 [157/175] KL=0.337 top1_changed=False
+  D3 [158/175] KL=0.128 top1_changed=False
+  D3 [159/175] KL=0.231 top1_changed=False
+  D3 [160/175] KL=0.182 top1_changed=False
+  D3 [161/175] KL=0.246 top1_changed=False
+  D3 [162/175] KL=0.373 top1_changed=False
+  D3 [163/175] KL=0.267 top1_changed=False
+  D3 [164/175] KL=0.142 top1_changed=True
+  D3 [165/175] KL=0.173 top1_changed=True
+  D3 [166/175] KL=1.123 top1_changed=False
+  D3 [167/175] KL=0.043 top1_changed=False
+  D3 [168/175] KL=0.112 top1_changed=False
+  D3 [169/175] KL=0.521 top1_changed=False
+  D3 [170/175] KL=0.739 top1_changed=True
+  D3 [171/175] KL=0.419 top1_changed=False
+  D3 [172/175] KL=0.226 top1_changed=True
+  D3 [173/175] KL=0.007 top1_changed=False
+  D3 [174/175] KL=0.549 top1_changed=True
+  D3 [175/175] KL=0.463 top1_changed=False
+
+  D3 Summary: mean_KL=0.277, top1_change_rate=0.251
+  Correlation: {'n_samples': 10, 'anchor_vs_entropy': {'rho': nan, 'p': nan}, 'anchor_vs_consistency': {'rho': nan, 'p': nan}}
+
+All experiments complete. Results in: /home/kana5123/ATLASVLA/outputs/phase3_gate_expanded/verification/spatialvla-4b
+  Found existing sample_list with 175 samples
+  Reusing existing sample list
+
+============================================================
+  Running Exp D for spatialvla-4b
+  Device: cuda:2
+  N samples: 200
+  Output: /home/kana5123/ATLASVLA/outputs/phase3_gate_expanded/verification/spatialvla-4b
+  Command: /home/kana5123/miniconda3/envs/interp/bin/python run_phase3_exp_de.py --model spatialvla-4b --device cuda:2 --gate1_dir /home/kana5123/ATLASVLA/outputs/phase3_gate_expanded/spatialvla-4b --output_dir /home/kana5123/ATLASVLA/outputs/phase3_gate_expanded/verification/spatialvla-4b --n_samples 200 --experiments d
+============================================================
+
+
+  spatialvla-4b completed in 78.5 minutes (exit code: 0)

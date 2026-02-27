@@ -1,0 +1,67 @@
+{
+  "episode_id": 1,
+  "step_id": 46,
+  "instruction": "put the blue cube on the right side of the table on top of the rectangular block",
+  "condition": "var_strict",
+  "condition_desc": "VAR(p=0.6,rho=0.8)",
+  "predicted_action": [
+    -0.0008798100457472133,
+    0.004756034616161739,
+    -0.0072565262611298045,
+    -0.03270718647919457,
+    0.024674261024769578,
+    0.032169250134159416,
+    -0.10196078431372552
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31875,
+    31856,
+    31927,
+    31924,
+    31824,
+    31851,
+    31885
+  ],
+  "mse_per_dim": [
+    7.740657165977135e-07,
+    2.261986527012874e-05,
+    5.26571733784665e-05,
+    0.0010697600473848082,
+    0.0006088191571184631,
+    0.0010348606541941156,
+    1.2143175701653213
+  ],
+  "mse_mean": 0.17387243730405483,
+  "mse_spatial": 0.00046491516051042997,
+  "mse_gripper": 1.2143175701653213,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "cube",
+      "side",
+      "table",
+      "top",
+      "block"
+    ],
+    "num_boxes": 3,
+    "num_patches": 256,
+    "patch_coverage": 1.0
+  }
+}

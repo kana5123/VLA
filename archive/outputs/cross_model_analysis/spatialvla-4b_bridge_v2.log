@@ -1,0 +1,16 @@
+2026-02-22 08:13:18.875983: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 08:13:18.916543: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 08:13:18.916580: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 08:13:18.917981: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 08:13:18.925037: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 08:13:19.749996: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  5.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.43it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.52it/s]
+  Loaded: 26L x 8H, hidden=2304
+  Boundaries: 0 vision, 266 text
+Per-head visualizations saved to /home/kana5123/ATLASVLA/outputs/cross_model_analysis/spatialvla-4b/bridge_v2/
+  Saved: /home/kana5123/ATLASVLA/outputs/cross_model_analysis/spatialvla-4b/bridge_v2/ep000_step000.json
+  Saved: /home/kana5123/ATLASVLA/outputs/cross_model_analysis/spatialvla-4b/bridge_v2/ep000_step000_perhead.json

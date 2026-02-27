@@ -1,0 +1,1604 @@
+{
+  "model": "tracevla-phi3v",
+  "model_hf_id": "furonghuang-lab/tracevla_phi3v",
+  "architecture": "phi3_v",
+  "dataset": "bridge_v2",
+  "episode_id": 0,
+  "step_id": 0,
+  "instruction": "close oven",
+  "token_boundaries": {
+    "vision_start": 4,
+    "vision_end": 317,
+    "text_start": 0,
+    "text_end": 336,
+    "total_seq_len": 336,
+    "num_vision_tokens": 313,
+    "num_text_tokens": 23
+  },
+  "attention_analysis": {
+    "action_0_x": {
+      "layer_00": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 329,
+            "type": "text",
+            "text_idx": 329,
+            "text": "ven",
+            "score": 0.01177978515625
+          },
+          {
+            "rank": 1,
+            "token_idx": 330,
+            "type": "text",
+            "text_idx": 330,
+            "text": "?",
+            "score": 0.01129150390625
+          },
+          {
+            "rank": 2,
+            "token_idx": 320,
+            "type": "text",
+            "text_idx": 320,
+            "text": "What",
+            "score": 0.01116943359375
+          },
+          {
+            "rank": 3,
+            "token_idx": 335,
+            "type": "text",
+            "text_idx": 335,
+            "text": "<|assistant|>",
+            "score": 0.0107421875
+          },
+          {
+            "rank": 4,
+            "token_idx": 322,
+            "type": "text",
+            "text_idx": 322,
+            "text": "should",
+            "score": 0.0106201171875
+          }
+        ]
+      },
+      "layer_01": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 319,
+            "type": "text",
+            "text_idx": 319,
+            "text": "\n",
+            "score": 0.146484375
+          },
+          {
+            "rank": 1,
+            "token_idx": 334,
+            "type": "text",
+            "text_idx": 334,
+            "text": "\n",
+            "score": 0.0947265625
+          },
+          {
+            "rank": 2,
+            "token_idx": 323,
+            "type": "text",
+            "text_idx": 323,
+            "text": "the",
+            "score": 0.07861328125
+          },
+          {
+            "rank": 3,
+            "token_idx": 3,
+            "type": "text",
+            "text_idx": 3,
+            "text": "\n",
+            "score": 0.06494140625
+          },
+          {
+            "rank": 4,
+            "token_idx": 331,
+            "type": "text",
+            "text_idx": 331,
+            "text": "\n",
+            "score": 0.054443359375
+          }
+        ]
+      },
+      "layer_02": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 3,
+            "type": "text",
+            "text_idx": 3,
+            "text": "\n",
+            "score": 0.15625
+          },
+          {
+            "rank": 1,
+            "token_idx": 319,
+            "type": "text",
+            "text_idx": 319,
+            "text": "\n",
+            "score": 0.154296875
+          },
+          {
+            "rank": 2,
+            "token_idx": 323,
+            "type": "text",
+            "text_idx": 323,
+            "text": "the",
+            "score": 0.091796875
+          },
+          {
+            "rank": 3,
+            "token_idx": 2,
+            "type": "text",
+            "text_idx": 2,
+            "text": "",
+            "score": 0.06494140625
+          },
+          {
+            "rank": 4,
+            "token_idx": 331,
+            "type": "text",
+            "text_idx": 331,
+            "text": "\n",
+            "score": 0.051513671875
+          }
+        ]
+      },
+      "layer_03": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 160,
+            "type": "vision",
+            "patch_idx": 156,
+            "patch_row": 9,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.11474609375
+          },
+          {
+            "rank": 1,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.1123046875
+          },
+          {
+            "rank": 2,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.11083984375
+          },
+          {
+            "rank": 3,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.1103515625
+          },
+          {
+            "rank": 4,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.10888671875
+          }
+        ]
+      },
+      "layer_04": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.11474609375
+          },
+          {
+            "rank": 1,
+            "token_idx": 160,
+            "type": "vision",
+            "patch_idx": 156,
+            "patch_row": 9,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.11376953125
+          },
+          {
+            "rank": 2,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.11279296875
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.11181640625
+          },
+          {
+            "rank": 4,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1103515625
+          }
+        ]
+      },
+      "layer_05": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.11669921875
+          },
+          {
+            "rank": 1,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.11572265625
+          },
+          {
+            "rank": 2,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.115234375
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.11376953125
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.11328125
+          }
+        ]
+      },
+      "layer_06": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.11669921875
+          },
+          {
+            "rank": 1,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.115234375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.11083984375
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.10986328125
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.10888671875
+          }
+        ]
+      },
+      "layer_07": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.11376953125
+          },
+          {
+            "rank": 1,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.11279296875
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.10302734375
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.1025390625
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.1025390625
+          }
+        ]
+      },
+      "layer_08": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.109375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.109375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.095703125
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.0947265625
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.0947265625
+          }
+        ]
+      },
+      "layer_09": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1064453125
+          },
+          {
+            "rank": 1,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.10595703125
+          },
+          {
+            "rank": 2,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.09228515625
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.091796875
+          },
+          {
+            "rank": 4,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.09130859375
+          }
+        ]
+      },
+      "layer_10": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.10595703125
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.10595703125
+          },
+          {
+            "rank": 2,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.09130859375
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.09130859375
+          },
+          {
+            "rank": 4,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.09130859375
+          }
+        ]
+      },
+      "layer_11": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.09765625
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.09716796875
+          },
+          {
+            "rank": 2,
+            "token_idx": 327,
+            "type": "text",
+            "text_idx": 327,
+            "text": "close",
+            "score": 0.08740234375
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.0830078125
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.08251953125
+          }
+        ]
+      },
+      "layer_12": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.10888671875
+          },
+          {
+            "rank": 1,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.1083984375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.091796875
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.0908203125
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.0908203125
+          }
+        ]
+      },
+      "layer_13": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.06396484375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.06396484375
+          },
+          {
+            "rank": 2,
+            "token_idx": 327,
+            "type": "text",
+            "text_idx": 327,
+            "text": "close",
+            "score": 0.060791015625
+          },
+          {
+            "rank": 3,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.0556640625
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.05517578125
+          }
+        ]
+      },
+      "layer_14": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.07666015625
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.076171875
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.06298828125
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.0625
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.0625
+          }
+        ]
+      },
+      "layer_15": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.099609375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.0986328125
+          },
+          {
+            "rank": 2,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.07958984375
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.07861328125
+          },
+          {
+            "rank": 4,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.07861328125
+          }
+        ]
+      },
+      "layer_16": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.09033203125
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.08984375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.0751953125
+          },
+          {
+            "rank": 3,
+            "token_idx": 68,
+            "type": "vision",
+            "patch_idx": 64,
+            "patch_row": 4,
+            "patch_col": 0,
+            "grid_size": 16,
+            "score": 0.07470703125
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.07470703125
+          }
+        ]
+      },
+      "layer_17": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.07763671875
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.0771484375
+          },
+          {
+            "rank": 2,
+            "token_idx": 68,
+            "type": "vision",
+            "patch_idx": 64,
+            "patch_row": 4,
+            "patch_col": 0,
+            "grid_size": 16,
+            "score": 0.06494140625
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.06494140625
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.064453125
+          }
+        ]
+      },
+      "layer_18": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.06787109375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.0673828125
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.0576171875
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.0576171875
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.05712890625
+          }
+        ]
+      },
+      "layer_19": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.10791015625
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1064453125
+          },
+          {
+            "rank": 2,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.08837890625
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.08837890625
+          },
+          {
+            "rank": 4,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.08837890625
+          }
+        ]
+      },
+      "layer_20": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.10693359375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1064453125
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.08935546875
+          },
+          {
+            "rank": 3,
+            "token_idx": 68,
+            "type": "vision",
+            "patch_idx": 64,
+            "patch_row": 4,
+            "patch_col": 0,
+            "grid_size": 16,
+            "score": 0.08837890625
+          },
+          {
+            "rank": 4,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.08837890625
+          }
+        ]
+      },
+      "layer_21": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.10546875
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.10498046875
+          },
+          {
+            "rank": 2,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.08740234375
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.08740234375
+          },
+          {
+            "rank": 4,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.0869140625
+          }
+        ]
+      },
+      "layer_22": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.11279296875
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.11181640625
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.09326171875
+          },
+          {
+            "rank": 3,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.09326171875
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.09326171875
+          }
+        ]
+      },
+      "layer_23": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.115234375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.11474609375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.095703125
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.09375
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.09375
+          }
+        ]
+      },
+      "layer_24": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.11669921875
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1162109375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.09619140625
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.0947265625
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.09423828125
+          }
+        ]
+      },
+      "layer_25": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.11279296875
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1123046875
+          },
+          {
+            "rank": 2,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.091796875
+          },
+          {
+            "rank": 3,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.09130859375
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.09033203125
+          }
+        ]
+      },
+      "layer_26": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.1240234375
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.123046875
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.095703125
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.09375
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.09375
+          }
+        ]
+      },
+      "layer_27": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.1103515625
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.109375
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.0908203125
+          },
+          {
+            "rank": 3,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.08935546875
+          },
+          {
+            "rank": 4,
+            "token_idx": 55,
+            "type": "vision",
+            "patch_idx": 51,
+            "patch_row": 3,
+            "patch_col": 3,
+            "grid_size": 16,
+            "score": 0.0888671875
+          }
+        ]
+      },
+      "layer_28": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.140625
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.1376953125
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.1064453125
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.10302734375
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.1025390625
+          }
+        ]
+      },
+      "layer_29": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.11962890625
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.119140625
+          },
+          {
+            "rank": 2,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.0927734375
+          },
+          {
+            "rank": 3,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.0927734375
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.0908203125
+          }
+        ]
+      },
+      "layer_30": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.10986328125
+          },
+          {
+            "rank": 1,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.10888671875
+          },
+          {
+            "rank": 2,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.08251953125
+          },
+          {
+            "rank": 3,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.08203125
+          },
+          {
+            "rank": 4,
+            "token_idx": 42,
+            "type": "vision",
+            "patch_idx": 38,
+            "patch_row": 2,
+            "patch_col": 6,
+            "grid_size": 16,
+            "score": 0.08056640625
+          }
+        ]
+      },
+      "layer_31": {
+        "top5": [
+          {
+            "rank": 0,
+            "token_idx": 335,
+            "type": "text",
+            "text_idx": 335,
+            "text": "<|assistant|>",
+            "score": 0.173828125
+          },
+          {
+            "rank": 1,
+            "token_idx": 0,
+            "type": "text",
+            "text_idx": 0,
+            "text": "<s>",
+            "score": 0.07080078125
+          },
+          {
+            "rank": 2,
+            "token_idx": 1,
+            "type": "text",
+            "text_idx": 1,
+            "text": "<|user|>",
+            "score": 0.0693359375
+          },
+          {
+            "rank": 3,
+            "token_idx": 16,
+            "type": "vision",
+            "patch_idx": 12,
+            "patch_row": 0,
+            "patch_col": 12,
+            "grid_size": 16,
+            "score": 0.056640625
+          },
+          {
+            "rank": 4,
+            "token_idx": 29,
+            "type": "vision",
+            "patch_idx": 25,
+            "patch_row": 1,
+            "patch_col": 9,
+            "grid_size": 16,
+            "score": 0.056396484375
+          }
+        ]
+      }
+    }
+  }
+}

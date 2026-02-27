@@ -1,0 +1,513 @@
+{
+  "calibration_episodes": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "num_steps": 209,
+  "elapsed_seconds": 330.1,
+  "architecture": {
+    "num_layers": 32,
+    "num_heads": 32,
+    "head_dim": 128,
+    "total_heads": 1024
+  },
+  "token_boundaries": {
+    "vision_start": 0,
+    "vision_end": 256,
+    "text_start": 256,
+    "text_end": 279,
+    "total_seq_len": 279,
+    "num_vision_tokens": 256,
+    "num_text_tokens": 23,
+    "pre_image_tokens": 0
+  },
+  "head_stats": {
+    "total_heads": 1024,
+    "specialists": 57,
+    "generalists": 967,
+    "specialist_ratio": 0.0557
+  },
+  "dim_specialist_counts": {
+    "x": 9,
+    "y": 4,
+    "z": 7,
+    "roll": 1,
+    "pitch": 2,
+    "yaw": 0,
+    "gripper": 34
+  },
+  "dim_similarity": {
+    "x-y": 0.8401,
+    "x-z": 0.7191,
+    "x-roll": 0.744,
+    "x-pitch": 0.6915,
+    "x-yaw": 0.6379,
+    "x-gripper": 0.5492,
+    "y-z": 0.7679,
+    "y-roll": 0.7392,
+    "y-pitch": 0.6681,
+    "y-yaw": 0.631,
+    "y-gripper": 0.5746,
+    "z-roll": 0.8191,
+    "z-pitch": 0.7261,
+    "z-yaw": 0.6886,
+    "z-gripper": 0.6525,
+    "roll-pitch": 0.8833,
+    "roll-yaw": 0.8184,
+    "roll-gripper": 0.7347,
+    "pitch-yaw": 0.9088,
+    "pitch-gripper": 0.8022,
+    "yaw-gripper": 0.9083
+  },
+  "action_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "importance_shape": [
+    7,
+    32,
+    32
+  ],
+  "top10_x": [
+    {
+      "layer": 18,
+      "head": 1,
+      "importance": 7.527604,
+      "importance_std": 2.853777
+    },
+    {
+      "layer": 12,
+      "head": 20,
+      "importance": 6.881397,
+      "importance_std": 3.364714
+    },
+    {
+      "layer": 11,
+      "head": 9,
+      "importance": 5.630719,
+      "importance_std": 3.254888
+    },
+    {
+      "layer": 13,
+      "head": 16,
+      "importance": 5.512887,
+      "importance_std": 3.857168
+    },
+    {
+      "layer": 14,
+      "head": 27,
+      "importance": 5.323086,
+      "importance_std": 2.258803
+    },
+    {
+      "layer": 14,
+      "head": 11,
+      "importance": 5.23536,
+      "importance_std": 2.15246
+    },
+    {
+      "layer": 29,
+      "head": 31,
+      "importance": 4.669884,
+      "importance_std": 1.804075
+    },
+    {
+      "layer": 14,
+      "head": 29,
+      "importance": 4.399456,
+      "importance_std": 2.024427
+    },
+    {
+      "layer": 12,
+      "head": 19,
+      "importance": 4.337895,
+      "importance_std": 1.614742
+    },
+    {
+      "layer": 8,
+      "head": 30,
+      "importance": 4.280182,
+      "importance_std": 1.469908
+    }
+  ],
+  "top10_y": [
+    {
+      "layer": 8,
+      "head": 30,
+      "importance": 10.661549,
+      "importance_std": 3.387954
+    },
+    {
+      "layer": 11,
+      "head": 26,
+      "importance": 9.129503,
+      "importance_std": 3.928341
+    },
+    {
+      "layer": 15,
+      "head": 8,
+      "importance": 8.804393,
+      "importance_std": 3.650899
+    },
+    {
+      "layer": 12,
+      "head": 20,
+      "importance": 8.688218,
+      "importance_std": 5.312553
+    },
+    {
+      "layer": 8,
+      "head": 23,
+      "importance": 8.016117,
+      "importance_std": 3.882656
+    },
+    {
+      "layer": 11,
+      "head": 19,
+      "importance": 6.999393,
+      "importance_std": 4.144302
+    },
+    {
+      "layer": 15,
+      "head": 10,
+      "importance": 6.622591,
+      "importance_std": 3.900906
+    },
+    {
+      "layer": 13,
+      "head": 16,
+      "importance": 6.410419,
+      "importance_std": 4.759527
+    },
+    {
+      "layer": 11,
+      "head": 24,
+      "importance": 6.259096,
+      "importance_std": 4.045083
+    },
+    {
+      "layer": 12,
+      "head": 12,
+      "importance": 5.945249,
+      "importance_std": 2.817262
+    }
+  ],
+  "top10_z": [
+    {
+      "layer": 13,
+      "head": 6,
+      "importance": 12.998056,
+      "importance_std": 3.308466
+    },
+    {
+      "layer": 14,
+      "head": 11,
+      "importance": 7.97751,
+      "importance_std": 2.773293
+    },
+    {
+      "layer": 8,
+      "head": 23,
+      "importance": 7.221941,
+      "importance_std": 3.356933
+    },
+    {
+      "layer": 16,
+      "head": 18,
+      "importance": 6.791782,
+      "importance_std": 2.663859
+    },
+    {
+      "layer": 13,
+      "head": 16,
+      "importance": 6.587852,
+      "importance_std": 3.636937
+    },
+    {
+      "layer": 10,
+      "head": 12,
+      "importance": 6.158359,
+      "importance_std": 3.005123
+    },
+    {
+      "layer": 14,
+      "head": 29,
+      "importance": 5.860469,
+      "importance_std": 2.626265
+    },
+    {
+      "layer": 14,
+      "head": 5,
+      "importance": 5.726016,
+      "importance_std": 2.264822
+    },
+    {
+      "layer": 15,
+      "head": 12,
+      "importance": 5.611025,
+      "importance_std": 2.359649
+    },
+    {
+      "layer": 5,
+      "head": 15,
+      "importance": 5.493345,
+      "importance_std": 2.014674
+    }
+  ],
+  "top10_roll": [
+    {
+      "layer": 14,
+      "head": 11,
+      "importance": 8.433219,
+      "importance_std": 3.24052
+    },
+    {
+      "layer": 14,
+      "head": 1,
+      "importance": 8.24308,
+      "importance_std": 3.818166
+    },
+    {
+      "layer": 5,
+      "head": 15,
+      "importance": 7.377782,
+      "importance_std": 5.418176
+    },
+    {
+      "layer": 15,
+      "head": 17,
+      "importance": 7.016243,
+      "importance_std": 3.226523
+    },
+    {
+      "layer": 9,
+      "head": 27,
+      "importance": 6.578128,
+      "importance_std": 3.892902
+    },
+    {
+      "layer": 15,
+      "head": 20,
+      "importance": 6.537615,
+      "importance_std": 3.80509
+    },
+    {
+      "layer": 14,
+      "head": 29,
+      "importance": 6.30259,
+      "importance_std": 2.955083
+    },
+    {
+      "layer": 8,
+      "head": 23,
+      "importance": 6.302584,
+      "importance_std": 3.503568
+    },
+    {
+      "layer": 15,
+      "head": 22,
+      "importance": 5.574296,
+      "importance_std": 4.104775
+    },
+    {
+      "layer": 14,
+      "head": 27,
+      "importance": 5.212499,
+      "importance_std": 3.002505
+    }
+  ],
+  "top10_pitch": [
+    {
+      "layer": 7,
+      "head": 9,
+      "importance": 10.313676,
+      "importance_std": 6.380458
+    },
+    {
+      "layer": 15,
+      "head": 20,
+      "importance": 8.778122,
+      "importance_std": 3.845325
+    },
+    {
+      "layer": 12,
+      "head": 26,
+      "importance": 7.700434,
+      "importance_std": 3.574515
+    },
+    {
+      "layer": 5,
+      "head": 15,
+      "importance": 7.28602,
+      "importance_std": 4.516633
+    },
+    {
+      "layer": 14,
+      "head": 1,
+      "importance": 7.197978,
+      "importance_std": 5.268564
+    },
+    {
+      "layer": 15,
+      "head": 17,
+      "importance": 6.976581,
+      "importance_std": 3.456573
+    },
+    {
+      "layer": 18,
+      "head": 1,
+      "importance": 6.903661,
+      "importance_std": 3.726429
+    },
+    {
+      "layer": 14,
+      "head": 17,
+      "importance": 6.879812,
+      "importance_std": 3.308191
+    },
+    {
+      "layer": 8,
+      "head": 0,
+      "importance": 6.684172,
+      "importance_std": 5.271286
+    },
+    {
+      "layer": 10,
+      "head": 13,
+      "importance": 6.681197,
+      "importance_std": 4.133049
+    }
+  ],
+  "top10_yaw": [
+    {
+      "layer": 9,
+      "head": 31,
+      "importance": 9.932847,
+      "importance_std": 3.129472
+    },
+    {
+      "layer": 15,
+      "head": 17,
+      "importance": 9.576521,
+      "importance_std": 4.011817
+    },
+    {
+      "layer": 7,
+      "head": 9,
+      "importance": 9.547189,
+      "importance_std": 3.513467
+    },
+    {
+      "layer": 15,
+      "head": 19,
+      "importance": 8.287235,
+      "importance_std": 3.34075
+    },
+    {
+      "layer": 10,
+      "head": 13,
+      "importance": 8.140299,
+      "importance_std": 3.099517
+    },
+    {
+      "layer": 12,
+      "head": 26,
+      "importance": 7.993251,
+      "importance_std": 3.269914
+    },
+    {
+      "layer": 8,
+      "head": 0,
+      "importance": 7.8274,
+      "importance_std": 4.356229
+    },
+    {
+      "layer": 8,
+      "head": 3,
+      "importance": 7.71594,
+      "importance_std": 4.395785
+    },
+    {
+      "layer": 16,
+      "head": 29,
+      "importance": 7.205623,
+      "importance_std": 3.848964
+    },
+    {
+      "layer": 14,
+      "head": 1,
+      "importance": 6.671382,
+      "importance_std": 3.538047
+    }
+  ],
+  "top10_gripper": [
+    {
+      "layer": 7,
+      "head": 9,
+      "importance": 17.082502,
+      "importance_std": 18.993101
+    },
+    {
+      "layer": 7,
+      "head": 25,
+      "importance": 15.920003,
+      "importance_std": 24.525856
+    },
+    {
+      "layer": 8,
+      "head": 4,
+      "importance": 11.193412,
+      "importance_std": 10.059991
+    },
+    {
+      "layer": 9,
+      "head": 31,
+      "importance": 11.035934,
+      "importance_std": 7.926058
+    },
+    {
+      "layer": 10,
+      "head": 13,
+      "importance": 10.102,
+      "importance_std": 7.525746
+    },
+    {
+      "layer": 5,
+      "head": 15,
+      "importance": 9.51703,
+      "importance_std": 10.402569
+    },
+    {
+      "layer": 8,
+      "head": 3,
+      "importance": 8.943691,
+      "importance_std": 7.791231
+    },
+    {
+      "layer": 15,
+      "head": 17,
+      "importance": 8.041801,
+      "importance_std": 5.555689
+    },
+    {
+      "layer": 14,
+      "head": 1,
+      "importance": 7.582109,
+      "importance_std": 4.627545
+    },
+    {
+      "layer": 9,
+      "head": 6,
+      "importance": 7.545122,
+      "importance_std": 7.875335
+    }
+  ]
+}

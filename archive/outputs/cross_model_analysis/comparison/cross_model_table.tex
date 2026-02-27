@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Cross-model attention distribution analysis. Vision[0] denotes the attention sink token; Vision[1:] denotes useful (non-sink) vision tokens. All values are mean attention fractions averaged across all layers, heads, and action tokens.}
+  \label{tab:cross_model_sink}
+  \begin{tabular}{lcccccc}
+    \toprule
+    Model & Layers & Heads & Vision[0] $\downarrow$ & Text & Vision[1:] $\uparrow$ & Action \\
+    \midrule
+    ecot-7b & 32 & 32 & 0.745 & 0.103 & 0.087 & 0.065 \\
+    openvla-7b & 32 & 32 & 0.454 & 0.400 & 0.097 & 0.049 \\
+    spatialvla-4b & 26 & 8 & 0.001 & 0.753 & 0.000 & 0.247 \\
+    tracevla-phi3v & 32 & 32 & 0.002 & 0.388 & 0.610 & 0.000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,0 +1,188 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-24 04:12:17.123149: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 04:12:17.159572: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-24 04:12:17.159600: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-24 04:12:17.160659: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-24 04:12:17.166443: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-24 04:12:17.944699: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Loading openvla-7b...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.32it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.81it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+trainable params: 1,048,576 || all params: 7,542,285,760 || trainable%: 0.0139
+
+============================================================
+LoRA Baseline Training
+  Model: openvla-7b
+  LoRA rank: 16, alpha: 32
+  Target layers: [28, 29, 30, 31]
+  Target modules: ['q_proj', 'v_proj']
+  Micro-batch: 8 samples/forward
+  Batch size: 64 (per-GPU: 64)
+  Seed: 42
+  Devices: 1 GPU(s)
+============================================================
+
+Creating data loaders...
+Episode split: train=42548, val=5318, test=5320
+  [train] 1109516 steps from 30952 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+Step     50 | Loss 1.3038 | GradNorm 0.6366 | LR 2.57e-05
+Step    100 | Loss 0.7363 | GradNorm 0.3706 | LR 5.05e-05
+Step    150 | Loss 0.6962 | GradNorm 0.3692 | LR 7.52e-05
+Step    200 | Loss 0.5540 | GradNorm 0.0762 | LR 1.00e-04
+Step    250 | Loss 0.5223 | GradNorm 0.0706 | LR 1.00e-04
+Step    300 | Loss 0.5631 | GradNorm 0.1521 | LR 1.00e-04
+Step    350 | Loss 0.5022 | GradNorm 0.0746 | LR 1.00e-04
+Step    400 | Loss 0.4937 | GradNorm 0.0887 | LR 1.00e-04
+Step    450 | Loss 0.4803 | GradNorm 0.0870 | LR 1.00e-04
+Step    500 | Loss 0.5111 | GradNorm 0.0808 | LR 1.00e-04
+  >>> Val Loss: 4.5145 (best: inf)
+Step    550 | Loss 0.5306 | GradNorm 0.0880 | LR 1.00e-04
+Step    600 | Loss 0.4870 | GradNorm 0.0855 | LR 1.00e-04
+Step    650 | Loss 0.5195 | GradNorm 0.0962 | LR 1.00e-04
+Step    700 | Loss 0.5051 | GradNorm 0.1314 | LR 1.00e-04
+Step    750 | Loss 0.4885 | GradNorm 0.1459 | LR 1.00e-04
+Step    800 | Loss 0.5211 | GradNorm 0.0987 | LR 1.00e-04
+Step    850 | Loss 0.4513 | GradNorm 0.1519 | LR 1.00e-04
+Step    900 | Loss 0.5030 | GradNorm 0.0845 | LR 1.00e-04
+Step    950 | Loss 0.5163 | GradNorm 0.1034 | LR 1.00e-04
+Step   1000 | Loss 0.5112 | GradNorm 0.1350 | LR 1.00e-04
+  >>> Val Loss: 4.4859 (best: 4.5145)
+Step   1050 | Loss 0.4793 | GradNorm 0.1102 | LR 1.00e-04
+Step   1100 | Loss 0.4833 | GradNorm 0.0872 | LR 1.00e-04
+Step   1150 | Loss 0.4504 | GradNorm 0.1489 | LR 1.00e-04
+Step   1200 | Loss 0.4671 | GradNorm 0.1491 | LR 1.00e-04
+Step   1250 | Loss 0.5048 | GradNorm 0.0973 | LR 1.00e-04
+Step   1300 | Loss 0.5088 | GradNorm 0.1222 | LR 1.00e-04
+Step   1350 | Loss 0.5106 | GradNorm 0.1255 | LR 1.00e-04
+Step   1400 | Loss 0.4569 | GradNorm 0.1780 | LR 1.00e-04
+Step   1450 | Loss 0.4878 | GradNorm 0.0943 | LR 1.00e-04
+Step   1500 | Loss 0.4881 | GradNorm 0.1273 | LR 1.00e-04
+  >>> Val Loss: 4.5638 (best: 4.4859)
+Step   1550 | Loss 0.5042 | GradNorm 0.1506 | LR 1.00e-04
+Step   1600 | Loss 0.4654 | GradNorm 0.1483 | LR 1.00e-04
+Step   1650 | Loss 0.5085 | GradNorm 0.2004 | LR 1.00e-04
+Step   1700 | Loss 0.5148 | GradNorm 0.1386 | LR 1.00e-04
+Step   1750 | Loss 0.4889 | GradNorm 0.0807 | LR 1.00e-04
+Step   1800 | Loss 0.5090 | GradNorm 0.1233 | LR 1.00e-04
+Step   1850 | Loss 0.4615 | GradNorm 0.1294 | LR 1.00e-04
+Step   1900 | Loss 0.4623 | GradNorm 0.0961 | LR 1.00e-04
+Step   1950 | Loss 0.4814 | GradNorm 0.1573 | LR 1.00e-04
+Step   2000 | Loss 0.4675 | GradNorm 0.1591 | LR 1.00e-04
+  >>> Val Loss: 4.6602 (best: 4.4859)
+Step   2050 | Loss 0.4850 | GradNorm 0.1672 | LR 1.00e-04
+Step   2100 | Loss 0.4839 | GradNorm 0.0914 | LR 1.00e-04
+Step   2150 | Loss 0.4207 | GradNorm 0.1981 | LR 1.00e-04
+Step   2200 | Loss 0.5200 | GradNorm 0.1555 | LR 1.00e-04
+Step   2250 | Loss 0.4884 | GradNorm 0.1763 | LR 1.00e-04
+Step   2300 | Loss 0.4348 | GradNorm 0.0972 | LR 1.00e-04
+Step   2350 | Loss 0.4966 | GradNorm 0.1008 | LR 1.00e-04
+Step   2400 | Loss 0.4956 | GradNorm 0.0980 | LR 1.00e-04
+Step   2450 | Loss 0.5377 | GradNorm 0.1911 | LR 1.00e-04
+Step   2500 | Loss 0.4844 | GradNorm 0.1088 | LR 1.00e-04
+  >>> Val Loss: 4.6112 (best: 4.4859)
+Step   2550 | Loss 0.4689 | GradNorm 0.1126 | LR 1.00e-04
+Step   2600 | Loss 0.4677 | GradNorm 0.1339 | LR 1.00e-04
+Step   2650 | Loss 0.4732 | GradNorm 0.1187 | LR 1.00e-04
+Step   2700 | Loss 0.4899 | GradNorm 0.1038 | LR 1.00e-04
+Step   2750 | Loss 0.4910 | GradNorm 0.1472 | LR 1.00e-04
+Step   2800 | Loss 0.4540 | GradNorm 0.0831 | LR 1.00e-04
+Step   2850 | Loss 0.4727 | GradNorm 0.1209 | LR 1.00e-04
+Step   2900 | Loss 0.4831 | GradNorm 0.1021 | LR 1.00e-04
+Step   2950 | Loss 0.4557 | GradNorm 0.1036 | LR 1.00e-04
+Step   3000 | Loss 0.4226 | GradNorm 0.0886 | LR 1.00e-04
+  >>> Val Loss: 4.9902 (best: 4.4859)
+Step   3050 | Loss 0.5111 | GradNorm 0.1414 | LR 1.00e-04
+Step   3100 | Loss 0.4876 | GradNorm 0.1914 | LR 1.00e-04
+Step   3150 | Loss 0.4763 | GradNorm 0.0925 | LR 1.00e-04
+Step   3200 | Loss 0.4829 | GradNorm 0.1018 | LR 1.00e-04
+Step   3250 | Loss 0.4997 | GradNorm 0.1438 | LR 1.00e-04
+Step   3300 | Loss 0.4815 | GradNorm 0.1151 | LR 1.00e-04
+Step   3350 | Loss 0.4829 | GradNorm 0.0963 | LR 1.00e-04
+Step   3400 | Loss 0.4624 | GradNorm 0.1311 | LR 1.00e-04
+Step   3450 | Loss 0.4963 | GradNorm 0.0910 | LR 1.00e-04
+Step   3500 | Loss 0.4687 | GradNorm 0.1444 | LR 1.00e-04
+  >>> Val Loss: 4.9720 (best: 4.4859)
+Step   3550 | Loss 0.4846 | GradNorm 0.0831 | LR 1.00e-04
+Step   3600 | Loss 0.5137 | GradNorm 0.1102 | LR 1.00e-04
+Step   3650 | Loss 0.4942 | GradNorm 0.1241 | LR 1.00e-04
+Step   3700 | Loss 0.4977 | GradNorm 0.1058 | LR 1.00e-04
+Step   3750 | Loss 0.5058 | GradNorm 0.1060 | LR 1.00e-04
+Step   3800 | Loss 0.4957 | GradNorm 0.1281 | LR 1.00e-04
+Step   3850 | Loss 0.5042 | GradNorm 0.0963 | LR 1.00e-04
+Step   3900 | Loss 0.5035 | GradNorm 0.1112 | LR 1.00e-04
+Step   3950 | Loss 0.4750 | GradNorm 0.0848 | LR 1.00e-04
+Step   4000 | Loss 0.4872 | GradNorm 0.0894 | LR 1.00e-04
+  >>> Val Loss: 5.0521 (best: 4.4859)
+Step   4050 | Loss 0.4774 | GradNorm 0.1384 | LR 1.00e-04
+Step   4100 | Loss 0.4682 | GradNorm 0.1306 | LR 1.00e-04
+Step   4150 | Loss 0.5125 | GradNorm 0.1778 | LR 1.00e-04
+Step   4200 | Loss 0.4861 | GradNorm 0.1098 | LR 1.00e-04
+Step   4250 | Loss 0.5054 | GradNorm 0.1269 | LR 1.00e-04
+Step   4300 | Loss 0.4847 | GradNorm 0.1771 | LR 1.00e-04
+Step   4350 | Loss 0.4984 | GradNorm 0.0819 | LR 1.00e-04
+Step   4400 | Loss 0.4827 | GradNorm 0.1740 | LR 1.00e-04
+Step   4450 | Loss 0.4688 | GradNorm 0.1119 | LR 1.00e-04
+Step   4500 | Loss 0.5017 | GradNorm 0.1181 | LR 1.00e-04
+  >>> Val Loss: 5.2528 (best: 4.4859)
+Step   4550 | Loss 0.4770 | GradNorm 0.1475 | LR 1.00e-04
+Step   4600 | Loss 0.4638 | GradNorm 0.1140 | LR 1.00e-04
+Step   4650 | Loss 0.4556 | GradNorm 0.0943 | LR 1.00e-04
+Step   4700 | Loss 0.4721 | GradNorm 0.1007 | LR 1.00e-04
+Step   4750 | Loss 0.4918 | GradNorm 0.1219 | LR 1.00e-04
+Step   4800 | Loss 0.4528 | GradNorm 0.1204 | LR 1.00e-04
+Step   4850 | Loss 0.5021 | GradNorm 0.0983 | LR 1.00e-04
+Step   4900 | Loss 0.4377 | GradNorm 0.1718 | LR 1.00e-04
+Step   4950 | Loss 0.5139 | GradNorm 0.1403 | LR 1.00e-04
+Step   5000 | Loss 0.4923 | GradNorm 0.1203 | LR 1.00e-04
+  >>> Val Loss: 5.2245 (best: 4.4859)
+Step   5050 | Loss 0.4971 | GradNorm 0.1168 | LR 1.00e-04
+Step   5100 | Loss 0.4594 | GradNorm 0.1422 | LR 1.00e-04
+Step   5150 | Loss 0.4669 | GradNorm 0.1187 | LR 1.00e-04
+Step   5200 | Loss 0.4843 | GradNorm 0.1578 | LR 1.00e-04
+Step   5250 | Loss 0.4910 | GradNorm 0.1065 | LR 1.00e-04
+Step   5300 | Loss 0.4490 | GradNorm 0.1031 | LR 1.00e-04
+Step   5350 | Loss 0.4786 | GradNorm 0.1068 | LR 1.00e-04
+Step   5400 | Loss 0.4987 | GradNorm 0.1638 | LR 1.00e-04
+Step   5450 | Loss 0.5118 | GradNorm 0.2200 | LR 1.00e-04
+Step   5500 | Loss 0.4596 | GradNorm 0.1501 | LR 1.00e-04
+  >>> Val Loss: 5.3950 (best: 4.4859)
+Step   5550 | Loss 0.4671 | GradNorm 0.1939 | LR 1.00e-04
+Step   5600 | Loss 0.4732 | GradNorm 0.0967 | LR 1.00e-04
+Step   5650 | Loss 0.4979 | GradNorm 0.0886 | LR 1.00e-04
+Step   5700 | Loss 0.5112 | GradNorm 0.1656 | LR 1.00e-04
+Step   5750 | Loss 0.4858 | GradNorm 0.1589 | LR 1.00e-04
+Step   5800 | Loss 0.4569 | GradNorm 0.0960 | LR 1.00e-04
+Step   5850 | Loss 0.4474 | GradNorm 0.1044 | LR 1.00e-04
+Step   5900 | Loss 0.4877 | GradNorm 0.1067 | LR 1.00e-04
+Step   5950 | Loss 0.4712 | GradNorm 0.1176 | LR 1.00e-04
+Step   6000 | Loss 0.4459 | GradNorm 0.1227 | LR 1.00e-04
+  >>> Val Loss: 5.5811 (best: 4.4859)
+Step   6050 | Loss 0.5011 | GradNorm 0.1774 | LR 1.00e-04
+Step   6100 | Loss 0.4803 | GradNorm 0.1640 | LR 1.00e-04
+Step   6150 | Loss 0.4731 | GradNorm 0.1711 | LR 1.00e-04
+Step   6200 | Loss 0.4496 | GradNorm 0.1214 | LR 1.00e-04
+Step   6250 | Loss 0.4924 | GradNorm 0.1222 | LR 1.00e-04
+Step   6300 | Loss 0.4884 | GradNorm 0.1419 | LR 1.00e-04
+Step   6350 | Loss 0.4820 | GradNorm 0.1061 | LR 1.00e-04
+Step   6400 | Loss 0.4783 | GradNorm 0.1420 | LR 1.00e-04
+Step   6450 | Loss 0.4966 | GradNorm 0.0939 | LR 1.00e-04
+Step   6500 | Loss 0.4881 | GradNorm 0.1272 | LR 1.00e-04
+  >>> Val Loss: 5.3840 (best: 4.4859)
+Step   6550 | Loss 0.4795 | GradNorm 0.1754 | LR 1.00e-04
+Step   6600 | Loss 0.4868 | GradNorm 0.1426 | LR 1.00e-04

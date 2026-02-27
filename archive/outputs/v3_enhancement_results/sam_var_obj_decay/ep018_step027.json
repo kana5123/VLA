@@ -1,0 +1,65 @@
+{
+  "episode_id": 18,
+  "step_id": 27,
+  "instruction": "Pick up the blue fork and place it on the left of the pot",
+  "condition": "sam_var_obj_decay",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + decay + SAM2",
+  "predicted_action": [
+    0.004712045985109648,
+    0.02612418277123387,
+    0.0033963100590249998,
+    0.033706613320930126,
+    -0.020876539060298155,
+    0.059569817387590124,
+    0.0
+  ],
+  "ground_truth_action": [
+    -0.004215567838400602,
+    0.025469278916716576,
+    0.005789660383015871,
+    -0.02277049608528614,
+    0.008560583926737309,
+    0.06370241194963455,
+    0.0
+  ],
+  "action_token_ids": [
+    31850,
+    31790,
+    31886,
+    31820,
+    31892,
+    31834,
+    31872
+  ],
+  "mse_per_dim": [
+    7.970228858173131e-05,
+    4.2889905866161104e-07,
+    5.728125773347209e-06,
+    0.003189663886881722,
+    0.0008665442097538517,
+    1.707833781423918e-05,
+    0.0
+  ],
+  "mse_mean": 0.0005941636782662218,
+  "mse_spatial": 0.0006931909579772588,
+  "mse_gripper": 0.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "fork",
+      "pot"
+    ],
+    "num_boxes": 1,
+    "num_patches": 18,
+    "patch_coverage": 0.0703125,
+    "segmentation": "sam2"
+  }
+}

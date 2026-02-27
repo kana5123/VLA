@@ -1,0 +1,16 @@
+{
+  "model": "openvla",
+  "ckpt": "openvla/openvla-7b",
+  "device": "6",
+  "timestamp": "20260227_073120",
+  "tasks": {
+    "pick_coke_can": {
+      "successes": 0,
+      "failures": 0,
+      "total": 0,
+      "success_rate": null,
+      "returncode": 1,
+      "elapsed_seconds": 93.8
+    }
+  }
+}

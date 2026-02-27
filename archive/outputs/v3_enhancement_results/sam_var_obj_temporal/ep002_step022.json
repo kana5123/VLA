@@ -1,0 +1,69 @@
+{
+  "episode_id": 2,
+  "step_id": 22,
+  "instruction": "put the red object into the pot",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    -0.0008798100457472133,
+    -0.0010716421534033849,
+    -0.00024124380639371432,
+    0.021573322972830433,
+    0.00591804922503579,
+    -0.02907907666762677,
+    0.0
+  ],
+  "ground_truth_action": [
+    -0.0024885456077754498,
+    0.0014177090488374233,
+    0.002528000855818391,
+    -0.004290650598704815,
+    -0.002742436248809099,
+    0.0024872052017599344,
+    0.0
+  ],
+  "action_token_ids": [
+    31875,
+    31874,
+    31900,
+    31839,
+    31852,
+    31889,
+    31872
+  ],
+  "mse_per_dim": [
+    2.588030108534306e-06,
+    6.196869408097757e-06,
+    7.668715999190237e-06,
+    0.0006689451289090737,
+    7.500400864267834e-05,
+    0.0009964301510575716,
+    0.0
+  ],
+  "mse_mean": 0.00025097612916073514,
+  "mse_spatial": 0.00029280548402085767,
+  "mse_gripper": 0.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "object",
+      "pot"
+    ],
+    "num_boxes": 2,
+    "num_patches": 46,
+    "patch_coverage": 0.1796875,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 13,
+    "motion_coverage": 0.05078125
+  }
+}

@@ -1,0 +1,57 @@
+\section{Introduction}
+\label{sec:intro}
+
+Vision-Language-Action (VLA) models have emerged as a promising paradigm for robotic manipulation, unifying visual perception, language understanding, and motor control within a single transformer architecture~\cite{brohan2023rt2, kim2024openvla, zheng2024tracevla, qu2025spatialvla}.
+By discretizing continuous actions into token sequences and framing policy learning as next-token prediction, VLAs inherit the scaling properties of large language models while conditioning on multimodal inputs.
+Recent models such as OpenVLA~\cite{kim2024openvla}, ECoT~\cite{zawalski2024ecot}, SpatialVLA~\cite{qu2025spatialvla}, and TraceVLA~\cite{zheng2024tracevla} have demonstrated competitive performance across diverse manipulation benchmarks, suggesting that the language-model backbone can indeed serve as an effective policy network.
+
+However, a critical question remains unanswered: \textit{how do VLA models internally route information from visual observations to action predictions?}
+In standard Vision-Language Models (VLMs), recent work on visual attention sinks~\cite{var2024} has shown that certain visual tokens absorb disproportionately high attention scores without contributing meaningfully to the output---a phenomenon inherited from the ``attention sink'' behavior of the underlying language model~\cite{xiao2024efficient}.
+These surplus-attention tokens can be identified through a discrepancy between their attention weight and their actual information contribution, measured via the hidden-state spike metric $\phi$.
+While VAR~\cite{var2024} demonstrates that redistributing attention away from such sinks can improve VLM performance, the implications for VLA models---where the output is not a text description but a \emph{physical action}---remain entirely unexplored.
+
+In this work, we conduct the first systematic analysis of attention routing pathologies in VLA models.
+We begin with a simple but crucial observation: \textbf{attention weight alone is insufficient to characterize the functional role of a token.}
+A token that receives high attention may be a \emph{bottleneck} (channeling critical information) or a \emph{sink} (absorbing attention without transmitting useful content), and these two cases have opposite implications for model robustness and interpretability.
+To distinguish them, we introduce a \textbf{dual-track analysis framework} that simultaneously measures:
+\begin{enumerate}[leftmargin=*,nosep]
+    \item the \emph{attention distribution} $\tilde{A}^\ell(j)$, capturing where the model ``looks'' when predicting an action, and
+    \item the \emph{contribution distribution} $\tilde{C}^\ell(j) \propto \| \alpha_{i,j}^{\ell} \cdot x_j^{\ell-1} W_{OV}^{\ell} \|$, capturing how much information each token actually transmits through the value-projection pathway.
+\end{enumerate}
+The relationship between these two distributions---whether they agree, disagree, or concentrate at different tokens---defines the model's routing topology.
+
+Applying this framework to four VLA architectures spanning three backbone families (LLaMA-2~\cite{touvron2023llama}, Gemma-2~\cite{team2024gemma}, Phi-3V~\cite{abdin2024phi3}), we discover a \textbf{three-way taxonomy} of attention routing patterns:
+
+\begin{itemize}[leftmargin=*,nosep]
+    \item \textbf{Bottleneck} (ECoT-7B, OpenVLA-7B): Both attention and contribution concentrate at a single position-anchored token, which captures $>$99\% of the contribution weight. Removing this token via value-zeroing causes output collapse ($\text{KL} > 1.6$, 45--60\% action flip rate). The position shortcut is encoded in Q/K weights and persists across all intervention strengths.
+
+    \item \textbf{Sink} (TraceVLA-Phi3V): Attention concentrates at a fixed position, but contribution remains distributed ($\sim$10\% top-1 share). Value-zeroing the anchor has near-zero effect ($\text{KL} = 0.01$, 5\% flip rate)---the classic attention sink pattern where the token absorbs attention without transmitting information.
+
+    \item \textbf{Normal} (SpatialVLA-4B): Both attention and contribution are content-grounded and distributed ($\sim$25\% top-1 share, JS mismatch $< 0.02$). No position shortcut is present, and the model exhibits the highest augmentation robustness (79\% consistency under five visual perturbations).
+\end{itemize}
+
+Critically, we show that these routing patterns have \textbf{direct consequences for action prediction quality}.
+Through a permutation-based position anchoring test (shuffling vision-token content while preserving positional indices), we confirm that bottleneck and sink models route information based on \emph{token position} rather than \emph{visual content}---a positional shortcut that bypasses the intended visual grounding.
+This shortcut correlates with degraded robustness: across models, augmentation consistency follows the ordering Normal (79\%) $>$ Bottleneck (38--63\%) $>$ Sink (55\%), and within the sink model, per-sample anchoring strength negatively correlates with consistency (Spearman $\rho = -0.694$, $p = 0.026$).
+
+To close the ``analysis $\to$ impact $\to$ fix'' loop, we investigate inference-time interventions that scale the key (K) or value (V) projections at the anchor position.
+Our experiments reveal a striking \textbf{differential mitigation} result:
+\begin{itemize}[leftmargin=*,nosep]
+    \item \textbf{Sink anchoring is fixable at inference time.} K-scaling at deep layers fully breaks the position shortcut in TraceVLA (anchoring drops from baseline to 0\% at any $\alpha < 1.0$) and improves augmentation consistency by $+$3\% (0.55 $\to$ 0.58), with no retraining required.
+    \item \textbf{Bottleneck anchoring is not.} Neither V-scaling nor K-scaling breaks the position shortcut in ECoT/OpenVLA (anchoring remains 100\% at all $\alpha$ values), and consistency actually worsens by 1--5\%. This implies the shortcut is globally distributed across layers, requiring training-time intervention.
+\end{itemize}
+This differential response provides the strongest evidence that bottleneck and sink are genuinely distinct phenomena, not merely different severities of the same failure mode.
+
+\paragraph{Contributions.}
+We summarize our contributions as follows:
+\begin{enumerate}[leftmargin=*,nosep]
+    \item We propose a \textbf{dual-track framework} (attention $\tilde{A}$ vs.\ contribution $\tilde{C}$) for analyzing information routing in VLA models, and use it to discover a \textbf{three-way taxonomy} (Bottleneck / Sink / Normal) across four architectures.
+
+    \item We demonstrate that this taxonomy is \textbf{causally grounded}: value-zero ablation confirms that bottleneck tokens carry critical information (KL $>$ 1.6) while sink tokens do not (KL $=$ 0.01), and position-permutation tests confirm that both pathologies rely on positional shortcuts rather than visual content.
+
+    \item We show that position-anchored routing \textbf{degrades action prediction robustness}, with augmentation consistency ranging from 79\% (Normal) to 38\% (Bottleneck), and provide per-sample statistical evidence linking anchoring strength to fragility ($\rho = -0.694$, $p = 0.026$).
+
+    \item We discover a \textbf{differential mitigation} response: inference-time K-scaling fixes sink-type anchoring ($+$3\% consistency) but fails on bottleneck-type anchoring ($-$3\% to $-$5\%), revealing that the two pathologies encode positional shortcuts at fundamentally different depths---shallow (deep-layer Q/K only) for sinks vs.\ globally distributed for bottlenecks.
+
+    \item We provide a \textbf{practical diagnostic and mitigation toolkit}: given a new VLA model, our dual-track analysis identifies which routing type it exhibits, and the differential K-scale test determines whether inference-time correction is possible or training-time intervention is required.
+\end{enumerate}

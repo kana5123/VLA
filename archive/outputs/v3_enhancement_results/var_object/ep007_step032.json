@@ -1,0 +1,64 @@
+{
+  "episode_id": 7,
+  "step_id": 32,
+  "instruction": "Move the blue fork to the lower right burner",
+  "condition": "var_object",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect",
+  "predicted_action": [
+    -0.0017745070106843092,
+    0.004432274795630346,
+    1.8581469707623643e-05,
+    -0.011633576927231923,
+    0.0005591315679690234,
+    0.009604077101922431,
+    -0.03137254901960784
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31879,
+    31857,
+    31899,
+    31891,
+    31860,
+    31865,
+    31876
+  ],
+  "mse_per_dim": [
+    3.148875130967763e-06,
+    1.9645059863980027e-05,
+    3.452710164953351e-10,
+    0.00013534011212182294,
+    3.1262811029949866e-07,
+    9.223829697967076e-05,
+    1.0637293348712031
+  ],
+  "mse_mean": 0.15199714574124013,
+  "mse_spatial": 4.178088624629292e-05,
+  "mse_gripper": 1.0637293348712031,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "fork",
+      "burner"
+    ],
+    "num_boxes": 4,
+    "num_patches": 165,
+    "patch_coverage": 0.64453125
+  }
+}

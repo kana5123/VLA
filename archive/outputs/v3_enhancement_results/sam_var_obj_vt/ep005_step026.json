@@ -1,0 +1,65 @@
+{
+  "episode_id": 5,
+  "step_id": 26,
+  "instruction": "take broccoli out of pan",
+  "condition": "sam_var_obj_vt",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + VTR(f=0.3) + SAM2",
+  "predicted_action": [
+    -0.0008798100457472133,
+    -0.0007478823328719852,
+    1.8581469707623643e-05,
+    -0.00013888080797956615,
+    0.032042772803236405,
+    0.009604077101922431,
+    0.996078431372549
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31875,
+    31873,
+    31899,
+    31873,
+    31813,
+    31865,
+    31744
+  ],
+  "mse_per_dim": [
+    7.740657165977135e-07,
+    5.593279838220429e-07,
+    3.452710164953351e-10,
+    1.9287878825057122e-08,
+    0.0010267392889198267,
+    9.223829697967076e-05,
+    1.5378700499807656e-05
+  ],
+  "mse_mean": 0.0001622441876070809,
+  "mse_spatial": 0.00018672176879162646,
+  "mse_gripper": 1.5378700499807656e-05,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "broccoli",
+      "pan"
+    ],
+    "num_boxes": 1,
+    "num_patches": 15,
+    "patch_coverage": 0.05859375,
+    "segmentation": "sam2"
+  }
+}

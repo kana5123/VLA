@@ -1,0 +1,893 @@
+=== OpenVLA fixed-var ===
+2026-02-23 05:03:44.360103: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 05:03:44.404316: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 05:03:44.404373: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 05:03:44.405894: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 05:03:44.413647: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 05:03:45.637188: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading openvla-7b...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.57it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  9.47it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+Using static method: fixed-var
+
+Evaluating on test set (100 episodes, conditions: ['baseline', 'fixed-var'])...
+Episode split: train=80, val=10, test=10
+  [train] 1866 steps from 51 episodes (cached)
+  [val] 228 steps from 7 episodes (cached)
+  [test] 193 steps from 6 episodes (cached)
+Eval:   0%|          | 0/193 [00:00<?, ?it/s]Eval:   1%|          | 1/193 [00:04<13:11,  4.12s/it]Eval:   1%|          | 2/193 [00:07<11:46,  3.70s/it]Eval:   2%|▏         | 3/193 [00:10<10:59,  3.47s/it]Eval:   2%|▏         | 4/193 [00:13<10:11,  3.23s/it]Eval:   3%|▎         | 5/193 [00:17<10:25,  3.33s/it]Eval:   3%|▎         | 6/193 [00:20<10:33,  3.39s/it]Eval:   4%|▎         | 7/193 [00:23<10:11,  3.29s/it]Eval:   4%|▍         | 8/193 [00:27<10:26,  3.39s/it]Eval:   5%|▍         | 9/193 [00:31<10:59,  3.58s/it]Eval:   5%|▌         | 10/193 [00:34<10:53,  3.57s/it]Eval:   6%|▌         | 11/193 [00:38<10:52,  3.59s/it]Eval:   6%|▌         | 12/193 [00:41<10:24,  3.45s/it]Eval:   7%|▋         | 13/193 [00:45<10:28,  3.49s/it]Eval:   7%|▋         | 14/193 [00:48<10:16,  3.44s/it]Eval:   8%|▊         | 15/193 [00:51<09:36,  3.24s/it]Eval:   8%|▊         | 16/193 [00:54<09:21,  3.17s/it]Eval:   9%|▉         | 17/193 [00:56<08:51,  3.02s/it]Eval:   9%|▉         | 18/193 [00:59<08:42,  2.98s/it]Eval:  10%|▉         | 19/193 [01:03<08:59,  3.10s/it]Eval:  10%|█         | 20/193 [01:07<09:39,  3.35s/it]Eval:  11%|█         | 21/193 [01:10<09:11,  3.20s/it]Eval:  11%|█▏        | 22/193 [01:12<08:53,  3.12s/it]Eval:  12%|█▏        | 23/193 [01:15<08:41,  3.07s/it]Eval:  12%|█▏        | 24/193 [01:19<08:44,  3.10s/it]Eval:  13%|█▎        | 25/193 [01:22<08:55,  3.19s/it]Eval:  13%|█▎        | 26/193 [01:25<09:08,  3.28s/it]Eval:  14%|█▍        | 27/193 [01:29<09:33,  3.46s/it]Eval:  15%|█▍        | 28/193 [01:32<09:15,  3.37s/it]Eval:  15%|█▌        | 29/193 [01:36<09:11,  3.36s/it]Eval:  16%|█▌        | 30/193 [01:40<09:26,  3.48s/it]Eval:  16%|█▌        | 31/193 [01:43<09:35,  3.55s/it]Eval:  17%|█▋        | 32/193 [01:46<08:51,  3.30s/it]Eval:  17%|█▋        | 33/193 [01:50<09:02,  3.39s/it]Eval:  18%|█▊        | 34/193 [01:53<09:03,  3.42s/it]Eval:  18%|█▊        | 35/193 [01:56<08:49,  3.35s/it]Eval:  19%|█▊        | 36/193 [02:00<08:51,  3.38s/it]Eval:  19%|█▉        | 37/193 [02:03<08:40,  3.34s/it]Eval:  20%|█▉        | 38/193 [02:06<08:06,  3.14s/it]Eval:  20%|██        | 39/193 [02:09<08:30,  3.31s/it]Eval:  21%|██        | 40/193 [02:12<08:09,  3.20s/it]Eval:  21%|██        | 41/193 [02:16<08:12,  3.24s/it]Eval:  22%|██▏       | 42/193 [02:18<07:49,  3.11s/it]Eval:  22%|██▏       | 43/193 [02:21<07:31,  3.01s/it]Eval:  23%|██▎       | 44/193 [02:24<07:18,  2.94s/it]Eval:  23%|██▎       | 45/193 [02:27<07:26,  3.02s/it]Eval:  24%|██▍       | 46/193 [02:31<07:39,  3.12s/it]Eval:  24%|██▍       | 47/193 [02:33<07:14,  2.98s/it]Eval:  25%|██▍       | 48/193 [02:37<07:34,  3.13s/it]Eval:  25%|██▌       | 49/193 [02:40<07:34,  3.15s/it]Eval:  26%|██▌       | 50/193 [02:44<07:55,  3.33s/it]Eval:  26%|██▋       | 51/193 [02:47<07:42,  3.26s/it]Eval:  27%|██▋       | 52/193 [02:50<07:55,  3.37s/it]Eval:  27%|██▋       | 53/193 [02:54<08:22,  3.59s/it]Eval:  28%|██▊       | 54/193 [02:58<07:58,  3.44s/it]Eval:  28%|██▊       | 55/193 [03:00<07:24,  3.22s/it]Eval:  29%|██▉       | 56/193 [03:03<07:01,  3.07s/it]Eval:  30%|██▉       | 57/193 [03:06<06:45,  2.98s/it]Eval:  30%|███       | 58/193 [03:10<07:12,  3.20s/it]Eval:  31%|███       | 59/193 [03:12<06:57,  3.12s/it]Eval:  31%|███       | 60/193 [03:16<07:20,  3.31s/it]Eval:  32%|███▏      | 61/193 [03:20<07:32,  3.43s/it]Eval:  32%|███▏      | 62/193 [03:23<07:33,  3.46s/it]Eval:  33%|███▎      | 63/193 [03:27<07:23,  3.41s/it]Eval:  33%|███▎      | 64/193 [03:30<07:27,  3.47s/it]Eval:  34%|███▎      | 65/193 [03:34<07:18,  3.43s/it][attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).Eval:  34%|███▍      | 66/193 [03:37<07:30,  3.55s/it]Eval:  35%|███▍      | 67/193 [03:41<07:20,  3.49s/it]Eval:  35%|███▌      | 68/193 [03:44<06:51,  3.29s/it]Eval:  36%|███▌      | 69/193 [03:47<06:57,  3.37s/it]Eval:  36%|███▋      | 70/193 [03:50<06:45,  3.30s/it]Eval:  37%|███▋      | 71/193 [03:54<06:41,  3.29s/it]Eval:  37%|███▋      | 72/193 [03:57<06:48,  3.37s/it]Eval:  38%|███▊      | 73/193 [04:00<06:31,  3.27s/it]Eval:  38%|███▊      | 74/193 [04:04<06:31,  3.29s/it]Eval:  39%|███▉      | 75/193 [04:07<06:17,  3.20s/it]Eval:  39%|███▉      | 76/193 [04:10<06:29,  3.33s/it]Eval:  40%|███▉      | 77/193 [04:13<06:13,  3.22s/it]Eval:  40%|████      | 78/193 [04:16<06:12,  3.24s/it]Eval:  41%|████      | 79/193 [04:19<05:36,  2.95s/it]Eval:  41%|████▏     | 80/193 [04:22<05:35,  2.97s/it]Eval:  42%|████▏     | 81/193 [04:25<05:34,  2.99s/it]Eval:  42%|████▏     | 82/193 [04:28<05:36,  3.03s/it]Eval:  43%|████▎     | 83/193 [04:31<05:34,  3.04s/it]Eval:  44%|████▎     | 84/193 [04:34<05:43,  3.15s/it]Eval:  44%|████▍     | 85/193 [04:37<05:28,  3.05s/it]Eval:  45%|████▍     | 86/193 [04:40<05:07,  2.87s/it]Eval:  45%|████▌     | 87/193 [04:43<05:21,  3.03s/it]Eval:  46%|████▌     | 88/193 [04:46<05:04,  2.90s/it]Eval:  46%|████▌     | 89/193 [04:49<05:03,  2.92s/it]Eval:  47%|████▋     | 90/193 [04:52<05:24,  3.15s/it]Eval:  47%|████▋     | 91/193 [04:55<05:20,  3.14s/it]Eval:  48%|████▊     | 92/193 [04:59<05:17,  3.15s/it]Eval:  48%|████▊     | 93/193 [05:01<04:57,  2.98s/it]Eval:  49%|████▊     | 94/193 [05:05<05:30,  3.34s/it]Eval:  49%|████▉     | 95/193 [05:09<05:46,  3.53s/it]Eval:  50%|████▉     | 96/193 [05:13<05:54,  3.65s/it]Eval:  50%|█████     | 97/193 [05:17<05:48,  3.63s/it]Eval:  51%|█████     | 98/193 [05:20<05:31,  3.49s/it]Eval:  51%|█████▏    | 99/193 [05:23<05:09,  3.30s/it]Eval:  52%|█████▏    | 100/193 [05:27<05:22,  3.47s/it]Eval:  52%|█████▏    | 101/193 [05:30<05:21,  3.50s/it]Eval:  53%|█████▎    | 102/193 [05:34<05:15,  3.47s/it]Eval:  53%|█████▎    | 103/193 [05:37<05:06,  3.40s/it]Eval:  54%|█████▍    | 104/193 [05:40<04:55,  3.32s/it]Eval:  54%|█████▍    | 105/193 [05:44<05:00,  3.41s/it]Eval:  55%|█████▍    | 106/193 [05:47<04:54,  3.39s/it]Eval:  55%|█████▌    | 107/193 [05:50<04:35,  3.20s/it]Eval:  56%|█████▌    | 108/193 [05:53<04:35,  3.24s/it]Eval:  56%|█████▋    | 109/193 [05:57<04:40,  3.34s/it]Eval:  57%|█████▋    | 110/193 [06:00<04:30,  3.26s/it]Eval:  58%|█████▊    | 111/193 [06:03<04:22,  3.20s/it]Eval:  58%|█████▊    | 112/193 [06:06<04:09,  3.08s/it]Eval:  59%|█████▊    | 113/193 [06:09<04:03,  3.05s/it]Eval:  59%|█████▉    | 114/193 [06:11<03:47,  2.88s/it]Eval:  60%|█████▉    | 115/193 [06:14<03:44,  2.88s/it]Eval:  60%|██████    | 116/193 [06:17<03:51,  3.01s/it]Eval:  61%|██████    | 117/193 [06:21<04:10,  3.30s/it]Eval:  61%|██████    | 118/193 [06:24<04:03,  3.24s/it]Eval:  62%|██████▏   | 119/193 [06:28<04:03,  3.28s/it]Eval:  62%|██████▏   | 120/193 [06:31<04:07,  3.39s/it]Eval:  63%|██████▎   | 121/193 [06:35<04:10,  3.48s/it]Eval:  63%|██████▎   | 122/193 [06:38<03:56,  3.33s/it]Eval:  64%|██████▎   | 123/193 [06:41<03:52,  3.32s/it]Eval:  64%|██████▍   | 124/193 [06:45<04:06,  3.57s/it]Eval:  65%|██████▍   | 125/193 [06:48<03:43,  3.28s/it]Eval:  65%|██████▌   | 126/193 [06:51<03:35,  3.22s/it]Eval:  66%|██████▌   | 127/193 [06:53<03:13,  2.93s/it]Eval:  66%|██████▋   | 128/193 [06:57<03:20,  3.08s/it]Eval:  67%|██████▋   | 129/193 [07:01<03:29,  3.27s/it]Eval:  67%|██████▋   | 130/193 [07:03<03:17,  3.13s/it]Eval:  68%|██████▊   | 131/193 [07:06<03:10,  3.07s/it]
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+Eval:  68%|██████▊   | 132/193 [07:09<03:01,  2.97s/it]Eval:  69%|██████▉   | 133/193 [07:12<03:01,  3.03s/it]Eval:  69%|██████▉   | 134/193 [07:15<03:00,  3.06s/it]Eval:  70%|██████▉   | 135/193 [07:19<03:04,  3.19s/it]Eval:  70%|███████   | 136/193 [07:22<03:07,  3.29s/it]Eval:  71%|███████   | 137/193 [07:25<02:57,  3.17s/it]Eval:  72%|███████▏  | 138/193 [07:29<02:59,  3.26s/it]Eval:  72%|███████▏  | 139/193 [07:31<02:47,  3.10s/it]Eval:  73%|███████▎  | 140/193 [07:34<02:39,  3.00s/it]Eval:  73%|███████▎  | 141/193 [07:37<02:40,  3.08s/it]Eval:  74%|███████▎  | 142/193 [07:41<02:38,  3.10s/it]Eval:  74%|███████▍  | 143/193 [07:44<02:42,  3.25s/it]Eval:  75%|███████▍  | 144/193 [07:47<02:39,  3.26s/it]Eval:  75%|███████▌  | 145/193 [07:50<02:31,  3.16s/it]Eval:  76%|███████▌  | 146/193 [07:53<02:26,  3.12s/it]Eval:  76%|███████▌  | 147/193 [07:57<02:26,  3.18s/it]Eval:  77%|███████▋  | 148/193 [08:00<02:19,  3.10s/it]Eval:  77%|███████▋  | 149/193 [08:02<02:09,  2.93s/it]Eval:  78%|███████▊  | 150/193 [08:05<02:07,  2.95s/it]Eval:  78%|███████▊  | 151/193 [08:08<01:56,  2.78s/it]Eval:  79%|███████▉  | 152/193 [08:10<01:55,  2.82s/it]Eval:  79%|███████▉  | 153/193 [08:14<01:57,  2.94s/it]Eval:  80%|███████▉  | 154/193 [08:17<01:56,  2.98s/it]Eval:  80%|████████  | 155/193 [08:20<01:52,  2.95s/it]Eval:  81%|████████  | 156/193 [08:22<01:42,  2.78s/it]Eval:  81%|████████▏ | 157/193 [08:25<01:37,  2.72s/it]Eval:  82%|████████▏ | 158/193 [08:28<01:40,  2.87s/it]Eval:  82%|████████▏ | 159/193 [08:31<01:35,  2.82s/it]Eval:  83%|████████▎ | 160/193 [08:34<01:35,  2.91s/it]Eval:  83%|████████▎ | 161/193 [08:37<01:33,  2.93s/it]Eval:  84%|████████▍ | 162/193 [08:40<01:30,  2.91s/it]Eval:  84%|████████▍ | 163/193 [08:42<01:26,  2.87s/it]Eval:  85%|████████▍ | 164/193 [08:45<01:18,  2.70s/it]Eval:  85%|████████▌ | 165/193 [08:47<01:14,  2.67s/it]Eval:  86%|████████▌ | 166/193 [08:50<01:11,  2.66s/it]Eval:  87%|████████▋ | 167/193 [08:52<01:07,  2.60s/it]Eval:  87%|████████▋ | 168/193 [08:55<01:03,  2.54s/it]Eval:  88%|████████▊ | 169/193 [08:57<01:01,  2.56s/it]Eval:  88%|████████▊ | 170/193 [09:00<00:58,  2.53s/it]Eval:  89%|████████▊ | 171/193 [09:03<00:57,  2.61s/it]Eval:  89%|████████▉ | 172/193 [09:05<00:55,  2.65s/it]Eval:  90%|████████▉ | 173/193 [09:08<00:54,  2.72s/it]Eval:  90%|█████████ | 174/193 [09:11<00:51,  2.70s/it]Eval:  91%|█████████ | 175/193 [09:14<00:49,  2.73s/it]Eval:  91%|█████████ | 176/193 [09:16<00:44,  2.60s/it]Eval:  92%|█████████▏| 177/193 [09:19<00:44,  2.77s/it]Eval:  92%|█████████▏| 178/193 [09:22<00:42,  2.87s/it]Eval:  93%|█████████▎| 179/193 [09:25<00:40,  2.88s/it]Eval:  93%|█████████▎| 180/193 [09:28<00:37,  2.90s/it]Eval:  94%|█████████▍| 181/193 [09:31<00:35,  2.92s/it]Eval:  94%|█████████▍| 182/193 [09:34<00:32,  2.91s/it]Eval:  95%|█████████▍| 183/193 [09:37<00:29,  2.97s/it]Eval:  95%|█████████▌| 184/193 [09:39<00:25,  2.82s/it]Eval:  96%|█████████▌| 185/193 [09:43<00:23,  2.95s/it]Eval:  96%|█████████▋| 186/193 [09:46<00:20,  2.97s/it]Eval:  97%|█████████▋| 187/193 [09:48<00:17,  2.90s/it]Eval:  97%|█████████▋| 188/193 [09:52<00:14,  2.97s/it]Eval:  98%|█████████▊| 189/193 [09:54<00:11,  2.92s/it]Eval:  98%|█████████▊| 190/193 [09:57<00:08,  2.83s/it]Eval:  99%|█████████▉| 191/193 [10:00<00:05,  2.94s/it]Eval:  99%|█████████▉| 192/193 [10:03<00:02,  2.90s/it]Eval: 100%|██████████| 193/193 [10:05<00:00,  2.74s/it]Eval: 100%|██████████| 193/193 [10:05<00:00,  3.14s/it]
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+
+==================================================
+EVALUATION RESULTS
+==================================================
+  Baseline overall MSE: 0.055576
+  Adapter  overall MSE: 0.055576
+  Change: +0.00%
+
+Per-dimension changes:
+  x       : +0.00%
+  y       : +0.00%
+  z       : +0.00%
+  roll    : +0.00%
+  pitch   : +0.00%
+  yaw     : +0.00%
+  gripper : +0.00%
+
+Results saved: /home/kana5123/ATLASVLA/outputs/adapter_results/eval/openvla-7b/eval_results.json
+Results saved: outputs/full/openvla/fixed-var/eval/eval_results.json
+=== OpenVLA act ===
+2026-02-23 05:14:42.635201: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 05:14:42.675148: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 05:14:42.675212: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 05:14:42.676241: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 05:14:42.682297: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 05:14:43.383987: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading openvla-7b...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.08it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.21it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+Using static method: act
+
+Evaluating on test set (100 episodes, conditions: ['baseline', 'act'])...
+Episode split: train=80, val=10, test=10
+  [train] 1866 steps from 51 episodes (cached)
+  [val] 228 steps from 7 episodes (cached)
+  [test] 193 steps from 6 episodes (cached)
+Eval:   0%|          | 0/193 [00:00<?, ?it/s]Eval:   1%|          | 1/193 [00:03<11:40,  3.65s/it]Eval:   1%|          | 2/193 [00:06<10:32,  3.31s/it]Eval:   2%|▏         | 3/193 [00:09<10:01,  3.17s/it]Eval:   2%|▏         | 4/193 [00:13<10:27,  3.32s/it]Eval:   3%|▎         | 5/193 [00:16<10:35,  3.38s/it]Eval:   3%|▎         | 6/193 [00:21<11:29,  3.69s/it]Eval:   4%|▎         | 7/193 [00:25<12:06,  3.90s/it]Eval:   4%|▍         | 8/193 [00:29<12:19,  4.00s/it]Eval:   5%|▍         | 9/193 [00:34<12:44,  4.15s/it]Eval:   5%|▌         | 10/193 [00:37<11:42,  3.84s/it]Eval:   6%|▌         | 11/193 [00:40<11:28,  3.78s/it]Eval:   6%|▌         | 12/193 [00:45<11:47,  3.91s/it]Eval:   7%|▋         | 13/193 [00:48<11:23,  3.79s/it]Eval:   7%|▋         | 14/193 [00:51<10:46,  3.61s/it]Eval:   8%|▊         | 15/193 [00:54<09:58,  3.36s/it]Eval:   8%|▊         | 16/193 [00:58<10:40,  3.62s/it]Eval:   9%|▉         | 17/193 [01:02<10:54,  3.72s/it]Eval:   9%|▉         | 18/193 [01:06<11:10,  3.83s/it]Eval:  10%|▉         | 19/193 [01:11<11:47,  4.07s/it]Eval:  10%|█         | 20/193 [01:15<11:38,  4.04s/it]Eval:  11%|█         | 21/193 [01:19<11:31,  4.02s/it]Eval:  11%|█▏        | 22/193 [01:24<12:27,  4.37s/it]Eval:  12%|█▏        | 23/193 [01:29<12:43,  4.49s/it]Eval:  12%|█▏        | 24/193 [01:33<12:43,  4.52s/it]Eval:  13%|█▎        | 25/193 [01:38<12:31,  4.47s/it]Eval:  13%|█▎        | 26/193 [01:42<12:21,  4.44s/it]Eval:  14%|█▍        | 27/193 [01:47<12:20,  4.46s/it]Eval:  15%|█▍        | 28/193 [01:51<12:24,  4.51s/it]Eval:  15%|█▌        | 29/193 [01:56<12:34,  4.60s/it]Eval:  16%|█▌        | 30/193 [01:59<10:50,  3.99s/it]Eval:  16%|█▌        | 31/193 [02:02<10:20,  3.83s/it]Eval:  17%|█▋        | 32/193 [02:07<10:42,  3.99s/it]Eval:  17%|█▋        | 33/193 [02:11<10:40,  4.00s/it]Eval:  18%|█▊        | 34/193 [02:15<10:56,  4.13s/it]Eval:  18%|█▊        | 35/193 [02:20<11:37,  4.41s/it]Eval:  19%|█▊        | 36/193 [02:25<11:39,  4.45s/it]Eval:  19%|█▉        | 37/193 [02:29<11:09,  4.29s/it]Eval:  20%|█▉        | 38/193 [02:32<10:46,  4.17s/it]Eval:  20%|██        | 39/193 [02:36<10:38,  4.15s/it]Eval:  21%|██        | 40/193 [02:40<10:18,  4.04s/it]Eval:  21%|██        | 41/193 [02:43<09:04,  3.58s/it]Eval:  22%|██▏       | 42/193 [02:46<08:51,  3.52s/it]Eval:  22%|██▏       | 43/193 [02:49<08:11,  3.28s/it]Eval:  23%|██▎       | 44/193 [02:53<08:48,  3.55s/it]Eval:  23%|██▎       | 45/193 [02:57<09:13,  3.74s/it]Eval:  24%|██▍       | 46/193 [03:00<08:06,  3.31s/it]Eval:  24%|██▍       | 47/193 [03:02<07:35,  3.12s/it]Eval:  25%|██▍       | 48/193 [03:06<07:45,  3.21s/it]Eval:  25%|██▌       | 49/193 [03:09<07:50,  3.27s/it]Eval:  26%|██▌       | 50/193 [03:12<07:41,  3.22s/it]Eval:  26%|██▋       | 51/193 [03:16<08:17,  3.50s/it]Eval:  27%|██▋       | 52/193 [03:21<08:55,  3.80s/it]Eval:  27%|██▋       | 53/193 [03:24<08:09,  3.50s/it]Eval:  28%|██▊       | 54/193 [03:26<07:06,  3.07s/it]Eval:  28%|██▊       | 55/193 [03:29<07:01,  3.06s/it]Eval:  29%|██▉       | 56/193 [03:32<07:25,  3.25s/it]Eval:  30%|██▉       | 57/193 [03:36<07:45,  3.42s/it]Eval:  30%|███       | 58/193 [03:39<07:18,  3.25s/it]Eval:  31%|███       | 59/193 [03:43<07:36,  3.41s/it]Eval:  31%|███       | 60/193 [03:47<08:06,  3.66s/it]Eval:  32%|███▏      | 61/193 [03:51<08:20,  3.79s/it]Eval:  32%|███▏      | 62/193 [03:55<08:18,  3.81s/it]Eval:  33%|███▎      | 63/193 [04:00<08:42,  4.02s/it]Eval:  33%|███▎      | 64/193 [04:04<09:05,  4.23s/it]Eval:  34%|███▎      | 65/193 [04:09<09:20,  4.38s/it][attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).Eval:  34%|███▍      | 66/193 [04:13<09:09,  4.33s/it]Eval:  35%|███▍      | 67/193 [04:18<09:10,  4.37s/it]Eval:  35%|███▌      | 68/193 [04:22<09:02,  4.34s/it]Eval:  36%|███▌      | 69/193 [04:26<08:43,  4.22s/it]Eval:  36%|███▋      | 70/193 [04:30<08:26,  4.12s/it]Eval:  37%|███▋      | 71/193 [04:35<08:47,  4.32s/it]Eval:  37%|███▋      | 72/193 [04:38<08:00,  3.97s/it]Eval:  38%|███▊      | 73/193 [04:40<07:09,  3.58s/it]Eval:  38%|███▊      | 74/193 [04:44<06:55,  3.50s/it]Eval:  39%|███▉      | 75/193 [04:47<06:34,  3.34s/it]Eval:  39%|███▉      | 76/193 [04:49<06:10,  3.16s/it]Eval:  40%|███▉      | 77/193 [04:52<06:02,  3.12s/it]Eval:  40%|████      | 78/193 [04:56<06:09,  3.22s/it]Eval:  41%|████      | 79/193 [05:00<06:42,  3.53s/it]Eval:  41%|████▏     | 80/193 [05:04<07:00,  3.72s/it]Eval:  42%|████▏     | 81/193 [05:09<07:30,  4.02s/it]Eval:  42%|████▏     | 82/193 [05:13<07:27,  4.03s/it]Eval:  43%|████▎     | 83/193 [05:17<07:20,  4.00s/it]Eval:  44%|████▎     | 84/193 [05:21<07:06,  3.92s/it]Eval:  44%|████▍     | 85/193 [05:25<07:01,  3.90s/it]Eval:  45%|████▍     | 86/193 [05:28<06:51,  3.85s/it]Eval:  45%|████▌     | 87/193 [05:32<06:56,  3.93s/it]Eval:  46%|████▌     | 88/193 [05:37<06:57,  3.98s/it]Eval:  46%|████▌     | 89/193 [05:40<06:38,  3.83s/it]Eval:  47%|████▋     | 90/193 [05:44<06:35,  3.84s/it]Eval:  47%|████▋     | 91/193 [05:47<06:11,  3.64s/it]Eval:  48%|████▊     | 92/193 [05:51<06:19,  3.76s/it]Eval:  48%|████▊     | 93/193 [05:55<06:18,  3.78s/it]Eval:  49%|████▊     | 94/193 [05:59<06:19,  3.83s/it]Eval:  49%|████▉     | 95/193 [06:04<06:40,  4.09s/it]Eval:  50%|████▉     | 96/193 [06:09<07:07,  4.40s/it]Eval:  50%|█████     | 97/193 [06:13<06:59,  4.37s/it]Eval:  51%|█████     | 98/193 [06:15<05:57,  3.76s/it]Eval:  51%|█████▏    | 99/193 [06:19<05:42,  3.64s/it]Eval:  52%|█████▏    | 100/193 [06:22<05:20,  3.45s/it]Eval:  52%|█████▏    | 101/193 [06:25<05:12,  3.40s/it]Eval:  53%|█████▎    | 102/193 [06:29<05:27,  3.60s/it]Eval:  53%|█████▎    | 103/193 [06:34<05:57,  3.97s/it]Eval:  54%|█████▍    | 104/193 [06:38<05:58,  4.03s/it]Eval:  54%|█████▍    | 105/193 [06:41<05:38,  3.85s/it]Eval:  55%|█████▍    | 106/193 [06:45<05:25,  3.75s/it]Eval:  55%|█████▌    | 107/193 [06:49<05:36,  3.91s/it]Eval:  56%|█████▌    | 108/193 [06:54<05:44,  4.05s/it]Eval:  56%|█████▋    | 109/193 [06:58<05:53,  4.20s/it]Eval:  57%|█████▋    | 110/193 [07:03<05:53,  4.26s/it]Eval:  58%|█████▊    | 111/193 [07:07<05:40,  4.16s/it]Eval:  58%|█████▊    | 112/193 [07:11<05:45,  4.27s/it]Eval:  59%|█████▊    | 113/193 [07:15<05:22,  4.03s/it]Eval:  59%|█████▉    | 114/193 [07:17<04:50,  3.67s/it]Eval:  60%|█████▉    | 115/193 [07:20<04:28,  3.44s/it]Eval:  60%|██████    | 116/193 [07:24<04:38,  3.61s/it]Eval:  61%|██████    | 117/193 [07:29<04:49,  3.80s/it]Eval:  61%|██████    | 118/193 [07:32<04:32,  3.63s/it]Eval:  62%|██████▏   | 119/193 [07:35<04:14,  3.44s/it]Eval:  62%|██████▏   | 120/193 [07:38<03:55,  3.23s/it]Eval:  63%|██████▎   | 121/193 [07:41<03:53,  3.25s/it]Eval:  63%|██████▎   | 122/193 [07:44<03:56,  3.33s/it]Eval:  64%|██████▎   | 123/193 [07:48<03:58,  3.41s/it]Eval:  64%|██████▍   | 124/193 [07:52<04:08,  3.60s/it]Eval:  65%|██████▍   | 125/193 [07:56<04:05,  3.61s/it]Eval:  65%|██████▌   | 126/193 [08:00<04:12,  3.76s/it]Eval:  66%|██████▌   | 127/193 [08:04<04:19,  3.93s/it]Eval:  66%|██████▋   | 128/193 [08:08<04:23,  4.06s/it]Eval:  67%|██████▋   | 129/193 [08:13<04:27,  4.18s/it]Eval:  67%|██████▋   | 130/193 [08:17<04:28,  4.26s/it]Eval:  68%|██████▊   | 131/193 [08:22<04:25,  4.28s/it]
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+Eval:  68%|██████▊   | 132/193 [08:25<04:11,  4.13s/it]Eval:  69%|██████▉   | 133/193 [08:29<03:50,  3.84s/it]Eval:  69%|██████▉   | 134/193 [08:32<03:35,  3.65s/it]Eval:  70%|██████▉   | 135/193 [08:34<03:12,  3.33s/it]Eval:  70%|███████   | 136/193 [08:38<03:19,  3.51s/it]Eval:  71%|███████   | 137/193 [08:42<03:26,  3.69s/it]Eval:  72%|███████▏  | 138/193 [08:47<03:33,  3.88s/it]Eval:  72%|███████▏  | 139/193 [08:52<03:46,  4.19s/it]Eval:  73%|███████▎  | 140/193 [08:55<03:25,  3.88s/it]Eval:  73%|███████▎  | 141/193 [08:58<03:07,  3.60s/it]Eval:  74%|███████▎  | 142/193 [09:01<02:58,  3.50s/it]Eval:  74%|███████▍  | 143/193 [09:04<02:53,  3.47s/it]Eval:  75%|███████▍  | 144/193 [09:07<02:36,  3.18s/it]Eval:  75%|███████▌  | 145/193 [09:10<02:25,  3.04s/it]Eval:  76%|███████▌  | 146/193 [09:13<02:22,  3.03s/it]Eval:  76%|███████▌  | 147/193 [09:15<02:15,  2.95s/it]Eval:  77%|███████▋  | 148/193 [09:19<02:16,  3.04s/it]Eval:  77%|███████▋  | 149/193 [09:23<02:37,  3.58s/it]Eval:  78%|███████▊  | 150/193 [09:27<02:26,  3.41s/it]Eval:  78%|███████▊  | 151/193 [09:30<02:25,  3.47s/it]Eval:  79%|███████▉  | 152/193 [09:33<02:20,  3.42s/it]Eval:  79%|███████▉  | 153/193 [09:37<02:21,  3.53s/it]Eval:  80%|███████▉  | 154/193 [09:40<02:13,  3.42s/it]Eval:  80%|████████  | 155/193 [09:45<02:27,  3.88s/it]Eval:  81%|████████  | 156/193 [09:48<02:12,  3.58s/it]Eval:  81%|████████▏ | 157/193 [09:51<02:02,  3.41s/it]Eval:  82%|████████▏ | 158/193 [09:55<02:05,  3.58s/it]Eval:  82%|████████▏ | 159/193 [09:58<01:57,  3.45s/it]Eval:  83%|████████▎ | 160/193 [10:01<01:47,  3.26s/it]Eval:  83%|████████▎ | 161/193 [10:04<01:39,  3.12s/it]Eval:  84%|████████▍ | 162/193 [10:07<01:39,  3.20s/it]Eval:  84%|████████▍ | 163/193 [10:10<01:32,  3.10s/it]Eval:  85%|████████▍ | 164/193 [10:14<01:35,  3.28s/it]Eval:  85%|████████▌ | 165/193 [10:17<01:30,  3.23s/it]Eval:  86%|████████▌ | 166/193 [10:20<01:24,  3.13s/it]Eval:  87%|████████▋ | 167/193 [10:23<01:21,  3.14s/it]Eval:  87%|████████▋ | 168/193 [10:26<01:16,  3.07s/it]Eval:  88%|████████▊ | 169/193 [10:29<01:16,  3.18s/it]Eval:  88%|████████▊ | 170/193 [10:32<01:11,  3.09s/it]Eval:  89%|████████▊ | 171/193 [10:35<01:04,  2.91s/it]Eval:  89%|████████▉ | 172/193 [10:38<01:00,  2.90s/it]Eval:  90%|████████▉ | 173/193 [10:41<00:58,  2.93s/it]Eval:  90%|█████████ | 174/193 [10:43<00:53,  2.81s/it]Eval:  91%|█████████ | 175/193 [10:46<00:51,  2.85s/it]Eval:  91%|█████████ | 176/193 [10:49<00:48,  2.87s/it]Eval:  92%|█████████▏| 177/193 [10:52<00:45,  2.87s/it]Eval:  92%|█████████▏| 178/193 [10:55<00:43,  2.87s/it]Eval:  93%|█████████▎| 179/193 [10:58<00:39,  2.82s/it]Eval:  93%|█████████▎| 180/193 [11:00<00:37,  2.87s/it]Eval:  94%|█████████▍| 181/193 [11:03<00:34,  2.87s/it]Eval:  94%|█████████▍| 182/193 [11:06<00:31,  2.89s/it]Eval:  95%|█████████▍| 183/193 [11:09<00:29,  2.94s/it]Eval:  95%|█████████▌| 184/193 [11:12<00:26,  2.99s/it]Eval:  96%|█████████▌| 185/193 [11:15<00:23,  2.99s/it]Eval:  96%|█████████▋| 186/193 [11:18<00:20,  2.96s/it]Eval:  97%|█████████▋| 187/193 [11:21<00:17,  2.94s/it]Eval:  97%|█████████▋| 188/193 [11:24<00:15,  3.00s/it]Eval:  98%|█████████▊| 189/193 [11:27<00:11,  2.96s/it]Eval:  98%|█████████▊| 190/193 [11:30<00:08,  2.97s/it]Eval:  99%|█████████▉| 191/193 [11:33<00:05,  2.86s/it]Eval:  99%|█████████▉| 192/193 [11:36<00:02,  2.88s/it]Eval: 100%|██████████| 193/193 [11:39<00:00,  2.85s/it]Eval: 100%|██████████| 193/193 [11:39<00:00,  3.62s/it]
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] Original LlamaAttention.forward restored.
+
+==================================================
+EVALUATION RESULTS
+==================================================
+  Baseline overall MSE: 0.055576
+  Adapter  overall MSE: 0.063949
+  Change: +15.06%
+
+Per-dimension changes:
+  x       : -8.83%
+  y       : -5.21%
+  z       : +5.66%
+  roll    : -6.03%
+  pitch   : -9.43%
+  yaw     : -12.00%
+  gripper : +15.40%
+
+Results saved: /home/kana5123/ATLASVLA/outputs/adapter_results/eval/openvla-7b/eval_results.json
+Results saved: outputs/full/openvla/act/eval/eval_results.json
+=== SpatialVLA base ===
+2026-02-23 05:27:02.043376: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 05:27:02.091663: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 05:27:02.091805: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 05:27:02.143484: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 05:27:02.163902: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 05:27:03.520813: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading spatialvla-4b...
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  3.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.51it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.59it/s]
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  WARNING: No norm_stats for 'bridge_orig', using Bridge V2 defaults
+
+Evaluating on test set (100 episodes, conditions: ['baseline'])...
+Episode split: train=80, val=10, test=10
+  [train] 1866 steps from 51 episodes (cached)
+  [val] 228 steps from 7 episodes (cached)
+  [test] 193 steps from 6 episodes (cached)
+Eval:   0%|          | 0/193 [00:00<?, ?it/s]Eval:   1%|          | 1/193 [01:28<4:44:38, 88.95s/it]Eval:   1%|          | 2/193 [02:55<4:39:33, 87.82s/it]Eval:   2%|▏         | 3/193 [04:20<4:33:25, 86.35s/it]Eval:   2%|▏         | 4/193 [05:41<4:25:48, 84.39s/it]Eval:   3%|▎         | 5/193 [06:30<3:44:15, 71.57s/it]Eval:   3%|▎         | 6/193 [06:35<2:31:44, 48.69s/it]Eval:   4%|▎         | 7/193 [06:41<1:48:07, 34.88s/it]Eval:   4%|▍         | 8/193 [06:50<1:22:33, 26.77s/it]Eval:   5%|▍         | 9/193 [07:00<1:05:44, 21.44s/it]Eval:   5%|▌         | 10/193 [07:07<51:51, 17.01s/it] Eval:   6%|▌         | 11/193 [07:17<44:57, 14.82s/it]Eval:   6%|▌         | 12/193 [07:25<38:47, 12.86s/it]Eval:   7%|▋         | 13/193 [07:35<35:27, 11.82s/it]Eval:   7%|▋         | 14/193 [07:44<32:29, 10.89s/it]Eval:   8%|▊         | 15/193 [07:52<29:55, 10.09s/it]Eval:   8%|▊         | 16/193 [07:58<26:01,  8.82s/it]Eval:   9%|▉         | 17/193 [08:07<26:39,  9.09s/it]Eval:   9%|▉         | 18/193 [08:14<24:25,  8.37s/it]Eval:  10%|▉         | 19/193 [08:19<21:27,  7.40s/it]Eval:  10%|█         | 20/193 [08:25<20:00,  6.94s/it]Eval:  11%|█         | 21/193 [08:32<19:23,  6.76s/it]Eval:  11%|█▏        | 22/193 [08:39<19:30,  6.85s/it]Eval:  12%|█▏        | 23/193 [08:45<19:04,  6.73s/it]Eval:  12%|█▏        | 24/193 [08:52<18:57,  6.73s/it]Eval:  13%|█▎        | 25/193 [08:58<18:48,  6.72s/it]Eval:  13%|█▎        | 26/193 [09:06<19:00,  6.83s/it]Eval:  14%|█▍        | 27/193 [09:12<18:31,  6.70s/it]Eval:  15%|█▍        | 28/193 [09:22<20:48,  7.57s/it]Eval:  15%|█▌        | 29/193 [09:27<19:00,  6.96s/it]Eval:  16%|█▌        | 30/193 [09:37<21:27,  7.90s/it]Eval:  16%|█▌        | 31/193 [09:43<19:31,  7.23s/it]Eval:  17%|█▋        | 32/193 [09:49<18:18,  6.82s/it]Eval:  17%|█▋        | 33/193 [09:56<18:50,  7.06s/it]Eval:  18%|█▊        | 34/193 [10:03<18:13,  6.88s/it]Eval:  18%|█▊        | 35/193 [10:07<16:05,  6.11s/it]Eval:  19%|█▊        | 36/193 [10:13<15:53,  6.07s/it]Eval:  19%|█▉        | 37/193 [10:19<15:49,  6.08s/it]Eval:  20%|█▉        | 38/193 [10:26<16:10,  6.26s/it]Eval:  20%|██        | 39/193 [10:35<17:57,  7.00s/it]Eval:  21%|██        | 40/193 [10:41<17:19,  6.79s/it]Eval:  21%|██        | 41/193 [10:48<17:37,  6.96s/it]Eval:  22%|██▏       | 42/193 [11:00<21:13,  8.43s/it]Eval:  22%|██▏       | 43/193 [11:08<20:38,  8.26s/it]Eval:  23%|██▎       | 44/193 [11:15<19:30,  7.86s/it]Eval:  23%|██▎       | 45/193 [11:20<17:14,  6.99s/it]Eval:  24%|██▍       | 46/193 [11:27<17:15,  7.04s/it]Eval:  24%|██▍       | 47/193 [11:33<16:17,  6.70s/it]Eval:  25%|██▍       | 48/193 [11:41<17:00,  7.04s/it]Eval:  25%|██▌       | 49/193 [11:47<16:42,  6.96s/it]Eval:  26%|██▌       | 50/193 [11:52<15:08,  6.36s/it]Eval:  26%|██▋       | 51/193 [11:58<14:22,  6.07s/it]Eval:  27%|██▋       | 52/193 [12:02<12:35,  5.36s/it]Eval:  27%|██▋       | 53/193 [12:07<12:23,  5.31s/it]Eval:  28%|██▊       | 54/193 [12:10<10:54,  4.71s/it]Terminated
+28%|██▊       | 55/193 [13:23<12:58,  5.64s/it]Eval:  29%|██▉       | 56/193 [13:30<13:44,  6.02s/it]Eval:  30%|██▉       | 57/193 [13:36<13:16,  5.86s/it]Eval:  30%|███       | 58/193 [13:40<12:08,  5.40s/it]Eval:  31%|███       | 59/193 [13:45<11:59,  5.37s/it]Eval:  31%|███       | 60/193 [13:50<11:07,  5.02s/it]Eval:  32%|███▏      | 61/193 [13:55<10:59,  5.00s/it]Eval:  32%|███▏      | 62/193 [13:58<09:36,  4.40s/it]Terminated

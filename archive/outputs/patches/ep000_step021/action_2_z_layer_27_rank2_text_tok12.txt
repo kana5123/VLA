@@ -1,0 +1,4 @@
+Token index: 12
+Token text: sp
+Global position: 268
+Attention score: 0.048340

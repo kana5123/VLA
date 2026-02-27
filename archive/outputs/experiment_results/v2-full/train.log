@@ -1,0 +1,360 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-22 10:42:44.155335: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:44.182774: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:44.182797: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:44.183620: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:44.187973: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:44.435926: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:44.462961: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:44.462986: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:44.463744: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:44.468138: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:44.870358: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:42:44.969513: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:44.982365: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:42:45.006911: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:45.006934: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:45.007894: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:45.013510: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:45.066086: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 10:42:45.103537: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-22 10:42:45.103561: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-22 10:42:45.104672: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-22 10:42:45.110360: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-22 10:42:45.683927: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-22 10:42:45.764951: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: openvla-7b (llama)
+  Devices: 4 GPU(s)
+  Episodes: None
+  Batch size: 16 (effective = 4/GPU × 4 GPUs)
+  Per-GPU batch: 4
+  LR: 0.0003 → 3e-05
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+  Source layer: 27
+  Action type: discrete
+============================================================
+
+Loading frozen openvla-7b model...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.07it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.13it/s]
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.20it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.44it/s]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.29it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.29it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.72it/s]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.73it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Vision tokens: 0..255
+  Text tokens end: 18
+Adapter v2 parameters: 2,171,713
+Creating data loaders...
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+  Dynamic sink detection: ON (α=5.0)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank3]:     train()
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank3]:     loss_i, p_matrix = forward_with_adapter(
+[rank3]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank3]:     _ = model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank3]:     language_model_output = self.language_model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank3]:     output = func(self, *args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank3]:     outputs: BaseModelOutputWithPast = self.model(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank3]:     outputs = func(self, *args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank3]:     hidden_states = decoder_layer(
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank3]:     return super().__call__(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank3]:     hidden_states, _ = self.self_attn(
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank3]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank3]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank3]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank3]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank0]:     train()
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank0]:     loss_i, p_matrix = forward_with_adapter(
+[rank0]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank0]:     _ = model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank0]:     language_model_output = self.language_model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank0]:     output = func(self, *args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank0]:     outputs: BaseModelOutputWithPast = self.model(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank0]:     outputs = func(self, *args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank0]:     hidden_states = decoder_layer(
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank0]:     return super().__call__(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank0]:     hidden_states, _ = self.self_attn(
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank0]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank0]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank0]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank0]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank2]:     train()
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank2]:     loss_i, p_matrix = forward_with_adapter(
+[rank2]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank2]:     _ = model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank2]:     language_model_output = self.language_model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank2]:     output = func(self, *args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank2]:     outputs: BaseModelOutputWithPast = self.model(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank2]:     outputs = func(self, *args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank2]:     hidden_states = decoder_layer(
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank2]:     return super().__call__(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank2]:     hidden_states, _ = self.self_attn(
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank2]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank2]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank2]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank2]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 778, in <module>
+[rank1]:     train()
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 639, in train
+[rank1]:     loss_i, p_matrix = forward_with_adapter(
+[rank1]:   File "/home/kana5123/ATLASVLA/adapter_train.py", line 103, in forward_with_adapter
+[rank1]:     _ = model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.cache/huggingface/modules/transformers_modules/openvla/openvla_hyphen_7b/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py", line 404, in forward
+[rank1]:     language_model_output = self.language_model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+[rank1]:     output = func(self, *args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+[rank1]:     outputs: BaseModelOutputWithPast = self.model(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+[rank1]:     outputs = func(self, *args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+[rank1]:     hidden_states = decoder_layer(
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+[rank1]:     return super().__call__(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+[rank1]:     hidden_states, _ = self.self_attn(
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/kana5123/ATLASVLA/attention_v3.py", line 709, in patched_llama_attention_forward
+[rank1]:     query_states = query_states.view(bsz, q_len, self.num_heads, self.head_dim).transpose(1, 2)
+[rank1]:   File "/home/kana5123/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+[rank1]:     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+[rank1]: AttributeError: 'LlamaAttention' object has no attribute 'num_heads'
+W0222 10:43:26.291000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2744993 closing signal SIGTERM
+W0222 10:43:26.292000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2744994 closing signal SIGTERM
+W0222 10:43:26.294000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2744995 closing signal SIGTERM
+E0222 10:43:26.987000 140252030216000 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 3 (pid: 2744996) of binary: /home/kana5123/miniconda3/envs/interp/bin/python
+Traceback (most recent call last):
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/kana5123/miniconda3/envs/interp/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1245, in <module>
+    main()
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1241, in main
+    launch_command(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/kana5123/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+adapter_train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-22_10:43:26
+  host      : node1.cluster.local
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2744996)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,64 @@
+{
+  "episode_id": 3,
+  "step_id": 44,
+  "instruction": "put the rectangle block on top of the red arch and yellow block",
+  "condition": "sam_var_obj_laysel",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + L8-24 + SAM2",
+  "predicted_action": [
+    -9.738706517966461e-05,
+    0.0013496007231878562,
+    -0.0008598512508615451,
+    0.0313505498477023,
+    0.008868332261336001,
+    -0.00087575842044324,
+    0.05859375
+  ],
+  "ground_truth_action": [
+    0.006453389301896095,
+    0.003218330442905426,
+    -0.004314319230616093,
+    0.02297053672373295,
+    0.026821261271834373,
+    0.004992871545255184,
+    1.0
+  ],
+  "action_token_ids": [
+    31871,
+    31866,
+    31902,
+    31823,
+    31847,
+    31871,
+    31864
+  ],
+  "gt_is_zero_spatial": false,
+  "mse_per_dim": [
+    4.291267101143829e-05,
+    3.492150765355707e-06,
+    1.1933349023149465e-05,
+    7.022461995789861e-05,
+    0.00032230766005599405,
+    3.444081767429349e-05,
+    0.8862457275390625
+  ],
+  "mse_mean": 0.12667586268679296,
+  "mse_spatial": 8.088521141468828e-05,
+  "mse_gripper": 0.8862457275390625,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "block"
+    ],
+    "num_boxes": 1,
+    "num_patches": 23,
+    "patch_coverage": 0.08984375
+  }
+}

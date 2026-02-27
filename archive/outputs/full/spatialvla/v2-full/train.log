@@ -1,0 +1,47 @@
+2026-02-23 12:09:40.045405: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 12:09:40.090140: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 12:09:40.090183: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 12:09:40.091529: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 12:09:40.098513: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 12:09:40.826389: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+  Seed: 42
+Loading frozen spatialvla-4b model...
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.88it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.40it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.46it/s]
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: spatialvla-4b (gemma2)
+  Devices: 1 GPU(s)
+  Episodes: None
+  Batch size: 64 (effective = 64/GPU × 1 GPUs)
+  Micro-batch: 24 samples/forward
+  Per-GPU batch: 64
+  LR: 0.001 → 0.0001
+  Max steps: 50000
+  Target layers: [22, 23, 24, 25]
+  Source layer: 21
+  Action type: discrete
+============================================================
+
+  Vision tokens: 0..255
+  Text tokens: 256..523 (268 tokens)
+  Text end index: 524
+  WARNING: No norm_stats for 'bridge_orig', using Bridge V2 defaults
+Adapter v2 parameters: 1,207,937
+Creating data loaders...
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched Gemma2Attention.forward installed (gemma2).
+  Dynamic sink detection: ON (α=5.0)
+Step     50 | Loss 19.3162 | GradNorm 0.0000 | LR 1.09e-04 | MeanP 0.0140 | Active 0.00% | Blend 0.2689

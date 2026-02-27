@@ -1,0 +1,4 @@
+Token index: 18
+Token text: ray
+Global position: 274
+Attention score: 0.025146

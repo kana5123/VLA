@@ -1,0 +1,80 @@
+openvla/openvla-7b
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+Traceback (most recent call last):
+  File "/home/kana5123/capston/external/SimplerEnv-OpenVLA/simpler_env/main_inference.py", line 4, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+SimplerEnv Evaluation — 20260227_071712
+  Model:      openvla (openvla/openvla-7b)
+  Tasks:      ['pick_coke_can']
+  Device:     GPU 6
+  Output dir: /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla
+
+======================================================================
+  Task:    pick_coke_can — Pick up coke can (visual matching, 4 URDF x 3 orientations)
+  Model:   openvla (ckpt: openvla/openvla-7b)
+  Device:  GPU 6
+  LogDir:  /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla/pick_coke_can
+  Command: bash scripts/pick_coke_can_visual_matching.sh openvla/openvla-7b openvla -0.8 /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla/pick_coke_can 6
+======================================================================
+
+
+  [pick_coke_can] Process exited with code 1 (1.8s elapsed)
+  [pick_coke_can] Result: 0/0 (success rate: N/A)
+
+======================================================================
+  SimplerEnv Evaluation Summary — openvla
+======================================================================
+  Task                  Success     Fail    Total       Rate
+  -------------------- -------- -------- -------- ----------
+  pick_coke_can               0        0        0        N/A
+  -------------------- -------- -------- -------- ----------
+  OVERALL                     0        0        0        N/A
+======================================================================
+
+Results saved to: /home/kana5123/ATLASVLA/outputs/phase3_gate/simplerenv/openvla/results.json
+
+WARNING: One or more tasks exited with a non-zero return code.

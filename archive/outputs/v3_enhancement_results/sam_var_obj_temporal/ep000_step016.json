@@ -1,0 +1,69 @@
+{
+  "episode_id": 0,
+  "step_id": 16,
+  "instruction": "put small spoon from basket to tray",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    -0.021457840239300453,
+    -0.014022034974659217,
+    0.027560060736449312,
+    -0.03845453453882076,
+    0.07759357288830414,
+    -0.1838116917458235,
+    0.3058823529411765
+  ],
+  "ground_truth_action": [
+    0.0260013397783041,
+    -0.029228966683149338,
+    -0.006652622949331999,
+    -0.11084412038326263,
+    -0.10654382407665253,
+    -0.014437654055655003,
+    0.0
+  ],
+  "action_token_ids": [
+    31967,
+    31914,
+    31793,
+    31933,
+    31744,
+    31985,
+    31833
+  ],
+  "mse_per_dim": [
+    0.0022523737679433953,
+    0.00023125077198668227,
+    0.001170507724983327,
+    0.005240252138729821,
+    0.03390658096103004,
+    0.028687564643470623,
+    0.09356401384083046
+  ],
+  "mse_mean": 0.02357893483556776,
+  "mse_spatial": 0.011914755001357314,
+  "mse_gripper": 0.09356401384083046,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "spoon",
+      "basket"
+    ],
+    "num_boxes": 2,
+    "num_patches": 44,
+    "patch_coverage": 0.171875,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 32,
+    "motion_coverage": 0.125
+  }
+}

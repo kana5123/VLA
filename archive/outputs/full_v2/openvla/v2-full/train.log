@@ -1,0 +1,172 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+2026-02-24 04:12:14.750858: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 04:12:14.788844: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-24 04:12:14.788878: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-24 04:12:14.789999: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-24 04:12:14.795941: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-24 04:12:15.459216: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+  Seed: 42
+Loading frozen openvla-7b model...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.22it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.56it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: openvla-7b (llama)
+  Devices: 1 GPU(s)
+  Episodes: None
+  Batch size: 64 (effective = 64/GPU × 1 GPUs)
+  Micro-batch: 8 samples/forward
+  Per-GPU batch: 64
+  LR: 0.001 → 0.0001
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+  Source layer: 27
+  Action type: discrete
+============================================================
+
+  Vision tokens: 0..255
+  Text tokens: 256..273 (18 tokens)
+  Text end index: 274
+Adapter v2 parameters: 2,171,713
+Creating data loaders...
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched LlamaAttention.forward installed (llama).
+  Dynamic sink detection: ON (α=5.0)
+Step     50 | Loss 10.9503 | GradNorm 0.0450 | LR 1.09e-04 | P [0.175/0.398/0.609] | StdP 0.0007 | Active 100.00% | L1s 0.00 | Blend 0.2693
+Step    100 | Loss 11.6960 | GradNorm 0.0297 | LR 2.08e-04 | P [0.000/0.483/1.000] | StdP 0.0037 | Active 55.58% | L1s 0.00 | Blend 0.2715
+Step    150 | Loss 10.9628 | GradNorm 0.0214 | LR 3.07e-04 | P [0.000/0.500/1.000] | StdP 0.0018 | Active 52.05% | L1s 0.00 | Blend 0.2752
+Step    200 | Loss 10.4322 | GradNorm 0.0132 | LR 4.06e-04 | P [0.000/0.497/1.000] | StdP 0.0011 | Active 50.20% | L1s 0.00 | Blend 0.2792
+Step    250 | Loss 10.8847 | GradNorm 0.0145 | LR 5.05e-04 | P [0.000/0.490/1.000] | StdP 0.0007 | Active 49.34% | L1s 0.00 | Blend 0.2848
+Step    300 | Loss 11.3330 | GradNorm 0.0230 | LR 6.04e-04 | P [0.000/0.491/1.000] | StdP 0.0006 | Active 49.22% | L1s 0.00 | Blend 0.2914
+Step    350 | Loss 10.9952 | GradNorm 0.0089 | LR 7.03e-04 | P [0.000/0.484/1.000] | StdP 0.0002 | Active 48.44% | L1s 0.00 | Blend 0.2989
+Step    400 | Loss 10.9235 | GradNorm 0.0142 | LR 8.02e-04 | P [0.000/0.485/1.000] | StdP 0.0003 | Active 48.72% | L1s 0.00 | Blend 0.3077
+Step    450 | Loss 11.1072 | GradNorm 0.0315 | LR 9.01e-04 | P [0.000/0.489/1.000] | StdP 0.0009 | Active 49.38% | L1s 0.00 | Blend 0.3168
+Step    500 | Loss 10.9026 | GradNorm 0.0120 | LR 1.00e-03 | P [0.000/0.490/1.000] | StdP 0.0007 | Active 49.22% | L1s 0.00 | Blend 0.3268
+  >>> Val Loss: 14.8291 (best: inf)
+  Checkpoint saved: outputs/full_v2/openvla/v2-full/checkpoints/best.pt
+Step    550 | Loss 11.6036 | GradNorm 0.0126 | LR 1.00e-03 | P [0.000/0.492/1.000] | StdP 0.0003 | Active 49.22% | L1s 0.10 | Blend 0.3380
+Step    600 | Loss 11.3622 | GradNorm 0.0061 | LR 1.00e-03 | P [0.000/0.492/1.000] | StdP 0.0001 | Active 49.22% | L1s 0.20 | Blend 0.3491
+Step    650 | Loss 10.6980 | GradNorm 0.0117 | LR 1.00e-03 | P [0.000/0.492/1.000] | StdP 0.0003 | Active 49.22% | L1s 0.30 | Blend 0.3611
+Step    700 | Loss 9.9304 | GradNorm 0.0149 | LR 1.00e-03 | P [0.000/0.495/1.000] | StdP 0.0044 | Active 50.02% | L1s 0.40 | Blend 0.3737
+Step    750 | Loss 10.9184 | GradNorm 0.0186 | LR 1.00e-03 | P [0.000/0.492/1.000] | StdP 0.0000 | Active 49.22% | L1s 0.50 | Blend 0.3853
+Step    800 | Loss 11.0978 | GradNorm 0.0216 | LR 1.00e-03 | P [0.000/0.492/1.000] | StdP 0.0027 | Active 49.23% | L1s 0.60 | Blend 0.3965
+Step    850 | Loss 11.0619 | GradNorm 0.0024 | LR 1.00e-03 | P [0.000/0.492/1.000] | StdP 0.0025 | Active 49.23% | L1s 0.70 | Blend 0.4086
+Step    900 | Loss 10.9284 | GradNorm 0.0269 | LR 1.00e-03 | P [0.000/0.484/1.000] | StdP 0.0030 | Active 48.39% | L1s 0.80 | Blend 0.4198
+Step    950 | Loss 10.5667 | GradNorm 0.0319 | LR 1.00e-03 | P [0.000/0.476/1.000] | StdP 0.0023 | Active 47.63% | L1s 0.90 | Blend 0.4314
+Step   1000 | Loss 9.7730 | GradNorm 0.0413 | LR 1.00e-03 | P [0.000/0.476/1.000] | StdP 0.0039 | Active 47.58% | L1s 1.00 | Blend 0.4430
+  >>> Val Loss: 14.6799 (best: 14.8291)
+  Checkpoint saved: outputs/full_v2/openvla/v2-full/checkpoints/best.pt
+Step   1050 | Loss 11.1794 | GradNorm 0.0166 | LR 1.00e-03 | P [0.000/0.476/1.000] | StdP 0.0024 | Active 47.64% | L1s 1.00 | Blend 0.4554
+Step   1100 | Loss 11.3367 | GradNorm 0.0067 | LR 1.00e-03 | P [0.000/0.476/1.000] | StdP 0.0023 | Active 47.64% | L1s 1.00 | Blend 0.4679
+Step   1150 | Loss 10.4905 | GradNorm 0.0205 | LR 1.00e-03 | P [0.000/0.476/1.000] | StdP 0.0031 | Active 47.60% | L1s 1.00 | Blend 0.4804
+Step   1200 | Loss 11.7337 | GradNorm 0.0138 | LR 1.00e-03 | P [0.000/0.476/1.000] | StdP 0.0039 | Active 47.61% | L1s 1.00 | Blend 0.4935
+Step   1250 | Loss 11.2965 | GradNorm 0.0111 | LR 9.99e-04 | P [0.000/0.477/1.000] | StdP 0.0002 | Active 47.67% | L1s 1.00 | Blend 0.5057
+Step   1300 | Loss 10.4854 | GradNorm 0.1823 | LR 9.99e-04 | P [0.000/0.476/1.000] | StdP 0.0013 | Active 47.64% | L1s 1.00 | Blend 0.5183
+Step   1350 | Loss 11.3739 | GradNorm 0.0057 | LR 9.99e-04 | P [0.000/0.476/1.000] | StdP 0.0013 | Active 47.64% | L1s 1.00 | Blend 0.5303
+Step   1400 | Loss 11.4374 | GradNorm 0.0303 | LR 9.99e-04 | P [0.000/0.484/1.000] | StdP 0.0048 | Active 48.38% | L1s 1.00 | Blend 0.5435
+Step   1450 | Loss 11.1099 | GradNorm 0.0528 | LR 9.99e-04 | P [0.000/0.484/1.000] | StdP 0.0040 | Active 48.40% | L1s 1.00 | Blend 0.5569
+Step   1500 | Loss 10.7493 | GradNorm 0.0582 | LR 9.99e-04 | P [0.000/0.491/1.000] | StdP 0.0082 | Active 49.07% | L1s 1.00 | Blend 0.5688
+  >>> Val Loss: 14.8270 (best: 14.6799)
+Step   1550 | Loss 11.1072 | GradNorm 0.1956 | LR 9.99e-04 | P [0.000/0.483/1.000] | StdP 0.0077 | Active 48.28% | L1s 1.00 | Blend 0.5808
+Step   1600 | Loss 11.7041 | GradNorm 0.0038 | LR 9.99e-04 | P [0.000/0.484/1.000] | StdP 0.0040 | Active 48.41% | L1s 1.00 | Blend 0.5931
+Step   1650 | Loss 10.2432 | GradNorm 0.0299 | LR 9.99e-04 | P [0.000/0.482/1.000] | StdP 0.0099 | Active 48.22% | L1s 1.00 | Blend 0.6051
+Step   1700 | Loss 11.5685 | GradNorm 0.0752 | LR 9.99e-04 | P [0.000/0.484/1.000] | StdP 0.0034 | Active 48.40% | L1s 1.00 | Blend 0.6164
+Step   1750 | Loss 11.0514 | GradNorm 0.0950 | LR 9.99e-04 | P [0.000/0.483/1.000] | StdP 0.0064 | Active 48.34% | L1s 1.00 | Blend 0.6274
+Step   1800 | Loss 9.6090 | GradNorm 0.0071 | LR 9.98e-04 | P [0.000/0.483/1.000] | StdP 0.0082 | Active 48.29% | L1s 1.00 | Blend 0.6372
+Step   1850 | Loss 10.9669 | GradNorm 0.0085 | LR 9.98e-04 | P [0.000/0.480/1.000] | StdP 0.0137 | Active 48.01% | L1s 1.00 | Blend 0.6469
+Step   1900 | Loss 11.3683 | GradNorm 0.0060 | LR 9.98e-04 | P [0.000/0.484/1.000] | StdP 0.0000 | Active 48.44% | L1s 1.00 | Blend 0.6562
+Step   1950 | Loss 10.7307 | GradNorm 0.0476 | LR 9.98e-04 | P [0.000/0.484/1.000] | StdP 0.0054 | Active 48.40% | L1s 1.00 | Blend 0.6663
+Step   2000 | Loss 11.0107 | GradNorm 0.2262 | LR 9.98e-04 | P [0.000/0.484/1.000] | StdP 0.0059 | Active 48.41% | L1s 1.00 | Blend 0.6760
+  >>> Val Loss: 14.7270 (best: 14.6799)
+  Checkpoint saved: outputs/full_v2/openvla/v2-full/checkpoints/step_2000.pt
+Step   2050 | Loss 10.2728 | GradNorm 0.3084 | LR 9.98e-04 | P [0.000/0.484/1.000] | StdP 0.0005 | Active 48.45% | L1s 1.00 | Blend 0.6855
+Step   2100 | Loss 11.4212 | GradNorm 0.0867 | LR 9.98e-04 | P [0.000/0.483/1.000] | StdP 0.0095 | Active 48.27% | L1s 1.00 | Blend 0.6945
+Step   2150 | Loss 10.9848 | GradNorm 0.0089 | LR 9.98e-04 | P [0.000/0.482/1.000] | StdP 0.0115 | Active 48.18% | L1s 1.00 | Blend 0.7028
+Step   2200 | Loss 10.4567 | GradNorm 0.0057 | LR 9.97e-04 | P [0.000/0.482/1.000] | StdP 0.0116 | Active 48.19% | L1s 1.00 | Blend 0.7116
+Step   2250 | Loss 10.3947 | GradNorm 0.0017 | LR 9.97e-04 | P [0.000/0.483/1.000] | StdP 0.0082 | Active 48.29% | L1s 1.00 | Blend 0.7201
+Step   2300 | Loss 11.0448 | GradNorm 0.0012 | LR 9.97e-04 | P [0.000/0.484/1.000] | StdP 0.0058 | Active 48.36% | L1s 1.00 | Blend 0.7287
+Step   2350 | Loss 11.0080 | GradNorm 0.5347 | LR 9.97e-04 | P [0.000/0.484/1.000] | StdP 0.0058 | Active 48.36% | L1s 1.00 | Blend 0.7361
+Step   2400 | Loss 11.3285 | GradNorm 0.0425 | LR 9.97e-04 | P [0.000/0.483/1.000] | StdP 0.0082 | Active 48.28% | L1s 1.00 | Blend 0.7441
+Step   2450 | Loss 11.2497 | GradNorm 0.0056 | LR 9.97e-04 | P [0.000/0.484/1.000] | StdP 0.0059 | Active 48.36% | L1s 1.00 | Blend 0.7513
+Step   2500 | Loss 10.6528 | GradNorm 0.0661 | LR 9.96e-04 | P [0.000/0.477/1.000] | StdP 0.0000 | Active 47.66% | L1s 1.00 | Blend 0.7579
+  >>> Val Loss: 14.7016 (best: 14.6799)
+Step   2550 | Loss 10.5329 | GradNorm 0.5650 | LR 9.96e-04 | P [0.000/0.476/1.000] | StdP 0.0027 | Active 47.58% | L1s 1.00 | Blend 0.7643
+Step   2600 | Loss 11.2438 | GradNorm 0.1577 | LR 9.96e-04 | P [0.000/0.469/1.000] | StdP 0.0000 | Active 46.88% | L1s 1.00 | Blend 0.7703
+Step   2650 | Loss 10.6463 | GradNorm 0.0245 | LR 9.96e-04 | P [0.000/0.469/1.000] | StdP 0.0019 | Active 46.85% | L1s 1.00 | Blend 0.7762
+Step   2700 | Loss 11.2010 | GradNorm 0.0686 | LR 9.96e-04 | P [0.000/0.469/1.000] | StdP 0.0033 | Active 46.86% | L1s 1.00 | Blend 0.7820
+Step   2750 | Loss 9.9745 | GradNorm 0.0372 | LR 9.95e-04 | P [0.000/0.468/1.000] | StdP 0.0034 | Active 46.84% | L1s 1.00 | Blend 0.7871
+Step   2800 | Loss 10.8767 | GradNorm 0.0675 | LR 9.95e-04 | P [0.000/0.469/1.000] | StdP 0.0000 | Active 46.88% | L1s 1.00 | Blend 0.7931
+Step   2850 | Loss 11.2332 | GradNorm 0.0160 | LR 9.95e-04 | P [0.000/0.469/1.000] | StdP 0.0000 | Active 46.88% | L1s 1.00 | Blend 0.7982
+Step   2900 | Loss 11.3948 | GradNorm 0.0109 | LR 9.95e-04 | P [0.000/0.468/1.000] | StdP 0.0036 | Active 46.83% | L1s 1.00 | Blend 0.8036
+Step   2950 | Loss 11.2758 | GradNorm 0.4888 | LR 9.95e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8088
+Step   3000 | Loss 10.8938 | GradNorm 0.0014 | LR 9.94e-04 | P [0.000/0.461/1.000] | StdP 0.0020 | Active 46.07% | L1s 1.00 | Blend 0.8133
+  >>> Val Loss: 14.7891 (best: 14.6799)
+Step   3050 | Loss 10.3578 | GradNorm 0.1653 | LR 9.94e-04 | P [0.000/0.461/1.000] | StdP 0.0019 | Active 46.07% | L1s 1.00 | Blend 0.8182
+Step   3100 | Loss 10.3565 | GradNorm 0.0007 | LR 9.94e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8230
+Step   3150 | Loss 11.4138 | GradNorm 0.0044 | LR 9.94e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8276
+Step   3200 | Loss 10.9112 | GradNorm 0.0106 | LR 9.93e-04 | P [0.000/0.460/1.000] | StdP 0.0041 | Active 46.01% | L1s 1.00 | Blend 0.8321
+Step   3250 | Loss 11.8308 | GradNorm 0.0011 | LR 9.93e-04 | P [0.000/0.469/1.000] | StdP 0.0010 | Active 46.89% | L1s 1.00 | Blend 0.8362
+Step   3300 | Loss 10.8877 | GradNorm 0.0012 | LR 9.93e-04 | P [0.000/0.469/1.000] | StdP 0.0000 | Active 46.88% | L1s 1.00 | Blend 0.8403
+Step   3350 | Loss 10.8045 | GradNorm 0.0017 | LR 9.93e-04 | P [0.000/0.469/1.000] | StdP 0.0009 | Active 46.86% | L1s 1.00 | Blend 0.8443
+Step   3400 | Loss 11.0204 | GradNorm 0.0321 | LR 9.92e-04 | P [0.000/0.469/1.000] | StdP 0.0000 | Active 46.88% | L1s 1.00 | Blend 0.8484
+Step   3450 | Loss 11.0892 | GradNorm 0.0718 | LR 9.92e-04 | P [0.000/0.469/1.000] | StdP 0.0048 | Active 46.94% | L1s 1.00 | Blend 0.8522
+Step   3500 | Loss 10.4542 | GradNorm 0.0037 | LR 9.92e-04 | P [0.000/0.468/1.000] | StdP 0.0039 | Active 46.81% | L1s 1.00 | Blend 0.8561
+  >>> Val Loss: 14.8290 (best: 14.6799)
+Step   3550 | Loss 10.6372 | GradNorm 0.0329 | LR 9.92e-04 | P [0.000/0.468/1.000] | StdP 0.0033 | Active 46.83% | L1s 1.00 | Blend 0.8596
+Step   3600 | Loss 10.2702 | GradNorm 0.0015 | LR 9.91e-04 | P [0.000/0.469/1.000] | StdP 0.0008 | Active 46.89% | L1s 1.00 | Blend 0.8629
+Step   3650 | Loss 10.9742 | GradNorm 0.1818 | LR 9.91e-04 | P [0.000/0.468/1.000] | StdP 0.0029 | Active 46.84% | L1s 1.00 | Blend 0.8663
+Step   3700 | Loss 10.9482 | GradNorm 0.0010 | LR 9.91e-04 | P [0.000/0.469/1.000] | StdP 0.0017 | Active 46.86% | L1s 1.00 | Blend 0.8696
+Step   3750 | Loss 10.8249 | GradNorm 0.1688 | LR 9.90e-04 | P [0.000/0.469/1.000] | StdP 0.0000 | Active 46.88% | L1s 1.00 | Blend 0.8727
+Step   3800 | Loss 10.9960 | GradNorm 0.0455 | LR 9.90e-04 | P [0.000/0.468/1.000] | StdP 0.0016 | Active 46.85% | L1s 1.00 | Blend 0.8757
+Step   3850 | Loss 10.6943 | GradNorm 0.0285 | LR 9.90e-04 | P [0.000/0.468/1.000] | StdP 0.0019 | Active 46.85% | L1s 1.00 | Blend 0.8788
+Step   3900 | Loss 11.2061 | GradNorm 0.0373 | LR 9.90e-04 | P [0.000/0.461/1.000] | StdP 0.0010 | Active 46.11% | L1s 1.00 | Blend 0.8815
+Step   3950 | Loss 11.1660 | GradNorm 0.0095 | LR 9.89e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8847
+Step   4000 | Loss 11.0533 | GradNorm 0.1973 | LR 9.89e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8877
+  >>> Val Loss: 14.7265 (best: 14.6799)
+  Checkpoint saved: outputs/full_v2/openvla/v2-full/checkpoints/step_4000.pt
+Step   4050 | Loss 10.9700 | GradNorm 0.0693 | LR 9.89e-04 | P [0.000/0.461/1.000] | StdP 0.0007 | Active 46.09% | L1s 1.00 | Blend 0.8905
+Step   4100 | Loss 10.9934 | GradNorm 0.4155 | LR 9.88e-04 | P [0.000/0.461/1.000] | StdP 0.0010 | Active 46.11% | L1s 1.00 | Blend 0.8929
+Step   4150 | Loss 11.2941 | GradNorm 0.0009 | LR 9.88e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8954
+Step   4200 | Loss 10.3941 | GradNorm 0.0044 | LR 9.88e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.8978
+Step   4250 | Loss 11.8573 | GradNorm 0.0008 | LR 9.87e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9004
+Step   4300 | Loss 10.4284 | GradNorm 0.0005 | LR 9.87e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9027
+Step   4350 | Loss 10.0545 | GradNorm 0.0003 | LR 9.87e-04 | P [0.000/0.461/1.000] | StdP 0.0010 | Active 46.11% | L1s 1.00 | Blend 0.9051
+Step   4400 | Loss 10.7818 | GradNorm 0.1870 | LR 9.86e-04 | P [0.000/0.461/1.000] | StdP 0.0013 | Active 46.12% | L1s 1.00 | Blend 0.9075
+Step   4450 | Loss 11.3840 | GradNorm 0.0006 | LR 9.86e-04 | P [0.000/0.461/1.000] | StdP 0.0010 | Active 46.11% | L1s 1.00 | Blend 0.9094
+Step   4500 | Loss 11.6290 | GradNorm 0.0136 | LR 9.86e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9114
+  >>> Val Loss: 14.7183 (best: 14.6799)
+Step   4550 | Loss 11.2159 | GradNorm 0.0563 | LR 9.85e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9136
+Step   4600 | Loss 11.0804 | GradNorm 0.0030 | LR 9.85e-04 | P [0.000/0.461/1.000] | StdP 0.0008 | Active 46.09% | L1s 1.00 | Blend 0.9157
+Step   4650 | Loss 10.4673 | GradNorm 0.2363 | LR 9.84e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9172
+Step   4700 | Loss 10.3009 | GradNorm 0.0318 | LR 9.84e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9187
+Step   4750 | Loss 10.8512 | GradNorm 0.0004 | LR 9.84e-04 | P [0.000/0.461/1.000] | StdP 0.0010 | Active 46.11% | L1s 1.00 | Blend 0.9206
+Step   4800 | Loss 10.8470 | GradNorm 0.0100 | LR 9.83e-04 | P [0.000/0.461/1.000] | StdP 0.0007 | Active 46.09% | L1s 1.00 | Blend 0.9223
+Step   4850 | Loss 11.1115 | GradNorm 0.0609 | LR 9.83e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9241
+Step   4900 | Loss 10.2303 | GradNorm 0.0534 | LR 9.83e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9255
+Step   4950 | Loss 10.8259 | GradNorm 0.0008 | LR 9.82e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9271
+Step   5000 | Loss 11.1242 | GradNorm 0.0347 | LR 9.82e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9285
+  >>> Val Loss: 14.7346 (best: 14.6799)
+Step   5050 | Loss 10.7770 | GradNorm 0.0003 | LR 9.81e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9299
+Step   5100 | Loss 11.1094 | GradNorm 0.0081 | LR 9.81e-04 | P [0.000/0.461/1.000] | StdP 0.0006 | Active 46.09% | L1s 1.00 | Blend 0.9313
+Step   5150 | Loss 10.5624 | GradNorm 0.0006 | LR 9.81e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9328
+Step   5200 | Loss 10.6585 | GradNorm 0.0032 | LR 9.80e-04 | P [0.000/0.461/1.000] | StdP 0.0000 | Active 46.09% | L1s 1.00 | Blend 0.9342
+Step   5250 | Loss 11.4078 | GradNorm 0.0030 | LR 9.80e-04 | P [0.000/0.461/1.000] | StdP 0.0009 | Active 46.11% | L1s 1.00 | Blend 0.9357
+Step   5300 | Loss 11.1794 | GradNorm 0.0003 | LR 9.79e-04 | P [0.000/0.461/1.000] | StdP 0.0010 | Active 46.11% | L1s 1.00 | Blend 0.9371

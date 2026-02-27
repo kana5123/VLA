@@ -1,0 +1,15 @@
+{
+  "n_samples": 10,
+  "anchor_vs_nll": {
+    "rho": 0.24,
+    "p": 0.5041
+  },
+  "anchor_vs_entropy": {
+    "rho": -0.5125,
+    "p": 0.1299
+  },
+  "anchor_vs_consistency": {
+    "rho": 0.4191,
+    "p": 0.228
+  }
+}

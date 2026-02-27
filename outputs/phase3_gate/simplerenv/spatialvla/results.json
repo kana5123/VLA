@@ -1,0 +1,32 @@
+{
+  "model": "spatialvla",
+  "ckpt": "IPEC-COMMUNITY/spatialvla-4b-224-pt",
+  "device": "1",
+  "timestamp": "20260227_071204",
+  "tasks": {
+    "pick_coke_can": {
+      "successes": 0,
+      "failures": 0,
+      "total": 0,
+      "success_rate": null
+    },
+    "move_near": {
+      "successes": 0,
+      "failures": 0,
+      "total": 0,
+      "success_rate": null
+    },
+    "open_drawer": {
+      "successes": 0,
+      "failures": 0,
+      "total": 0,
+      "success_rate": null
+    },
+    "bridge_tasks": {
+      "successes": 0,
+      "failures": 0,
+      "total": 0,
+      "success_rate": null
+    }
+  }
+}

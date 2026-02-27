@@ -1,0 +1,64 @@
+{
+  "model": "spatialvla-4b",
+  "n_samples": 20,
+  "baseline": {
+    "mean_entropy": 3.2826,
+    "mean_d2_consistency": 0.79
+  },
+  "methods": [
+    {
+      "name": "VAR_p0.3",
+      "type": "VAR",
+      "p": 0.3,
+      "mean_entropy": 3.0835,
+      "mean_d2_consistency": 0.78,
+      "d2_delta": -0.01,
+      "action_change_rate": 0.1
+    },
+    {
+      "name": "VAR_p0.6",
+      "type": "VAR",
+      "p": 0.6,
+      "mean_entropy": 2.9264,
+      "mean_d2_consistency": 0.83,
+      "d2_delta": 0.04,
+      "action_change_rate": 0.15
+    },
+    {
+      "name": "VAR_p0.9",
+      "type": "VAR",
+      "p": 0.9,
+      "mean_entropy": 2.832,
+      "mean_d2_consistency": 0.82,
+      "d2_delta": 0.03,
+      "action_change_rate": 0.2
+    },
+    {
+      "name": "K-scale_a0.0",
+      "type": "K-scale",
+      "alpha": 0.0,
+      "mean_entropy": 3.6926,
+      "mean_d2_consistency": 0.77,
+      "d2_delta": -0.02,
+      "action_change_rate": 0.15
+    },
+    {
+      "name": "K-scale_a0.1",
+      "type": "K-scale",
+      "alpha": 0.1,
+      "mean_entropy": 3.6362,
+      "mean_d2_consistency": 0.78,
+      "d2_delta": -0.01,
+      "action_change_rate": 0.1
+    },
+    {
+      "name": "K-scale_a0.3",
+      "type": "K-scale",
+      "alpha": 0.3,
+      "mean_entropy": 3.5528,
+      "mean_d2_consistency": 0.81,
+      "d2_delta": 0.02,
+      "action_change_rate": 0.1
+    }
+  ]
+}

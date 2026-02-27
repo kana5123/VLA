@@ -1,0 +1,24 @@
+{
+  "model": "ecot-7b",
+  "classification": "bottleneck",
+  "d3_kl_mean": 3.265,
+  "d3_kls": [
+    7.6574,
+    1.0549,
+    1.0829
+  ],
+  "flip_rate": 0.3333,
+  "has_coexist": false,
+  "phi_mean": 9.6866,
+  "anchor_targets": [
+    {
+      "target_abs": 0,
+      "mode": "A_mode",
+      "anchor_rel": 0,
+      "is_anchored": true
+    }
+  ],
+  "n_samples_used": 3,
+  "recommended_hook": null,
+  "recommended_params": null
+}

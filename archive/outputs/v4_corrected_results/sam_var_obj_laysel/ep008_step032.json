@@ -1,0 +1,64 @@
+{
+  "episode_id": 8,
+  "step_id": 32,
+  "instruction": "open the drawer",
+  "condition": "sam_var_obj_laysel",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + L8-24 + SAM2",
+  "predicted_action": [
+    -0.005444599394686535,
+    0.016506872008612776,
+    0.02139783744016312,
+    0.045344743690802505,
+    -0.010481861134176165,
+    -0.04261881009559154,
+    0.23046875
+  ],
+  "ground_truth_action": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "action_token_ids": [
+    31895,
+    31819,
+    31816,
+    31801,
+    31876,
+    31897,
+    31842
+  ],
+  "gt_is_zero_spatial": true,
+  "mse_per_dim": [
+    2.964366256862098e-05,
+    0.000272476823508724,
+    0.00045786744711564663,
+    0.0020561457803845735,
+    0.00010986941283615285,
+    0.0018163629739640955,
+    0.5921783447265625
+  ],
+  "mse_mean": 0.08527438726099147,
+  "mse_spatial": 0.0007903943500629689,
+  "mse_gripper": 0.5921783447265625,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "drawer"
+    ],
+    "num_boxes": 1,
+    "num_patches": 20,
+    "patch_coverage": 0.078125
+  }
+}

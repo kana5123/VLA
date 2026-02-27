@@ -1,0 +1,56 @@
+2026-02-23 12:09:40.009993: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 12:09:40.053377: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 12:09:40.053419: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 12:09:40.054793: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 12:09:40.061933: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 12:09:40.794696: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+  Seed: 42
+Loading frozen tracevla-phi3v model...
+Loading model from registry: tracevla-phi3v (furonghuang-lab/tracevla_phi3v)
+  Architecture: phi3_v, Auto class: AutoModelForCausalLM
+  Applied TraceVLA transformers safety bypass
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  7.31it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 13.56it/s]
+  Loaded: 32L x 32H, hidden=3072, dtype=bfloat16
+  Layers path: model.layers
+Model loaded successfully.
+
+============================================================
+Differentiable Attention Adapter Training
+  Model: tracevla-phi3v (phi3_v)
+  Devices: 1 GPU(s)
+  Episodes: None
+  Batch size: 64 (effective = 64/GPU × 1 GPUs)
+  Micro-batch: 32 samples/forward
+  Per-GPU batch: 64
+  LR: 0.001 → 0.0001
+  Max steps: 50000
+  Target layers: [28, 29, 30, 31]
+  Source layer: 27
+  Action type: continuous
+============================================================
+
+  Vision tokens: 0..312
+  Text tokens: 313..649 (337 tokens)
+  Text end index: 650
+Adapter v2 parameters: 1,651,073
+Creating data loaders...
+Episode split: train=26212, val=3276, test=3277
+  [train] 889178 steps from 26212 episodes (cached)
+  [val] 111136 steps from 3276 episodes (cached)
+  [test] 111562 steps from 3277 episodes (cached)
+[attention_v3] V3 patched Phi3Attention.forward installed (phi3_v).
+  Dynamic sink detection: ON (α=5.0)
+/home/kana5123/.cache/huggingface/modules/transformers_modules/furonghuang_hyphen_lab/tracevla_phi3v/b879e42622f075e2b2fae76aee899b818e666afd/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.
+  warnings.warn(
+Step     50 | Loss 2.6742 | GradNorm 0.0998 | LR 1.09e-04 | MeanP 0.0190 | Active 0.00% | Blend 0.2686
+Step    100 | Loss 2.8240 | GradNorm 0.0829 | LR 2.08e-04 | MeanP 0.4046 | Active 41.92% | Blend 0.2700
+Step    150 | Loss 2.3842 | GradNorm 0.0076 | LR 3.07e-04 | MeanP 0.4060 | Active 40.62% | Blend 0.2735
+Step    200 | Loss 2.2790 | GradNorm 0.1787 | LR 4.06e-04 | MeanP 0.4138 | Active 41.41% | Blend 0.2777
+Step    250 | Loss 2.4136 | GradNorm 0.0373 | LR 5.05e-04 | MeanP 0.4138 | Active 41.41% | Blend 0.2826
+Step    300 | Loss 2.7231 | GradNorm 0.0567 | LR 6.04e-04 | MeanP 0.4169 | Active 42.00% | Blend 0.2891
+Step    350 | Loss 2.5016 | GradNorm 0.0873 | LR 7.03e-04 | MeanP 0.4208 | Active 42.61% | Blend 0.2961
+Step    400 | Loss 2.3791 | GradNorm 0.1394 | LR 8.02e-04 | MeanP 0.4236 | Active 42.92% | Blend 0.3040

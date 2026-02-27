@@ -1,0 +1,69 @@
+{
+  "episode_id": 9,
+  "step_id": 17,
+  "instruction": "Move the can in the middle bottom of the table",
+  "condition": "sam_var_obj_temporal",
+  "condition_desc": "VAR(p=0.6,rho=0.5) + obj_redirect + temporal + SAM2",
+  "predicted_action": [
+    0.0038173490201725453,
+    -0.00042412251234059256,
+    0.0036561353351263343,
+    -0.013549359613773987,
+    -0.002790191967697725,
+    -0.0016785094141960888,
+    0.0
+  ],
+  "ground_truth_action": [
+    0.010718102566897869,
+    0.010033036582171917,
+    0.012381268665194511,
+    -0.014901277609169483,
+    -0.03197876363992691,
+    0.052756909281015396,
+    1.0
+  ],
+  "action_token_ids": [
+    31854,
+    31872,
+    31885,
+    31894,
+    31865,
+    31872,
+    31872
+  ],
+  "mse_per_dim": [
+    4.7620399512642134e-05,
+    0.00010935217632794569,
+    7.61279516274666e-05,
+    1.827682266274177e-06,
+    0.00085197271626486,
+    0.00296321480852298,
+    1.0
+  ],
+  "mse_mean": 0.14343573081921743,
+  "mse_spatial": 0.0006750192890870281,
+  "mse_gripper": 1.0,
+  "mse_per_dim_names": [
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw",
+    "gripper"
+  ],
+  "grounding": {
+    "nouns": [
+      "can",
+      "table"
+    ],
+    "num_boxes": 0,
+    "num_patches": 0,
+    "patch_coverage": 0.0,
+    "segmentation": "sam2"
+  },
+  "temporal": {
+    "num_motion_patches": 38,
+    "motion_coverage": 0.1484375
+  }
+}

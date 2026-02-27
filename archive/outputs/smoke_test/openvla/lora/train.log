@@ -1,0 +1,40 @@
+2026-02-23 02:17:40.615226: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-23 02:17:40.653848: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-23 02:17:40.653885: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-23 02:17:40.655052: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-23 02:17:40.661500: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-23 02:17:41.441655: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+Loading openvla-7b...
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.29it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.70it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+trainable params: 1,048,576 || all params: 7,542,285,760 || trainable%: 0.0139
+
+============================================================
+LoRA Baseline Training
+  Model: openvla-7b
+  LoRA rank: 16, alpha: 32
+  Target layers: [28, 29, 30, 31]
+  Target modules: ['q_proj', 'v_proj']
+  Seed: 42
+  Devices: 1 GPU(s)
+============================================================
+
+Creating data loaders...
+Episode split: train=42548, val=5318, test=5320
+  [train] 1109516 steps from 30952 episodes (cached)
+  [val] 135006 steps from 3819 episodes (cached)
+  [test] 137834 steps from 3871 episodes (cached)
+Step     50 | Loss 12.5934 | GradNorm 1.6752 | LR 2.57e-05
+Step    100 | Loss 11.9689 | GradNorm 5.8607 | LR 5.05e-05
+
+LoRA training complete. Logs: outputs/smoke_test/openvla/lora/logs/training_log.json

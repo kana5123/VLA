@@ -1,0 +1,705 @@
+{
+  "total_top_k_entries": 31360,
+  "layer_type_distribution": {
+    "layer_00": {
+      "vision": {
+        "count": 196,
+        "ratio": 0.2
+      },
+      "text": {
+        "count": 749,
+        "ratio": 0.7643
+      },
+      "special": {
+        "count": 35,
+        "ratio": 0.0357
+      }
+    },
+    "layer_01": {
+      "vision": {
+        "count": 196,
+        "ratio": 0.2
+      },
+      "text": {
+        "count": 454,
+        "ratio": 0.4633
+      },
+      "special": {
+        "count": 330,
+        "ratio": 0.3367
+      }
+    },
+    "layer_02": {
+      "vision": {
+        "count": 196,
+        "ratio": 0.2
+      },
+      "text": {
+        "count": 367,
+        "ratio": 0.3745
+      },
+      "special": {
+        "count": 417,
+        "ratio": 0.4255
+      }
+    },
+    "layer_03": {
+      "vision": {
+        "count": 196,
+        "ratio": 0.2
+      },
+      "text": {
+        "count": 407,
+        "ratio": 0.4153
+      },
+      "special": {
+        "count": 377,
+        "ratio": 0.3847
+      }
+    },
+    "layer_04": {
+      "vision": {
+        "count": 196,
+        "ratio": 0.2
+      },
+      "text": {
+        "count": 478,
+        "ratio": 0.4878
+      },
+      "special": {
+        "count": 306,
+        "ratio": 0.3122
+      }
+    },
+    "layer_05": {
+      "vision": {
+        "count": 197,
+        "ratio": 0.201
+      },
+      "text": {
+        "count": 503,
+        "ratio": 0.5133
+      },
+      "special": {
+        "count": 280,
+        "ratio": 0.2857
+      }
+    },
+    "layer_06": {
+      "vision": {
+        "count": 198,
+        "ratio": 0.202
+      },
+      "text": {
+        "count": 609,
+        "ratio": 0.6214
+      },
+      "special": {
+        "count": 173,
+        "ratio": 0.1765
+      }
+    },
+    "layer_07": {
+      "vision": {
+        "count": 210,
+        "ratio": 0.2143
+      },
+      "text": {
+        "count": 574,
+        "ratio": 0.5857
+      },
+      "special": {
+        "count": 196,
+        "ratio": 0.2
+      }
+    },
+    "layer_08": {
+      "vision": {
+        "count": 206,
+        "ratio": 0.2102
+      },
+      "text": {
+        "count": 640,
+        "ratio": 0.6531
+      },
+      "special": {
+        "count": 134,
+        "ratio": 0.1367
+      }
+    },
+    "layer_09": {
+      "vision": {
+        "count": 205,
+        "ratio": 0.2092
+      },
+      "text": {
+        "count": 522,
+        "ratio": 0.5327
+      },
+      "special": {
+        "count": 253,
+        "ratio": 0.2582
+      }
+    },
+    "layer_10": {
+      "vision": {
+        "count": 259,
+        "ratio": 0.2643
+      },
+      "text": {
+        "count": 515,
+        "ratio": 0.5255
+      },
+      "special": {
+        "count": 206,
+        "ratio": 0.2102
+      }
+    },
+    "layer_11": {
+      "vision": {
+        "count": 251,
+        "ratio": 0.2561
+      },
+      "text": {
+        "count": 551,
+        "ratio": 0.5622
+      },
+      "special": {
+        "count": 178,
+        "ratio": 0.1816
+      }
+    },
+    "layer_12": {
+      "vision": {
+        "count": 208,
+        "ratio": 0.2122
+      },
+      "text": {
+        "count": 541,
+        "ratio": 0.552
+      },
+      "special": {
+        "count": 231,
+        "ratio": 0.2357
+      }
+    },
+    "layer_13": {
+      "vision": {
+        "count": 205,
+        "ratio": 0.2092
+      },
+      "text": {
+        "count": 555,
+        "ratio": 0.5663
+      },
+      "special": {
+        "count": 220,
+        "ratio": 0.2245
+      }
+    },
+    "layer_14": {
+      "vision": {
+        "count": 254,
+        "ratio": 0.2592
+      },
+      "text": {
+        "count": 507,
+        "ratio": 0.5173
+      },
+      "special": {
+        "count": 219,
+        "ratio": 0.2235
+      }
+    },
+    "layer_15": {
+      "vision": {
+        "count": 270,
+        "ratio": 0.2755
+      },
+      "text": {
+        "count": 428,
+        "ratio": 0.4367
+      },
+      "special": {
+        "count": 282,
+        "ratio": 0.2878
+      }
+    },
+    "layer_16": {
+      "vision": {
+        "count": 279,
+        "ratio": 0.2847
+      },
+      "text": {
+        "count": 420,
+        "ratio": 0.4286
+      },
+      "special": {
+        "count": 281,
+        "ratio": 0.2867
+      }
+    },
+    "layer_17": {
+      "vision": {
+        "count": 281,
+        "ratio": 0.2867
+      },
+      "text": {
+        "count": 467,
+        "ratio": 0.4765
+      },
+      "special": {
+        "count": 232,
+        "ratio": 0.2367
+      }
+    },
+    "layer_18": {
+      "vision": {
+        "count": 299,
+        "ratio": 0.3051
+      },
+      "text": {
+        "count": 413,
+        "ratio": 0.4214
+      },
+      "special": {
+        "count": 268,
+        "ratio": 0.2735
+      }
+    },
+    "layer_19": {
+      "vision": {
+        "count": 331,
+        "ratio": 0.3378
+      },
+      "text": {
+        "count": 488,
+        "ratio": 0.498
+      },
+      "special": {
+        "count": 161,
+        "ratio": 0.1643
+      }
+    },
+    "layer_20": {
+      "vision": {
+        "count": 405,
+        "ratio": 0.4133
+      },
+      "text": {
+        "count": 441,
+        "ratio": 0.45
+      },
+      "special": {
+        "count": 134,
+        "ratio": 0.1367
+      }
+    },
+    "layer_21": {
+      "vision": {
+        "count": 380,
+        "ratio": 0.3878
+      },
+      "text": {
+        "count": 420,
+        "ratio": 0.4286
+      },
+      "special": {
+        "count": 180,
+        "ratio": 0.1837
+      }
+    },
+    "layer_22": {
+      "vision": {
+        "count": 324,
+        "ratio": 0.3306
+      },
+      "text": {
+        "count": 411,
+        "ratio": 0.4194
+      },
+      "special": {
+        "count": 245,
+        "ratio": 0.25
+      }
+    },
+    "layer_23": {
+      "vision": {
+        "count": 275,
+        "ratio": 0.2806
+      },
+      "text": {
+        "count": 510,
+        "ratio": 0.5204
+      },
+      "special": {
+        "count": 195,
+        "ratio": 0.199
+      }
+    },
+    "layer_24": {
+      "vision": {
+        "count": 387,
+        "ratio": 0.3949
+      },
+      "text": {
+        "count": 429,
+        "ratio": 0.4378
+      },
+      "special": {
+        "count": 164,
+        "ratio": 0.1673
+      }
+    },
+    "layer_25": {
+      "vision": {
+        "count": 344,
+        "ratio": 0.351
+      },
+      "text": {
+        "count": 557,
+        "ratio": 0.5684
+      },
+      "special": {
+        "count": 79,
+        "ratio": 0.0806
+      }
+    },
+    "layer_26": {
+      "vision": {
+        "count": 255,
+        "ratio": 0.2602
+      },
+      "text": {
+        "count": 615,
+        "ratio": 0.6276
+      },
+      "special": {
+        "count": 110,
+        "ratio": 0.1122
+      }
+    },
+    "layer_27": {
+      "vision": {
+        "count": 205,
+        "ratio": 0.2092
+      },
+      "text": {
+        "count": 631,
+        "ratio": 0.6439
+      },
+      "special": {
+        "count": 144,
+        "ratio": 0.1469
+      }
+    },
+    "layer_28": {
+      "vision": {
+        "count": 270,
+        "ratio": 0.2755
+      },
+      "text": {
+        "count": 561,
+        "ratio": 0.5724
+      },
+      "special": {
+        "count": 149,
+        "ratio": 0.152
+      }
+    },
+    "layer_29": {
+      "vision": {
+        "count": 349,
+        "ratio": 0.3561
+      },
+      "text": {
+        "count": 482,
+        "ratio": 0.4918
+      },
+      "special": {
+        "count": 149,
+        "ratio": 0.152
+      }
+    },
+    "layer_30": {
+      "vision": {
+        "count": 255,
+        "ratio": 0.2602
+      },
+      "text": {
+        "count": 655,
+        "ratio": 0.6684
+      },
+      "special": {
+        "count": 70,
+        "ratio": 0.0714
+      }
+    },
+    "layer_31": {
+      "vision": {
+        "count": 204,
+        "ratio": 0.2082
+      },
+      "text": {
+        "count": 683,
+        "ratio": 0.6969
+      },
+      "special": {
+        "count": 93,
+        "ratio": 0.0949
+      }
+    }
+  },
+  "action_dim_type_distribution": {
+    "0_x": {
+      "vision": {
+        "count": 1297,
+        "ratio": 0.2895
+      },
+      "text": {
+        "count": 3183,
+        "ratio": 0.7105
+      }
+    },
+    "1_y": {
+      "vision": {
+        "count": 1378,
+        "ratio": 0.3076
+      },
+      "text": {
+        "count": 2787,
+        "ratio": 0.6221
+      },
+      "special": {
+        "count": 315,
+        "ratio": 0.0703
+      }
+    },
+    "2_z": {
+      "vision": {
+        "count": 1313,
+        "ratio": 0.2931
+      },
+      "text": {
+        "count": 2463,
+        "ratio": 0.5498
+      },
+      "special": {
+        "count": 704,
+        "ratio": 0.1571
+      }
+    },
+    "3_roll": {
+      "vision": {
+        "count": 1124,
+        "ratio": 0.2509
+      },
+      "text": {
+        "count": 2321,
+        "ratio": 0.5181
+      },
+      "special": {
+        "count": 1035,
+        "ratio": 0.231
+      }
+    },
+    "4_pitch": {
+      "vision": {
+        "count": 1029,
+        "ratio": 0.2297
+      },
+      "text": {
+        "count": 1989,
+        "ratio": 0.444
+      },
+      "special": {
+        "count": 1462,
+        "ratio": 0.3263
+      }
+    },
+    "5_yaw": {
+      "vision": {
+        "count": 1084,
+        "ratio": 0.242
+      },
+      "text": {
+        "count": 1946,
+        "ratio": 0.4344
+      },
+      "special": {
+        "count": 1450,
+        "ratio": 0.3237
+      }
+    },
+    "6_gripper": {
+      "vision": {
+        "count": 1061,
+        "ratio": 0.2368
+      },
+      "special": {
+        "count": 1525,
+        "ratio": 0.3404
+      },
+      "text": {
+        "count": 1894,
+        "ratio": 0.4228
+      }
+    }
+  },
+  "top_20_vision_positions": [
+    {
+      "position": "r00_c00",
+      "count": 6272
+    },
+    {
+      "position": "r08_c10",
+      "count": 294
+    },
+    {
+      "position": "r00_c07",
+      "count": 213
+    },
+    {
+      "position": "r00_c11",
+      "count": 174
+    },
+    {
+      "position": "r00_c10",
+      "count": 141
+    },
+    {
+      "position": "r01_c11",
+      "count": 122
+    },
+    {
+      "position": "r00_c05",
+      "count": 97
+    },
+    {
+      "position": "r00_c09",
+      "count": 92
+    },
+    {
+      "position": "r01_c10",
+      "count": 75
+    },
+    {
+      "position": "r02_c07",
+      "count": 70
+    },
+    {
+      "position": "r00_c08",
+      "count": 70
+    },
+    {
+      "position": "r01_c06",
+      "count": 67
+    },
+    {
+      "position": "r07_c06",
+      "count": 58
+    },
+    {
+      "position": "r02_c06",
+      "count": 54
+    },
+    {
+      "position": "r01_c09",
+      "count": 46
+    },
+    {
+      "position": "r05_c02",
+      "count": 37
+    },
+    {
+      "position": "r05_c07",
+      "count": 34
+    },
+    {
+      "position": "r06_c02",
+      "count": 34
+    },
+    {
+      "position": "r04_c06",
+      "count": 31
+    },
+    {
+      "position": "r04_c05",
+      "count": 28
+    }
+  ],
+  "top_20_text_tokens": [
+    {
+      "token": "\n",
+      "count": 5880
+    },
+    {
+      "token": "oon",
+      "count": 2147
+    },
+    {
+      "token": "basket",
+      "count": 1537
+    },
+    {
+      "token": ":",
+      "count": 1370
+    },
+    {
+      "token": "sp",
+      "count": 1219
+    },
+    {
+      "token": "ray",
+      "count": 970
+    },
+    {
+      "token": "small",
+      "count": 909
+    },
+    {
+      "token": "?",
+      "count": 870
+    },
+    {
+      "token": "to",
+      "count": 499
+    },
+    {
+      "token": "from",
+      "count": 283
+    },
+    {
+      "token": "In",
+      "count": 202
+    },
+    {
+      "token": "the",
+      "count": 195
+    },
+    {
+      "token": "What",
+      "count": 167
+    },
+    {
+      "token": "Out",
+      "count": 164
+    },
+    {
+      "token": "action",
+      "count": 139
+    },
+    {
+      "token": "t",
+      "count": 21
+    },
+    {
+      "token": "put",
+      "count": 9
+    },
+    {
+      "token": "should",
+      "count": 2
+    }
+  ]
+}
