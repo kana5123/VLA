@@ -1,0 +1,20 @@
+{
+  "A_mode": {
+    "abs_t": 0,
+    "token_str": "<s>",
+    "freq": 1.0,
+    "token_type": "vision"
+  },
+  "C_mode": {
+    "abs_t": 0,
+    "token_str": "<s>",
+    "freq": 1.0,
+    "token_type": "vision"
+  },
+  "R_mode": {
+    "abs_t": 271,
+    "token_str": null,
+    "freq": 0.15666666666666668,
+    "token_type": "text"
+  }
+}

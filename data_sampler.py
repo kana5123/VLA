@@ -204,6 +204,25 @@ def reload_samples_from_list(
     return samples
 
 
+_metadata_cache = None
+
+def get_metadata(cache_dir):
+    """Load metadata with actions (cached)."""
+    global _metadata_cache
+    if _metadata_cache is None:
+        import pickle
+        with open(Path(cache_dir) / "metadata.pkl", "rb") as f:
+            _metadata_cache = pickle.load(f)
+    return _metadata_cache
+
+def get_action_for_sample(sample, cache_dir):
+    """Get ground-truth 7-dim action vector for a sample."""
+    import torch
+    metadata = get_metadata(cache_dir)
+    entry = metadata[sample["global_idx"]]
+    return torch.tensor(entry["action"], dtype=torch.float32)
+
+
 if __name__ == "__main__":
     """Dry run: print skill distribution without loading images."""
     import argparse

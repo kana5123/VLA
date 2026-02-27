@@ -1,0 +1,722 @@
+[
+  {
+    "sample_idx": 1,
+    "layer": 22,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 1.0268923044204712,
+    "delta_text_v0": 0.5854701399803162,
+    "delta_text_kv": 0.03949636220932007
+  },
+  {
+    "sample_idx": 1,
+    "layer": 23,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 1.0275574922561646,
+    "delta_text_v0": 0.5853585004806519,
+    "delta_text_kv": 0.03949670121073723
+  },
+  {
+    "sample_idx": 1,
+    "layer": 24,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9892956614494324,
+    "delta_text_v0": 0.5851244926452637,
+    "delta_text_kv": 0.039497192949056625
+  },
+  {
+    "sample_idx": 1,
+    "layer": 25,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9895750284194946,
+    "delta_text_v0": 0.5770619511604309,
+    "delta_text_kv": 0.0394975021481514
+  },
+  {
+    "sample_idx": 1,
+    "layer": 26,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9806973338127136,
+    "delta_text_v0": 0.5769485831260681,
+    "delta_text_kv": 0.03949686884880066
+  },
+  {
+    "sample_idx": 1,
+    "layer": 27,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9508944153785706,
+    "delta_text_v0": 0.5809811353683472,
+    "delta_text_kv": 0.039759401232004166
+  },
+  {
+    "sample_idx": 1,
+    "layer": 28,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.944485068321228,
+    "delta_text_v0": 0.6187679171562195,
+    "delta_text_kv": 0.040031202137470245
+  },
+  {
+    "sample_idx": 1,
+    "layer": 29,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8965270519256592,
+    "delta_text_v0": 0.37951895594596863,
+    "delta_text_kv": 0.04231812432408333
+  },
+  {
+    "sample_idx": 1,
+    "layer": 30,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8793972134590149,
+    "delta_text_v0": 0.3511142134666443,
+    "delta_text_kv": 0.043684422969818115
+  },
+  {
+    "sample_idx": 1,
+    "layer": 31,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8554821610450745,
+    "delta_text_v0": 0.9140586853027344,
+    "delta_text_kv": 0.09598416090011597
+  },
+  {
+    "sample_idx": 4,
+    "layer": 22,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.27695202827453613,
+    "delta_text_v0": 0.0042897542007267475,
+    "delta_text_kv": 0.0070539056323468685
+  },
+  {
+    "sample_idx": 4,
+    "layer": 23,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.2978726327419281,
+    "delta_text_v0": 0.004291569348424673,
+    "delta_text_kv": 0.007053746376186609
+  },
+  {
+    "sample_idx": 4,
+    "layer": 24,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3196430802345276,
+    "delta_text_v0": 0.004294273909181356,
+    "delta_text_kv": 0.007053922861814499
+  },
+  {
+    "sample_idx": 4,
+    "layer": 25,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3375975787639618,
+    "delta_text_v0": 0.004280524328351021,
+    "delta_text_kv": 0.007054164074361324
+  },
+  {
+    "sample_idx": 4,
+    "layer": 26,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3638247847557068,
+    "delta_text_v0": 0.004284121561795473,
+    "delta_text_kv": 0.00705450726673007
+  },
+  {
+    "sample_idx": 4,
+    "layer": 27,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3794441223144531,
+    "delta_text_v0": 0.004339408595114946,
+    "delta_text_kv": 0.0058254762552678585
+  },
+  {
+    "sample_idx": 4,
+    "layer": 28,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.37822651863098145,
+    "delta_text_v0": 0.004575819242745638,
+    "delta_text_kv": 0.005866822320967913
+  },
+  {
+    "sample_idx": 4,
+    "layer": 29,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3902583122253418,
+    "delta_text_v0": 0.004528413526713848,
+    "delta_text_kv": 0.004625892266631126
+  },
+  {
+    "sample_idx": 4,
+    "layer": 30,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.4090963900089264,
+    "delta_text_v0": 0.004740079864859581,
+    "delta_text_kv": 0.004779368173331022
+  },
+  {
+    "sample_idx": 4,
+    "layer": 31,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.4738258123397827,
+    "delta_text_v0": 0.013485726900398731,
+    "delta_text_kv": 0.008812387473881245
+  },
+  {
+    "sample_idx": 5,
+    "layer": 22,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8144593238830566,
+    "delta_text_v0": 0.5811564326286316,
+    "delta_text_kv": 0.03762289509177208
+  },
+  {
+    "sample_idx": 5,
+    "layer": 23,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8200540542602539,
+    "delta_text_v0": 0.5810413360595703,
+    "delta_text_kv": 0.03762952610850334
+  },
+  {
+    "sample_idx": 5,
+    "layer": 24,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8242847919464111,
+    "delta_text_v0": 0.5807743072509766,
+    "delta_text_kv": 0.03762334585189819
+  },
+  {
+    "sample_idx": 5,
+    "layer": 25,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8369685411453247,
+    "delta_text_v0": 0.5723145604133606,
+    "delta_text_kv": 0.037617117166519165
+  },
+  {
+    "sample_idx": 5,
+    "layer": 26,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8398553729057312,
+    "delta_text_v0": 0.5722048282623291,
+    "delta_text_kv": 0.03760968893766403
+  },
+  {
+    "sample_idx": 5,
+    "layer": 27,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8218589425086975,
+    "delta_text_v0": 0.5762968063354492,
+    "delta_text_kv": 0.035781607031822205
+  },
+  {
+    "sample_idx": 5,
+    "layer": 28,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8285359144210815,
+    "delta_text_v0": 0.6107901930809021,
+    "delta_text_kv": 0.03602736070752144
+  },
+  {
+    "sample_idx": 5,
+    "layer": 29,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.819310188293457,
+    "delta_text_v0": 0.3585508167743683,
+    "delta_text_kv": 0.038985203951597214
+  },
+  {
+    "sample_idx": 5,
+    "layer": 30,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8036583662033081,
+    "delta_text_v0": 0.3316274881362915,
+    "delta_text_kv": 0.040238361805677414
+  },
+  {
+    "sample_idx": 5,
+    "layer": 31,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8339880108833313,
+    "delta_text_v0": 0.8939525485038757,
+    "delta_text_kv": 0.08679476380348206
+  },
+  {
+    "sample_idx": 6,
+    "layer": 22,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 1.1648242473602295,
+    "delta_text_v0": 0.002804187824949622,
+    "delta_text_kv": 0.00013832683907821774
+  },
+  {
+    "sample_idx": 6,
+    "layer": 23,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 1.1671067476272583,
+    "delta_text_v0": 0.0028068027459084988,
+    "delta_text_kv": 0.00014108580944593996
+  },
+  {
+    "sample_idx": 6,
+    "layer": 24,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 1.08406400680542,
+    "delta_text_v0": 0.0028131885919719934,
+    "delta_text_kv": 0.00014357907639350742
+  },
+  {
+    "sample_idx": 6,
+    "layer": 25,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 1.065208077430725,
+    "delta_text_v0": 0.0028053882997483015,
+    "delta_text_kv": 0.00014805857790634036
+  },
+  {
+    "sample_idx": 6,
+    "layer": 26,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 1.0513392686843872,
+    "delta_text_v0": 0.0028133918531239033,
+    "delta_text_kv": 0.00015139527386054397
+  },
+  {
+    "sample_idx": 6,
+    "layer": 27,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.9893845319747925,
+    "delta_text_v0": 0.0028553097508847713,
+    "delta_text_kv": 0.00015770377649459988
+  },
+  {
+    "sample_idx": 6,
+    "layer": 28,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.9518834948539734,
+    "delta_text_v0": 0.0030056973919272423,
+    "delta_text_kv": 0.00017322739586234093
+  },
+  {
+    "sample_idx": 6,
+    "layer": 29,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.9183328151702881,
+    "delta_text_v0": 0.003197968238964677,
+    "delta_text_kv": 0.0002073489158647135
+  },
+  {
+    "sample_idx": 6,
+    "layer": 30,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.8994930386543274,
+    "delta_text_v0": 0.0033570644445717335,
+    "delta_text_kv": 0.0002453372871968895
+  },
+  {
+    "sample_idx": 6,
+    "layer": 31,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.8321959376335144,
+    "delta_text_v0": 0.010103577747941017,
+    "delta_text_kv": 0.0007663383730687201
+  },
+  {
+    "sample_idx": 12,
+    "layer": 22,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0622775554656982,
+    "delta_text_v0": 0.0005959615809842944,
+    "delta_text_kv": 0.006675336975604296
+  },
+  {
+    "sample_idx": 12,
+    "layer": 23,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0867043733596802,
+    "delta_text_v0": 0.0006128349341452122,
+    "delta_text_kv": 0.006675684358924627
+  },
+  {
+    "sample_idx": 12,
+    "layer": 24,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0597425699234009,
+    "delta_text_v0": 0.0006203800439834595,
+    "delta_text_kv": 0.006675878074020147
+  },
+  {
+    "sample_idx": 12,
+    "layer": 25,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.060614824295044,
+    "delta_text_v0": 0.0006605492671951652,
+    "delta_text_kv": 0.0066761174239218235
+  },
+  {
+    "sample_idx": 12,
+    "layer": 26,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.055801272392273,
+    "delta_text_v0": 0.0006715083145536482,
+    "delta_text_kv": 0.006676137913018465
+  },
+  {
+    "sample_idx": 12,
+    "layer": 27,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0204559564590454,
+    "delta_text_v0": 0.0007129603764042258,
+    "delta_text_kv": 0.006713549606502056
+  },
+  {
+    "sample_idx": 12,
+    "layer": 28,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.9924209117889404,
+    "delta_text_v0": 0.0010386082576587796,
+    "delta_text_kv": 0.0067640384659171104
+  },
+  {
+    "sample_idx": 12,
+    "layer": 29,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.9705172777175903,
+    "delta_text_v0": 0.0011979581322520971,
+    "delta_text_kv": 0.007470913231372833
+  },
+  {
+    "sample_idx": 12,
+    "layer": 30,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.9544812440872192,
+    "delta_text_v0": 0.0014630294172093272,
+    "delta_text_kv": 0.007722608745098114
+  },
+  {
+    "sample_idx": 12,
+    "layer": 31,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0483461618423462,
+    "delta_text_v0": 0.0069422791711986065,
+    "delta_text_kv": 0.017402537167072296
+  },
+  {
+    "sample_idx": 13,
+    "layer": 22,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.27218762040138245,
+    "delta_text_v0": 0.005462127737700939,
+    "delta_text_kv": 0.008068813011050224
+  },
+  {
+    "sample_idx": 13,
+    "layer": 23,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.2926732301712036,
+    "delta_text_v0": 0.005463533103466034,
+    "delta_text_kv": 0.008069310337305069
+  },
+  {
+    "sample_idx": 13,
+    "layer": 24,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3030126094818115,
+    "delta_text_v0": 0.005464760586619377,
+    "delta_text_kv": 0.008069509640336037
+  },
+  {
+    "sample_idx": 13,
+    "layer": 25,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.31963035464286804,
+    "delta_text_v0": 0.005449696443974972,
+    "delta_text_kv": 0.008069631643593311
+  },
+  {
+    "sample_idx": 13,
+    "layer": 26,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3415186405181885,
+    "delta_text_v0": 0.00545199029147625,
+    "delta_text_kv": 0.008069603703916073
+  },
+  {
+    "sample_idx": 13,
+    "layer": 27,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3529684245586395,
+    "delta_text_v0": 0.0055254423059523106,
+    "delta_text_kv": 0.007045547943562269
+  },
+  {
+    "sample_idx": 13,
+    "layer": 28,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.36495721340179443,
+    "delta_text_v0": 0.005806497763842344,
+    "delta_text_kv": 0.007094952277839184
+  },
+  {
+    "sample_idx": 13,
+    "layer": 29,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.3894077241420746,
+    "delta_text_v0": 0.0016751436050981283,
+    "delta_text_kv": 0.005874470341950655
+  },
+  {
+    "sample_idx": 13,
+    "layer": 30,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.4194256663322449,
+    "delta_text_v0": 0.001889358856715262,
+    "delta_text_kv": 0.006069463677704334
+  },
+  {
+    "sample_idx": 13,
+    "layer": 31,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.37613821029663086,
+    "delta_text_v0": 0.007366300560534,
+    "delta_text_kv": 0.012916231527924538
+  },
+  {
+    "sample_idx": 16,
+    "layer": 22,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0507221221923828,
+    "delta_text_v0": 0.006768964696675539,
+    "delta_text_kv": 0.006990852765738964
+  },
+  {
+    "sample_idx": 16,
+    "layer": 23,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.075039267539978,
+    "delta_text_v0": 0.006796394009143114,
+    "delta_text_kv": 0.006990872789174318
+  },
+  {
+    "sample_idx": 16,
+    "layer": 24,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.051585078239441,
+    "delta_text_v0": 0.006797960493713617,
+    "delta_text_kv": 0.006990969646722078
+  },
+  {
+    "sample_idx": 16,
+    "layer": 25,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0530362129211426,
+    "delta_text_v0": 0.006768643856048584,
+    "delta_text_kv": 0.006990979425609112
+  },
+  {
+    "sample_idx": 16,
+    "layer": 26,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0707889795303345,
+    "delta_text_v0": 0.006768164690583944,
+    "delta_text_kv": 0.00699091050773859
+  },
+  {
+    "sample_idx": 16,
+    "layer": 27,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.0328843593597412,
+    "delta_text_v0": 0.006832174025475979,
+    "delta_text_kv": 0.0057590617798268795
+  },
+  {
+    "sample_idx": 16,
+    "layer": 28,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.9974710941314697,
+    "delta_text_v0": 0.007159973494708538,
+    "delta_text_kv": 0.0057997568510472775
+  },
+  {
+    "sample_idx": 16,
+    "layer": 29,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.9725583791732788,
+    "delta_text_v0": 0.005299337673932314,
+    "delta_text_kv": 0.0037391348741948605
+  },
+  {
+    "sample_idx": 16,
+    "layer": 30,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.9817512035369873,
+    "delta_text_v0": 0.004698773380368948,
+    "delta_text_kv": 0.0038650105707347393
+  },
+  {
+    "sample_idx": 16,
+    "layer": 31,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 1.47144615650177,
+    "delta_text_v0": 0.014769908972084522,
+    "delta_text_kv": 0.0062157269567251205
+  },
+  {
+    "sample_idx": 17,
+    "layer": 22,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9050599336624146,
+    "delta_text_v0": 0.631693959236145,
+    "delta_text_kv": 0.03814828023314476
+  },
+  {
+    "sample_idx": 17,
+    "layer": 23,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9330950379371643,
+    "delta_text_v0": 0.6315791606903076,
+    "delta_text_kv": 0.03814789652824402
+  },
+  {
+    "sample_idx": 17,
+    "layer": 24,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9017024040222168,
+    "delta_text_v0": 0.63133305311203,
+    "delta_text_kv": 0.0381484292447567
+  },
+  {
+    "sample_idx": 17,
+    "layer": 25,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9241796135902405,
+    "delta_text_v0": 0.6231839656829834,
+    "delta_text_kv": 0.038148730993270874
+  },
+  {
+    "sample_idx": 17,
+    "layer": 26,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.9198704361915588,
+    "delta_text_v0": 0.6230649948120117,
+    "delta_text_kv": 0.03814828395843506
+  },
+  {
+    "sample_idx": 17,
+    "layer": 27,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.893639326095581,
+    "delta_text_v0": 0.6276264190673828,
+    "delta_text_kv": 0.038400717079639435
+  },
+  {
+    "sample_idx": 17,
+    "layer": 28,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8846989870071411,
+    "delta_text_v0": 0.6701371073722839,
+    "delta_text_kv": 0.03866172209382057
+  },
+  {
+    "sample_idx": 17,
+    "layer": 29,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8493306040763855,
+    "delta_text_v0": 0.4197283983230591,
+    "delta_text_kv": 0.04266045615077019
+  },
+  {
+    "sample_idx": 17,
+    "layer": 30,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.8181355595588684,
+    "delta_text_v0": 0.39164015650749207,
+    "delta_text_kv": 0.04404284060001373
+  },
+  {
+    "sample_idx": 17,
+    "layer": 31,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.6780763268470764,
+    "delta_text_v0": 0.9209776520729065,
+    "delta_text_kv": 0.09510907530784607
+  }
+]

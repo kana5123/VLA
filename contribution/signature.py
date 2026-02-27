@@ -175,7 +175,12 @@ def run_linear_probe(X: np.ndarray, y: np.ndarray, cv: int = 5) -> float:
         Mean cross-validation accuracy
     """
     clf = LogisticRegression(max_iter=1000, solver="lbfgs", multi_class="auto")
-    scores = cross_val_score(clf, X, y, cv=min(cv, len(np.unique(y))), scoring="accuracy")
+    # B5 fix: cv must not exceed min samples per class (StratifiedKFold requirement)
+    min_per_class = min(np.bincount(y))
+    actual_cv = min(cv, len(np.unique(y)), min_per_class)
+    if actual_cv < 2:
+        return 0.0  # Not enough samples for CV
+    scores = cross_val_score(clf, X, y, cv=actual_cv, scoring="accuracy")
     return float(scores.mean())
 
 

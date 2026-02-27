@@ -1,0 +1,722 @@
+[
+  {
+    "sample_idx": 1,
+    "layer": 16,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.23514951765537262,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 17,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.24578438699245453,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 18,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.2564752697944641,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 19,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.24906687438488007,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 20,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.2510945498943329,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 21,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.25465455651283264,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 22,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.2848084568977356,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 23,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.32871881127357483,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 24,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.35488709807395935,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 1,
+    "layer": 25,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.4873281419277191,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 16,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.13020725548267365,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 17,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.13700613379478455,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 18,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.13928943872451782,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 19,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.13168863952159882,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 20,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.1309501826763153,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 21,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.12808403372764587,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 22,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.13763511180877686,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 23,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.15425629913806915,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 24,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.17714762687683105,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 4,
+    "layer": 25,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.2721797227859497,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 16,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.2234068661928177,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 17,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.24041098356246948,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 18,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.24836872518062592,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 19,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.23728321492671967,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 20,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.24131307005882263,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 21,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.25737306475639343,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 22,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.32686665654182434,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 23,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.370149701833725,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 24,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.4391999840736389,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 5,
+    "layer": 25,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.5346078276634216,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 16,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.34837591648101807,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 17,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.366947740316391,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 18,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.3601134121417999,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 19,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.34927910566329956,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 20,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.3532920777797699,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 21,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.3562222123146057,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 22,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.3902798295021057,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 23,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.4313954710960388,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 24,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.48645254969596863,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 6,
+    "layer": 25,
+    "skill": "open",
+    "swap_verb": "close",
+    "delta_orig": 0.6605731248855591,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 16,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.3282771408557892,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 17,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.35121533274650574,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 18,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.36987656354904175,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 19,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.35471782088279724,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 20,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.34459489583969116,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 21,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.34338968992233276,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 22,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.3842156231403351,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 23,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.43498870730400085,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 24,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.43183302879333496,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 10,
+    "layer": 25,
+    "skill": "fold",
+    "swap_verb": "move",
+    "delta_orig": 0.6468572616577148,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 16,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.34589168429374695,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 17,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3408268094062805,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 18,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.33931151032447815,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 19,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3354248106479645,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 20,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3256259262561798,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 21,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3144000470638275,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 22,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.33443427085876465,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 23,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.35530808568000793,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 24,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3764396011829376,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 12,
+    "layer": 25,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.55756014585495,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 16,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.10943453758955002,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 17,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.11729153245687485,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 18,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.1171540915966034,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 19,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.1131441667675972,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 20,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.11385242640972137,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 21,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.11477183550596237,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 22,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.13484813272953033,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 23,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.16305150091648102,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 24,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.18132489919662476,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 13,
+    "layer": 25,
+    "skill": "pick",
+    "swap_verb": "place",
+    "delta_orig": 0.24490386247634888,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 16,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.36309945583343506,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 17,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3508957028388977,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 18,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3336769640445709,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 19,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3255656063556671,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 20,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.32097139954566956,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 21,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3291192054748535,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 22,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.3648810386657715,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 23,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.4209745526313782,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 24,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.42353466153144836,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 16,
+    "layer": 25,
+    "skill": "close",
+    "swap_verb": "open",
+    "delta_orig": 0.6332461833953857,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 16,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.3153991401195526,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 17,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.3312540650367737,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 18,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.32607635855674744,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 19,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.31629812717437744,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 20,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.3136332333087921,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 21,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.3191503882408142,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 22,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.39436331391334534,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 23,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.4726245403289795,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 24,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.5312212705612183,
+    "delta_textKV": 0.0
+  },
+  {
+    "sample_idx": 17,
+    "layer": 25,
+    "skill": "move",
+    "swap_verb": "fold",
+    "delta_orig": 0.7095210552215576,
+    "delta_textKV": 0.0
+  }
+]

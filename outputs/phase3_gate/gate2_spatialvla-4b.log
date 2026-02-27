@@ -1,0 +1,249 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: A_mode → abs_t=260, freq=0.54
+  WARNING: freq=0.54 < 0.7 (unstable). Consider testing Top-3.
+  Layer mode: all → layers [16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [260]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.76it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.23it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.29it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=1.778777
+  K=1, V0_KL=1.2154+-0.7281, top1_change=0.673
+  K=3, V0_KL=1.2154+-0.7281, top1_change=0.673
+  K=5, V0_KL=1.2154+-0.7281, top1_change=0.673
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/A_mode_all/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/A_mode_all/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: A_mode → abs_t=260, freq=0.54
+  WARNING: freq=0.54 < 0.7 (unstable). Consider testing Top-3.
+  Layer mode: block1 → layers [16, 17, 18, 19, 20]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [260]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.31it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.85it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.91it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=1.778777
+  K=1, V0_KL=0.7233+-0.5155, top1_change=0.513
+  K=3, V0_KL=0.7233+-0.5155, top1_change=0.513
+  K=5, V0_KL=0.7233+-0.5155, top1_change=0.513
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/A_mode_block1/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/A_mode_block1/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: A_mode → abs_t=260, freq=0.54
+  WARNING: freq=0.54 < 0.7 (unstable). Consider testing Top-3.
+  Layer mode: block2 → layers [21, 22, 23, 24, 25]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [260]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.70it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.09it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.17it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=1.778777
+  K=1, V0_KL=0.5130+-0.3779, top1_change=0.367
+  K=3, V0_KL=0.5130+-0.3779, top1_change=0.367
+  K=5, V0_KL=0.5130+-0.3779, top1_change=0.367
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/A_mode_block2/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/A_mode_block2/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: C_mode → abs_t=260, freq=0.45
+  WARNING: freq=0.45 < 0.7 (unstable). Consider testing Top-3.
+  Layer mode: all → layers [16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [260]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  5.03it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.10it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.22it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=1.778777
+  K=1, V0_KL=1.2154+-0.7281, top1_change=0.673
+  K=3, V0_KL=1.2154+-0.7281, top1_change=0.673
+  K=5, V0_KL=1.2154+-0.7281, top1_change=0.673
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/C_mode_all/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/C_mode_all/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: C_mode → abs_t=260, freq=0.45
+  WARNING: freq=0.45 < 0.7 (unstable). Consider testing Top-3.
+  Layer mode: block1 → layers [16, 17, 18, 19, 20]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [260]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.30it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.84it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.90it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=1.778777
+  K=1, V0_KL=0.7233+-0.5155, top1_change=0.513
+  K=3, V0_KL=0.7233+-0.5155, top1_change=0.513
+  K=5, V0_KL=0.7233+-0.5155, top1_change=0.513
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/C_mode_block1/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/C_mode_block1/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: C_mode → abs_t=260, freq=0.45
+  WARNING: freq=0.45 < 0.7 (unstable). Consider testing Top-3.
+  Layer mode: block2 → layers [21, 22, 23, 24, 25]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [260]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.77it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.32it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=1.778777
+  K=1, V0_KL=0.5130+-0.3779, top1_change=0.367
+  K=3, V0_KL=0.5130+-0.3779, top1_change=0.367
+  K=5, V0_KL=0.5130+-0.3779, top1_change=0.367
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/C_mode_block2/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/C_mode_block2/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: R_mode → abs_t=193, freq=0.75
+  Layer mode: all → layers [16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [193]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.86it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.26it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.34it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=0.018977
+  K=1, V0_KL=0.0038+-0.0027, top1_change=0.047
+  K=3, V0_KL=0.0038+-0.0027, top1_change=0.047
+  K=5, V0_KL=0.0038+-0.0027, top1_change=0.047
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/R_mode_all/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/R_mode_all/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: R_mode → abs_t=193, freq=0.75
+  Layer mode: block1 → layers [16, 17, 18, 19, 20]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [193]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.76it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.09it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=0.018977
+  K=1, V0_KL=0.0031+-0.0019, top1_change=0.027
+  K=3, V0_KL=0.0031+-0.0019, top1_change=0.027
+  K=5, V0_KL=0.0031+-0.0019, top1_change=0.027
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/R_mode_block1/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/R_mode_block1/masking_ablation.png
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Gate ② mode: R_mode → abs_t=193, freq=0.75
+  Layer mode: block2 → layers [21, 22, 23, 24, 25]
+
+======================================================================
+Causal Experiment — spatialvla-4b (V=0 only, knockout removed)
+  Candidates (abs_t): [193]
+======================================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  4.96it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.49it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.55it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 samples from outputs/phase3_gate/spatialvla-4b/sample_list.json
+
+  B4 Sanity Check: Verifying V=0 hook works...
+    hook_fired=True, logits_changed=True, kl=0.018977
+  K=1, V0_KL=0.0020+-0.0018, top1_change=0.047
+  K=3, V0_KL=0.0020+-0.0018, top1_change=0.047
+  K=5, V0_KL=0.0020+-0.0018, top1_change=0.047
+
+  Report saved: outputs/phase3_gate/gate2/spatialvla-4b/R_mode_block2/causal_report.json
+  Saved: outputs/phase3_gate/gate2/spatialvla-4b/R_mode_block2/masking_ablation.png

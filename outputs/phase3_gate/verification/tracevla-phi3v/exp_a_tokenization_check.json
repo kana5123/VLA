@@ -1,0 +1,263 @@
+[
+  {
+    "sample_idx": 1,
+    "skill": "move",
+    "swap_verb": "fold",
+    "orig_instruction": "move the green object on top of blue and yellow box.",
+    "swapped_instruction": "fold the green object on top of blue and yellow box.",
+    "orig_text_ranges": [
+      [
+        313,
+        345
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        346
+      ]
+    ],
+    "n_text_orig": 32,
+    "n_text_swap": 33,
+    "text_count_match": false,
+    "orig_total_seq": 345,
+    "swap_total_seq": 346,
+    "seq_len_match": false,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 2,
+    "verb_tokenlen_match": false,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 4,
+    "skill": "pick",
+    "swap_verb": "place",
+    "orig_instruction": "pick up scissors and put into drawer",
+    "swapped_instruction": "place up scissors and put into drawer",
+    "orig_text_ranges": [
+      [
+        313,
+        343
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        343
+      ]
+    ],
+    "n_text_orig": 30,
+    "n_text_swap": 30,
+    "text_count_match": true,
+    "orig_total_seq": 343,
+    "swap_total_seq": 343,
+    "seq_len_match": true,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 1,
+    "verb_tokenlen_match": true,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 5,
+    "skill": "move",
+    "swap_verb": "fold",
+    "orig_instruction": "move yellow object from the top of the drawer and put it on top of the table",
+    "swapped_instruction": "fold yellow object from the top of the drawer and put it on top of the table",
+    "orig_text_ranges": [
+      [
+        313,
+        351
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        352
+      ]
+    ],
+    "n_text_orig": 38,
+    "n_text_swap": 39,
+    "text_count_match": false,
+    "orig_total_seq": 351,
+    "swap_total_seq": 352,
+    "seq_len_match": false,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 2,
+    "verb_tokenlen_match": false,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 6,
+    "skill": "open",
+    "swap_verb": "close",
+    "orig_instruction": "open the drawer",
+    "swapped_instruction": "close the drawer",
+    "orig_text_ranges": [
+      [
+        313,
+        337
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        337
+      ]
+    ],
+    "n_text_orig": 24,
+    "n_text_swap": 24,
+    "text_count_match": true,
+    "orig_total_seq": 337,
+    "swap_total_seq": 337,
+    "seq_len_match": true,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 1,
+    "verb_tokenlen_match": true,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 10,
+    "skill": "fold",
+    "swap_verb": "move",
+    "orig_instruction": "fold the cloth from left to right",
+    "swapped_instruction": "move the cloth from left to right",
+    "orig_text_ranges": [
+      [
+        313,
+        341
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        340
+      ]
+    ],
+    "n_text_orig": 28,
+    "n_text_swap": 27,
+    "text_count_match": false,
+    "orig_total_seq": 341,
+    "swap_total_seq": 340,
+    "seq_len_match": false,
+    "orig_verb_n_tokens": 2,
+    "swap_verb_n_tokens": 1,
+    "verb_tokenlen_match": false,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 12,
+    "skill": "close",
+    "swap_verb": "open",
+    "orig_instruction": "close oven",
+    "swapped_instruction": "open oven",
+    "orig_text_ranges": [
+      [
+        313,
+        336
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        336
+      ]
+    ],
+    "n_text_orig": 23,
+    "n_text_swap": 23,
+    "text_count_match": true,
+    "orig_total_seq": 336,
+    "swap_total_seq": 336,
+    "seq_len_match": true,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 1,
+    "verb_tokenlen_match": true,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 13,
+    "skill": "pick",
+    "swap_verb": "place",
+    "orig_instruction": "pick blue cloth and place it inside of the washing machine",
+    "swapped_instruction": "place blue cloth and place it inside of the washing machine",
+    "orig_text_ranges": [
+      [
+        313,
+        345
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        345
+      ]
+    ],
+    "n_text_orig": 32,
+    "n_text_swap": 32,
+    "text_count_match": true,
+    "orig_total_seq": 345,
+    "swap_total_seq": 345,
+    "seq_len_match": true,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 1,
+    "verb_tokenlen_match": true,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 16,
+    "skill": "close",
+    "swap_verb": "open",
+    "orig_instruction": "close cabinet",
+    "swapped_instruction": "open cabinet",
+    "orig_text_ranges": [
+      [
+        313,
+        335
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        335
+      ]
+    ],
+    "n_text_orig": 22,
+    "n_text_swap": 22,
+    "text_count_match": true,
+    "orig_total_seq": 335,
+    "swap_total_seq": 335,
+    "seq_len_match": true,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 1,
+    "verb_tokenlen_match": true,
+    "vision_range_match": true
+  },
+  {
+    "sample_idx": 17,
+    "skill": "move",
+    "swap_verb": "fold",
+    "orig_instruction": "move the green object to the bottom left of the table",
+    "swapped_instruction": "fold the green object to the bottom left of the table",
+    "orig_text_ranges": [
+      [
+        313,
+        344
+      ]
+    ],
+    "swap_text_ranges": [
+      [
+        313,
+        345
+      ]
+    ],
+    "n_text_orig": 31,
+    "n_text_swap": 32,
+    "text_count_match": false,
+    "orig_total_seq": 344,
+    "swap_total_seq": 345,
+    "seq_len_match": false,
+    "orig_verb_n_tokens": 1,
+    "swap_verb_n_tokens": 2,
+    "verb_tokenlen_match": false,
+    "vision_range_match": true
+  }
+]

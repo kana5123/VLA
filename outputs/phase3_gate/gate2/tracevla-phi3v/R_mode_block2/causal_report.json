@@ -1,0 +1,45 @@
+{
+  "model": "tracevla-phi3v",
+  "method": "v_zero",
+  "candidates_abs_t": [
+    3
+  ],
+  "target_layers": [
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "sanity_check": {
+    "hook_fired": true,
+    "logits_changed": true,
+    "kl_divergence": 14.583757400512695
+  },
+  "per_k": {
+    "1": {
+      "targets": [
+        3
+      ],
+      "vzero_mean_kl": 12.983420909245808,
+      "vzero_std_kl": 2.685166662847535,
+      "vzero_mean_top1_change": 1.0
+    },
+    "3": {
+      "targets": [
+        3
+      ],
+      "vzero_mean_kl": 12.983420909245808,
+      "vzero_std_kl": 2.685166662847535,
+      "vzero_mean_top1_change": 1.0
+    },
+    "5": {
+      "targets": [
+        3
+      ],
+      "vzero_mean_kl": 12.983420909245808,
+      "vzero_std_kl": 2.685166662847535,
+      "vzero_mean_top1_change": 1.0
+    }
+  }
+}

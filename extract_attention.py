@@ -150,9 +150,12 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
         pre_image_text = first_neg
         vision_start = pre_image_text
         vision_end = vision_start + num_vision_tokens
-        text_start = 0  # text wraps around vision
+        # Text is DISJOINT: [0, vision_start) + [vision_end, full_seq_len)
+        text_start = 0  # kept for backward compat, but use text_ranges for masking
         text_end = full_seq_len
         pre_image_tokens = pre_image_text
+        # Correct text count: exclude vision tokens
+        num_text_tokens = full_seq_len - num_vision_tokens
     elif num_vision_tokens <= 0 and model_cfg:
         # Processor already embedded image placeholders in input_ids.
         # Detect them by looking for the <image> token ID or repeated special IDs.
@@ -231,6 +234,18 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
         # Fallback: original text range (e.g. vision_start=0, vision_end=seq_len)
         text_query_ranges = [(text_start, text_end)]
 
+    # text_ranges: disjoint text-only intervals (excludes vision tokens).
+    # For Phi3V: [(0, vision_start), (vision_end, seq_len)]
+    # For LLaMA-first: [(vision_end, seq_len)]
+    # Gate 3 masking hooks MUST use text_ranges, NOT (text_start, text_end).
+    text_ranges = []
+    if vision_start > 0:
+        text_ranges.append((0, vision_start))
+    if vision_end < full_seq_len:
+        text_ranges.append((vision_end, full_seq_len))
+    if not text_ranges:
+        text_ranges = [(text_start, text_end)]
+
     boundaries = {
         "vision_start": vision_start,
         "vision_end": vision_end,
@@ -241,6 +256,7 @@ def detect_token_boundaries(processor, model, sample_image, sample_instruction, 
         "num_text_tokens": num_text_tokens,
         "pre_image_tokens": pre_image_tokens,
         "text_query_ranges": text_query_ranges,
+        "text_ranges": text_ranges,
     }
 
     print(f"  Token boundaries: {boundaries}")

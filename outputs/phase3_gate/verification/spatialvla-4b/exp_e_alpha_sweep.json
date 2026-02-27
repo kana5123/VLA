@@ -1,0 +1,103 @@
+[
+  {
+    "alpha": 1.0,
+    "mean_entropy": 3.2826,
+    "action_change_rate_vs_baseline": 0.0,
+    "n_samples": 20
+  },
+  {
+    "alpha": 0.0,
+    "mean_entropy": 2.8322,
+    "action_change_rate_vs_baseline": 0.2,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.2575,
+    "mean_top1_c_share_wov": 0.253,
+    "mean_contrib_entropy": 3.3764,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode"
+    ]
+  },
+  {
+    "alpha": 0.1,
+    "mean_entropy": 2.832,
+    "action_change_rate_vs_baseline": 0.2,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.2579,
+    "mean_top1_c_share_wov": 0.253,
+    "mean_contrib_entropy": 3.3721,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode"
+    ]
+  },
+  {
+    "alpha": 0.3,
+    "mean_entropy": 2.8748,
+    "action_change_rate_vs_baseline": 0.15,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.2583,
+    "mean_top1_c_share_wov": 0.2536,
+    "mean_contrib_entropy": 3.3731,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode"
+    ]
+  },
+  {
+    "alpha": 0.5,
+    "mean_entropy": 2.9691,
+    "action_change_rate_vs_baseline": 0.15,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.2573,
+    "mean_top1_c_share_wov": 0.2528,
+    "mean_contrib_entropy": 3.3771,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode"
+    ]
+  },
+  {
+    "alpha": 0.7,
+    "mean_entropy": 3.0835,
+    "action_change_rate_vs_baseline": 0.1,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.2576,
+    "mean_top1_c_share_wov": 0.253,
+    "mean_contrib_entropy": 3.3747,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode"
+    ]
+  }
+]

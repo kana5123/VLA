@@ -1,0 +1,443 @@
+{
+  "model": "spatialvla-4b",
+  "phase": 2.5,
+  "n_samples": 150,
+  "n_layers": 26,
+  "deep_layers": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "boundaries": {
+    "vision_start": 0,
+    "vision_end": 256,
+    "text_start": 256,
+    "text_end": 270,
+    "total_seq_len": 270,
+    "num_vision_tokens": 256,
+    "num_text_tokens": 270,
+    "pre_image_tokens": 0,
+    "text_query_ranges": [
+      [
+        256,
+        270
+      ]
+    ]
+  },
+  "layer_analysis": {
+    "16": {
+      "dominant_type": "normal",
+      "frequency": 0.94,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.20798109471797943,
+        "c_share": 0.20319312810897827,
+        "sink_score": 0.02329028584063053,
+        "token_str": "robot",
+        "phi": 36.08818817138672
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.20798109471797943,
+        "c_share": 0.20319312810897827,
+        "sink_score": 0.02329028584063053,
+        "token_str": "robot",
+        "phi": 36.08818817138672
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.00011164484021719545,
+        "c_share": 5.688023520633578e-05,
+        "sink_score": 0.6743748188018799,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 35.22826385498047
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.9133333333333333,
+      "mean_entropy": 3.155214703877767,
+      "mean_top1_share": 0.22713977629939716,
+      "mean_mismatch": 0.0019950538699049503
+    },
+    "17": {
+      "dominant_type": "normal",
+      "frequency": 0.94,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.1817251294851303,
+        "c_share": 0.19394858181476593,
+        "sink_score": -0.06509777903556824,
+        "token_str": "robot",
+        "phi": 35.078208923339844
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.1817251294851303,
+        "c_share": 0.19394858181476593,
+        "sink_score": -0.06509777903556824,
+        "token_str": "robot",
+        "phi": 35.078208923339844
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.0005099799018353224,
+        "c_share": 0.00029320718022063375,
+        "sink_score": 0.5534918904304504,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 37.548309326171875
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.9133333333333333,
+      "mean_entropy": 2.7168381849924725,
+      "mean_top1_share": 0.2000841285288334,
+      "mean_mismatch": 0.0012261816215080519
+    },
+    "18": {
+      "dominant_type": "normal",
+      "frequency": 0.9333333333333333,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.13457176089286804,
+        "c_share": 0.13200163841247559,
+        "sink_score": 0.01928321272134781,
+        "token_str": "robot",
+        "phi": 35.469146728515625
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.13457176089286804,
+        "c_share": 0.13200163841247559,
+        "sink_score": 0.01928321272134781,
+        "token_str": "robot",
+        "phi": 35.469146728515625
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.00571913318708539,
+        "c_share": 0.0027854125946760178,
+        "sink_score": 0.7194212675094604,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 36.89987564086914
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.9133333333333333,
+      "mean_entropy": 2.579474541346232,
+      "mean_top1_share": 0.21980851580699284,
+      "mean_mismatch": 0.001647299201770996
+    },
+    "19": {
+      "dominant_type": "normal",
+      "frequency": 0.8,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.23094944655895233,
+        "c_share": 0.20948967337608337,
+        "sink_score": 0.09752438962459564,
+        "token_str": "robot",
+        "phi": 35.582706451416016
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.23094944655895233,
+        "c_share": 0.20948967337608337,
+        "sink_score": 0.09752438962459564,
+        "token_str": "robot",
+        "phi": 35.582706451416016
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.0006758326198905706,
+        "c_share": 0.0003155962622258812,
+        "sink_score": 0.7614817023277283,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 40.12716293334961
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.7866666666666666,
+      "mean_entropy": 2.5146342198053997,
+      "mean_top1_share": 0.20580355127652486,
+      "mean_mismatch": 0.0027565315121319146
+    },
+    "20": {
+      "dominant_type": "normal",
+      "frequency": 0.76,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.1555120199918747,
+        "c_share": 0.1395394504070282,
+        "sink_score": 0.10837564617395401,
+        "token_str": "robot",
+        "phi": 36.42215347290039
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.20777545869350433,
+        "c_share": 0.18740741908550262,
+        "sink_score": 0.10317303240299225,
+        "token_str": "robot",
+        "phi": 38.02804946899414
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.004890247248113155,
+        "c_share": 0.002234874991700053,
+        "sink_score": 0.7830575704574585,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 40.23040008544922
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.6266666666666667,
+      "mean_entropy": 2.5836858463287355,
+      "mean_top1_share": 0.19182103246450424,
+      "mean_mismatch": 0.0061136986392860615
+    },
+    "21": {
+      "dominant_type": "normal",
+      "frequency": 0.5133333333333333,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.3695445656776428,
+        "c_share": 0.31885388493537903,
+        "sink_score": 0.14753836393356323,
+        "token_str": "robot",
+        "phi": 36.191566467285156
+      },
+      "c_peak": {
+        "abs_t": 225,
+        "token_type": "vision",
+        "a_share": 0.12009689956903458,
+        "c_share": 0.2188621610403061,
+        "sink_score": -0.6001431941986084,
+        "vision_j": 225,
+        "token_str": "<image>",
+        "phi": 44.52043151855469
+      },
+      "r_peak": {
+        "abs_t": 256,
+        "token_type": "text",
+        "a_share": 0.0008116294629871845,
+        "c_share": 0.0006185194943100214,
+        "sink_score": 0.2717151641845703,
+        "token_str": "What",
+        "phi": 32.67234420776367
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.5133333333333333,
+      "mean_entropy": 2.2819899853070575,
+      "mean_top1_share": 0.2648932605981827,
+      "mean_mismatch": 0.01964153052618106
+    },
+    "22": {
+      "dominant_type": "normal",
+      "frequency": 0.92,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.34034281969070435,
+        "c_share": 0.338264524936676,
+        "sink_score": 0.006125249434262514,
+        "token_str": "robot",
+        "phi": 31.609786987304688
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.34034281969070435,
+        "c_share": 0.338264524936676,
+        "sink_score": 0.006125249434262514,
+        "token_str": "robot",
+        "phi": 31.609786987304688
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.0013140715891495347,
+        "c_share": 0.0005381453665904701,
+        "sink_score": 0.892756998538971,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 32.72370910644531
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.9133333333333333,
+      "mean_entropy": 2.3025963306427,
+      "mean_top1_share": 0.268906703988711,
+      "mean_mismatch": 0.0012159422102073828
+    },
+    "23": {
+      "dominant_type": "normal",
+      "frequency": 0.82,
+      "a_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.2489035427570343,
+        "c_share": 0.2611881196498871,
+        "sink_score": -0.04817545413970947,
+        "token_str": "robot",
+        "phi": 22.294710159301758
+      },
+      "c_peak": {
+        "abs_t": 260,
+        "token_type": "text",
+        "a_share": 0.2489035427570343,
+        "c_share": 0.2611881196498871,
+        "sink_score": -0.04817545413970947,
+        "token_str": "robot",
+        "phi": 22.294710159301758
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.004874558188021183,
+        "c_share": 0.001989605836570263,
+        "sink_score": 0.8960928916931152,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 40.73542404174805
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.7866666666666666,
+      "mean_entropy": 2.4472403224309285,
+      "mean_top1_share": 0.22628549272815388,
+      "mean_mismatch": 0.0039957449515350164
+    },
+    "24": {
+      "dominant_type": "normal",
+      "frequency": 0.84,
+      "a_peak": {
+        "abs_t": 225,
+        "token_type": "vision",
+        "a_share": 0.3215305507183075,
+        "c_share": 0.26041367650032043,
+        "sink_score": 0.21082113683223724,
+        "vision_j": 225,
+        "token_str": "<image>",
+        "phi": 35.86516189575195
+      },
+      "c_peak": {
+        "abs_t": 225,
+        "token_type": "vision",
+        "a_share": 0.3215305507183075,
+        "c_share": 0.26041367650032043,
+        "sink_score": 0.21082113683223724,
+        "vision_j": 225,
+        "token_str": "<image>",
+        "phi": 35.86516189575195
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.0021949470974504948,
+        "c_share": 0.001111697289161384,
+        "sink_score": 0.6802700161933899,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 43.145263671875
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.8333333333333334,
+      "mean_entropy": 2.37463982741038,
+      "mean_top1_share": 0.26707770546277365,
+      "mean_mismatch": 0.004243087309102217
+    },
+    "25": {
+      "dominant_type": "normal",
+      "frequency": 0.9933333333333333,
+      "a_peak": {
+        "abs_t": 266,
+        "token_type": "text",
+        "a_share": 0.14678484201431274,
+        "c_share": 0.1621175855398178,
+        "sink_score": -0.09935404360294342,
+        "token_str": "?",
+        "phi": 7.526434421539307
+      },
+      "c_peak": {
+        "abs_t": 266,
+        "token_type": "text",
+        "a_share": 0.14678484201431274,
+        "c_share": 0.1621175855398178,
+        "sink_score": -0.09935404360294342,
+        "token_str": "?",
+        "phi": 7.526434421539307
+      },
+      "r_peak": {
+        "abs_t": 193,
+        "token_type": "vision",
+        "a_share": 0.023332267999649048,
+        "c_share": 0.016115520149469376,
+        "sink_score": 0.3700544834136963,
+        "vision_j": 193,
+        "token_str": "<image>",
+        "phi": 12.461735725402832
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 0.9466666666666667,
+      "mean_entropy": 3.252409764925639,
+      "mean_top1_share": 0.16619116773207981,
+      "mean_mismatch": 0.002041918150304506
+    }
+  },
+  "skill_signature": {
+    "d_within": 0.12777044374650964,
+    "d_between": 0.17336003019849458,
+    "signature_exists": "True",
+    "probe_accuracy": 0.5533333333333333
+  },
+  "mean_mismatch": 0.004487698799193216,
+  "skill_distribution": {
+    "pick": 25,
+    "move": 25,
+    "fold": 25,
+    "place": 25,
+    "open": 25,
+    "close": 25
+  },
+  "mode_tokens": {
+    "A_mode": {
+      "abs_t": 260,
+      "token_str": "robot",
+      "freq": 0.5426666666666667,
+      "token_type": "text"
+    },
+    "C_mode": {
+      "abs_t": 260,
+      "token_str": "robot",
+      "freq": 0.4480000000000001,
+      "token_type": "text"
+    },
+    "R_mode": {
+      "abs_t": 193,
+      "token_str": "<image>",
+      "freq": 0.7520000000000001,
+      "token_type": "vision"
+    }
+  }
+}

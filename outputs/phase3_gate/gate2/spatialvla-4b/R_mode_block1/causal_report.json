@@ -1,0 +1,45 @@
+{
+  "model": "spatialvla-4b",
+  "method": "v_zero",
+  "candidates_abs_t": [
+    193
+  ],
+  "target_layers": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "sanity_check": {
+    "hook_fired": true,
+    "logits_changed": true,
+    "kl_divergence": 0.018976857885718346
+  },
+  "per_k": {
+    "1": {
+      "targets": [
+        193
+      ],
+      "vzero_mean_kl": 0.0030823019570865046,
+      "vzero_std_kl": 0.0018680472545366269,
+      "vzero_mean_top1_change": 0.02666666666666667
+    },
+    "3": {
+      "targets": [
+        193
+      ],
+      "vzero_mean_kl": 0.0030823019570865046,
+      "vzero_std_kl": 0.0018680472545366269,
+      "vzero_mean_top1_change": 0.02666666666666667
+    },
+    "5": {
+      "targets": [
+        193
+      ],
+      "vzero_mean_kl": 0.0030823019570865046,
+      "vzero_std_kl": 0.0018680472545366269,
+      "vzero_mean_top1_change": 0.02666666666666667
+    }
+  }
+}

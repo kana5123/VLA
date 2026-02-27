@@ -1,0 +1,7 @@
+{
+  "strategy": "kv_zero_hook",
+  "hook_fired": true,
+  "n_text_tokens_masked": 22,
+  "hidden_changed": true,
+  "max_hidden_diff": 122.89743041992188
+}

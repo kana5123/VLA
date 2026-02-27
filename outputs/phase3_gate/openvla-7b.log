@@ -1,0 +1,1093 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+
+======================================================================
+Contribution Analysis — openvla-7b (Phase 2.5: Dual-Track)
+======================================================================
+Loading model from registry: openvla-7b (openvla/openvla-7b)
+  Architecture: llama, Auto class: AutoModelForVision2Seq
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.30it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.77it/s]
+  Loaded: 32L x 32H, hidden=4096, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Loaded 150 balanced samples (25/skill)
+  Saved sample_list: outputs/phase3_gate/openvla-7b/sample_list.json (150 samples)
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+  Boundaries: vis=[0:256], text=[256:278]
+  Query positions (action proxy): [274, 275, 276, 277]
+
+  [1/150] "take clothes out of laundry machine..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=pick, layers_extracted=10
+
+  [2/150] "move the green object on top of blue and yellow box...."
+  Text input_ids length: 26
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 256, Text tokens: 26
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 26, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)]}
+    Skill=move, layers_extracted=10
+
+  [3/150] "unfold the cloth from right to left..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=fold, layers_extracted=10
+
+  [4/150] "put pan on stove and put blueberry in pan..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=place, layers_extracted=10
+
+  [5/150] "pick up scissors and put into drawer..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=pick, layers_extracted=10
+
+  [6/150] "move yellow object from the top of the drawer and put it on ..."
+  Text input_ids length: 32
+  Full sequence length (after vision expansion): 288
+  Vision tokens (from seq diff): 256, Text tokens: 32
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 288, 'total_seq_len': 288, 'num_vision_tokens': 256, 'num_text_tokens': 32, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 288)]}
+    Skill=move, layers_extracted=10
+
+  [7/150] "open the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [8/150] "take carrot out of pot cardboard fence..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=pick, layers_extracted=10
+
+  [9/150] "unfold the cloth from bottom right to top left..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=fold, layers_extracted=10
+
+  [10/150] "take broccoli out of pan..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=pick, layers_extracted=10
+
+  [11/150] "fold the cloth from left to right..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=fold, layers_extracted=10
+
+  [12/150] "mushroom put down..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=place, layers_extracted=10
+
+  [13/150] "close oven..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [14/150] "pick blue cloth and place it inside of the washing machine..."
+  Text input_ids length: 26
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 256, Text tokens: 26
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 26, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)]}
+    Skill=pick, layers_extracted=10
+
+  [15/150] "put sushi on plate..."
+  Text input_ids length: 20
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 256, Text tokens: 20
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 20, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)]}
+    Skill=place, layers_extracted=10
+
+  [16/150] "put the yellow brush inside the silver pot..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=place, layers_extracted=10
+
+  [17/150] "close cabinet..."
+  Text input_ids length: 16
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 256, Text tokens: 16
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 16, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+    Skill=close, layers_extracted=10
+
+  [18/150] "move the green object to the bottom left of the table..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=move, layers_extracted=10
+
+  [19/150] "take the red carrot and move it to the yelow cage containing..."
+  Text input_ids length: 34
+  Full sequence length (after vision expansion): 290
+  Vision tokens (from seq diff): 256, Text tokens: 34
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 290, 'total_seq_len': 290, 'num_vision_tokens': 256, 'num_text_tokens': 34, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 290)]}
+    Skill=pick, layers_extracted=10
+
+  [20/150] "put the cloth on the left burner in the left side of the sto..."
+  Text input_ids length: 30
+  Full sequence length (after vision expansion): 286
+  Vision tokens (from seq diff): 256, Text tokens: 30
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 286, 'total_seq_len': 286, 'num_vision_tokens': 256, 'num_text_tokens': 30, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 286)]}
+    Skill=place, layers_extracted=10
+
+  [21/150] "open the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [22/150] "pick blue spoon and place it near vessel on the left..."
+  Text input_ids length: 26
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 256, Text tokens: 26
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 26, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)]}
+    Skill=pick, layers_extracted=10
+
+  [23/150] "take bowl off plate cardboard fence..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=pick, layers_extracted=10
+
+  [24/150] "move the silver pot below the orange cloth and banana..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=move, layers_extracted=10
+
+  [25/150] "take the red object on the upper left burner and put it on l..."
+  Text input_ids length: 32
+  Full sequence length (after vision expansion): 288
+  Vision tokens (from seq diff): 256, Text tokens: 32
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 288, 'total_seq_len': 288, 'num_vision_tokens': 256, 'num_text_tokens': 32, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 288)]}
+    Skill=pick, layers_extracted=10
+
+  [26/150] "pick up pan from stove..."
+  Text input_ids length: 20
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 256, Text tokens: 20
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 20, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)]}
+    Skill=pick, layers_extracted=10
+
+  [27/150] "lift bowl..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=pick, layers_extracted=10
+
+  [28/150] "close fridge..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [29/150] "moved the silver pot on the top of the towel..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=move, layers_extracted=10
+
+  [30/150] "move the silver object over the blue cloth..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=move, layers_extracted=10
+
+  [31/150] "take cup off plate..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=pick, layers_extracted=10
+
+  [32/150] "sweep into pile..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=move, layers_extracted=10
+
+  [33/150] "unzip zipper bag..."
+  Text input_ids length: 20
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 256, Text tokens: 20
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 20, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)]}
+    Skill=open, layers_extracted=10
+
+  [34/150] "MOVE THE BLENDER INSIDE THE VESSEL..."
+  Text input_ids length: 29
+  Full sequence length (after vision expansion): 285
+  Vision tokens (from seq diff): 256, Text tokens: 29
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 285, 'total_seq_len': 285, 'num_vision_tokens': 256, 'num_text_tokens': 29, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 285)]}
+    Skill=move, layers_extracted=10
+
+  [35/150] "Place the fork over the upper left corner of stove and next ..."
+  Text input_ids length: 30
+  Full sequence length (after vision expansion): 286
+  Vision tokens (from seq diff): 256, Text tokens: 30
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 286, 'total_seq_len': 286, 'num_vision_tokens': 256, 'num_text_tokens': 30, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 286)]}
+    Skill=place, layers_extracted=10
+
+  [36/150] "Moved the yellow object and placed it on the left burner..."
+  Text input_ids length: 27
+  Full sequence length (after vision expansion): 283
+  Vision tokens (from seq diff): 256, Text tokens: 27
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 283, 'total_seq_len': 283, 'num_vision_tokens': 256, 'num_text_tokens': 27, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 283)]}
+    Skill=move, layers_extracted=10
+
+  [37/150] "Put the spoon directly in front of the toy microwave...."
+  Text input_ids length: 29
+  Full sequence length (after vision expansion): 285
+  Vision tokens (from seq diff): 256, Text tokens: 29
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 285, 'total_seq_len': 285, 'num_vision_tokens': 256, 'num_text_tokens': 29, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 285)]}
+    Skill=place, layers_extracted=10
+
+  [38/150] "open oven..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=open, layers_extracted=10
+
+  [39/150] "close microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [40/150] "close the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [41/150] "open microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [42/150] "fold the cloth from right to left..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=fold, layers_extracted=10
+
+  [43/150] "put the blue fabric that is on the left burner towards the r..."
+  Text input_ids length: 30
+  Full sequence length (after vision expansion): 286
+  Vision tokens (from seq diff): 256, Text tokens: 30
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 286, 'total_seq_len': 286, 'num_vision_tokens': 256, 'num_text_tokens': 30, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 286)]}
+    Skill=place, layers_extracted=10
+
+  [44/150] "open oven..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=open, layers_extracted=10
+
+  [45/150] "move the knife in the left side of the silver pot..."
+  Text input_ids length: 26
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 256, Text tokens: 26
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 26, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)]}
+    Skill=move, layers_extracted=10
+
+  [46/150] "close the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [47/150] "close a drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [48/150] "put the red cube on top of the block..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=place, layers_extracted=10
+
+  [49/150] "topple basil bottle cardboard fence..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=move, layers_extracted=10
+
+  [50/150] "put carrot on plate..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=place, layers_extracted=10
+
+  [51/150] "opened and closed the drawer..."
+  Text input_ids length: 20
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 256, Text tokens: 20
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 20, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)]}
+    Skill=open, layers_extracted=10
+
+  [52/150] "move the stuffed toy from the left burner to the pot on the ..."
+  Text input_ids length: 33
+  Full sequence length (after vision expansion): 289
+  Vision tokens (from seq diff): 256, Text tokens: 33
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 289, 'total_seq_len': 289, 'num_vision_tokens': 256, 'num_text_tokens': 33, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 289)]}
+    Skill=move, layers_extracted=10
+
+  [53/150] "close small4fbox flaps..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=close, layers_extracted=10
+
+  [54/150] "unfold the cloth from the top left to the bottom right..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=fold, layers_extracted=10
+
+  [55/150] "move corn to right of spoon..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=move, layers_extracted=10
+
+  [56/150] "put knife in pot cardboard fence..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=place, layers_extracted=10
+
+  [57/150] "Move the blue towel closer to the cans..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=move, layers_extracted=10
+
+  [58/150] "take the rectangular block in the middle of the table and pu..."
+  Text input_ids length: 33
+  Full sequence length (after vision expansion): 289
+  Vision tokens (from seq diff): 256, Text tokens: 33
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 289, 'total_seq_len': 289, 'num_vision_tokens': 256, 'num_text_tokens': 33, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 289)]}
+    Skill=pick, layers_extracted=10
+
+  [59/150] "open large4fbox flaps..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=open, layers_extracted=10
+
+  [60/150] "close the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [61/150] "open microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [62/150] "close microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [63/150] "close the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [64/150] "moves the bottle from right to the left of the hanging table..."
+  Text input_ids length: 28
+  Full sequence length (after vision expansion): 284
+  Vision tokens (from seq diff): 256, Text tokens: 28
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 284, 'total_seq_len': 284, 'num_vision_tokens': 256, 'num_text_tokens': 28, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 284)]}
+    Skill=move, layers_extracted=10
+
+  [65/150] "close fridge..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [66/150] "picked a red toy..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=pick, layers_extracted=10
+
+  [67/150] "open brown1fbox flap..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=open, layers_extracted=10
+
+  [68/150] "moved the orange towel to the opposite edge of the right bur..."
+  Text input_ids length: 28
+  Full sequence length (after vision expansion): 284
+  Vision tokens (from seq diff): 256, Text tokens: 28
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 284, 'total_seq_len': 284, 'num_vision_tokens': 256, 'num_text_tokens': 28, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 284)]}
+    Skill=move, layers_extracted=10
+
+  [69/150] "fold the cloth from bottom right to top left..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=fold, layers_extracted=10
+
+  [70/150] "fold the cloth from the top to the bottom..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=fold, layers_extracted=10
+
+  [71/150] "Place the vessel over the orange cloth...."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=place, layers_extracted=10
+
+  [72/150] "close the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [73/150] "open oven..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=open, layers_extracted=10
+
+  [74/150] "unfold cloth from center to top left..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=fold, layers_extracted=10
+
+  [75/150] "put sushi in pot or pan..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=place, layers_extracted=10
+
+  [76/150] "close microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [77/150] "fold the cloth from top right to top left..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=fold, layers_extracted=10
+
+  [78/150] "take blueberries off plate sink..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=pick, layers_extracted=10
+
+  [79/150] "move the cloth from left to right..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=move, layers_extracted=10
+
+  [80/150] "unfold the cloth from top right to bottom left..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=fold, layers_extracted=10
+
+  [81/150] "open microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [82/150] "Put the mushroom into the pot...."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=place, layers_extracted=10
+
+  [83/150] "close fridge..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [84/150] "pick up glass cup..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=pick, layers_extracted=10
+
+  [85/150] "fold the cloth from bottom to top..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=fold, layers_extracted=10
+
+  [86/150] "unfold the cloth from right to left..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=fold, layers_extracted=10
+
+  [87/150] "close the draw..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [88/150] "open white1fbox flap..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=open, layers_extracted=10
+
+  [89/150] "open microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [90/150] "open the pan lid..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [91/150] "close microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [92/150] "close microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [93/150] "moved the yellow object to the right burner..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=move, layers_extracted=10
+
+  [94/150] "fold the cloth from top right to bottom left..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=fold, layers_extracted=10
+
+  [95/150] "fold the cloth from bottom right to top left..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=fold, layers_extracted=10
+
+  [96/150] "close large4fbox flaps..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=close, layers_extracted=10
+
+  [97/150] "take the yellow duck out of the drawer and put it on top of ..."
+  Text input_ids length: 33
+  Full sequence length (after vision expansion): 289
+  Vision tokens (from seq diff): 256, Text tokens: 33
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 289, 'total_seq_len': 289, 'num_vision_tokens': 256, 'num_text_tokens': 33, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 289)]}
+    Skill=pick, layers_extracted=10
+
+  [98/150] "close drawer of box..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=close, layers_extracted=10
+
+  [99/150] "move the red and white sushi to the left side of the table, ..."
+  Text input_ids length: 35
+  Full sequence length (after vision expansion): 291
+  Vision tokens (from seq diff): 256, Text tokens: 35
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 291, 'total_seq_len': 291, 'num_vision_tokens': 256, 'num_text_tokens': 35, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 291)]}
+    Skill=move, layers_extracted=10
+
+  [100/150] "open the draw..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=open, layers_extracted=10
+
+  [101/150] "open the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [102/150] "take the object in the red pot and put it on the lower left ..."
+  Text input_ids length: 30
+  Full sequence length (after vision expansion): 286
+  Vision tokens (from seq diff): 256, Text tokens: 30
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 286, 'total_seq_len': 286, 'num_vision_tokens': 256, 'num_text_tokens': 30, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 286)]}
+    Skill=pick, layers_extracted=10
+
+  [103/150] "move the blue fork to the left upper side of the burner..."
+  Text input_ids length: 27
+  Full sequence length (after vision expansion): 283
+  Vision tokens (from seq diff): 256, Text tokens: 27
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 283, 'total_seq_len': 283, 'num_vision_tokens': 256, 'num_text_tokens': 27, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 283)]}
+    Skill=move, layers_extracted=10
+
+  [104/150] "Fold the yellow object from the bottom to the top..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=fold, layers_extracted=10
+
+  [105/150] "Put the blue cloth to the left parallel from where it is..."
+  Text input_ids length: 26
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 256, Text tokens: 26
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 26, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)]}
+    Skill=place, layers_extracted=10
+
+  [106/150] "unfold the cloth from to top left to the bottom right..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=fold, layers_extracted=10
+
+  [107/150] "Close the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [108/150] "Pick up and move pot to the left and past yellow knife..."
+  Text input_ids length: 27
+  Full sequence length (after vision expansion): 283
+  Vision tokens (from seq diff): 256, Text tokens: 27
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 283, 'total_seq_len': 283, 'num_vision_tokens': 256, 'num_text_tokens': 27, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 283)]}
+    Skill=pick, layers_extracted=10
+
+  [109/150] "close cabinet..."
+  Text input_ids length: 16
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 256, Text tokens: 16
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 16, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+    Skill=close, layers_extracted=10
+
+  [110/150] "fold the cloth from bottom right to top left..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=fold, layers_extracted=10
+
+  [111/150] "remove the banana from the top of the drawer and put it besi..."
+  Text input_ids length: 34
+  Full sequence length (after vision expansion): 290
+  Vision tokens (from seq diff): 256, Text tokens: 34
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 290, 'total_seq_len': 290, 'num_vision_tokens': 256, 'num_text_tokens': 34, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 290)]}
+    Skill=place, layers_extracted=10
+
+  [112/150] "fold the cloth from left to right..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=fold, layers_extracted=10
+
+  [113/150] "take clothes out of laundry machine..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=pick, layers_extracted=10
+
+  [114/150] "put the red object in the pot on the left burner..."
+  Text input_ids length: 26
+  Full sequence length (after vision expansion): 282
+  Vision tokens (from seq diff): 256, Text tokens: 26
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 282, 'total_seq_len': 282, 'num_vision_tokens': 256, 'num_text_tokens': 26, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 282)]}
+    Skill=place, layers_extracted=10
+
+  [115/150] "Pick up the carrot and place it on the far right edge of the..."
+  Text input_ids length: 30
+  Full sequence length (after vision expansion): 286
+  Vision tokens (from seq diff): 256, Text tokens: 30
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 286, 'total_seq_len': 286, 'num_vision_tokens': 256, 'num_text_tokens': 30, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 286)]}
+    Skill=pick, layers_extracted=10
+
+  [116/150] "unfold the cloth left to right..."
+  Text input_ids length: 20
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 256, Text tokens: 20
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 20, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)]}
+    Skill=fold, layers_extracted=10
+
+  [117/150] "open the pot..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=open, layers_extracted=10
+
+  [118/150] "take carrot off plate..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=pick, layers_extracted=10
+
+  [119/150] "Put the pan on top of the yellow cloth...."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=place, layers_extracted=10
+
+  [120/150] "unfold the cloth from left to right..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=fold, layers_extracted=10
+
+  [121/150] "pulls the door of the drawer and opens it..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=open, layers_extracted=10
+
+  [122/150] "unfold the cloth from top right to bottom left..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=fold, layers_extracted=10
+
+  [123/150] "unfold the cloth from left to right..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=fold, layers_extracted=10
+
+  [124/150] "sweep into pile..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=move, layers_extracted=10
+
+  [125/150] "Put the orange cloth next to the spoon...."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=place, layers_extracted=10
+
+  [126/150] "take the eggplant and put it between the two right burners..."
+  Text input_ids length: 27
+  Full sequence length (after vision expansion): 283
+  Vision tokens (from seq diff): 256, Text tokens: 27
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 283, 'total_seq_len': 283, 'num_vision_tokens': 256, 'num_text_tokens': 27, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 283)]}
+    Skill=pick, layers_extracted=10
+
+  [127/150] "open book..."
+  Text input_ids length: 16
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 256, Text tokens: 16
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 16, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+    Skill=open, layers_extracted=10
+
+  [128/150] "Remove grapes from pan and place on top of the orange cloth...."
+  Text input_ids length: 29
+  Full sequence length (after vision expansion): 285
+  Vision tokens (from seq diff): 256, Text tokens: 29
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 285, 'total_seq_len': 285, 'num_vision_tokens': 256, 'num_text_tokens': 29, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 285)]}
+    Skill=place, layers_extracted=10
+
+  [129/150] "pick up pot from sink..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=pick, layers_extracted=10
+
+  [130/150] "put knife in pot cardboard fence..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=place, layers_extracted=10
+
+  [131/150] "Place the spoon between the pot and the cans..."
+  Text input_ids length: 25
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 256, Text tokens: 25
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 25, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+    Skill=place, layers_extracted=10
+
+  [132/150] "picks and places back square  piece of wood..."
+  Text input_ids length: 24
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 256, Text tokens: 24
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 24, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+    Skill=pick, layers_extracted=10
+
+  [133/150] "PLACE THE SPOON ON THE BLUE CLOTH..."
+  Text input_ids length: 28
+  Full sequence length (after vision expansion): 284
+  Vision tokens (from seq diff): 256, Text tokens: 28
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 284, 'total_seq_len': 284, 'num_vision_tokens': 256, 'num_text_tokens': 28, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 284)]}
+    Skill=place, layers_extracted=10
+
+  [134/150] "put detergent in sink..."
+  Text input_ids length: 20
+  Full sequence length (after vision expansion): 276
+  Vision tokens (from seq diff): 256, Text tokens: 20
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 276, 'total_seq_len': 276, 'num_vision_tokens': 256, 'num_text_tokens': 20, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 276)]}
+    Skill=place, layers_extracted=10
+
+  [135/150] "moved the red object from the upper left corner to the lower..."
+  Text input_ids length: 28
+  Full sequence length (after vision expansion): 284
+  Vision tokens (from seq diff): 256, Text tokens: 28
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 284, 'total_seq_len': 284, 'num_vision_tokens': 256, 'num_text_tokens': 28, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 284)]}
+    Skill=move, layers_extracted=10
+
+  [136/150] "fold the cloth from left to right..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=fold, layers_extracted=10
+
+  [137/150] "sweep into pile..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=move, layers_extracted=10
+
+  [138/150] "close fridge..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [139/150] "moved the orange pot outside the sink..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=move, layers_extracted=10
+
+  [140/150] "open the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [141/150] "close microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=close, layers_extracted=10
+
+  [142/150] "sweep into pile..."
+  Text input_ids length: 19
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 256, Text tokens: 19
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 19, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+    Skill=move, layers_extracted=10
+
+  [143/150] "open the drawer..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  [144/150] "Folded the cloth from left to right..."
+  Text input_ids length: 23
+  Full sequence length (after vision expansion): 279
+  Vision tokens (from seq diff): 256, Text tokens: 23
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 279, 'total_seq_len': 279, 'num_vision_tokens': 256, 'num_text_tokens': 23, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 279)]}
+    Skill=fold, layers_extracted=10
+
+  [145/150] "close oven..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=close, layers_extracted=10
+
+  [146/150] "put pot in sink..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=place, layers_extracted=10
+
+  [147/150] "fold the cloth from top to bottom..."
+  Text input_ids length: 22
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 256, Text tokens: 22
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 22, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    Skill=fold, layers_extracted=10
+
+  [148/150] "open fridge..."
+  Text input_ids length: 17
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 256, Text tokens: 17
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 17, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+    Skill=open, layers_extracted=10
+
+  [149/150] "open small4fbox flaps..."
+  Text input_ids length: 21
+  Full sequence length (after vision expansion): 277
+  Vision tokens (from seq diff): 256, Text tokens: 21
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 277, 'total_seq_len': 277, 'num_vision_tokens': 256, 'num_text_tokens': 21, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 277)]}
+    Skill=open, layers_extracted=10
+
+  [150/150] "open microwave..."
+  Text input_ids length: 18
+  Full sequence length (after vision expansion): 274
+  Vision tokens (from seq diff): 256, Text tokens: 18
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 274, 'total_seq_len': 274, 'num_vision_tokens': 256, 'num_text_tokens': 18, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 274)]}
+    Skill=open, layers_extracted=10
+
+  Report saved: outputs/phase3_gate/openvla-7b/contribution_report.json
+  Mode tokens saved: outputs/phase3_gate/openvla-7b/mode_tokens.json
+  Saved: outputs/phase3_gate/openvla-7b/top1_contrib_share.png
+  Saved: outputs/phase3_gate/openvla-7b/candidate_frequency.png
+  Saved: outputs/phase3_gate/openvla-7b/attention_vs_contribution.png
+
+======================================================================
+  Analysis complete for openvla-7b
+======================================================================

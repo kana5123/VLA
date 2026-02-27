@@ -1,0 +1,130 @@
+[
+  {
+    "alpha": 1.0,
+    "intervention": "K-scale",
+    "mean_entropy": 2.2163,
+    "action_change_rate_vs_baseline": 0.0,
+    "d2_consistency_with_intervention": 0.5499999999999999,
+    "n_samples": 20
+  },
+  {
+    "alpha": 0.0,
+    "intervention": "K-scale",
+    "mean_entropy": 2.2191,
+    "action_change_rate_vs_baseline": 0.05,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0,
+      "C_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.1254,
+    "mean_contrib_entropy": 2.4319,
+    "d2_consistency_with_intervention": 0.58,
+    "d2_consistency_baseline": 0.5499999999999999,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9,
+      "C_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode",
+      "C_mode"
+    ]
+  },
+  {
+    "alpha": 0.1,
+    "intervention": "K-scale",
+    "mean_entropy": 2.2216,
+    "action_change_rate_vs_baseline": 0.05,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0,
+      "C_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.1249,
+    "mean_contrib_entropy": 2.4435,
+    "d2_consistency_with_intervention": 0.57,
+    "d2_consistency_baseline": 0.5499999999999999,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9,
+      "C_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode",
+      "C_mode"
+    ]
+  },
+  {
+    "alpha": 0.3,
+    "intervention": "K-scale",
+    "mean_entropy": 2.2486,
+    "action_change_rate_vs_baseline": 0.05,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0,
+      "C_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.1225,
+    "mean_contrib_entropy": 2.4706,
+    "d2_consistency_with_intervention": 0.58,
+    "d2_consistency_baseline": 0.5499999999999999,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9,
+      "C_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode",
+      "C_mode"
+    ]
+  },
+  {
+    "alpha": 0.5,
+    "intervention": "K-scale",
+    "mean_entropy": 2.2577,
+    "action_change_rate_vs_baseline": 0.05,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0,
+      "C_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.1189,
+    "mean_contrib_entropy": 2.5026,
+    "d2_consistency_with_intervention": null,
+    "d2_consistency_baseline": 0.5499999999999999,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9,
+      "C_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode",
+      "C_mode"
+    ]
+  },
+  {
+    "alpha": 0.7,
+    "intervention": "K-scale",
+    "mean_entropy": 2.2622,
+    "action_change_rate_vs_baseline": 0.05,
+    "c_peak_anchoring_rate": 0.0,
+    "anchoring_rate_per_mode": {
+      "A_mode": 0.0,
+      "C_mode": 0.0
+    },
+    "mean_top1_c_share_proxy": 0.1133,
+    "mean_contrib_entropy": 2.5337,
+    "d2_consistency_with_intervention": null,
+    "d2_consistency_baseline": 0.5499999999999999,
+    "n_samples": 20,
+    "n_anchor_trials_per_mode": {
+      "A_mode": 9,
+      "C_mode": 9
+    },
+    "anchor_targets": [
+      "A_mode",
+      "C_mode"
+    ]
+  }
+]

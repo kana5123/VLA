@@ -1,0 +1,7 @@
+{
+  "strategy": "4d_mask",
+  "hook_fired": null,
+  "n_text_tokens_masked": 28,
+  "hidden_changed": true,
+  "max_hidden_diff": 3427.061767578125
+}

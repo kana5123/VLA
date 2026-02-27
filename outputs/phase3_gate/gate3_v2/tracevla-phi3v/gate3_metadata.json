@@ -1,0 +1,45 @@
+{
+  "model": "tracevla-phi3v",
+  "n_samples": 20,
+  "text_ranges_sample0": [
+    [
+      313,
+      341
+    ]
+  ],
+  "n_text_tokens_sample0": 28,
+  "vision_range_sample0": [
+    0,
+    313
+  ],
+  "masked_tokens_sample0": [
+    "<id:-1>",
+    "<id:-1>",
+    "<id:-1>",
+    "<id:-1>",
+    "<s>",
+    "",
+    "",
+    "What",
+    "action",
+    "should",
+    "the",
+    "robot",
+    "take",
+    "to",
+    "take",
+    "clothes",
+    "out",
+    "of",
+    "la",
+    "und"
+  ],
+  "sanity_check": {
+    "strategy": "4d_mask",
+    "hook_fired": null,
+    "n_text_tokens_masked": 28,
+    "hidden_changed": true,
+    "max_hidden_diff": 3427.061767578125
+  },
+  "version": 2
+}

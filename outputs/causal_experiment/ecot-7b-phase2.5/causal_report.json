@@ -1,0 +1,38 @@
+{
+  "model": "ecot-7b",
+  "method": "v_zero",
+  "candidates_abs_t": [
+    0
+  ],
+  "sanity_check": {
+    "hook_fired": true,
+    "logits_changed": true,
+    "kl_divergence": 0.7836964130401611
+  },
+  "per_k": {
+    "1": {
+      "targets": [
+        0
+      ],
+      "vzero_mean_kl": 3.754526048898697,
+      "vzero_std_kl": 2.7279541921453068,
+      "vzero_mean_top1_change": 0.5
+    },
+    "3": {
+      "targets": [
+        0
+      ],
+      "vzero_mean_kl": 3.754526048898697,
+      "vzero_std_kl": 2.7279541921453068,
+      "vzero_mean_top1_change": 0.5
+    },
+    "5": {
+      "targets": [
+        0
+      ],
+      "vzero_mean_kl": 3.754526048898697,
+      "vzero_std_kl": 2.7279541921453068,
+      "vzero_mean_top1_change": 0.5
+    }
+  }
+}

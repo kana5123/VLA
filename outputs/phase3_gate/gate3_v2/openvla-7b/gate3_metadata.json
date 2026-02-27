@@ -1,0 +1,24 @@
+{
+  "model": "openvla-7b",
+  "n_samples": 20,
+  "text_ranges_sample0": [
+    [
+      256,
+      278
+    ]
+  ],
+  "n_text_tokens_sample0": 22,
+  "vision_range_sample0": [
+    0,
+    256
+  ],
+  "masked_tokens_sample0": [],
+  "sanity_check": {
+    "strategy": "kv_zero_hook",
+    "hook_fired": true,
+    "n_text_tokens_masked": 22,
+    "hidden_changed": true,
+    "max_hidden_diff": 125.09813690185547
+  },
+  "version": 2
+}

@@ -1,0 +1,480 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+============================================================
+Gate 3: Text Masking -- spatialvla-4b
+============================================================
+Loading model from registry: spatialvla-4b (IPEC-COMMUNITY/spatialvla-4b-224-pt)
+  Architecture: gemma2, Auto class: AutoModel
+  Applied SpatialVLA monkey-patch: _validate_images_text_input_order
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  5.19it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.82it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.97it/s]
+`HybridCache` is deprecated and will be removed in version v4.59 Use `StaticCache(...)` instead which will correctly infer the type of each layer.
+  Loaded: 26L x 8H, hidden=2304, dtype=bfloat16
+  Layers path: language_model.model.layers
+Model loaded successfully.
+  Using 20 samples from Gate 1
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)]}
+  Approx ranges (sample 0): text=(256, 270), vision=(0, 256)
+
+  Part A: Collecting hidden states under 4 conditions...
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)]}
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 280
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 0, Text tokens: 280
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 280, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    original: collected 20 samples x 10 layers
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)]}
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 280
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 0, Text tokens: 280
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 280, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    text_v0: collected 20 samples x 10 layers
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)]}
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 280
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 0, Text tokens: 280
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 280, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    text_kv: collected 20 samples x 10 layers
+  Text input_ids length: 270
+  Full sequence length (after vision expansion): 270
+  Vision tokens (from seq diff): 0, Text tokens: 270
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 270, 'total_seq_len': 270, 'num_vision_tokens': 256, 'num_text_tokens': 270, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 270)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 273
+  Full sequence length (after vision expansion): 273
+  Vision tokens (from seq diff): 0, Text tokens: 273
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 273, 'total_seq_len': 273, 'num_vision_tokens': 256, 'num_text_tokens': 273, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 273)]}
+  Text input_ids length: 269
+  Full sequence length (after vision expansion): 269
+  Vision tokens (from seq diff): 0, Text tokens: 269
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 269, 'total_seq_len': 269, 'num_vision_tokens': 256, 'num_text_tokens': 269, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 269)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 268
+  Full sequence length (after vision expansion): 268
+  Vision tokens (from seq diff): 0, Text tokens: 268
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 268, 'total_seq_len': 268, 'num_vision_tokens': 256, 'num_text_tokens': 268, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 268)]}
+  Text input_ids length: 272
+  Full sequence length (after vision expansion): 272
+  Vision tokens (from seq diff): 0, Text tokens: 272
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 272, 'total_seq_len': 272, 'num_vision_tokens': 256, 'num_text_tokens': 272, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 272)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 280
+  Full sequence length (after vision expansion): 280
+  Vision tokens (from seq diff): 0, Text tokens: 280
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 280, 'total_seq_len': 280, 'num_vision_tokens': 256, 'num_text_tokens': 280, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 280)]}
+  Text input_ids length: 278
+  Full sequence length (after vision expansion): 278
+  Vision tokens (from seq diff): 0, Text tokens: 278
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 278, 'total_seq_len': 278, 'num_vision_tokens': 256, 'num_text_tokens': 278, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 278)]}
+    vision_v0_norm: collected 20 samples x 10 layers
+
+  Part A hidden states saved to outputs/phase3_gate/gate3/spatialvla-4b/
+
+  Part B: Mini counterfactual (verb swap)...
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 281
+  Full sequence length (after vision expansion): 281
+  Vision tokens (from seq diff): 0, Text tokens: 281
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 281, 'total_seq_len': 281, 'num_vision_tokens': 256, 'num_text_tokens': 281, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 281)]}
+  Text input_ids length: 267
+  Full sequence length (after vision expansion): 267
+  Vision tokens (from seq diff): 0, Text tokens: 267
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 267, 'total_seq_len': 267, 'num_vision_tokens': 256, 'num_text_tokens': 267, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 267)]}
+  Text input_ids length: 271
+  Full sequence length (after vision expansion): 271
+  Vision tokens (from seq diff): 0, Text tokens: 271
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 271, 'total_seq_len': 271, 'num_vision_tokens': 256, 'num_text_tokens': 271, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 271)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Text input_ids length: 266
+  Full sequence length (after vision expansion): 266
+  Vision tokens (from seq diff): 0, Text tokens: 266
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 266, 'total_seq_len': 266, 'num_vision_tokens': 256, 'num_text_tokens': 266, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 266)]}
+  Text input_ids length: 275
+  Full sequence length (after vision expansion): 275
+  Vision tokens (from seq diff): 0, Text tokens: 275
+  (Processor-embedded vision tokens detected: 256 at [0:256])
+  Token boundaries: {'vision_start': 0, 'vision_end': 256, 'text_start': 256, 'text_end': 275, 'total_seq_len': 275, 'num_vision_tokens': 256, 'num_text_tokens': 275, 'pre_image_tokens': 0, 'text_query_ranges': [(256, 275)]}
+  Part B: 90 measurements saved to outputs/phase3_gate/gate3/spatialvla-4b/counterfactual_results.json
+
+  Summary: delta_hidden_orig=0.3181, delta_hidden_textKV=0.0000
+  Ratio: delta_orig/delta_KV = 3180977316.37x

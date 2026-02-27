@@ -1,0 +1,1248 @@
+/home/kana5123/miniconda3/envs/interp/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+======================================================================
+Contribution Analysis — tracevla-phi3v (Phase 2.5: Dual-Track)
+======================================================================
+Loading model from registry: tracevla-phi3v (furonghuang-lab/tracevla_phi3v)
+  Architecture: phi3_v, Auto class: AutoModelForCausalLM
+  Applied TraceVLA transformers safety bypass
+  Applied DynamicCache.get_usable_length compatibility patch
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 21.05it/s]
+/home/kana5123/.cache/huggingface/modules/transformers_modules/furonghuang_hyphen_lab/tracevla_phi3v/b879e42622f075e2b2fae76aee899b818e666afd/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.
+  warnings.warn(
+You are not running the flash-attention implementation, expect numerical differences.
+past_key_values should not be None in from_legacy_cache()
+  Loaded: 32L x 32H, hidden=3072, dtype=bfloat16
+  Layers path: model.layers
+Model loaded successfully.
+  Loaded 150 balanced samples (25/skill)
+  Saved sample_list: outputs/phase3_gate/tracevla-phi3v/sample_list.json (150 samples)
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+  Boundaries: vis=[0:313], text=[313:341]
+  Query positions (action proxy): [337, 338, 339, 340]
+
+  [1/150] "take clothes out of laundry machine..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=pick, layers_extracted=10
+
+  [2/150] "move the green object on top of blue and yellow box...."
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)]}
+    Skill=move, layers_extracted=10
+
+  [3/150] "unfold the cloth from right to left..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=fold, layers_extracted=10
+
+  [4/150] "put pan on stove and put blueberry in pan..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=place, layers_extracted=10
+
+  [5/150] "pick up scissors and put into drawer..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=pick, layers_extracted=10
+
+  [6/150] "move yellow object from the top of the drawer and put it on ..."
+  Text input_ids length: 351
+  Full sequence length (after vision expansion): 351
+  Vision tokens (from seq diff): 0, Text tokens: 351
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 351, 'total_seq_len': 351, 'num_vision_tokens': 313, 'num_text_tokens': 351, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 351)]}
+    Skill=move, layers_extracted=10
+
+  [7/150] "open the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [8/150] "take carrot out of pot cardboard fence..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=pick, layers_extracted=10
+
+  [9/150] "unfold the cloth from bottom right to top left..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=fold, layers_extracted=10
+
+  [10/150] "take broccoli out of pan..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=pick, layers_extracted=10
+
+  [11/150] "fold the cloth from left to right..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=fold, layers_extracted=10
+
+  [12/150] "mushroom put down..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=place, layers_extracted=10
+
+  [13/150] "close oven..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [14/150] "pick blue cloth and place it inside of the washing machine..."
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)]}
+    Skill=pick, layers_extracted=10
+
+  [15/150] "put sushi on plate..."
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)]}
+    Skill=place, layers_extracted=10
+
+  [16/150] "put the yellow brush inside the silver pot..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=place, layers_extracted=10
+
+  [17/150] "close cabinet..."
+  Text input_ids length: 335
+  Full sequence length (after vision expansion): 335
+  Vision tokens (from seq diff): 0, Text tokens: 335
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 335, 'total_seq_len': 335, 'num_vision_tokens': 313, 'num_text_tokens': 335, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 335)]}
+    Skill=close, layers_extracted=10
+
+  [18/150] "move the green object to the bottom left of the table..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=move, layers_extracted=10
+
+  [19/150] "take the red carrot and move it to the yelow cage containing..."
+  Text input_ids length: 353
+  Full sequence length (after vision expansion): 353
+  Vision tokens (from seq diff): 0, Text tokens: 353
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 353, 'total_seq_len': 353, 'num_vision_tokens': 313, 'num_text_tokens': 353, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 353)]}
+    Skill=pick, layers_extracted=10
+
+  [20/150] "put the cloth on the left burner in the left side of the sto..."
+  Text input_ids length: 349
+  Full sequence length (after vision expansion): 349
+  Vision tokens (from seq diff): 0, Text tokens: 349
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 349, 'total_seq_len': 349, 'num_vision_tokens': 313, 'num_text_tokens': 349, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 349)]}
+    Skill=place, layers_extracted=10
+
+  [21/150] "open the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [22/150] "pick blue spoon and place it near vessel on the left..."
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)]}
+    Skill=pick, layers_extracted=10
+
+  [23/150] "take bowl off plate cardboard fence..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=pick, layers_extracted=10
+
+  [24/150] "move the silver pot below the orange cloth and banana..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=move, layers_extracted=10
+
+  [25/150] "take the red object on the upper left burner and put it on l..."
+  Text input_ids length: 351
+  Full sequence length (after vision expansion): 351
+  Vision tokens (from seq diff): 0, Text tokens: 351
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 351, 'total_seq_len': 351, 'num_vision_tokens': 313, 'num_text_tokens': 351, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 351)]}
+    Skill=pick, layers_extracted=10
+
+  [26/150] "pick up pan from stove..."
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)]}
+    Skill=pick, layers_extracted=10
+
+  [27/150] "lift bowl..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=pick, layers_extracted=10
+
+  [28/150] "close fridge..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [29/150] "moved the silver pot on the top of the towel..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=move, layers_extracted=10
+
+  [30/150] "move the silver object over the blue cloth..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=move, layers_extracted=10
+
+  [31/150] "take cup off plate..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=pick, layers_extracted=10
+
+  [32/150] "sweep into pile..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=move, layers_extracted=10
+
+  [33/150] "unzip zipper bag..."
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)]}
+    Skill=open, layers_extracted=10
+
+  [34/150] "MOVE THE BLENDER INSIDE THE VESSEL..."
+  Text input_ids length: 348
+  Full sequence length (after vision expansion): 348
+  Vision tokens (from seq diff): 0, Text tokens: 348
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 348, 'total_seq_len': 348, 'num_vision_tokens': 313, 'num_text_tokens': 348, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 348)]}
+    Skill=move, layers_extracted=10
+
+  [35/150] "Place the fork over the upper left corner of stove and next ..."
+  Text input_ids length: 349
+  Full sequence length (after vision expansion): 349
+  Vision tokens (from seq diff): 0, Text tokens: 349
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 349, 'total_seq_len': 349, 'num_vision_tokens': 313, 'num_text_tokens': 349, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 349)]}
+    Skill=place, layers_extracted=10
+
+  [36/150] "Moved the yellow object and placed it on the left burner..."
+  Text input_ids length: 346
+  Full sequence length (after vision expansion): 346
+  Vision tokens (from seq diff): 0, Text tokens: 346
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 346, 'total_seq_len': 346, 'num_vision_tokens': 313, 'num_text_tokens': 346, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 346)]}
+    Skill=move, layers_extracted=10
+
+  [37/150] "Put the spoon directly in front of the toy microwave...."
+  Text input_ids length: 348
+  Full sequence length (after vision expansion): 348
+  Vision tokens (from seq diff): 0, Text tokens: 348
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 348, 'total_seq_len': 348, 'num_vision_tokens': 313, 'num_text_tokens': 348, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 348)]}
+    Skill=place, layers_extracted=10
+
+  [38/150] "open oven..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=open, layers_extracted=10
+
+  [39/150] "close microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [40/150] "close the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [41/150] "open microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [42/150] "fold the cloth from right to left..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=fold, layers_extracted=10
+
+  [43/150] "put the blue fabric that is on the left burner towards the r..."
+  Text input_ids length: 349
+  Full sequence length (after vision expansion): 349
+  Vision tokens (from seq diff): 0, Text tokens: 349
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 349, 'total_seq_len': 349, 'num_vision_tokens': 313, 'num_text_tokens': 349, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 349)]}
+    Skill=place, layers_extracted=10
+
+  [44/150] "open oven..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=open, layers_extracted=10
+
+  [45/150] "move the knife in the left side of the silver pot..."
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)]}
+    Skill=move, layers_extracted=10
+
+  [46/150] "close the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [47/150] "close a drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [48/150] "put the red cube on top of the block..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=place, layers_extracted=10
+
+  [49/150] "topple basil bottle cardboard fence..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=move, layers_extracted=10
+
+  [50/150] "put carrot on plate..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=place, layers_extracted=10
+
+  [51/150] "opened and closed the drawer..."
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)]}
+    Skill=open, layers_extracted=10
+
+  [52/150] "move the stuffed toy from the left burner to the pot on the ..."
+  Text input_ids length: 352
+  Full sequence length (after vision expansion): 352
+  Vision tokens (from seq diff): 0, Text tokens: 352
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 352, 'total_seq_len': 352, 'num_vision_tokens': 313, 'num_text_tokens': 352, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 352)]}
+    Skill=move, layers_extracted=10
+
+  [53/150] "close small4fbox flaps..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=close, layers_extracted=10
+
+  [54/150] "unfold the cloth from the top left to the bottom right..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=fold, layers_extracted=10
+
+  [55/150] "move corn to right of spoon..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=move, layers_extracted=10
+
+  [56/150] "put knife in pot cardboard fence..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=place, layers_extracted=10
+
+  [57/150] "Move the blue towel closer to the cans..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=move, layers_extracted=10
+
+  [58/150] "take the rectangular block in the middle of the table and pu..."
+  Text input_ids length: 352
+  Full sequence length (after vision expansion): 352
+  Vision tokens (from seq diff): 0, Text tokens: 352
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 352, 'total_seq_len': 352, 'num_vision_tokens': 313, 'num_text_tokens': 352, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 352)]}
+    Skill=pick, layers_extracted=10
+
+  [59/150] "open large4fbox flaps..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=open, layers_extracted=10
+
+  [60/150] "close the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [61/150] "open microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [62/150] "close microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [63/150] "close the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [64/150] "moves the bottle from right to the left of the hanging table..."
+  Text input_ids length: 347
+  Full sequence length (after vision expansion): 347
+  Vision tokens (from seq diff): 0, Text tokens: 347
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 347, 'total_seq_len': 347, 'num_vision_tokens': 313, 'num_text_tokens': 347, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 347)]}
+    Skill=move, layers_extracted=10
+
+  [65/150] "close fridge..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [66/150] "picked a red toy..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=pick, layers_extracted=10
+
+  [67/150] "open brown1fbox flap..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=open, layers_extracted=10
+
+  [68/150] "moved the orange towel to the opposite edge of the right bur..."
+  Text input_ids length: 347
+  Full sequence length (after vision expansion): 347
+  Vision tokens (from seq diff): 0, Text tokens: 347
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 347, 'total_seq_len': 347, 'num_vision_tokens': 313, 'num_text_tokens': 347, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 347)]}
+    Skill=move, layers_extracted=10
+
+  [69/150] "fold the cloth from bottom right to top left..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=fold, layers_extracted=10
+
+  [70/150] "fold the cloth from the top to the bottom..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=fold, layers_extracted=10
+
+  [71/150] "Place the vessel over the orange cloth...."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=place, layers_extracted=10
+
+  [72/150] "close the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [73/150] "open oven..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=open, layers_extracted=10
+
+  [74/150] "unfold cloth from center to top left..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=fold, layers_extracted=10
+
+  [75/150] "put sushi in pot or pan..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=place, layers_extracted=10
+
+  [76/150] "close microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [77/150] "fold the cloth from top right to top left..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=fold, layers_extracted=10
+
+  [78/150] "take blueberries off plate sink..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=pick, layers_extracted=10
+
+  [79/150] "move the cloth from left to right..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=move, layers_extracted=10
+
+  [80/150] "unfold the cloth from top right to bottom left..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=fold, layers_extracted=10
+
+  [81/150] "open microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [82/150] "Put the mushroom into the pot...."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=place, layers_extracted=10
+
+  [83/150] "close fridge..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [84/150] "pick up glass cup..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=pick, layers_extracted=10
+
+  [85/150] "fold the cloth from bottom to top..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=fold, layers_extracted=10
+
+  [86/150] "unfold the cloth from right to left..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=fold, layers_extracted=10
+
+  [87/150] "close the draw..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [88/150] "open white1fbox flap..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=open, layers_extracted=10
+
+  [89/150] "open microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [90/150] "open the pan lid..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [91/150] "close microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [92/150] "close microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [93/150] "moved the yellow object to the right burner..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=move, layers_extracted=10
+
+  [94/150] "fold the cloth from top right to bottom left..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=fold, layers_extracted=10
+
+  [95/150] "fold the cloth from bottom right to top left..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=fold, layers_extracted=10
+
+  [96/150] "close large4fbox flaps..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=close, layers_extracted=10
+
+  [97/150] "take the yellow duck out of the drawer and put it on top of ..."
+  Text input_ids length: 352
+  Full sequence length (after vision expansion): 352
+  Vision tokens (from seq diff): 0, Text tokens: 352
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 352, 'total_seq_len': 352, 'num_vision_tokens': 313, 'num_text_tokens': 352, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 352)]}
+    Skill=pick, layers_extracted=10
+
+  [98/150] "close drawer of box..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=close, layers_extracted=10
+
+  [99/150] "move the red and white sushi to the left side of the table, ..."
+  Text input_ids length: 354
+  Full sequence length (after vision expansion): 354
+  Vision tokens (from seq diff): 0, Text tokens: 354
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 354, 'total_seq_len': 354, 'num_vision_tokens': 313, 'num_text_tokens': 354, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 354)]}
+    Skill=move, layers_extracted=10
+
+  [100/150] "open the draw..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=open, layers_extracted=10
+
+  [101/150] "open the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [102/150] "take the object in the red pot and put it on the lower left ..."
+  Text input_ids length: 349
+  Full sequence length (after vision expansion): 349
+  Vision tokens (from seq diff): 0, Text tokens: 349
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 349, 'total_seq_len': 349, 'num_vision_tokens': 313, 'num_text_tokens': 349, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 349)]}
+    Skill=pick, layers_extracted=10
+
+  [103/150] "move the blue fork to the left upper side of the burner..."
+  Text input_ids length: 346
+  Full sequence length (after vision expansion): 346
+  Vision tokens (from seq diff): 0, Text tokens: 346
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 346, 'total_seq_len': 346, 'num_vision_tokens': 313, 'num_text_tokens': 346, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 346)]}
+    Skill=move, layers_extracted=10
+
+  [104/150] "Fold the yellow object from the bottom to the top..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=fold, layers_extracted=10
+
+  [105/150] "Put the blue cloth to the left parallel from where it is..."
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)]}
+    Skill=place, layers_extracted=10
+
+  [106/150] "unfold the cloth from to top left to the bottom right..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=fold, layers_extracted=10
+
+  [107/150] "Close the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [108/150] "Pick up and move pot to the left and past yellow knife..."
+  Text input_ids length: 346
+  Full sequence length (after vision expansion): 346
+  Vision tokens (from seq diff): 0, Text tokens: 346
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 346, 'total_seq_len': 346, 'num_vision_tokens': 313, 'num_text_tokens': 346, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 346)]}
+    Skill=pick, layers_extracted=10
+
+  [109/150] "close cabinet..."
+  Text input_ids length: 335
+  Full sequence length (after vision expansion): 335
+  Vision tokens (from seq diff): 0, Text tokens: 335
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 335, 'total_seq_len': 335, 'num_vision_tokens': 313, 'num_text_tokens': 335, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 335)]}
+    Skill=close, layers_extracted=10
+
+  [110/150] "fold the cloth from bottom right to top left..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=fold, layers_extracted=10
+
+  [111/150] "remove the banana from the top of the drawer and put it besi..."
+  Text input_ids length: 353
+  Full sequence length (after vision expansion): 353
+  Vision tokens (from seq diff): 0, Text tokens: 353
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 353, 'total_seq_len': 353, 'num_vision_tokens': 313, 'num_text_tokens': 353, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 353)]}
+    Skill=place, layers_extracted=10
+
+  [112/150] "fold the cloth from left to right..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=fold, layers_extracted=10
+
+  [113/150] "take clothes out of laundry machine..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=pick, layers_extracted=10
+
+  [114/150] "put the red object in the pot on the left burner..."
+  Text input_ids length: 345
+  Full sequence length (after vision expansion): 345
+  Vision tokens (from seq diff): 0, Text tokens: 345
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 345, 'total_seq_len': 345, 'num_vision_tokens': 313, 'num_text_tokens': 345, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 345)]}
+    Skill=place, layers_extracted=10
+
+  [115/150] "Pick up the carrot and place it on the far right edge of the..."
+  Text input_ids length: 349
+  Full sequence length (after vision expansion): 349
+  Vision tokens (from seq diff): 0, Text tokens: 349
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 349, 'total_seq_len': 349, 'num_vision_tokens': 313, 'num_text_tokens': 349, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 349)]}
+    Skill=pick, layers_extracted=10
+
+  [116/150] "unfold the cloth left to right..."
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)]}
+    Skill=fold, layers_extracted=10
+
+  [117/150] "open the pot..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=open, layers_extracted=10
+
+  [118/150] "take carrot off plate..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=pick, layers_extracted=10
+
+  [119/150] "Put the pan on top of the yellow cloth...."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=place, layers_extracted=10
+
+  [120/150] "unfold the cloth from left to right..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=fold, layers_extracted=10
+
+  [121/150] "pulls the door of the drawer and opens it..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=open, layers_extracted=10
+
+  [122/150] "unfold the cloth from top right to bottom left..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=fold, layers_extracted=10
+
+  [123/150] "unfold the cloth from left to right..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=fold, layers_extracted=10
+
+  [124/150] "sweep into pile..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=move, layers_extracted=10
+
+  [125/150] "Put the orange cloth next to the spoon...."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=place, layers_extracted=10
+
+  [126/150] "take the eggplant and put it between the two right burners..."
+  Text input_ids length: 346
+  Full sequence length (after vision expansion): 346
+  Vision tokens (from seq diff): 0, Text tokens: 346
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 346, 'total_seq_len': 346, 'num_vision_tokens': 313, 'num_text_tokens': 346, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 346)]}
+    Skill=pick, layers_extracted=10
+
+  [127/150] "open book..."
+  Text input_ids length: 335
+  Full sequence length (after vision expansion): 335
+  Vision tokens (from seq diff): 0, Text tokens: 335
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 335, 'total_seq_len': 335, 'num_vision_tokens': 313, 'num_text_tokens': 335, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 335)]}
+    Skill=open, layers_extracted=10
+
+  [128/150] "Remove grapes from pan and place on top of the orange cloth...."
+  Text input_ids length: 348
+  Full sequence length (after vision expansion): 348
+  Vision tokens (from seq diff): 0, Text tokens: 348
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 348, 'total_seq_len': 348, 'num_vision_tokens': 313, 'num_text_tokens': 348, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 348)]}
+    Skill=place, layers_extracted=10
+
+  [129/150] "pick up pot from sink..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=pick, layers_extracted=10
+
+  [130/150] "put knife in pot cardboard fence..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=place, layers_extracted=10
+
+  [131/150] "Place the spoon between the pot and the cans..."
+  Text input_ids length: 344
+  Full sequence length (after vision expansion): 344
+  Vision tokens (from seq diff): 0, Text tokens: 344
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 344, 'total_seq_len': 344, 'num_vision_tokens': 313, 'num_text_tokens': 344, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 344)]}
+    Skill=place, layers_extracted=10
+
+  [132/150] "picks and places back square  piece of wood..."
+  Text input_ids length: 343
+  Full sequence length (after vision expansion): 343
+  Vision tokens (from seq diff): 0, Text tokens: 343
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 343, 'total_seq_len': 343, 'num_vision_tokens': 313, 'num_text_tokens': 343, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 343)]}
+    Skill=pick, layers_extracted=10
+
+  [133/150] "PLACE THE SPOON ON THE BLUE CLOTH..."
+  Text input_ids length: 347
+  Full sequence length (after vision expansion): 347
+  Vision tokens (from seq diff): 0, Text tokens: 347
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 347, 'total_seq_len': 347, 'num_vision_tokens': 313, 'num_text_tokens': 347, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 347)]}
+    Skill=place, layers_extracted=10
+
+  [134/150] "put detergent in sink..."
+  Text input_ids length: 339
+  Full sequence length (after vision expansion): 339
+  Vision tokens (from seq diff): 0, Text tokens: 339
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 339, 'total_seq_len': 339, 'num_vision_tokens': 313, 'num_text_tokens': 339, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 339)]}
+    Skill=place, layers_extracted=10
+
+  [135/150] "moved the red object from the upper left corner to the lower..."
+  Text input_ids length: 347
+  Full sequence length (after vision expansion): 347
+  Vision tokens (from seq diff): 0, Text tokens: 347
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 347, 'total_seq_len': 347, 'num_vision_tokens': 313, 'num_text_tokens': 347, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 347)]}
+    Skill=move, layers_extracted=10
+
+  [136/150] "fold the cloth from left to right..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=fold, layers_extracted=10
+
+  [137/150] "sweep into pile..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=move, layers_extracted=10
+
+  [138/150] "close fridge..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [139/150] "moved the orange pot outside the sink..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=move, layers_extracted=10
+
+  [140/150] "open the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [141/150] "close microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=close, layers_extracted=10
+
+  [142/150] "sweep into pile..."
+  Text input_ids length: 338
+  Full sequence length (after vision expansion): 338
+  Vision tokens (from seq diff): 0, Text tokens: 338
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 338, 'total_seq_len': 338, 'num_vision_tokens': 313, 'num_text_tokens': 338, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 338)]}
+    Skill=move, layers_extracted=10
+
+  [143/150] "open the drawer..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/kana5123/.local/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  [144/150] "Folded the cloth from left to right..."
+  Text input_ids length: 342
+  Full sequence length (after vision expansion): 342
+  Vision tokens (from seq diff): 0, Text tokens: 342
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 342, 'total_seq_len': 342, 'num_vision_tokens': 313, 'num_text_tokens': 342, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 342)]}
+    Skill=fold, layers_extracted=10
+
+  [145/150] "close oven..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=close, layers_extracted=10
+
+  [146/150] "put pot in sink..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=place, layers_extracted=10
+
+  [147/150] "fold the cloth from top to bottom..."
+  Text input_ids length: 341
+  Full sequence length (after vision expansion): 341
+  Vision tokens (from seq diff): 0, Text tokens: 341
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 341, 'total_seq_len': 341, 'num_vision_tokens': 313, 'num_text_tokens': 341, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 341)]}
+    Skill=fold, layers_extracted=10
+
+  [148/150] "open fridge..."
+  Text input_ids length: 336
+  Full sequence length (after vision expansion): 336
+  Vision tokens (from seq diff): 0, Text tokens: 336
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 336, 'total_seq_len': 336, 'num_vision_tokens': 313, 'num_text_tokens': 336, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 336)]}
+    Skill=open, layers_extracted=10
+
+  [149/150] "open small4fbox flaps..."
+  Text input_ids length: 340
+  Full sequence length (after vision expansion): 340
+  Vision tokens (from seq diff): 0, Text tokens: 340
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 340, 'total_seq_len': 340, 'num_vision_tokens': 313, 'num_text_tokens': 340, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 340)]}
+    Skill=open, layers_extracted=10
+
+  [150/150] "open microwave..."
+  Text input_ids length: 337
+  Full sequence length (after vision expansion): 337
+  Vision tokens (from seq diff): 0, Text tokens: 337
+  (Processor-embedded vision tokens detected: 313 at [0:313])
+  Token boundaries: {'vision_start': 0, 'vision_end': 313, 'text_start': 313, 'text_end': 337, 'total_seq_len': 337, 'num_vision_tokens': 313, 'num_text_tokens': 337, 'pre_image_tokens': 0, 'text_query_ranges': [(313, 337)]}
+    Skill=open, layers_extracted=10
+
+  Report saved: outputs/phase3_gate/tracevla-phi3v/contribution_report.json
+  Mode tokens saved: outputs/phase3_gate/tracevla-phi3v/mode_tokens.json
+  Saved: outputs/phase3_gate/tracevla-phi3v/top1_contrib_share.png
+  Saved: outputs/phase3_gate/tracevla-phi3v/candidate_frequency.png
+  Saved: outputs/phase3_gate/tracevla-phi3v/attention_vs_contribution.png
+
+======================================================================
+  Analysis complete for tracevla-phi3v
+======================================================================

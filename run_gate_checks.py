@@ -29,6 +29,7 @@ import config
 
 MODELS = ["ecot-7b", "openvla-7b", "spatialvla-4b", "tracevla-phi3v"]
 GPU_MAP = {"ecot-7b": "cuda:0", "openvla-7b": "cuda:1", "spatialvla-4b": "cuda:2", "tracevla-phi3v": "cuda:3"}
+GPU_MAP_GATE3 = {"ecot-7b": "cuda:4", "openvla-7b": "cuda:5", "spatialvla-4b": "cuda:6", "tracevla-phi3v": "cuda:7"}
 TARGET_SKILLS = ["place", "move", "pick", "fold", "open", "close"]
 
 
@@ -94,6 +95,34 @@ def run_gate2(models, gate1_base, output_base):
         rc = p.wait()
         status = "OK" if rc == 0 else f"FAIL (rc={rc})"
         print(f"  Gate ② {name}: {status}")
+
+
+def run_gate3(models, gate1_base, output_base):
+    """Gate 3: Text masking + mini counterfactual on GPUs 4-7."""
+    procs = []
+    for model in models:
+        device = GPU_MAP_GATE3.get(model, "cuda:4")
+        gate1_dir = Path(gate1_base) / model
+        sample_list = gate1_dir / "sample_list.json"
+        if not sample_list.exists():
+            print(f"  SKIP Gate 3 for {model}: no sample_list.json")
+            continue
+        out_dir = Path(output_base) / model
+        cmd = [
+            sys.executable, "run_gate3_text_mask.py",
+            "--model", model, "--device", device,
+            "--gate1_dir", str(gate1_dir),
+            "--output_dir", str(out_dir),
+            "--n_samples", "20",
+        ]
+        print(f"  Launching Gate 3 for {model} on {device}")
+        p = subprocess.Popen(cmd)
+        procs.append((model, p))
+
+    for model, p in procs:
+        rc = p.wait()
+        status = "OK" if rc == 0 else f"FAIL (rc={rc})"
+        print(f"  Gate 3 {model}: {status}")
 
 
 def check_gate1_pass(gate1_base):
@@ -221,7 +250,7 @@ def main():
     elif args.gate == 2:
         run_gate2(args.models, args.gate1_dir, Path(args.output_base) / "gate2")
     elif args.gate == 3:
-        print("Gate 3 not yet implemented -- run manually with text_mask.py hooks")
+        run_gate3(args.models, args.gate1_dir, Path(args.output_base) / "gate3")
     else:
         parser.print_help()
 

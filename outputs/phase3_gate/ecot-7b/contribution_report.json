@@ -1,0 +1,441 @@
+{
+  "model": "ecot-7b",
+  "phase": 2.5,
+  "n_samples": 150,
+  "n_layers": 32,
+  "deep_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "boundaries": {
+    "vision_start": 0,
+    "vision_end": 256,
+    "text_start": 256,
+    "text_end": 278,
+    "total_seq_len": 278,
+    "num_vision_tokens": 256,
+    "num_text_tokens": 22,
+    "pre_image_tokens": 0,
+    "text_query_ranges": [
+      [
+        256,
+        278
+      ]
+    ]
+  },
+  "layer_analysis": {
+    "22": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7712042331695557,
+        "c_share": 0.991795539855957,
+        "sink_score": -0.2515637278556824,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71638488769531
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7712042331695557,
+        "c_share": 0.991795539855957,
+        "sink_score": -0.2515637278556824,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71638488769531
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.019001200795173645,
+        "c_share": 0.00030762559617869556,
+        "sink_score": 4.123373985290527,
+        "phi": 41.069007873535156
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.12278109493354956,
+      "mean_top1_share": 0.9634697012106578,
+      "mean_mismatch": 0.07521559086938699
+    },
+    "23": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.8353754281997681,
+        "c_share": 0.9797425270080566,
+        "sink_score": -0.1594085991382599,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.717498779296875
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.8353754281997681,
+        "c_share": 0.9797425270080566,
+        "sink_score": -0.1594085991382599,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.717498779296875
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.011271515861153603,
+        "c_share": 0.0007137234788388014,
+        "sink_score": 2.759538412094116,
+        "phi": 40.58913803100586
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.22892444009582202,
+      "mean_top1_share": 0.9510824477672577,
+      "mean_mismatch": 0.038856344893574715
+    },
+    "24": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7578309178352356,
+        "c_share": 0.965172529220581,
+        "sink_score": -0.24184656143188477,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71847915649414
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7578309178352356,
+        "c_share": 0.965172529220581,
+        "sink_score": -0.24184656143188477,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71847915649414
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.013055099174380302,
+        "c_share": 0.0007917973562143743,
+        "sink_score": 2.802628517150879,
+        "phi": 39.86795425415039
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.3324857192238172,
+      "mean_top1_share": 0.9359922254085541,
+      "mean_mismatch": 0.05515251969297727
+    },
+    "25": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.8039712309837341,
+        "c_share": 0.9666903018951416,
+        "sink_score": -0.18431468307971954,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71846389770508
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.8039712309837341,
+        "c_share": 0.9666903018951416,
+        "sink_score": -0.18431468307971954,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71846389770508
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.01222136989235878,
+        "c_share": 0.0009519087034277618,
+        "sink_score": 2.5524721145629883,
+        "phi": 38.82618713378906
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.35273731023073196,
+      "mean_top1_share": 0.9329344471295674,
+      "mean_mismatch": 0.04363650149355332
+    },
+    "26": {
+      "dominant_type": "bottleneck",
+      "frequency": 0.9933333333333333,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7452285885810852,
+        "c_share": 0.94979327917099,
+        "sink_score": -0.24255332350730896,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71845245361328
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7452285885810852,
+        "c_share": 0.94979327917099,
+        "sink_score": -0.24255332350730896,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.71845245361328
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.012979325838387012,
+        "c_share": 0.0011993214720860124,
+        "sink_score": 2.3816018104553223,
+        "phi": 37.58084487915039
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.535088159441948,
+      "mean_top1_share": 0.9061445679267247,
+      "mean_mismatch": 0.05396421946585178
+    },
+    "27": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.814336359500885,
+        "c_share": 0.979758083820343,
+        "sink_score": -0.1849321573972702,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.72428512573242
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.814336359500885,
+        "c_share": 0.979758083820343,
+        "sink_score": -0.1849321573972702,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.72428512573242
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.012783022597432137,
+        "c_share": 0.0006830392521806061,
+        "sink_score": 2.929320812225342,
+        "phi": 36.74745559692383
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.2630232231815656,
+      "mean_top1_share": 0.9461174702644348,
+      "mean_mismatch": 0.05477899491786957
+    },
+    "28": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.8526358008384705,
+        "c_share": 0.9830431938171387,
+        "sink_score": -0.14232055842876434,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.72615432739258
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.8526358008384705,
+        "c_share": 0.9830431938171387,
+        "sink_score": -0.14232055842876434,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.72615432739258
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.01779165118932724,
+        "c_share": 0.001085279742255807,
+        "sink_score": 2.796891450881958,
+        "phi": 33.80902862548828
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.25625208238760633,
+      "mean_top1_share": 0.9489048937956492,
+      "mean_mismatch": 0.047251448296010495
+    },
+    "29": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.6554763317108154,
+        "c_share": 0.9578479528427124,
+        "sink_score": -0.37932687997817993,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.72800827026367
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.6554763317108154,
+        "c_share": 0.9578479528427124,
+        "sink_score": -0.37932687997817993,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.72800827026367
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.02089884877204895,
+        "c_share": 0.0014329655095934868,
+        "sink_score": 2.679948091506958,
+        "phi": 31.740158081054688
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.3298047761122386,
+      "mean_top1_share": 0.9371200672785441,
+      "mean_mismatch": 0.07417462373773256
+    },
+    "30": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7045290470123291,
+        "c_share": 0.968941330909729,
+        "sink_score": -0.3186744749546051,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.56385803222656
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.7045290470123291,
+        "c_share": 0.968941330909729,
+        "sink_score": -0.3186744749546051,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 51.56385803222656
+      },
+      "r_peak": {
+        "abs_t": 271,
+        "token_type": "text",
+        "a_share": 0.015453633852303028,
+        "c_share": 0.0010858892928808928,
+        "sink_score": 2.655444860458374,
+        "phi": 25.840213775634766
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.28138127565383914,
+      "mean_top1_share": 0.9463368372122447,
+      "mean_mismatch": 0.07203245806197325
+    },
+    "31": {
+      "dominant_type": "bottleneck",
+      "frequency": 1.0,
+      "a_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.6089410185813904,
+        "c_share": 0.9971092343330383,
+        "sink_score": -0.4931389093399048,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 50.54392623901367
+      },
+      "c_peak": {
+        "abs_t": 0,
+        "token_type": "vision",
+        "a_share": 0.6089410185813904,
+        "c_share": 0.9971092343330383,
+        "sink_score": -0.4931389093399048,
+        "vision_j": 0,
+        "token_str": "<s>",
+        "phi": 50.54392623901367
+      },
+      "r_peak": {
+        "abs_t": 258,
+        "token_type": "text",
+        "a_share": 0.011726063676178455,
+        "c_share": 7.912610453786328e-05,
+        "sink_score": 4.998526573181152,
+        "phi": 5.545177936553955
+      },
+      "a_c_match": true,
+      "a_c_match_rate": 1.0,
+      "mean_entropy": 0.05619201015681028,
+      "mean_top1_share": 0.9902228820323944,
+      "mean_mismatch": 0.1667621866861979
+    }
+  },
+  "skill_signature": {
+    "d_within": 0.02569116827695527,
+    "d_between": 0.02776695140508314,
+    "signature_exists": "True",
+    "probe_accuracy": 0.2333333333333333
+  },
+  "mean_mismatch": 0.06818248881151279,
+  "skill_distribution": {
+    "pick": 25,
+    "move": 25,
+    "fold": 25,
+    "place": 25,
+    "open": 25,
+    "close": 25
+  },
+  "mode_tokens": {
+    "A_mode": {
+      "abs_t": 0,
+      "token_str": "<s>",
+      "freq": 1.0,
+      "token_type": "vision"
+    },
+    "C_mode": {
+      "abs_t": 0,
+      "token_str": "<s>",
+      "freq": 1.0,
+      "token_type": "vision"
+    },
+    "R_mode": {
+      "abs_t": 271,
+      "token_str": null,
+      "freq": 0.15666666666666668,
+      "token_type": "text"
+    }
+  }
+}

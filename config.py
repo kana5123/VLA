@@ -16,7 +16,7 @@ TOP_K = 5
 NUM_ACTION_TOKENS = 7
 ACTION_DIM_NAMES = ["x", "y", "z", "roll", "pitch", "yaw", "gripper"]
 
-# ── Data ──────────────────────────────────────────────────────────────────
+# ── Data ─────────────────────────────────────────────────────────────────
 NUM_EPISODES = 52
 BRIDGE_DATASET_NAME = "bridge_dataset"
 BRIDGE_UNNORM_KEY = "bridge_orig"

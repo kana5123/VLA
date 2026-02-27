@@ -1,0 +1,41 @@
+{
+  "model": "openvla-7b",
+  "method": "v_zero",
+  "candidates_abs_t": [
+    0,
+    281
+  ],
+  "sanity_check": {
+    "hook_fired": true,
+    "logits_changed": true,
+    "kl_divergence": 4.334859371185303
+  },
+  "per_k": {
+    "1": {
+      "targets": [
+        0
+      ],
+      "vzero_mean_kl": 3.671799373161048,
+      "vzero_std_kl": 2.5317399353942407,
+      "vzero_mean_top1_change": 0.6
+    },
+    "3": {
+      "targets": [
+        0,
+        281
+      ],
+      "vzero_mean_kl": 4.46304292269051,
+      "vzero_std_kl": 3.499053784926412,
+      "vzero_mean_top1_change": 0.6
+    },
+    "5": {
+      "targets": [
+        0,
+        281
+      ],
+      "vzero_mean_kl": 4.46304292269051,
+      "vzero_std_kl": 3.499053784926412,
+      "vzero_mean_top1_change": 0.6
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "A_mode": {
+    "abs_t": 260,
+    "token_str": "robot",
+    "freq": 0.5426666666666667,
+    "token_type": "text"
+  },
+  "C_mode": {
+    "abs_t": 260,
+    "token_str": "robot",
+    "freq": 0.4480000000000001,
+    "token_type": "text"
+  },
+  "R_mode": {
+    "abs_t": 193,
+    "token_str": "<image>",
+    "freq": 0.7520000000000001,
+    "token_type": "vision"
+  }
+}

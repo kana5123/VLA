@@ -1,0 +1,45 @@
+{
+  "model": "openvla-7b",
+  "method": "v_zero",
+  "candidates_abs_t": [
+    271
+  ],
+  "target_layers": [
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "sanity_check": {
+    "hook_fired": true,
+    "logits_changed": true,
+    "kl_divergence": 0.1530614197254181
+  },
+  "per_k": {
+    "1": {
+      "targets": [
+        271
+      ],
+      "vzero_mean_kl": 0.08225897944886432,
+      "vzero_std_kl": 0.1542562527111496,
+      "vzero_mean_top1_change": 0.17333333333333334
+    },
+    "3": {
+      "targets": [
+        271
+      ],
+      "vzero_mean_kl": 0.08225897944886432,
+      "vzero_std_kl": 0.1542562527111496,
+      "vzero_mean_top1_change": 0.17333333333333334
+    },
+    "5": {
+      "targets": [
+        271
+      ],
+      "vzero_mean_kl": 0.08225897944886432,
+      "vzero_std_kl": 0.1542562527111496,
+      "vzero_mean_top1_change": 0.17333333333333334
+    }
+  }
+}
