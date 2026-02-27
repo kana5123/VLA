@@ -1,0 +1,24 @@
+{
+  "model": "ecot-7b",
+  "lora_path": "outputs/libero_ft/ecot-7b/libero_spatial/lora_adapter",
+  "suite": "libero_spatial",
+  "n_samples": 20,
+  "pretrained": {
+    "taxonomy": "bottleneck",
+    "vision0_attn_share": 0.8611,
+    "top1_contribution_share": 0.9717,
+    "contribution_entropy": 0.1294
+  },
+  "finetuned": {
+    "taxonomy": "bottleneck",
+    "vision0_attn_share": 0.8535,
+    "top1_contribution_share": 0.958,
+    "contribution_entropy": 0.1674
+  },
+  "delta": {
+    "vision0_attn_share": -0.0076,
+    "top1_contribution_share": -0.0137,
+    "contribution_entropy": 0.038,
+    "taxonomy_changed": false
+  }
+}

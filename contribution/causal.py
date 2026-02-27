@@ -145,6 +145,102 @@ class ValueZeroHook:
         self._handles = []
 
 
+class ValueMeanHook:
+    """Replace value vectors at target positions with dataset mean (mean ablation).
+
+    Unlike V=0, this avoids OOD activation shift by replacing with a
+    plausible value vector, making the causal claim more robust.
+    Complements V=0 ablation per Hase & Bansal (2021) recommendations.
+    """
+
+    def __init__(self, target_positions: list[int],
+                 mean_values: torch.Tensor | None = None,
+                 target_layers: list[int] | None = None):
+        """
+        Args:
+            target_positions: Token indices to ablate.
+            mean_values: Pre-computed mean V output per layer.
+                Shape: (hidden_dim,) — same mean for all target positions.
+                If None, uses running mean computed during first N forward passes.
+            target_layers: Layer indices to hook (None = all layers).
+        """
+        self.target_positions = target_positions
+        self.target_layers = target_layers
+        self.mean_values = mean_values  # Will be set per-layer if needed
+        self._handles = []
+        self._sanity_changed = False
+        self._layer_means = {}  # layer_idx → mean tensor
+
+    def set_layer_means(self, layer_means: dict):
+        """Set pre-computed per-layer mean V projections."""
+        self._layer_means = layer_means
+
+    def register(self, model, model_cfg, get_layers_fn):
+        layers = get_layers_fn(model, model_cfg)
+        num_heads = model_cfg.num_heads
+        num_kv_heads = getattr(model_cfg, 'num_kv_heads', None) or num_heads
+        head_dim = model_cfg.hidden_dim // num_heads
+
+        for layer_idx, layer in enumerate(layers):
+            if self.target_layers is not None and layer_idx not in self.target_layers:
+                continue
+            attn = layer.self_attn
+            if hasattr(attn, "v_proj"):
+                handle = attn.v_proj.register_forward_hook(
+                    self._make_v_proj_hook(layer_idx)
+                )
+                self._handles.append(handle)
+            elif hasattr(attn, "qkv_proj"):
+                q_dim = num_heads * head_dim
+                kv_dim = num_kv_heads * head_dim
+                v_start = q_dim + kv_dim
+                v_end = q_dim + 2 * kv_dim
+                handle = attn.qkv_proj.register_forward_hook(
+                    self._make_fused_qkv_hook(layer_idx, v_start, v_end)
+                )
+                self._handles.append(handle)
+
+    def _make_v_proj_hook(self, layer_idx):
+        hook_self = self
+        def hook_fn(module, args, output):
+            modified = output.clone()
+            mean_v = hook_self._layer_means.get(layer_idx)
+            for t in hook_self.target_positions:
+                if t < modified.shape[1]:
+                    if mean_v is not None:
+                        modified[:, t, :] = mean_v.to(modified.device, modified.dtype)
+                    else:
+                        # Fallback: use mean of all positions in this forward pass
+                        modified[:, t, :] = modified[:, :, :].mean(dim=1)
+                    hook_self._sanity_changed = True
+            return modified
+        return hook_fn
+
+    def _make_fused_qkv_hook(self, layer_idx, v_start, v_end):
+        hook_self = self
+        def hook_fn(module, args, output):
+            modified = output.clone()
+            mean_v = hook_self._layer_means.get(layer_idx)
+            for t in hook_self.target_positions:
+                if t < modified.shape[1]:
+                    if mean_v is not None:
+                        modified[:, t, v_start:v_end] = mean_v.to(
+                            modified.device, modified.dtype
+                        )
+                    else:
+                        modified[:, t, v_start:v_end] = modified[
+                            :, :, v_start:v_end
+                        ].mean(dim=1)
+                    hook_self._sanity_changed = True
+            return modified
+        return hook_fn
+
+    def remove(self):
+        for h in self._handles:
+            h.remove()
+        self._handles = []
+
+
 def compute_output_kl(
     logits_orig: torch.Tensor,
     logits_masked: torch.Tensor,

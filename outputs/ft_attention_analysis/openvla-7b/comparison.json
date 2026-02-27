@@ -1,0 +1,24 @@
+{
+  "model": "openvla-7b",
+  "lora_path": "outputs/libero_ft/openvla-7b/libero_spatial/lora_adapter",
+  "suite": "libero_spatial",
+  "n_samples": 20,
+  "pretrained": {
+    "taxonomy": "bottleneck",
+    "vision0_attn_share": 0.9048,
+    "top1_contribution_share": 0.9865,
+    "contribution_entropy": 0.0543
+  },
+  "finetuned": {
+    "taxonomy": "bottleneck",
+    "vision0_attn_share": 0.8957,
+    "top1_contribution_share": 0.9722,
+    "contribution_entropy": 0.0849
+  },
+  "delta": {
+    "vision0_attn_share": -0.0091,
+    "top1_contribution_share": -0.0143,
+    "contribution_entropy": 0.0306,
+    "taxonomy_changed": false
+  }
+}
