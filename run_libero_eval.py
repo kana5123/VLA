@@ -63,7 +63,8 @@ def load_libero_suite(suite_name: str):
 
 
 def create_env(bddl_path: str, init_states: np.ndarray,
-               episode_idx: int = 0, image_size: int = 256):
+               episode_idx: int = 0, image_size: int = 256,
+               render_gpu_device_id: int = -1):
     from libero.libero.envs import OffScreenRenderEnv
     env = OffScreenRenderEnv(
         bddl_file_name=bddl_path,
@@ -73,6 +74,7 @@ def create_env(bddl_path: str, init_states: np.ndarray,
         use_camera_obs=True,
         camera_heights=image_size,
         camera_widths=image_size,
+        render_gpu_device_id=render_gpu_device_id,
     )
     env.seed(0)
     # Set initial state from demonstration
@@ -198,6 +200,10 @@ def predict_action(model, processor, model_cfg, image, instruction, device,
 
     result = detokenize_actions(model, generated)
 
+    # Free GPU memory to prevent CUDA/EGL rendering contention in MuJoCo
+    del outputs, inputs, input_ids, attention_mask, pixel_values, next_tok
+    torch.cuda.empty_cache()
+
     if use_libero_actions:
         # LIBERO fine-tuned models: actions are already in [-1,1], use directly
         action = result.get("normalized_action")
@@ -251,6 +257,8 @@ def main():
                         help="Path to LoRA adapter dir")
     parser.add_argument("--libero_actions", action="store_true",
                         help="Use [-1,1] normalized actions directly (for LIBERO FT models)")
+    parser.add_argument("--render_gpu", type=int, default=-1,
+                        help="GPU device for MuJoCo offscreen rendering (-1=same as model)")
     parser.add_argument("--output_dir", type=str, default=None)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
@@ -339,7 +347,8 @@ def main():
             task_successes = []
             for ep in range(args.num_episodes):
                 print(f"    Creating env for ep {ep+1}...", end="", flush=True)
-                env = create_env(bddl_path, init_states, episode_idx=ep)
+                env = create_env(bddl_path, init_states, episode_idx=ep,
+                                render_gpu_device_id=args.render_gpu)
                 print(f" rolling out...", end="", flush=True)
                 result = rollout(
                     model, processor, model_cfg, env,
