@@ -10,8 +10,16 @@ __pycache__/
 # Data (downloaded episodes)
 data/
 
-# Large binary data (NPY hidden states are tracked via Git LFS or excluded selectively)
-# outputs/  -- now tracked for paper reproducibility
+# Large binary data
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.npy
+*.dat
+
+# Logs
+*.log
 
 # IDE
 .vscode/

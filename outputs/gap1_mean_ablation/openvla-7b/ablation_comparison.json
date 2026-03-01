@@ -21,18 +21,18 @@
     "n_samples": 50,
     "anchor_abs": 0,
     "vzero": {
-      "mean_kl": 1.0468,
-      "std_kl": 0.6023,
-      "median_kl": 0.8581,
+      "mean_kl": 0.5112,
+      "std_kl": 0.5495,
+      "median_kl": 0.3254,
       "flip_rate": 0.44
     },
     "vmean": {
-      "mean_kl": 3.3909,
-      "std_kl": 0.9889,
-      "median_kl": 3.2802,
-      "flip_rate": 1.0
+      "mean_kl": 3.3356,
+      "std_kl": 0.9242,
+      "median_kl": 3.0942,
+      "flip_rate": 0.94
     },
-    "both_methods_agree": 0.44
+    "both_methods_agree": 0.42
   },
   "per_sample": [
     {
@@ -40,14 +40,14 @@
       "skill": "pick",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.9529,
+        "kl_divergence": 2.1723,
         "top1_changed": true,
         "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.4158,
+        "kl_divergence": 2.6678,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.96875
       }
     },
     {
@@ -55,14 +55,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.4587,
+        "kl_divergence": 0.1719,
         "top1_changed": false,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.1605,
+        "kl_divergence": 3.3952,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.976562
       }
     },
     {
@@ -70,14 +70,14 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.7396,
+        "kl_divergence": 0.1572,
         "top1_changed": false,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.5253,
+        "kl_divergence": 2.7657,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -85,14 +85,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.7119,
+        "kl_divergence": 0.2314,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 1.7092,
+        "kl_divergence": 4.368,
         "top1_changed": true,
-        "cosine_similarity": 0.988281
+        "cosine_similarity": 0.960938
       }
     },
     {
@@ -100,14 +100,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.5172,
-        "top1_changed": false,
+        "kl_divergence": 0.8695,
+        "top1_changed": true,
         "cosine_similarity": 0.992188
       },
       "vmean": {
-        "kl_divergence": 4.1373,
+        "kl_divergence": 3.3478,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.960938
       }
     },
     {
@@ -115,14 +115,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6052,
+        "kl_divergence": 0.0396,
         "top1_changed": false,
         "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.5238,
+        "kl_divergence": 5.6709,
         "top1_changed": true,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -130,14 +130,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6656,
-        "top1_changed": false,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 2.2008,
+        "top1_changed": true,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.0234,
+        "kl_divergence": 3.9285,
         "top1_changed": true,
-        "cosine_similarity": 0.976562
+        "cosine_similarity": 0.972656
       }
     },
     {
@@ -145,14 +145,14 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.8812,
-        "top1_changed": true,
-        "cosine_similarity": 1.0
-      },
-      "vmean": {
-        "kl_divergence": 2.7488,
+        "kl_divergence": 0.4071,
         "top1_changed": true,
         "cosine_similarity": 0.996094
+      },
+      "vmean": {
+        "kl_divergence": 2.2335,
+        "top1_changed": false,
+        "cosine_similarity": 0.960938
       }
     },
     {
@@ -160,12 +160,12 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6962,
-        "top1_changed": false,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 0.485,
+        "top1_changed": true,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 4.423,
+        "kl_divergence": 2.8704,
         "top1_changed": true,
         "cosine_similarity": 0.984375
       }
@@ -175,14 +175,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 2.029,
-        "top1_changed": true,
-        "cosine_similarity": 0.980469
+        "kl_divergence": 0.3287,
+        "top1_changed": false,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 4.5292,
+        "kl_divergence": 4.9603,
         "top1_changed": true,
-        "cosine_similarity": 0.96875
+        "cosine_similarity": 0.976562
       }
     },
     {
@@ -190,12 +190,12 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.3977,
-        "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 0.2615,
+        "top1_changed": false,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.8774,
+        "kl_divergence": 3.0621,
         "top1_changed": true,
         "cosine_similarity": 0.976562
       }
@@ -205,14 +205,14 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.8584,
+        "kl_divergence": 1.3408,
         "top1_changed": true,
         "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.0304,
+        "kl_divergence": 4.1184,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.976562
       }
     },
     {
@@ -220,14 +220,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6173,
+        "kl_divergence": 0.3478,
         "top1_changed": false,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.992188
       },
       "vmean": {
-        "kl_divergence": 2.7727,
+        "kl_divergence": 3.2805,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -235,14 +235,14 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 2.4597,
+        "kl_divergence": 1.5031,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 6.2111,
+        "kl_divergence": 6.3281,
         "top1_changed": true,
-        "cosine_similarity": 0.976562
+        "cosine_similarity": 0.972656
       }
     },
     {
@@ -250,14 +250,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.1245,
+        "kl_divergence": 1.8219,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.7965,
+        "kl_divergence": 2.8791,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.972656
       }
     },
     {
@@ -265,14 +265,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.8464,
+        "kl_divergence": 0.4341,
         "top1_changed": true,
         "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.7802,
+        "kl_divergence": 2.8645,
         "top1_changed": true,
-        "cosine_similarity": 0.984375
+        "cosine_similarity": 0.972656
       }
     },
     {
@@ -280,14 +280,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.3728,
-        "top1_changed": true,
-        "cosine_similarity": 0.984375
+        "kl_divergence": 0.0329,
+        "top1_changed": false,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.6143,
+        "kl_divergence": 5.0396,
         "top1_changed": true,
-        "cosine_similarity": 0.96875
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -295,14 +295,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.5352,
+        "kl_divergence": 0.3344,
         "top1_changed": false,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.5253,
+        "kl_divergence": 3.1263,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -310,14 +310,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.6497,
-        "top1_changed": true,
-        "cosine_similarity": 0.972656
+        "kl_divergence": 0.1623,
+        "top1_changed": false,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.0066,
-        "top1_changed": true,
-        "cosine_similarity": 0.949219
+        "kl_divergence": 2.141,
+        "top1_changed": false,
+        "cosine_similarity": 0.96875
       }
     },
     {
@@ -325,14 +325,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6835,
+        "kl_divergence": 0.3165,
         "top1_changed": false,
         "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.4274,
+        "kl_divergence": 2.5049,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -340,14 +340,14 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.8579,
-        "top1_changed": true,
-        "cosine_similarity": 1.0
+        "kl_divergence": 0.0061,
+        "top1_changed": false,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.6706,
+        "kl_divergence": 4.2816,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -355,14 +355,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.0316,
+        "kl_divergence": 0.0227,
         "top1_changed": false,
         "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.2642,
+        "kl_divergence": 5.2228,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -370,14 +370,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.7763,
+        "kl_divergence": 1.1168,
         "top1_changed": true,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.7491,
+        "kl_divergence": 3.0196,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -385,14 +385,14 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.267,
-        "top1_changed": false,
-        "cosine_similarity": 0.996094
+        "kl_divergence": 1.2547,
+        "top1_changed": true,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.4889,
+        "kl_divergence": 3.0018,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.976562
       }
     },
     {
@@ -400,14 +400,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.3458,
-        "top1_changed": false,
-        "cosine_similarity": 1.007812
+        "kl_divergence": 0.5076,
+        "top1_changed": true,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.1246,
+        "kl_divergence": 2.5726,
         "top1_changed": true,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -415,14 +415,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.8544,
+        "kl_divergence": 0.326,
         "top1_changed": false,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.9641,
+        "kl_divergence": 2.8258,
         "top1_changed": true,
-        "cosine_similarity": 0.984375
+        "cosine_similarity": 0.976562
       }
     },
     {
@@ -430,14 +430,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.5524,
+        "kl_divergence": 0.2742,
         "top1_changed": false,
-        "cosine_similarity": 0.964844
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 4.0974,
+        "kl_divergence": 3.5662,
         "top1_changed": true,
-        "cosine_similarity": 0.949219
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -445,14 +445,14 @@
       "skill": "pick",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.4266,
+        "kl_divergence": 0.3247,
         "top1_changed": true,
         "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.3826,
+        "kl_divergence": 3.0308,
         "top1_changed": true,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -460,12 +460,12 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.1575,
-        "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 0.2421,
+        "top1_changed": false,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 2.519,
+        "kl_divergence": 2.2338,
         "top1_changed": true,
         "cosine_similarity": 0.988281
       }
@@ -475,14 +475,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 2.1157,
-        "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 0.1433,
+        "top1_changed": false,
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 4.9022,
+        "kl_divergence": 3.538,
         "top1_changed": true,
-        "cosine_similarity": 0.984375
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -490,14 +490,14 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 2.4062,
-        "top1_changed": true,
-        "cosine_similarity": 0.847656
+        "kl_divergence": 0.3134,
+        "top1_changed": false,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 4.7005,
+        "kl_divergence": 4.0423,
         "top1_changed": true,
-        "cosine_similarity": 0.78125
+        "cosine_similarity": 0.988281
       }
     },
     {
@@ -505,14 +505,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.215,
+        "kl_divergence": 0.2278,
         "top1_changed": false,
-        "cosine_similarity": 0.988281
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 4.1987,
+        "kl_divergence": 3.4258,
         "top1_changed": true,
-        "cosine_similarity": 0.976562
+        "cosine_similarity": 0.988281
       }
     },
     {
@@ -520,14 +520,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.5934,
-        "top1_changed": false,
-        "cosine_similarity": 0.945312
+        "kl_divergence": 1.1356,
+        "top1_changed": true,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.1114,
+        "kl_divergence": 2.6692,
         "top1_changed": true,
-        "cosine_similarity": 0.917969
+        "cosine_similarity": 0.972656
       }
     },
     {
@@ -535,12 +535,12 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6475,
-        "top1_changed": true,
-        "cosine_similarity": 0.988281
+        "kl_divergence": 0.0174,
+        "top1_changed": false,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 2.7743,
+        "kl_divergence": 3.6589,
         "top1_changed": true,
         "cosine_similarity": 0.980469
       }
@@ -550,14 +550,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.3598,
+        "kl_divergence": 0.0536,
         "top1_changed": false,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.7213,
+        "kl_divergence": 3.4254,
         "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -565,14 +565,14 @@
       "skill": "pick",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 2.0094,
+        "kl_divergence": 0.5317,
         "top1_changed": false,
         "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.3403,
+        "kl_divergence": 2.979,
         "top1_changed": true,
-        "cosine_similarity": 0.988281
+        "cosine_similarity": 0.992188
       }
     },
     {
@@ -580,14 +580,14 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.012,
-        "top1_changed": true,
-        "cosine_similarity": 0.988281
+        "kl_divergence": 0.0339,
+        "top1_changed": false,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.1593,
+        "kl_divergence": 2.1936,
         "top1_changed": true,
-        "cosine_similarity": 0.980469
+        "cosine_similarity": 0.988281
       }
     },
     {
@@ -595,12 +595,12 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.7528,
-        "top1_changed": false,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 0.9735,
+        "top1_changed": true,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.6912,
+        "kl_divergence": 2.8088,
         "top1_changed": true,
         "cosine_similarity": 0.988281
       }
@@ -610,14 +610,14 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.7025,
+        "kl_divergence": 0.0083,
         "top1_changed": false,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.2488,
+        "kl_divergence": 3.5848,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -625,14 +625,14 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.4119,
-        "top1_changed": true,
-        "cosine_similarity": 0.921875
+        "kl_divergence": 0.2419,
+        "top1_changed": false,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.6396,
+        "kl_divergence": 2.2266,
         "top1_changed": true,
-        "cosine_similarity": 0.886719
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -640,14 +640,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.562,
+        "kl_divergence": 1.3412,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 1.9125,
+        "kl_divergence": 2.0858,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -655,14 +655,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.1176,
+        "kl_divergence": 0.2051,
         "top1_changed": false,
-        "cosine_similarity": 1.0
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 4.5249,
+        "kl_divergence": 3.4395,
         "top1_changed": true,
-        "cosine_similarity": 0.996094
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -670,12 +670,12 @@
       "skill": "open",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.1755,
-        "top1_changed": false,
-        "cosine_similarity": 0.996094
+        "kl_divergence": 0.2131,
+        "top1_changed": true,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 4.5282,
+        "kl_divergence": 3.5446,
         "top1_changed": true,
         "cosine_similarity": 0.980469
       }
@@ -685,14 +685,14 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.4771,
-        "top1_changed": false,
-        "cosine_similarity": 0.984375
+        "kl_divergence": 0.3914,
+        "top1_changed": true,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 5.3238,
+        "kl_divergence": 2.68,
         "top1_changed": true,
-        "cosine_similarity": 0.972656
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -700,14 +700,14 @@
       "skill": "place",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.3612,
+        "kl_divergence": 0.4579,
         "top1_changed": false,
-        "cosine_similarity": 0.980469
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 5.3612,
+        "kl_divergence": 2.8702,
         "top1_changed": true,
-        "cosine_similarity": 0.976562
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -715,14 +715,14 @@
       "skill": "close",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.2027,
-        "top1_changed": false,
+        "kl_divergence": 0.484,
+        "top1_changed": true,
         "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 4.1616,
-        "top1_changed": true,
-        "cosine_similarity": 0.992188
+        "kl_divergence": 2.1247,
+        "top1_changed": false,
+        "cosine_similarity": 0.980469
       }
     },
     {
@@ -730,14 +730,14 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.6488,
-        "top1_changed": true,
-        "cosine_similarity": 1.007812
-      },
-      "vmean": {
-        "kl_divergence": 2.0146,
+        "kl_divergence": 0.4105,
         "top1_changed": true,
         "cosine_similarity": 1.0
+      },
+      "vmean": {
+        "kl_divergence": 4.2492,
+        "top1_changed": true,
+        "cosine_similarity": 0.96875
       }
     },
     {
@@ -745,14 +745,14 @@
       "skill": "pick",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 0.7372,
+        "kl_divergence": 0.0079,
         "top1_changed": false,
-        "cosine_similarity": 0.984375
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 3.137,
+        "kl_divergence": 3.2805,
         "top1_changed": true,
-        "cosine_similarity": 0.964844
+        "cosine_similarity": 0.972656
       }
     },
     {
@@ -760,14 +760,14 @@
       "skill": "move",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 2.6524,
+        "kl_divergence": 0.0425,
         "top1_changed": false,
-        "cosine_similarity": 0.875
+        "cosine_similarity": 0.996094
       },
       "vmean": {
-        "kl_divergence": 4.3001,
+        "kl_divergence": 3.7163,
         "top1_changed": true,
-        "cosine_similarity": 0.824219
+        "cosine_similarity": 0.984375
       }
     },
     {
@@ -775,16 +775,16 @@
       "skill": "fold",
       "anchor_abs": 0,
       "vzero": {
-        "kl_divergence": 1.1052,
-        "top1_changed": false,
-        "cosine_similarity": 0.976562
+        "kl_divergence": 0.6305,
+        "top1_changed": true,
+        "cosine_similarity": 1.0
       },
       "vmean": {
-        "kl_divergence": 3.2962,
+        "kl_divergence": 2.929,
         "top1_changed": true,
-        "cosine_similarity": 0.957031
+        "cosine_similarity": 0.976562
       }
     }
   ],
-  "elapsed_s": 9.9
+  "elapsed_s": 7.5
 }

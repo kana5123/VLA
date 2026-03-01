@@ -158,9 +158,11 @@ def get_action_logits(model, processor, model_cfg, sample, device, bounds):
         )
     with torch.no_grad():
         out = model(**fwd_kwargs)
-    # Fix 1: 항상 마지막 입력 위치에서 logit 추출 (boundary 정의 차이에 무관)
-    action_pos = inputs["input_ids"].shape[1] - 1
-    return out.logits[0, action_pos, :], inputs  # (vocab_size,), inputs for reuse
+    # Use last position of actual output logits (NOT input_ids length).
+    # For Prismatic models (OpenVLA/ECoT), input_ids has only text tokens (~22),
+    # but logits include prepended vision tokens (~278). Using input_ids.shape[1]-1
+    # would index into vision token territory, not the last text position.
+    return out.logits[0, -1, :], inputs  # (vocab_size,), inputs for reuse
 
 
 # =============================================================================
@@ -355,14 +357,15 @@ def run_exp_d0_nll(model, processor, model_cfg, samples, device, output_dir):
                 out = model(**fwd_kwargs)
 
             # Extract NLL at each action position
-            # logits[pos] predicts token at pos+1
-            # Action token d is at position (n_base + d)
-            # So logits at position (n_base + d - 1) predicts action token d
+            # For Prismatic models, logits are in expanded space:
+            #   [0..V-1] vision | [V..V+T-1] text | [V+T..V+T+6] action
+            # logits[V+T+d-1] predicts action token d (causal: logits[i] -> token[i+1])
+            vision_offset = getattr(model_cfg, 'num_vision_tokens', 0)
             nll_per_dim = []
             gt_probs_per_dim = []
             gt_ranks_per_dim = []
             for d in range(7):
-                logit_pos = n_base + d - 1  # logits[n_base-1] predicts action[0], etc.
+                logit_pos = vision_offset + n_base + d - 1
                 logits_d = out.logits[0, logit_pos, :]
                 probs_d = torch.softmax(logits_d.float(), dim=-1)
                 log_probs_d = torch.log(probs_d.clamp(min=1e-10))
@@ -378,7 +381,7 @@ def run_exp_d0_nll(model, processor, model_cfg, samples, device, output_dir):
             mean_gt_prob = np.mean(gt_probs_per_dim)
 
             # Also get dim0 entropy for proxy compatibility
-            logits_dim0 = out.logits[0, n_base - 1, :]
+            logits_dim0 = out.logits[0, vision_offset + n_base - 1, :]
             probs_dim0 = torch.softmax(logits_dim0.float(), dim=-1)
             entropy = -(probs_dim0 * torch.log(probs_dim0.clamp(min=1e-10))).sum().item()
             top1_prob = probs_dim0.max().item()
@@ -796,14 +799,14 @@ def run_exp_e(model, processor, model_cfg, samples, device, deep_layers, output_
                 with torch.no_grad():
                     model(**fwd_kwargs, output_attentions=True)
 
-                # Fix 10: qpos = inputs sequence length - 1 (consistent with Fix 1)
-                qpos = inputs["input_ids"].shape[1] - 1
-
                 l = deep_layers[-1]
                 attn = hook_mgr.attention_weights.get(l)
                 hidden = hook_mgr.hidden_states.get(l)
                 prev_hidden = hook_mgr.hidden_states.get(l - 1, hidden)
                 if attn is not None and prev_hidden is not None:
+                    # Use attention tensor shape for qpos (full sequence incl. vision)
+                    # input_ids.shape[1] is text-only, wrong for Prismatic models
+                    qpos = attn.shape[-2] - 1
                     if attn.dim() == 3:
                         attn_vis = attn[:, qpos, vs:ve].mean(dim=0)
                     else:
@@ -1100,12 +1103,13 @@ def run_exp_f(model, processor, model_cfg, samples, device, deep_layers,
                 with torch.no_grad():
                     model(**fwd_kwargs, output_attentions=True)
 
-                qpos = inp["input_ids"].shape[1] - 1
                 l = deep_layers[-1]
                 attn = hook_mgr.attention_weights.get(l)
                 hidden = hook_mgr.hidden_states.get(l)
                 prev_hidden = hook_mgr.hidden_states.get(l - 1, hidden)
                 if attn is not None and prev_hidden is not None:
+                    # Use attention tensor shape for qpos (full sequence incl. vision)
+                    qpos = attn.shape[-2] - 1
                     if attn.dim() == 3:
                         attn_vis = attn[:, qpos, vs:ve].mean(dim=0)
                     else:

@@ -1,0 +1,25 @@
+{
+  "model": "openvla-7b",
+  "intervention": "baseline",
+  "params": {
+    "p": 0.6,
+    "alpha": 0.0
+  },
+  "lora_path": "outputs/libero_ft/openvla-7b/libero_spatial/lora_adapter",
+  "seed": 42,
+  "suites": {
+    "libero_spatial": {
+      "tasks": {
+        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": {
+          "success_rate": 0.0,
+          "successes": 0,
+          "episodes": 4
+        }
+      },
+      "num_tasks": 1,
+      "aggregate_sr": 0.0
+    }
+  },
+  "elapsed_s": 553.5223910808563,
+  "overall_sr": 0.0
+}

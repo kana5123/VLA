@@ -86,6 +86,26 @@ register(VLAModelConfig(
     experiment_ready=True,
 ))
 
+# ── OpenVLA-7b Official LIBERO-Spatial Fine-Tuned ──
+register(VLAModelConfig(
+    name="openvla-7b-ft-libero",
+    hf_id="openvla/openvla-7b-finetuned-libero-spatial",
+    architecture="llama",
+    vision_encoder="prismatic",
+    num_layers=32,
+    num_heads=32,
+    hidden_dim=4096,
+    vision_grid_size=16,
+    num_vision_tokens=256,
+    action_tokens=7,
+    prompt_template="In: What action should the robot take to {instruction}?\nOut:",
+    native_datasets=["libero_spatial"],
+    notes="Official OpenVLA fine-tuned on LIBERO-Spatial (50K steps, batch 128)",
+    source_layer=27,
+    target_layers=[28, 29, 30, 31],
+    experiment_ready=True,
+))
+
 # ── CogACT (CogVLM2-Llama3-8B backbone) ──
 register(VLAModelConfig(
     name="cogact-base",

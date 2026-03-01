@@ -1,0 +1,412 @@
+[
+  {
+    "sample": 0,
+    "A_gate2_orig": {
+      "kl": 0.004823,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 7.657365,
+      "flip": 1,
+      "orig_top1": 319,
+      "vz_top1": 263
+    },
+    "C_gate2_nocache": {
+      "kl": 0.004823,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 0.004823,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 14.25,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.75,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 1,
+    "A_gate2_orig": {
+      "kl": 0.424177,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 1.054872,
+      "flip": 0,
+      "orig_top1": 263,
+      "vz_top1": 263
+    },
+    "C_gate2_nocache": {
+      "kl": 0.424177,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 0.424177,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.25,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.125,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 2,
+    "A_gate2_orig": {
+      "kl": 0.10122,
+      "flip": 0,
+      "orig_top1": 853,
+      "vz_top1": 853
+    },
+    "B_unified": {
+      "kl": 1.082876,
+      "flip": 0,
+      "orig_top1": 263,
+      "vz_top1": 263
+    },
+    "C_gate2_nocache": {
+      "kl": 0.10122,
+      "flip": 0,
+      "orig_top1": 853,
+      "vz_top1": 853
+    },
+    "D_gate2_fresh": {
+      "kl": 0.10122,
+      "flip": 0,
+      "orig_top1": 853,
+      "vz_top1": 853
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 17.0,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 19.375,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 3,
+    "A_gate2_orig": {
+      "kl": 3.470707,
+      "flip": 1,
+      "orig_top1": 25249,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 0.764226,
+      "flip": 0,
+      "orig_top1": 263,
+      "vz_top1": 263
+    },
+    "C_gate2_nocache": {
+      "kl": 3.470707,
+      "flip": 1,
+      "orig_top1": 25249,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 3.470707,
+      "flip": 1,
+      "orig_top1": 25249,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 22.0,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 19.25,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 4,
+    "A_gate2_orig": {
+      "kl": 0.980719,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 0.118597,
+      "flip": 0,
+      "orig_top1": 28645,
+      "vz_top1": 28645
+    },
+    "C_gate2_nocache": {
+      "kl": 0.980719,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 0.980719,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 22.125,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 24.0,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 5,
+    "A_gate2_orig": {
+      "kl": 0.005072,
+      "flip": 0,
+      "orig_top1": 450,
+      "vz_top1": 450
+    },
+    "B_unified": {
+      "kl": 6.238919,
+      "flip": 1,
+      "orig_top1": 319,
+      "vz_top1": 518
+    },
+    "C_gate2_nocache": {
+      "kl": 0.005072,
+      "flip": 0,
+      "orig_top1": 450,
+      "vz_top1": 450
+    },
+    "D_gate2_fresh": {
+      "kl": 0.005072,
+      "flip": 0,
+      "orig_top1": 450,
+      "vz_top1": 450
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.9375,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.6875,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 6,
+    "A_gate2_orig": {
+      "kl": 0.529567,
+      "flip": 0,
+      "orig_top1": 25249,
+      "vz_top1": 25249
+    },
+    "B_unified": {
+      "kl": 0.619209,
+      "flip": 0,
+      "orig_top1": 319,
+      "vz_top1": 319
+    },
+    "C_gate2_nocache": {
+      "kl": 0.529567,
+      "flip": 0,
+      "orig_top1": 25249,
+      "vz_top1": 25249
+    },
+    "D_gate2_fresh": {
+      "kl": 0.529567,
+      "flip": 0,
+      "orig_top1": 25249,
+      "vz_top1": 25249
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 12.5,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 14.4375,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 7,
+    "A_gate2_orig": {
+      "kl": 0.111486,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 0.60553,
+      "flip": 1,
+      "orig_top1": 322,
+      "vz_top1": 29892
+    },
+    "C_gate2_nocache": {
+      "kl": 0.111486,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 0.111486,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 13.125,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 13.5625,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 8,
+    "A_gate2_orig": {
+      "kl": 0.625198,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 0.802503,
+      "flip": 1,
+      "orig_top1": 338,
+      "vz_top1": 4225
+    },
+    "C_gate2_nocache": {
+      "kl": 0.625198,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 0.625198,
+      "flip": 0,
+      "orig_top1": 29871,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 13.8125,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.875,
+      "A_vs_C_maxdiff": 0.0
+    }
+  },
+  {
+    "sample": 9,
+    "A_gate2_orig": {
+      "kl": 5.156269,
+      "flip": 1,
+      "orig_top1": 518,
+      "vz_top1": 29871
+    },
+    "B_unified": {
+      "kl": 0.927094,
+      "flip": 1,
+      "orig_top1": 304,
+      "vz_top1": 29892
+    },
+    "C_gate2_nocache": {
+      "kl": 5.156269,
+      "flip": 1,
+      "orig_top1": 518,
+      "vz_top1": 29871
+    },
+    "D_gate2_fresh": {
+      "kl": 5.156269,
+      "flip": 1,
+      "orig_top1": 518,
+      "vz_top1": 29871
+    },
+    "orig_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 15.375,
+      "A_vs_C_maxdiff": 0.0
+    },
+    "vz_logits_match": {
+      "A_vs_B": false,
+      "A_vs_C": true,
+      "A_vs_D": true,
+      "A_vs_B_maxdiff": 20.0,
+      "A_vs_C_maxdiff": 0.0
+    }
+  }
+]

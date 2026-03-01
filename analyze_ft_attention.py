@@ -329,6 +329,9 @@ def main():
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--lora_path", default=None,
                         help="Path to LoRA adapter. If None, auto-detect from outputs/libero_ft/")
+    parser.add_argument("--ft_model", default=None,
+                        help="Registry name for full FT model (e.g. openvla-7b-ft-libero). "
+                             "Use instead of --lora_path for official merged FT models.")
     parser.add_argument("--n_samples", type=int, default=20,
                         help="Number of LIBERO samples for analysis")
     parser.add_argument("--suite", default="libero_spatial")
@@ -411,22 +414,35 @@ def main():
         return
 
     # ── Fine-tuned analysis ──
-    lora_path = args.lora_path
-    if lora_path is None:
-        # Auto-detect
-        auto_path = config.OUTPUT_DIR / "libero_ft" / args.model / args.suite / "lora_adapter"
-        if auto_path.exists():
-            lora_path = str(auto_path)
-        else:
-            print(f"\n  ERROR: No LoRA adapter found at {auto_path}")
-            print(f"  Run fine-tuning first or specify --lora_path")
-            return
+    if args.ft_model:
+        # Full FT model from registry (e.g. official openvla-7b-finetuned-libero-spatial)
+        print(f"\nLoading full FT model: {args.ft_model}...", flush=True)
+        del model
+        torch.cuda.empty_cache()
+        processor_ft, model_ft, model_cfg_ft = load_model_from_registry(args.ft_model, args.device)
+        model_ft.eval()
+        # Use FT model's config for analysis
+        model_cfg = model_cfg_ft
+        processor = processor_ft
+        lora_path = f"hf:{args.ft_model}"
+        print(f"  Full FT model loaded.")
+    else:
+        lora_path = args.lora_path
+        if lora_path is None:
+            # Auto-detect
+            auto_path = config.OUTPUT_DIR / "libero_ft" / args.model / args.suite / "lora_adapter"
+            if auto_path.exists():
+                lora_path = str(auto_path)
+            else:
+                print(f"\n  ERROR: No LoRA adapter found at {auto_path}")
+                print(f"  Run fine-tuning first or specify --lora_path or --ft_model")
+                return
 
-    print(f"\nLoading fine-tuned model (LoRA: {lora_path})...", flush=True)
-    from peft import PeftModel
-    model_ft = PeftModel.from_pretrained(model, lora_path)
-    model_ft.eval()
-    print(f"  LoRA loaded.")
+        print(f"\nLoading fine-tuned model (LoRA: {lora_path})...", flush=True)
+        from peft import PeftModel
+        model_ft = PeftModel.from_pretrained(model, lora_path)
+        model_ft.eval()
+        print(f"  LoRA loaded.")
 
     finetuned_results = run_analysis(model_ft, processor, model_cfg, "Fine-tuned")
 

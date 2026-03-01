@@ -1,0 +1,1815 @@
+{
+  "version": "gate_v1",
+  "seed": 42,
+  "n_per_skill": 50,
+  "target_skills": [
+    "place",
+    "move",
+    "pick",
+    "fold",
+    "open",
+    "close"
+  ],
+  "samples": [
+    {
+      "episode_id": 22292,
+      "global_idx": 577805,
+      "instruction": "Move the piece of sushi at the top right of the piece of cloth.",
+      "skill": "move"
+    },
+    {
+      "episode_id": 400,
+      "global_idx": 9498,
+      "instruction": "Folded cloth from right bottom to left top",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 24365,
+      "global_idx": 632299,
+      "instruction": "move the siver pot to the upper riht of table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 20954,
+      "global_idx": 544632,
+      "instruction": "fold the cloth from to top left to right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 37258,
+      "global_idx": 965859,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 43715,
+      "global_idx": 1134733,
+      "instruction": "unfold the cloth right to left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 16029,
+      "global_idx": 416760,
+      "instruction": "Pick up the carrot and place it on the orange cloth",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 47211,
+      "global_idx": 1226501,
+      "instruction": "close cabinet",
+      "skill": "close"
+    },
+    {
+      "episode_id": 40880,
+      "global_idx": 1060002,
+      "instruction": "open oven",
+      "skill": "open"
+    },
+    {
+      "episode_id": 17022,
+      "global_idx": 443267,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 41379,
+      "global_idx": 1073079,
+      "instruction": "Move the blue fork behind the yellow cloth",
+      "skill": "move"
+    },
+    {
+      "episode_id": 51051,
+      "global_idx": 1326751,
+      "instruction": "put the ball in the cupput the ball in the cup",
+      "skill": "place"
+    },
+    {
+      "episode_id": 32745,
+      "global_idx": 849172,
+      "instruction": "Unfolding the cloth from the bottom right to the top left.",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 7280,
+      "global_idx": 188479,
+      "instruction": "move the blue laddle to the left side of the burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 15136,
+      "global_idx": 394124,
+      "instruction": "put corn in pot which is in sink",
+      "skill": "place"
+    },
+    {
+      "episode_id": 2589,
+      "global_idx": 65962,
+      "instruction": "take the broccoli out of the drawer and put it on the upper left side of the table",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 4025,
+      "global_idx": 102920,
+      "instruction": "move triangular object into drawer",
+      "skill": "move"
+    },
+    {
+      "episode_id": 31164,
+      "global_idx": 808882,
+      "instruction": "move the blue pyramid to the left side of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 48619,
+      "global_idx": 1263600,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 43362,
+      "global_idx": 1125337,
+      "instruction": "put a cover the silver pot",
+      "skill": "place"
+    },
+    {
+      "episode_id": 11058,
+      "global_idx": 286830,
+      "instruction": "Pick up the object inside the blue bowl and move it to behind the purple towel",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 24719,
+      "global_idx": 641996,
+      "instruction": "move the white figure from the top edge of the cloth to the top edge of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 6943,
+      "global_idx": 179287,
+      "instruction": "fold cloth from the bottom right to the left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 43023,
+      "global_idx": 1116172,
+      "instruction": "move the utensil and place it on the green cloth",
+      "skill": "move"
+    },
+    {
+      "episode_id": 38313,
+      "global_idx": 992681,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 40163,
+      "global_idx": 1040750,
+      "instruction": "fold the cloth from top right to bottom left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 28708,
+      "global_idx": 745250,
+      "instruction": "Place the eggplant on the green cloth.",
+      "skill": "place"
+    },
+    {
+      "episode_id": 6979,
+      "global_idx": 180117,
+      "instruction": "folded the cloth from top right to bottom left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 24073,
+      "global_idx": 624316,
+      "instruction": "fold the cloth from the left to the right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 26374,
+      "global_idx": 684463,
+      "instruction": "pick up bowl and put in small4fbox",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 50316,
+      "global_idx": 1306809,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 45849,
+      "global_idx": 1190436,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 52759,
+      "global_idx": 1372178,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 16808,
+      "global_idx": 437876,
+      "instruction": "take the red object out of the pot and put it on the left burner",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 39206,
+      "global_idx": 1016906,
+      "instruction": "move the green object above the left burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 45973,
+      "global_idx": 1194162,
+      "instruction": "put potato in pot cardboard fence",
+      "skill": "place"
+    },
+    {
+      "episode_id": 12540,
+      "global_idx": 325253,
+      "instruction": "closed the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 38474,
+      "global_idx": 997305,
+      "instruction": "Move the spoon in between the pot and the cloth and mushroom.",
+      "skill": "move"
+    },
+    {
+      "episode_id": 45092,
+      "global_idx": 1170784,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 13029,
+      "global_idx": 338066,
+      "instruction": "open large4fbox flaps",
+      "skill": "open"
+    },
+    {
+      "episode_id": 23158,
+      "global_idx": 600606,
+      "instruction": "pick up pot from sink",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 40792,
+      "global_idx": 1057420,
+      "instruction": "take the red object and put it on top of the drawer",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 43765,
+      "global_idx": 1136073,
+      "instruction": "put the spoon in the orange pot",
+      "skill": "place"
+    },
+    {
+      "episode_id": 41597,
+      "global_idx": 1078952,
+      "instruction": "Fold the cloth from bottom to top",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 14283,
+      "global_idx": 370516,
+      "instruction": "fold the cloth from the top left to bottom right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 33690,
+      "global_idx": 874262,
+      "instruction": "unfolds the cloth from  bottom right to top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 7659,
+      "global_idx": 197810,
+      "instruction": "Take the blue rabbit and put it in the middle bottom side of the stove",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 34439,
+      "global_idx": 892848,
+      "instruction": "Open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 45094,
+      "global_idx": 1170826,
+      "instruction": "unfold the cloth from bottom left to top right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 4044,
+      "global_idx": 103320,
+      "instruction": "unfold the cloth from bottom right to top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 1101,
+      "global_idx": 27895,
+      "instruction": "Open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 7563,
+      "global_idx": 195306,
+      "instruction": "take clothes out of laundry machine",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 33930,
+      "global_idx": 880166,
+      "instruction": "open oven",
+      "skill": "open"
+    },
+    {
+      "episode_id": 766,
+      "global_idx": 19194,
+      "instruction": "picked the silver pot and placed it on the blue cloth on the left",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 51212,
+      "global_idx": 1331091,
+      "instruction": "take the chocolate out of the drawer to the table",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 7246,
+      "global_idx": 187330,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 21866,
+      "global_idx": 566832,
+      "instruction": "put carrot on plate",
+      "skill": "place"
+    },
+    {
+      "episode_id": 34752,
+      "global_idx": 901258,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 38599,
+      "global_idx": 1000688,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 7134,
+      "global_idx": 184449,
+      "instruction": "open drawer of box",
+      "skill": "open"
+    },
+    {
+      "episode_id": 47657,
+      "global_idx": 1238230,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 4739,
+      "global_idx": 120614,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 23886,
+      "global_idx": 619083,
+      "instruction": "Move the spoon to the far left edge of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 16246,
+      "global_idx": 422487,
+      "instruction": "Move the brush from the top left corner of the stove to between the two switchers of the stove.",
+      "skill": "move"
+    },
+    {
+      "episode_id": 52854,
+      "global_idx": 1374630,
+      "instruction": "picked up the banana and put it between the burners",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 24008,
+      "global_idx": 622513,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 16397,
+      "global_idx": 426812,
+      "instruction": "sweep into pile",
+      "skill": "move"
+    },
+    {
+      "episode_id": 51359,
+      "global_idx": 1334808,
+      "instruction": "close a drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 6545,
+      "global_idx": 168924,
+      "instruction": "place the green cloth on the left side of the basket",
+      "skill": "place"
+    },
+    {
+      "episode_id": 34717,
+      "global_idx": 900316,
+      "instruction": "move the green cloth to the bottom side of the left burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 14019,
+      "global_idx": 363971,
+      "instruction": "moved the broccoli to the upper left side of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 1502,
+      "global_idx": 38127,
+      "instruction": "fold the cloth form right to left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 14185,
+      "global_idx": 368094,
+      "instruction": "unfold the cloth to the top right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 16003,
+      "global_idx": 415934,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 10521,
+      "global_idx": 272783,
+      "instruction": "put the green triangle on top of the cylinder",
+      "skill": "place"
+    },
+    {
+      "episode_id": 11040,
+      "global_idx": 286377,
+      "instruction": "fold the cloth from top to bottom",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 40649,
+      "global_idx": 1053647,
+      "instruction": "MOVE THE BLENDER INSIDE THE VESSEL",
+      "skill": "move"
+    },
+    {
+      "episode_id": 3318,
+      "global_idx": 84789,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 52786,
+      "global_idx": 1372869,
+      "instruction": "open book",
+      "skill": "open"
+    },
+    {
+      "episode_id": 23971,
+      "global_idx": 621498,
+      "instruction": "sweep into pile",
+      "skill": "move"
+    },
+    {
+      "episode_id": 35346,
+      "global_idx": 916742,
+      "instruction": "move the silver pan lid and put it next to the blue fork",
+      "skill": "move"
+    },
+    {
+      "episode_id": 48933,
+      "global_idx": 1272226,
+      "instruction": "put lid on pot",
+      "skill": "place"
+    },
+    {
+      "episode_id": 34577,
+      "global_idx": 896862,
+      "instruction": "put the mouse in the drawer",
+      "skill": "place"
+    },
+    {
+      "episode_id": 1791,
+      "global_idx": 44997,
+      "instruction": "open white1fbox flap",
+      "skill": "open"
+    },
+    {
+      "episode_id": 22978,
+      "global_idx": 596056,
+      "instruction": "take cucumber out of cup",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 12664,
+      "global_idx": 328576,
+      "instruction": "unfold the cloth from left to right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 39080,
+      "global_idx": 1013492,
+      "instruction": "pick up red object and put it in the orange bowl",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 43794,
+      "global_idx": 1136900,
+      "instruction": "fold the cloth from the bottom right to the top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 1887,
+      "global_idx": 47400,
+      "instruction": "fold the yellow cloth from bottom to top",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 52069,
+      "global_idx": 1353564,
+      "instruction": "unfold the cloth from bottom right to top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 17836,
+      "global_idx": 465370,
+      "instruction": "moved the blue cloth in the right side of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 9173,
+      "global_idx": 238089,
+      "instruction": "closed the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 41986,
+      "global_idx": 1089325,
+      "instruction": "unfold the cloth from left to bottom left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 15766,
+      "global_idx": 409968,
+      "instruction": "fold cloth from left to right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 22547,
+      "global_idx": 584698,
+      "instruction": "unfold the cloth from left to right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 37968,
+      "global_idx": 983707,
+      "instruction": "take the eggplant and put it between the two right burners",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 40445,
+      "global_idx": 1048209,
+      "instruction": "move the orange pot to the bottom right corner of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 25966,
+      "global_idx": 673593,
+      "instruction": "take carrot off plate",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 47874,
+      "global_idx": 1243792,
+      "instruction": "move the red object to the top middle of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 25576,
+      "global_idx": 663989,
+      "instruction": "fold the cloth from left top to the rigth bottom",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 35046,
+      "global_idx": 908921,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 44138,
+      "global_idx": 1146359,
+      "instruction": "put the red object on the left burner",
+      "skill": "place"
+    },
+    {
+      "episode_id": 26324,
+      "global_idx": 683134,
+      "instruction": "move the light blue object to the top of the drawer",
+      "skill": "move"
+    },
+    {
+      "episode_id": 4771,
+      "global_idx": 121123,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 24397,
+      "global_idx": 633398,
+      "instruction": "sweep into pile",
+      "skill": "move"
+    },
+    {
+      "episode_id": 12374,
+      "global_idx": 320909,
+      "instruction": "pick up the shrimp sushi and place it in the drawer",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 6411,
+      "global_idx": 165221,
+      "instruction": "put eggplant on plate and largepotato in pot or pan in sink",
+      "skill": "place"
+    },
+    {
+      "episode_id": 19837,
+      "global_idx": 516092,
+      "instruction": "put knife in pot cardboard fence",
+      "skill": "place"
+    },
+    {
+      "episode_id": 4921,
+      "global_idx": 124752,
+      "instruction": "sweep into pile",
+      "skill": "move"
+    },
+    {
+      "episode_id": 48822,
+      "global_idx": 1269261,
+      "instruction": "pick the red object from the drawer and put it to the right of the white object",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 12679,
+      "global_idx": 329061,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 38393,
+      "global_idx": 995144,
+      "instruction": "push the can to the left side of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 35129,
+      "global_idx": 911131,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 14377,
+      "global_idx": 373266,
+      "instruction": "move light switch to the right",
+      "skill": "move"
+    },
+    {
+      "episode_id": 49060,
+      "global_idx": 1275342,
+      "instruction": "pick vessel on the blue cloth and keep it on the top right",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 42229,
+      "global_idx": 1095475,
+      "instruction": "close brown1fbox flap",
+      "skill": "close"
+    },
+    {
+      "episode_id": 44120,
+      "global_idx": 1145769,
+      "instruction": "close brown1fbox flap",
+      "skill": "close"
+    },
+    {
+      "episode_id": 25131,
+      "global_idx": 652671,
+      "instruction": "put the block with hole in left side of the arch",
+      "skill": "place"
+    },
+    {
+      "episode_id": 15297,
+      "global_idx": 398136,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 22147,
+      "global_idx": 573747,
+      "instruction": "take clothes out of laundry machine",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 5794,
+      "global_idx": 148578,
+      "instruction": "put knife in pot cardboard fence",
+      "skill": "place"
+    },
+    {
+      "episode_id": 10850,
+      "global_idx": 281251,
+      "instruction": "take the red object out of the drawer.",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 42428,
+      "global_idx": 1100288,
+      "instruction": "take the yellow things and put it in the left of drower",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 9417,
+      "global_idx": 244409,
+      "instruction": "put the green block on top of the yellow block",
+      "skill": "place"
+    },
+    {
+      "episode_id": 37193,
+      "global_idx": 964237,
+      "instruction": "move the cloth from upper left to bottom right",
+      "skill": "move"
+    },
+    {
+      "episode_id": 27967,
+      "global_idx": 726161,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 40754,
+      "global_idx": 1056441,
+      "instruction": "fold the cloth from top left to bottom right and cover the green figure",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 17011,
+      "global_idx": 443013,
+      "instruction": "put the red fork in the middle of the table",
+      "skill": "place"
+    },
+    {
+      "episode_id": 5900,
+      "global_idx": 151494,
+      "instruction": "open fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 33464,
+      "global_idx": 868268,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 15800,
+      "global_idx": 410641,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 16600,
+      "global_idx": 432460,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 52656,
+      "global_idx": 1368907,
+      "instruction": "pick and put the white cylinder on the top of the yellow cube",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 35690,
+      "global_idx": 925232,
+      "instruction": "open drawer of box",
+      "skill": "open"
+    },
+    {
+      "episode_id": 37265,
+      "global_idx": 966128,
+      "instruction": "close large4fbox flaps",
+      "skill": "close"
+    },
+    {
+      "episode_id": 29474,
+      "global_idx": 764689,
+      "instruction": "fold the cloth from bottom right to top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 23983,
+      "global_idx": 621820,
+      "instruction": "Place the spoon on the orange towel",
+      "skill": "place"
+    },
+    {
+      "episode_id": 30774,
+      "global_idx": 798498,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 9789,
+      "global_idx": 254193,
+      "instruction": "pick up green mug",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 1323,
+      "global_idx": 33650,
+      "instruction": "place the green arch on top of the blue arch",
+      "skill": "place"
+    },
+    {
+      "episode_id": 8329,
+      "global_idx": 215232,
+      "instruction": "put the white cuboid on  top of the blue cuboid",
+      "skill": "place"
+    },
+    {
+      "episode_id": 11086,
+      "global_idx": 287436,
+      "instruction": "closed the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 46696,
+      "global_idx": 1213027,
+      "instruction": "put the yellow block on the tower",
+      "skill": "place"
+    },
+    {
+      "episode_id": 26370,
+      "global_idx": 684351,
+      "instruction": "move the silver to the right burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 7050,
+      "global_idx": 182268,
+      "instruction": "Pick up the pot and place it behind the egg",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 12205,
+      "global_idx": 316309,
+      "instruction": "unfold the cloth from the top right to the bottom left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 14315,
+      "global_idx": 371552,
+      "instruction": "put cup from counter to sink",
+      "skill": "place"
+    },
+    {
+      "episode_id": 33538,
+      "global_idx": 870167,
+      "instruction": "moved the baguette to the bottom right of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 27868,
+      "global_idx": 723815,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 22575,
+      "global_idx": 585402,
+      "instruction": "unfold the cloth from top left to bottom right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 7570,
+      "global_idx": 195456,
+      "instruction": "Picking a ball and took on the cloth",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 34606,
+      "global_idx": 897683,
+      "instruction": "unfold the cloth from bottom left to top right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 31847,
+      "global_idx": 826309,
+      "instruction": "Place the blue brush on the back right corner of the stove",
+      "skill": "place"
+    },
+    {
+      "episode_id": 49095,
+      "global_idx": 1276235,
+      "instruction": "put small spoon from basket to tray",
+      "skill": "place"
+    },
+    {
+      "episode_id": 14132,
+      "global_idx": 366698,
+      "instruction": "open fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 41127,
+      "global_idx": 1066214,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 13914,
+      "global_idx": 361018,
+      "instruction": "topple basil bottle cardboard fence",
+      "skill": "move"
+    },
+    {
+      "episode_id": 6297,
+      "global_idx": 162305,
+      "instruction": "put the plus on top of the green block",
+      "skill": "place"
+    },
+    {
+      "episode_id": 30149,
+      "global_idx": 782889,
+      "instruction": "close large4fbox flaps",
+      "skill": "close"
+    },
+    {
+      "episode_id": 40591,
+      "global_idx": 1052193,
+      "instruction": "fold the cloth from bottom right to left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 15046,
+      "global_idx": 391479,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 37789,
+      "global_idx": 978813,
+      "instruction": "put clothes in laundry machine",
+      "skill": "place"
+    },
+    {
+      "episode_id": 51350,
+      "global_idx": 1334528,
+      "instruction": "sweep into pile",
+      "skill": "move"
+    },
+    {
+      "episode_id": 4989,
+      "global_idx": 126847,
+      "instruction": "move the brush to the left of the orange cloth",
+      "skill": "move"
+    },
+    {
+      "episode_id": 24143,
+      "global_idx": 626144,
+      "instruction": "put corn in bowl sink",
+      "skill": "place"
+    },
+    {
+      "episode_id": 6598,
+      "global_idx": 170377,
+      "instruction": "topple hot sauce bottle cardboard fence",
+      "skill": "move"
+    },
+    {
+      "episode_id": 977,
+      "global_idx": 24875,
+      "instruction": "take broccoli out of pan",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 19729,
+      "global_idx": 513429,
+      "instruction": "close the drawer.",
+      "skill": "close"
+    },
+    {
+      "episode_id": 26310,
+      "global_idx": 682799,
+      "instruction": "PICK UP THE FORK AND PUT ON THE BLUE TOWEL",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 4895,
+      "global_idx": 124093,
+      "instruction": "take the red object out of the pot and put it on the left burner",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 7990,
+      "global_idx": 206182,
+      "instruction": "put potato in pot or pan",
+      "skill": "place"
+    },
+    {
+      "episode_id": 7865,
+      "global_idx": 202806,
+      "instruction": "Put silver lid at the top of the silver pot",
+      "skill": "place"
+    },
+    {
+      "episode_id": 49043,
+      "global_idx": 1274869,
+      "instruction": "place the green arch on top of the white arch",
+      "skill": "place"
+    },
+    {
+      "episode_id": 17031,
+      "global_idx": 443526,
+      "instruction": "open fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 15053,
+      "global_idx": 391637,
+      "instruction": "open low fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 1014,
+      "global_idx": 25746,
+      "instruction": "move the cloth to the top right burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 3193,
+      "global_idx": 81461,
+      "instruction": "put the yellow knife inside the pot",
+      "skill": "place"
+    },
+    {
+      "episode_id": 16348,
+      "global_idx": 425375,
+      "instruction": "Pick up and move pot to the left away from green towel",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 19917,
+      "global_idx": 517939,
+      "instruction": "opening the the pot and putting the lid at the right",
+      "skill": "open"
+    },
+    {
+      "episode_id": 30886,
+      "global_idx": 801493,
+      "instruction": "move the orange object to the bottom side on the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 38544,
+      "global_idx": 999497,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 3597,
+      "global_idx": 91497,
+      "instruction": "close tthe drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 50895,
+      "global_idx": 1322441,
+      "instruction": "move the blue cloth to the lower left side of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 25187,
+      "global_idx": 654236,
+      "instruction": "close drawer of box",
+      "skill": "close"
+    },
+    {
+      "episode_id": 40803,
+      "global_idx": 1057759,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 9992,
+      "global_idx": 259795,
+      "instruction": "close brown1fbox flap",
+      "skill": "close"
+    },
+    {
+      "episode_id": 38514,
+      "global_idx": 998661,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 45601,
+      "global_idx": 1184030,
+      "instruction": "takes the blue object and place it on to top of the yellow one",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 1476,
+      "global_idx": 37449,
+      "instruction": "Pick up and move spoon to the right side of the silver bowl.",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 51639,
+      "global_idx": 1342109,
+      "instruction": "take lid off pot or pan",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 23662,
+      "global_idx": 612900,
+      "instruction": "fold the cloth from top left to bottom right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 19046,
+      "global_idx": 496728,
+      "instruction": "put sushi on plate",
+      "skill": "place"
+    },
+    {
+      "episode_id": 29216,
+      "global_idx": 758517,
+      "instruction": "move the can in the bottom center of the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 9245,
+      "global_idx": 239855,
+      "instruction": "sweep into pile",
+      "skill": "move"
+    },
+    {
+      "episode_id": 5031,
+      "global_idx": 127892,
+      "instruction": "pick up pan from stove",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 38174,
+      "global_idx": 989096,
+      "instruction": "Move the can to the back left corner of the table in front of the measuring cup.",
+      "skill": "move"
+    },
+    {
+      "episode_id": 39715,
+      "global_idx": 1029888,
+      "instruction": "put pepper in pot or pan",
+      "skill": "place"
+    },
+    {
+      "episode_id": 53085,
+      "global_idx": 1379751,
+      "instruction": "close drawer of box",
+      "skill": "close"
+    },
+    {
+      "episode_id": 26730,
+      "global_idx": 693372,
+      "instruction": "take broccoli out of pan",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 31090,
+      "global_idx": 807007,
+      "instruction": "unfold the cloth from right to left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 28887,
+      "global_idx": 750387,
+      "instruction": "zip zipper bag",
+      "skill": "close"
+    },
+    {
+      "episode_id": 37542,
+      "global_idx": 972497,
+      "instruction": "Move the silver pot to the center of the table.",
+      "skill": "move"
+    },
+    {
+      "episode_id": 35792,
+      "global_idx": 928144,
+      "instruction": "take bowl off plate cardboard fence",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 29533,
+      "global_idx": 766393,
+      "instruction": "open fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 28177,
+      "global_idx": 731360,
+      "instruction": "Put the ring on the cylinder",
+      "skill": "place"
+    },
+    {
+      "episode_id": 15718,
+      "global_idx": 408746,
+      "instruction": "take bowl off plate",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 36621,
+      "global_idx": 949541,
+      "instruction": "take broccoli out of pan",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 48650,
+      "global_idx": 1264637,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 41336,
+      "global_idx": 1071674,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 7092,
+      "global_idx": 183368,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 23131,
+      "global_idx": 599905,
+      "instruction": "Move the cylinder from the block with hole to the table",
+      "skill": "move"
+    },
+    {
+      "episode_id": 41884,
+      "global_idx": 1086824,
+      "instruction": "moved the silver lid-type-looking object from the bottom burner to the top burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 28102,
+      "global_idx": 729613,
+      "instruction": "unfold the cloth from the left to the right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 3803,
+      "global_idx": 97007,
+      "instruction": "put lid on pot or pan",
+      "skill": "place"
+    },
+    {
+      "episode_id": 13771,
+      "global_idx": 357447,
+      "instruction": "move the blue spoon below the yellow spoon",
+      "skill": "move"
+    },
+    {
+      "episode_id": 30777,
+      "global_idx": 798576,
+      "instruction": "he takes the knife and puts it on the underside of the table",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 45440,
+      "global_idx": 1179433,
+      "instruction": "fold the yellow cloth",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 8427,
+      "global_idx": 217768,
+      "instruction": "put carrot on plate",
+      "skill": "place"
+    },
+    {
+      "episode_id": 19073,
+      "global_idx": 497392,
+      "instruction": "close white1fbox flap",
+      "skill": "close"
+    },
+    {
+      "episode_id": 4382,
+      "global_idx": 111633,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 24990,
+      "global_idx": 648839,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 11056,
+      "global_idx": 286789,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 52542,
+      "global_idx": 1366028,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 34198,
+      "global_idx": 886971,
+      "instruction": "Fold the cloth from bottom left to top right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 28221,
+      "global_idx": 732426,
+      "instruction": "unfold the cloth from the top to the bottom",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 1794,
+      "global_idx": 45051,
+      "instruction": "fold the cloth from bottom right to top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 51304,
+      "global_idx": 1333366,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 10532,
+      "global_idx": 273042,
+      "instruction": "Move the blue spoon to the bottom right of the table.",
+      "skill": "move"
+    },
+    {
+      "episode_id": 43369,
+      "global_idx": 1125444,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 24598,
+      "global_idx": 638825,
+      "instruction": "open the white object from the table",
+      "skill": "open"
+    },
+    {
+      "episode_id": 7148,
+      "global_idx": 184869,
+      "instruction": "Take the banana and put it in the right back burner",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 18126,
+      "global_idx": 472511,
+      "instruction": "fold the cloth from bottom right to top left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 50838,
+      "global_idx": 1320877,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 35043,
+      "global_idx": 908812,
+      "instruction": "take the pan and put it above the blue mat",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 28848,
+      "global_idx": 749144,
+      "instruction": "unfold the cloth from left to bottom right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 21968,
+      "global_idx": 569511,
+      "instruction": "close fridge",
+      "skill": "close"
+    },
+    {
+      "episode_id": 48585,
+      "global_idx": 1262773,
+      "instruction": "unzip zipper bag",
+      "skill": "open"
+    },
+    {
+      "episode_id": 45571,
+      "global_idx": 1183077,
+      "instruction": "the robotic arm did not move",
+      "skill": "move"
+    },
+    {
+      "episode_id": 44515,
+      "global_idx": 1155589,
+      "instruction": "close oven",
+      "skill": "close"
+    },
+    {
+      "episode_id": 4334,
+      "global_idx": 110481,
+      "instruction": "move the spatula to the bottom side of the board",
+      "skill": "move"
+    },
+    {
+      "episode_id": 28781,
+      "global_idx": 747207,
+      "instruction": "Fold the cloth from the bottom left to the center",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 8274,
+      "global_idx": 213660,
+      "instruction": "Take the silver pot and keep it on the top left of the stove.",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 49110,
+      "global_idx": 1276777,
+      "instruction": "pick up green mug",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 26948,
+      "global_idx": 699702,
+      "instruction": "lift bowl",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 28535,
+      "global_idx": 740831,
+      "instruction": "Fold the cloth from top right to bottom left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 611,
+      "global_idx": 15205,
+      "instruction": "open oven",
+      "skill": "open"
+    },
+    {
+      "episode_id": 5742,
+      "global_idx": 147154,
+      "instruction": "fold cloth in half",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 48635,
+      "global_idx": 1264137,
+      "instruction": "put the fish in the front right table corner",
+      "skill": "place"
+    },
+    {
+      "episode_id": 41931,
+      "global_idx": 1087971,
+      "instruction": "fold the cloth from left to right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 29821,
+      "global_idx": 773880,
+      "instruction": "open oven",
+      "skill": "open"
+    },
+    {
+      "episode_id": 28464,
+      "global_idx": 738853,
+      "instruction": "close small4fbox flaps",
+      "skill": "close"
+    },
+    {
+      "episode_id": 28860,
+      "global_idx": 749487,
+      "instruction": "unfold the cloth from center to bottom right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 33468,
+      "global_idx": 868369,
+      "instruction": "move pan to left table edge",
+      "skill": "move"
+    },
+    {
+      "episode_id": 19477,
+      "global_idx": 507380,
+      "instruction": "move the purple towel to the right top corner of the stove right burner",
+      "skill": "move"
+    },
+    {
+      "episode_id": 22515,
+      "global_idx": 583700,
+      "instruction": "Place the metal pot to the left of the yellow brush.",
+      "skill": "place"
+    },
+    {
+      "episode_id": 36762,
+      "global_idx": 953009,
+      "instruction": "fold the cloth from right to left",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 24159,
+      "global_idx": 626539,
+      "instruction": "fold the cloth from bottom left to top right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 13250,
+      "global_idx": 343462,
+      "instruction": "put cap on container",
+      "skill": "place"
+    },
+    {
+      "episode_id": 12676,
+      "global_idx": 328978,
+      "instruction": "remove the yellow block from the tower and put it on the right side of the table.",
+      "skill": "place"
+    },
+    {
+      "episode_id": 49578,
+      "global_idx": 1288117,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 31575,
+      "global_idx": 819415,
+      "instruction": "Place orange slice inside silver pot.",
+      "skill": "place"
+    },
+    {
+      "episode_id": 28827,
+      "global_idx": 748596,
+      "instruction": "open and close the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 19020,
+      "global_idx": 496098,
+      "instruction": "open fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 34959,
+      "global_idx": 906779,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 16552,
+      "global_idx": 430967,
+      "instruction": "put bowl on plate",
+      "skill": "place"
+    },
+    {
+      "episode_id": 40451,
+      "global_idx": 1048326,
+      "instruction": "move the violet thing to the bottom left of the stove",
+      "skill": "move"
+    },
+    {
+      "episode_id": 14897,
+      "global_idx": 387534,
+      "instruction": "take sushi off plate",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 13352,
+      "global_idx": 346445,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 25426,
+      "global_idx": 660265,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 35266,
+      "global_idx": 914480,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 43435,
+      "global_idx": 1127079,
+      "instruction": "open microwave",
+      "skill": "open"
+    },
+    {
+      "episode_id": 5189,
+      "global_idx": 132209,
+      "instruction": "open fridge",
+      "skill": "open"
+    },
+    {
+      "episode_id": 8891,
+      "global_idx": 229986,
+      "instruction": "placed the blue cloth on top of the left burner",
+      "skill": "place"
+    },
+    {
+      "episode_id": 21069,
+      "global_idx": 547296,
+      "instruction": "take the silver pot cover from the left of the stove to put over and close the silver pot",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 16580,
+      "global_idx": 431887,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 52797,
+      "global_idx": 1373091,
+      "instruction": "unfold the cloth from left to right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 30136,
+      "global_idx": 782485,
+      "instruction": "take beet from pot sink",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 52712,
+      "global_idx": 1370563,
+      "instruction": "Place the pan on top of the blue napkin.",
+      "skill": "place"
+    },
+    {
+      "episode_id": 52247,
+      "global_idx": 1358098,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 30669,
+      "global_idx": 795796,
+      "instruction": "put big spoon from basket to tray",
+      "skill": "place"
+    },
+    {
+      "episode_id": 39400,
+      "global_idx": 1021988,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 47425,
+      "global_idx": 1231943,
+      "instruction": "open oven",
+      "skill": "open"
+    },
+    {
+      "episode_id": 50893,
+      "global_idx": 1322379,
+      "instruction": "put the blue figure on the top edge of the cloth",
+      "skill": "place"
+    },
+    {
+      "episode_id": 44436,
+      "global_idx": 1153701,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 41074,
+      "global_idx": 1064888,
+      "instruction": "unfold the cloth from left to righ",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 14905,
+      "global_idx": 387665,
+      "instruction": "picked the yellow clothing from the machine and place it on the green mat.",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 44311,
+      "global_idx": 1150426,
+      "instruction": "open book",
+      "skill": "open"
+    },
+    {
+      "episode_id": 43603,
+      "global_idx": 1131495,
+      "instruction": "picked the orange cloth and put it between the cooktop and the sink",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 48143,
+      "global_idx": 1251272,
+      "instruction": "Move the pot with the spatula",
+      "skill": "move"
+    },
+    {
+      "episode_id": 40397,
+      "global_idx": 1046917,
+      "instruction": "take broccoli out of pan",
+      "skill": "pick"
+    },
+    {
+      "episode_id": 10388,
+      "global_idx": 269271,
+      "instruction": "put the thing inside the silver pot",
+      "skill": "place"
+    },
+    {
+      "episode_id": 51598,
+      "global_idx": 1341169,
+      "instruction": "open the drawer",
+      "skill": "open"
+    },
+    {
+      "episode_id": 4252,
+      "global_idx": 108400,
+      "instruction": "close the drawer",
+      "skill": "close"
+    },
+    {
+      "episode_id": 10007,
+      "global_idx": 260240,
+      "instruction": "fold the cloth from the top left to the bottom right",
+      "skill": "fold"
+    },
+    {
+      "episode_id": 44562,
+      "global_idx": 1156790,
+      "instruction": "put cap on container",
+      "skill": "place"
+    },
+    {
+      "episode_id": 24267,
+      "global_idx": 629658,
+      "instruction": "close small4fbox flaps",
+      "skill": "close"
+    },
+    {
+      "episode_id": 23186,
+      "global_idx": 601250,
+      "instruction": "unzip zipper bag",
+      "skill": "open"
+    },
+    {
+      "episode_id": 42537,
+      "global_idx": 1103347,
+      "instruction": "close microwave",
+      "skill": "close"
+    },
+    {
+      "episode_id": 14583,
+      "global_idx": 378995,
+      "instruction": "put eggplant in pot or pan",
+      "skill": "place"
+    },
+    {
+      "episode_id": 4670,
+      "global_idx": 118836,
+      "instruction": "unfold the cloth from left to right",
+      "skill": "fold"
+    }
+  ]
+}

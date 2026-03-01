@@ -232,10 +232,13 @@ def forward_with_entropy_reg(model, model_cfg, processor, sample, device,
     out = model(**fwd_kwargs)
 
     # CE loss: average NLL across 7 action dims
-    # logits[n_base + d - 1] predicts action token d (0-indexed)
+    # For Prismatic models, logits are in expanded space:
+    #   [0..V-1] vision | [V..V+T-1] text | [V+T..V+T+6] action
+    # logits[V+T+d-1] predicts action token d (causal: logits[i] -> token[i+1])
+    vision_offset = bounds.get("num_vision_tokens", 0)
     ce_losses = []
     for d in range(7):
-        logit_pos = n_base + d - 1  # logits at this position predict action token d
+        logit_pos = vision_offset + n_base + d - 1
         logits_d = out.logits[0, logit_pos, :]  # (vocab_size,)
         target_d = torch.tensor([gt_token_ids[d]], device=device, dtype=torch.long)
         ce_d = F.cross_entropy(logits_d.unsqueeze(0), target_d)
@@ -245,8 +248,8 @@ def forward_with_entropy_reg(model, model_cfg, processor, sample, device,
     # Entropy regularization loss
     vision_start = bounds["vision_start"]
     vision_end = bounds["vision_end"]
-    # Action positions in the teacher-forced sequence
-    action_positions = [n_base + d - 1 for d in range(7)]
+    # Action positions in the teacher-forced expanded sequence
+    action_positions = [vision_offset + n_base + d - 1 for d in range(7)]
     ent_loss = compute_attention_entropy_loss(
         model, model_cfg, deep_layers,
         vision_start, vision_end,

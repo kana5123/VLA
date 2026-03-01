@@ -1,0 +1,1558 @@
+{
+  "model": "ecot-7b",
+  "target_pos": 0,
+  "deep_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "gap1_range": {
+    "sample_range": "[30:80]",
+    "summary": {
+      "n_samples": 50,
+      "target_pos": 0,
+      "mean_kl": 1.9251,
+      "std_kl": 1.9469,
+      "median_kl": 1.3991,
+      "flip_rate": 0.62,
+      "n_flipped": 31
+    },
+    "per_sample": [
+      {
+        "sample_idx": 0,
+        "skill": "pick",
+        "kl": 1.525845,
+        "flip": true
+      },
+      {
+        "sample_idx": 1,
+        "skill": "move",
+        "kl": 2.150711,
+        "flip": true
+      },
+      {
+        "sample_idx": 2,
+        "skill": "open",
+        "kl": 2.642079,
+        "flip": true
+      },
+      {
+        "sample_idx": 3,
+        "skill": "move",
+        "kl": 2.071849,
+        "flip": true
+      },
+      {
+        "sample_idx": 4,
+        "skill": "place",
+        "kl": 0.400435,
+        "flip": true
+      },
+      {
+        "sample_idx": 5,
+        "skill": "move",
+        "kl": 3.561172,
+        "flip": true
+      },
+      {
+        "sample_idx": 6,
+        "skill": "place",
+        "kl": 0.415463,
+        "flip": true
+      },
+      {
+        "sample_idx": 7,
+        "skill": "open",
+        "kl": 0.008487,
+        "flip": false
+      },
+      {
+        "sample_idx": 8,
+        "skill": "close",
+        "kl": 6.881871,
+        "flip": true
+      },
+      {
+        "sample_idx": 9,
+        "skill": "close",
+        "kl": 6.232964,
+        "flip": true
+      },
+      {
+        "sample_idx": 10,
+        "skill": "open",
+        "kl": 0.372468,
+        "flip": false
+      },
+      {
+        "sample_idx": 11,
+        "skill": "fold",
+        "kl": 1.397481,
+        "flip": true
+      },
+      {
+        "sample_idx": 12,
+        "skill": "place",
+        "kl": 2.69499,
+        "flip": true
+      },
+      {
+        "sample_idx": 13,
+        "skill": "open",
+        "kl": 1.393927,
+        "flip": true
+      },
+      {
+        "sample_idx": 14,
+        "skill": "move",
+        "kl": 0.793203,
+        "flip": false
+      },
+      {
+        "sample_idx": 15,
+        "skill": "close",
+        "kl": 2.871239,
+        "flip": true
+      },
+      {
+        "sample_idx": 16,
+        "skill": "close",
+        "kl": 1.245262,
+        "flip": true
+      },
+      {
+        "sample_idx": 17,
+        "skill": "place",
+        "kl": 2.663512,
+        "flip": true
+      },
+      {
+        "sample_idx": 18,
+        "skill": "move",
+        "kl": 0.024968,
+        "flip": false
+      },
+      {
+        "sample_idx": 19,
+        "skill": "place",
+        "kl": 2.249498,
+        "flip": true
+      },
+      {
+        "sample_idx": 20,
+        "skill": "open",
+        "kl": 0.787658,
+        "flip": false
+      },
+      {
+        "sample_idx": 21,
+        "skill": "move",
+        "kl": 0.008169,
+        "flip": false
+      },
+      {
+        "sample_idx": 22,
+        "skill": "close",
+        "kl": 7.717151,
+        "flip": true
+      },
+      {
+        "sample_idx": 23,
+        "skill": "fold",
+        "kl": 0.164012,
+        "flip": false
+      },
+      {
+        "sample_idx": 24,
+        "skill": "move",
+        "kl": 1.658023,
+        "flip": true
+      },
+      {
+        "sample_idx": 25,
+        "skill": "place",
+        "kl": 0.769001,
+        "flip": true
+      },
+      {
+        "sample_idx": 26,
+        "skill": "move",
+        "kl": 0.568653,
+        "flip": false
+      },
+      {
+        "sample_idx": 27,
+        "skill": "pick",
+        "kl": 0.013881,
+        "flip": false
+      },
+      {
+        "sample_idx": 28,
+        "skill": "open",
+        "kl": 1.096646,
+        "flip": false
+      },
+      {
+        "sample_idx": 29,
+        "skill": "close",
+        "kl": 5.863169,
+        "flip": true
+      },
+      {
+        "sample_idx": 30,
+        "skill": "open",
+        "kl": 0.127992,
+        "flip": false
+      },
+      {
+        "sample_idx": 31,
+        "skill": "close",
+        "kl": 0.103464,
+        "flip": false
+      },
+      {
+        "sample_idx": 32,
+        "skill": "close",
+        "kl": 1.584871,
+        "flip": true
+      },
+      {
+        "sample_idx": 33,
+        "skill": "move",
+        "kl": 6.342756,
+        "flip": true
+      },
+      {
+        "sample_idx": 34,
+        "skill": "close",
+        "kl": 0.567714,
+        "flip": false
+      },
+      {
+        "sample_idx": 35,
+        "skill": "pick",
+        "kl": 1.43355,
+        "flip": true
+      },
+      {
+        "sample_idx": 36,
+        "skill": "open",
+        "kl": 0.294439,
+        "flip": false
+      },
+      {
+        "sample_idx": 37,
+        "skill": "move",
+        "kl": 0.8815,
+        "flip": true
+      },
+      {
+        "sample_idx": 38,
+        "skill": "fold",
+        "kl": 1.400689,
+        "flip": false
+      },
+      {
+        "sample_idx": 39,
+        "skill": "fold",
+        "kl": 1.55219,
+        "flip": true
+      },
+      {
+        "sample_idx": 40,
+        "skill": "place",
+        "kl": 3.052748,
+        "flip": true
+      },
+      {
+        "sample_idx": 41,
+        "skill": "close",
+        "kl": 0.167424,
+        "flip": false
+      },
+      {
+        "sample_idx": 42,
+        "skill": "open",
+        "kl": 3.044429,
+        "flip": true
+      },
+      {
+        "sample_idx": 43,
+        "skill": "fold",
+        "kl": 0.373926,
+        "flip": false
+      },
+      {
+        "sample_idx": 44,
+        "skill": "place",
+        "kl": 5.195069,
+        "flip": true
+      },
+      {
+        "sample_idx": 45,
+        "skill": "close",
+        "kl": 0.117948,
+        "flip": false
+      },
+      {
+        "sample_idx": 46,
+        "skill": "fold",
+        "kl": 3.901062,
+        "flip": true
+      },
+      {
+        "sample_idx": 47,
+        "skill": "pick",
+        "kl": 2.739747,
+        "flip": true
+      },
+      {
+        "sample_idx": 48,
+        "skill": "move",
+        "kl": 1.947813,
+        "flip": true
+      },
+      {
+        "sample_idx": 49,
+        "skill": "fold",
+        "kl": 1.183748,
+        "flip": false
+      }
+    ]
+  },
+  "gate2_range": {
+    "sample_range": "[0:50]",
+    "summary": {
+      "n_samples": 50,
+      "target_pos": 0,
+      "mean_kl": 1.7357,
+      "std_kl": 1.9416,
+      "median_kl": 1.0446,
+      "flip_rate": 0.62,
+      "n_flipped": 31
+    },
+    "per_sample": [
+      {
+        "sample_idx": 0,
+        "skill": "pick",
+        "kl": 7.657365,
+        "flip": true
+      },
+      {
+        "sample_idx": 1,
+        "skill": "move",
+        "kl": 1.054872,
+        "flip": false
+      },
+      {
+        "sample_idx": 2,
+        "skill": "fold",
+        "kl": 1.082876,
+        "flip": false
+      },
+      {
+        "sample_idx": 3,
+        "skill": "place",
+        "kl": 0.764226,
+        "flip": false
+      },
+      {
+        "sample_idx": 4,
+        "skill": "pick",
+        "kl": 0.118597,
+        "flip": false
+      },
+      {
+        "sample_idx": 5,
+        "skill": "move",
+        "kl": 6.238919,
+        "flip": true
+      },
+      {
+        "sample_idx": 6,
+        "skill": "open",
+        "kl": 0.619209,
+        "flip": false
+      },
+      {
+        "sample_idx": 7,
+        "skill": "pick",
+        "kl": 0.60553,
+        "flip": true
+      },
+      {
+        "sample_idx": 8,
+        "skill": "fold",
+        "kl": 0.802503,
+        "flip": true
+      },
+      {
+        "sample_idx": 9,
+        "skill": "pick",
+        "kl": 0.927094,
+        "flip": true
+      },
+      {
+        "sample_idx": 10,
+        "skill": "fold",
+        "kl": 0.076476,
+        "flip": false
+      },
+      {
+        "sample_idx": 11,
+        "skill": "place",
+        "kl": 0.051021,
+        "flip": false
+      },
+      {
+        "sample_idx": 12,
+        "skill": "close",
+        "kl": 1.668523,
+        "flip": true
+      },
+      {
+        "sample_idx": 13,
+        "skill": "pick",
+        "kl": 0.427534,
+        "flip": true
+      },
+      {
+        "sample_idx": 14,
+        "skill": "place",
+        "kl": 0.583148,
+        "flip": true
+      },
+      {
+        "sample_idx": 15,
+        "skill": "place",
+        "kl": 5.106996,
+        "flip": false
+      },
+      {
+        "sample_idx": 16,
+        "skill": "close",
+        "kl": 1.034426,
+        "flip": false
+      },
+      {
+        "sample_idx": 17,
+        "skill": "move",
+        "kl": 3.541721,
+        "flip": true
+      },
+      {
+        "sample_idx": 18,
+        "skill": "pick",
+        "kl": 0.009465,
+        "flip": false
+      },
+      {
+        "sample_idx": 19,
+        "skill": "place",
+        "kl": 0.869761,
+        "flip": false
+      },
+      {
+        "sample_idx": 20,
+        "skill": "open",
+        "kl": 5.883039,
+        "flip": true
+      },
+      {
+        "sample_idx": 21,
+        "skill": "pick",
+        "kl": 0.724713,
+        "flip": true
+      },
+      {
+        "sample_idx": 22,
+        "skill": "pick",
+        "kl": 0.402817,
+        "flip": false
+      },
+      {
+        "sample_idx": 23,
+        "skill": "move",
+        "kl": 1.167282,
+        "flip": true
+      },
+      {
+        "sample_idx": 24,
+        "skill": "pick",
+        "kl": 0.083416,
+        "flip": false
+      },
+      {
+        "sample_idx": 25,
+        "skill": "pick",
+        "kl": 1.571671,
+        "flip": true
+      },
+      {
+        "sample_idx": 26,
+        "skill": "pick",
+        "kl": 0.011892,
+        "flip": false
+      },
+      {
+        "sample_idx": 27,
+        "skill": "close",
+        "kl": 0.011122,
+        "flip": false
+      },
+      {
+        "sample_idx": 28,
+        "skill": "move",
+        "kl": 1.138143,
+        "flip": true
+      },
+      {
+        "sample_idx": 29,
+        "skill": "move",
+        "kl": 0.955308,
+        "flip": true
+      },
+      {
+        "sample_idx": 30,
+        "skill": "pick",
+        "kl": 1.525845,
+        "flip": true
+      },
+      {
+        "sample_idx": 31,
+        "skill": "move",
+        "kl": 2.150711,
+        "flip": true
+      },
+      {
+        "sample_idx": 32,
+        "skill": "open",
+        "kl": 2.642079,
+        "flip": true
+      },
+      {
+        "sample_idx": 33,
+        "skill": "move",
+        "kl": 2.071849,
+        "flip": true
+      },
+      {
+        "sample_idx": 34,
+        "skill": "place",
+        "kl": 0.400435,
+        "flip": true
+      },
+      {
+        "sample_idx": 35,
+        "skill": "move",
+        "kl": 3.561172,
+        "flip": true
+      },
+      {
+        "sample_idx": 36,
+        "skill": "place",
+        "kl": 0.415463,
+        "flip": true
+      },
+      {
+        "sample_idx": 37,
+        "skill": "open",
+        "kl": 0.008487,
+        "flip": false
+      },
+      {
+        "sample_idx": 38,
+        "skill": "close",
+        "kl": 6.881871,
+        "flip": true
+      },
+      {
+        "sample_idx": 39,
+        "skill": "close",
+        "kl": 6.232964,
+        "flip": true
+      },
+      {
+        "sample_idx": 40,
+        "skill": "open",
+        "kl": 0.372468,
+        "flip": false
+      },
+      {
+        "sample_idx": 41,
+        "skill": "fold",
+        "kl": 1.397481,
+        "flip": true
+      },
+      {
+        "sample_idx": 42,
+        "skill": "place",
+        "kl": 2.69499,
+        "flip": true
+      },
+      {
+        "sample_idx": 43,
+        "skill": "open",
+        "kl": 1.393927,
+        "flip": true
+      },
+      {
+        "sample_idx": 44,
+        "skill": "move",
+        "kl": 0.793203,
+        "flip": false
+      },
+      {
+        "sample_idx": 45,
+        "skill": "close",
+        "kl": 2.871239,
+        "flip": true
+      },
+      {
+        "sample_idx": 46,
+        "skill": "close",
+        "kl": 1.245262,
+        "flip": true
+      },
+      {
+        "sample_idx": 47,
+        "skill": "place",
+        "kl": 2.663512,
+        "flip": true
+      },
+      {
+        "sample_idx": 48,
+        "skill": "move",
+        "kl": 0.024968,
+        "flip": false
+      },
+      {
+        "sample_idx": 49,
+        "skill": "place",
+        "kl": 2.249498,
+        "flip": true
+      }
+    ]
+  },
+  "all_samples": {
+    "sample_range": "[0:150]",
+    "summary": {
+      "n_samples": 150,
+      "target_pos": 0,
+      "mean_kl": 1.6461,
+      "std_kl": 1.8209,
+      "median_kl": 1.0015,
+      "flip_rate": 0.5333,
+      "n_flipped": 80
+    },
+    "per_sample": [
+      {
+        "sample_idx": 0,
+        "skill": "pick",
+        "kl": 7.657365,
+        "flip": true
+      },
+      {
+        "sample_idx": 1,
+        "skill": "move",
+        "kl": 1.054872,
+        "flip": false
+      },
+      {
+        "sample_idx": 2,
+        "skill": "fold",
+        "kl": 1.082876,
+        "flip": false
+      },
+      {
+        "sample_idx": 3,
+        "skill": "place",
+        "kl": 0.764226,
+        "flip": false
+      },
+      {
+        "sample_idx": 4,
+        "skill": "pick",
+        "kl": 0.118597,
+        "flip": false
+      },
+      {
+        "sample_idx": 5,
+        "skill": "move",
+        "kl": 6.238919,
+        "flip": true
+      },
+      {
+        "sample_idx": 6,
+        "skill": "open",
+        "kl": 0.619209,
+        "flip": false
+      },
+      {
+        "sample_idx": 7,
+        "skill": "pick",
+        "kl": 0.60553,
+        "flip": true
+      },
+      {
+        "sample_idx": 8,
+        "skill": "fold",
+        "kl": 0.802503,
+        "flip": true
+      },
+      {
+        "sample_idx": 9,
+        "skill": "pick",
+        "kl": 0.927094,
+        "flip": true
+      },
+      {
+        "sample_idx": 10,
+        "skill": "fold",
+        "kl": 0.076476,
+        "flip": false
+      },
+      {
+        "sample_idx": 11,
+        "skill": "place",
+        "kl": 0.051021,
+        "flip": false
+      },
+      {
+        "sample_idx": 12,
+        "skill": "close",
+        "kl": 1.668523,
+        "flip": true
+      },
+      {
+        "sample_idx": 13,
+        "skill": "pick",
+        "kl": 0.427534,
+        "flip": true
+      },
+      {
+        "sample_idx": 14,
+        "skill": "place",
+        "kl": 0.583148,
+        "flip": true
+      },
+      {
+        "sample_idx": 15,
+        "skill": "place",
+        "kl": 5.106996,
+        "flip": false
+      },
+      {
+        "sample_idx": 16,
+        "skill": "close",
+        "kl": 1.034426,
+        "flip": false
+      },
+      {
+        "sample_idx": 17,
+        "skill": "move",
+        "kl": 3.541721,
+        "flip": true
+      },
+      {
+        "sample_idx": 18,
+        "skill": "pick",
+        "kl": 0.009465,
+        "flip": false
+      },
+      {
+        "sample_idx": 19,
+        "skill": "place",
+        "kl": 0.869761,
+        "flip": false
+      },
+      {
+        "sample_idx": 20,
+        "skill": "open",
+        "kl": 5.883039,
+        "flip": true
+      },
+      {
+        "sample_idx": 21,
+        "skill": "pick",
+        "kl": 0.724713,
+        "flip": true
+      },
+      {
+        "sample_idx": 22,
+        "skill": "pick",
+        "kl": 0.402817,
+        "flip": false
+      },
+      {
+        "sample_idx": 23,
+        "skill": "move",
+        "kl": 1.167282,
+        "flip": true
+      },
+      {
+        "sample_idx": 24,
+        "skill": "pick",
+        "kl": 0.083416,
+        "flip": false
+      },
+      {
+        "sample_idx": 25,
+        "skill": "pick",
+        "kl": 1.571671,
+        "flip": true
+      },
+      {
+        "sample_idx": 26,
+        "skill": "pick",
+        "kl": 0.011892,
+        "flip": false
+      },
+      {
+        "sample_idx": 27,
+        "skill": "close",
+        "kl": 0.011122,
+        "flip": false
+      },
+      {
+        "sample_idx": 28,
+        "skill": "move",
+        "kl": 1.138143,
+        "flip": true
+      },
+      {
+        "sample_idx": 29,
+        "skill": "move",
+        "kl": 0.955308,
+        "flip": true
+      },
+      {
+        "sample_idx": 30,
+        "skill": "pick",
+        "kl": 1.525845,
+        "flip": true
+      },
+      {
+        "sample_idx": 31,
+        "skill": "move",
+        "kl": 2.150711,
+        "flip": true
+      },
+      {
+        "sample_idx": 32,
+        "skill": "open",
+        "kl": 2.642079,
+        "flip": true
+      },
+      {
+        "sample_idx": 33,
+        "skill": "move",
+        "kl": 2.071849,
+        "flip": true
+      },
+      {
+        "sample_idx": 34,
+        "skill": "place",
+        "kl": 0.400435,
+        "flip": true
+      },
+      {
+        "sample_idx": 35,
+        "skill": "move",
+        "kl": 3.561172,
+        "flip": true
+      },
+      {
+        "sample_idx": 36,
+        "skill": "place",
+        "kl": 0.415463,
+        "flip": true
+      },
+      {
+        "sample_idx": 37,
+        "skill": "open",
+        "kl": 0.008487,
+        "flip": false
+      },
+      {
+        "sample_idx": 38,
+        "skill": "close",
+        "kl": 6.881871,
+        "flip": true
+      },
+      {
+        "sample_idx": 39,
+        "skill": "close",
+        "kl": 6.232964,
+        "flip": true
+      },
+      {
+        "sample_idx": 40,
+        "skill": "open",
+        "kl": 0.372468,
+        "flip": false
+      },
+      {
+        "sample_idx": 41,
+        "skill": "fold",
+        "kl": 1.397481,
+        "flip": true
+      },
+      {
+        "sample_idx": 42,
+        "skill": "place",
+        "kl": 2.69499,
+        "flip": true
+      },
+      {
+        "sample_idx": 43,
+        "skill": "open",
+        "kl": 1.393927,
+        "flip": true
+      },
+      {
+        "sample_idx": 44,
+        "skill": "move",
+        "kl": 0.793203,
+        "flip": false
+      },
+      {
+        "sample_idx": 45,
+        "skill": "close",
+        "kl": 2.871239,
+        "flip": true
+      },
+      {
+        "sample_idx": 46,
+        "skill": "close",
+        "kl": 1.245262,
+        "flip": true
+      },
+      {
+        "sample_idx": 47,
+        "skill": "place",
+        "kl": 2.663512,
+        "flip": true
+      },
+      {
+        "sample_idx": 48,
+        "skill": "move",
+        "kl": 0.024968,
+        "flip": false
+      },
+      {
+        "sample_idx": 49,
+        "skill": "place",
+        "kl": 2.249498,
+        "flip": true
+      },
+      {
+        "sample_idx": 50,
+        "skill": "open",
+        "kl": 0.787658,
+        "flip": false
+      },
+      {
+        "sample_idx": 51,
+        "skill": "move",
+        "kl": 0.008169,
+        "flip": false
+      },
+      {
+        "sample_idx": 52,
+        "skill": "close",
+        "kl": 7.717151,
+        "flip": true
+      },
+      {
+        "sample_idx": 53,
+        "skill": "fold",
+        "kl": 0.164012,
+        "flip": false
+      },
+      {
+        "sample_idx": 54,
+        "skill": "move",
+        "kl": 1.658023,
+        "flip": true
+      },
+      {
+        "sample_idx": 55,
+        "skill": "place",
+        "kl": 0.769001,
+        "flip": true
+      },
+      {
+        "sample_idx": 56,
+        "skill": "move",
+        "kl": 0.568653,
+        "flip": false
+      },
+      {
+        "sample_idx": 57,
+        "skill": "pick",
+        "kl": 0.013881,
+        "flip": false
+      },
+      {
+        "sample_idx": 58,
+        "skill": "open",
+        "kl": 1.096646,
+        "flip": false
+      },
+      {
+        "sample_idx": 59,
+        "skill": "close",
+        "kl": 5.863169,
+        "flip": true
+      },
+      {
+        "sample_idx": 60,
+        "skill": "open",
+        "kl": 0.127992,
+        "flip": false
+      },
+      {
+        "sample_idx": 61,
+        "skill": "close",
+        "kl": 0.103464,
+        "flip": false
+      },
+      {
+        "sample_idx": 62,
+        "skill": "close",
+        "kl": 1.584871,
+        "flip": true
+      },
+      {
+        "sample_idx": 63,
+        "skill": "move",
+        "kl": 6.342756,
+        "flip": true
+      },
+      {
+        "sample_idx": 64,
+        "skill": "close",
+        "kl": 0.567714,
+        "flip": false
+      },
+      {
+        "sample_idx": 65,
+        "skill": "pick",
+        "kl": 1.43355,
+        "flip": true
+      },
+      {
+        "sample_idx": 66,
+        "skill": "open",
+        "kl": 0.294439,
+        "flip": false
+      },
+      {
+        "sample_idx": 67,
+        "skill": "move",
+        "kl": 0.8815,
+        "flip": true
+      },
+      {
+        "sample_idx": 68,
+        "skill": "fold",
+        "kl": 1.400689,
+        "flip": false
+      },
+      {
+        "sample_idx": 69,
+        "skill": "fold",
+        "kl": 1.55219,
+        "flip": true
+      },
+      {
+        "sample_idx": 70,
+        "skill": "place",
+        "kl": 3.052748,
+        "flip": true
+      },
+      {
+        "sample_idx": 71,
+        "skill": "close",
+        "kl": 0.167424,
+        "flip": false
+      },
+      {
+        "sample_idx": 72,
+        "skill": "open",
+        "kl": 3.044429,
+        "flip": true
+      },
+      {
+        "sample_idx": 73,
+        "skill": "fold",
+        "kl": 0.373926,
+        "flip": false
+      },
+      {
+        "sample_idx": 74,
+        "skill": "place",
+        "kl": 5.195069,
+        "flip": true
+      },
+      {
+        "sample_idx": 75,
+        "skill": "close",
+        "kl": 0.117948,
+        "flip": false
+      },
+      {
+        "sample_idx": 76,
+        "skill": "fold",
+        "kl": 3.901062,
+        "flip": true
+      },
+      {
+        "sample_idx": 77,
+        "skill": "pick",
+        "kl": 2.739747,
+        "flip": true
+      },
+      {
+        "sample_idx": 78,
+        "skill": "move",
+        "kl": 1.947813,
+        "flip": true
+      },
+      {
+        "sample_idx": 79,
+        "skill": "fold",
+        "kl": 1.183748,
+        "flip": false
+      },
+      {
+        "sample_idx": 80,
+        "skill": "open",
+        "kl": 0.118104,
+        "flip": false
+      },
+      {
+        "sample_idx": 81,
+        "skill": "place",
+        "kl": 2.978929,
+        "flip": true
+      },
+      {
+        "sample_idx": 82,
+        "skill": "close",
+        "kl": 0.006848,
+        "flip": false
+      },
+      {
+        "sample_idx": 83,
+        "skill": "pick",
+        "kl": 0.938778,
+        "flip": true
+      },
+      {
+        "sample_idx": 84,
+        "skill": "fold",
+        "kl": 5.21863,
+        "flip": true
+      },
+      {
+        "sample_idx": 85,
+        "skill": "fold",
+        "kl": 1.749217,
+        "flip": true
+      },
+      {
+        "sample_idx": 86,
+        "skill": "close",
+        "kl": 0.013183,
+        "flip": false
+      },
+      {
+        "sample_idx": 87,
+        "skill": "open",
+        "kl": 0.782789,
+        "flip": false
+      },
+      {
+        "sample_idx": 88,
+        "skill": "open",
+        "kl": 1.061112,
+        "flip": true
+      },
+      {
+        "sample_idx": 89,
+        "skill": "open",
+        "kl": 0.687334,
+        "flip": false
+      },
+      {
+        "sample_idx": 90,
+        "skill": "close",
+        "kl": 3.226382,
+        "flip": true
+      },
+      {
+        "sample_idx": 91,
+        "skill": "close",
+        "kl": 2.670977,
+        "flip": true
+      },
+      {
+        "sample_idx": 92,
+        "skill": "move",
+        "kl": 0.31638,
+        "flip": false
+      },
+      {
+        "sample_idx": 93,
+        "skill": "fold",
+        "kl": 4.771174,
+        "flip": true
+      },
+      {
+        "sample_idx": 94,
+        "skill": "fold",
+        "kl": 1.327531,
+        "flip": true
+      },
+      {
+        "sample_idx": 95,
+        "skill": "close",
+        "kl": 1.39393,
+        "flip": true
+      },
+      {
+        "sample_idx": 96,
+        "skill": "pick",
+        "kl": 0.997399,
+        "flip": false
+      },
+      {
+        "sample_idx": 97,
+        "skill": "close",
+        "kl": 1.821651,
+        "flip": true
+      },
+      {
+        "sample_idx": 98,
+        "skill": "move",
+        "kl": 0.905334,
+        "flip": true
+      },
+      {
+        "sample_idx": 99,
+        "skill": "open",
+        "kl": 0.006889,
+        "flip": false
+      },
+      {
+        "sample_idx": 100,
+        "skill": "open",
+        "kl": 0.015374,
+        "flip": false
+      },
+      {
+        "sample_idx": 101,
+        "skill": "pick",
+        "kl": 2.133896,
+        "flip": false
+      },
+      {
+        "sample_idx": 102,
+        "skill": "move",
+        "kl": 0.091483,
+        "flip": false
+      },
+      {
+        "sample_idx": 103,
+        "skill": "fold",
+        "kl": 1.144453,
+        "flip": true
+      },
+      {
+        "sample_idx": 104,
+        "skill": "place",
+        "kl": 1.005564,
+        "flip": false
+      },
+      {
+        "sample_idx": 105,
+        "skill": "fold",
+        "kl": 2.340624,
+        "flip": true
+      },
+      {
+        "sample_idx": 106,
+        "skill": "close",
+        "kl": 0.586909,
+        "flip": true
+      },
+      {
+        "sample_idx": 107,
+        "skill": "pick",
+        "kl": 1.348001,
+        "flip": true
+      },
+      {
+        "sample_idx": 108,
+        "skill": "close",
+        "kl": 2.291378,
+        "flip": false
+      },
+      {
+        "sample_idx": 109,
+        "skill": "fold",
+        "kl": 0.742993,
+        "flip": false
+      },
+      {
+        "sample_idx": 110,
+        "skill": "place",
+        "kl": 0.054827,
+        "flip": false
+      },
+      {
+        "sample_idx": 111,
+        "skill": "fold",
+        "kl": 0.740489,
+        "flip": false
+      },
+      {
+        "sample_idx": 112,
+        "skill": "pick",
+        "kl": 0.597923,
+        "flip": true
+      },
+      {
+        "sample_idx": 113,
+        "skill": "place",
+        "kl": 0.217075,
+        "flip": true
+      },
+      {
+        "sample_idx": 114,
+        "skill": "pick",
+        "kl": 0.566708,
+        "flip": false
+      },
+      {
+        "sample_idx": 115,
+        "skill": "fold",
+        "kl": 5.050172,
+        "flip": true
+      },
+      {
+        "sample_idx": 116,
+        "skill": "open",
+        "kl": 0.008664,
+        "flip": false
+      },
+      {
+        "sample_idx": 117,
+        "skill": "pick",
+        "kl": 2.86395,
+        "flip": true
+      },
+      {
+        "sample_idx": 118,
+        "skill": "place",
+        "kl": 6.526567,
+        "flip": true
+      },
+      {
+        "sample_idx": 119,
+        "skill": "fold",
+        "kl": 1.603998,
+        "flip": true
+      },
+      {
+        "sample_idx": 120,
+        "skill": "open",
+        "kl": 0.095171,
+        "flip": false
+      },
+      {
+        "sample_idx": 121,
+        "skill": "fold",
+        "kl": 4.555067,
+        "flip": true
+      },
+      {
+        "sample_idx": 122,
+        "skill": "fold",
+        "kl": 0.458341,
+        "flip": false
+      },
+      {
+        "sample_idx": 123,
+        "skill": "move",
+        "kl": 0.889382,
+        "flip": false
+      },
+      {
+        "sample_idx": 124,
+        "skill": "place",
+        "kl": 0.352203,
+        "flip": false
+      },
+      {
+        "sample_idx": 125,
+        "skill": "pick",
+        "kl": 3.742318,
+        "flip": true
+      },
+      {
+        "sample_idx": 126,
+        "skill": "open",
+        "kl": 0.070266,
+        "flip": false
+      },
+      {
+        "sample_idx": 127,
+        "skill": "place",
+        "kl": 4.518023,
+        "flip": true
+      },
+      {
+        "sample_idx": 128,
+        "skill": "pick",
+        "kl": 0.744981,
+        "flip": false
+      },
+      {
+        "sample_idx": 129,
+        "skill": "place",
+        "kl": 0.532762,
+        "flip": false
+      },
+      {
+        "sample_idx": 130,
+        "skill": "place",
+        "kl": 1.683599,
+        "flip": true
+      },
+      {
+        "sample_idx": 131,
+        "skill": "pick",
+        "kl": 3.814573,
+        "flip": true
+      },
+      {
+        "sample_idx": 132,
+        "skill": "place",
+        "kl": 0.132187,
+        "flip": false
+      },
+      {
+        "sample_idx": 133,
+        "skill": "place",
+        "kl": 1.281574,
+        "flip": false
+      },
+      {
+        "sample_idx": 134,
+        "skill": "move",
+        "kl": 1.650128,
+        "flip": true
+      },
+      {
+        "sample_idx": 135,
+        "skill": "fold",
+        "kl": 4.63134,
+        "flip": true
+      },
+      {
+        "sample_idx": 136,
+        "skill": "move",
+        "kl": 1.250486,
+        "flip": true
+      },
+      {
+        "sample_idx": 137,
+        "skill": "close",
+        "kl": 0.082886,
+        "flip": false
+      },
+      {
+        "sample_idx": 138,
+        "skill": "move",
+        "kl": 0.020096,
+        "flip": false
+      },
+      {
+        "sample_idx": 139,
+        "skill": "open",
+        "kl": 0.594197,
+        "flip": false
+      },
+      {
+        "sample_idx": 140,
+        "skill": "close",
+        "kl": 1.314359,
+        "flip": true
+      },
+      {
+        "sample_idx": 141,
+        "skill": "move",
+        "kl": 1.718246,
+        "flip": true
+      },
+      {
+        "sample_idx": 142,
+        "skill": "open",
+        "kl": 0.12578,
+        "flip": false
+      },
+      {
+        "sample_idx": 143,
+        "skill": "fold",
+        "kl": 0.353491,
+        "flip": false
+      },
+      {
+        "sample_idx": 144,
+        "skill": "close",
+        "kl": 0.086606,
+        "flip": false
+      },
+      {
+        "sample_idx": 145,
+        "skill": "place",
+        "kl": 0.055596,
+        "flip": false
+      },
+      {
+        "sample_idx": 146,
+        "skill": "fold",
+        "kl": 4.788384,
+        "flip": true
+      },
+      {
+        "sample_idx": 147,
+        "skill": "open",
+        "kl": 0.021093,
+        "flip": false
+      },
+      {
+        "sample_idx": 148,
+        "skill": "open",
+        "kl": 0.65595,
+        "flip": false
+      },
+      {
+        "sample_idx": 149,
+        "skill": "open",
+        "kl": 4.321298,
+        "flip": true
+      }
+    ]
+  }
+}
